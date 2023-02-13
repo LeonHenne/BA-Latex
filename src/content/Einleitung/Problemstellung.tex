@@ -1,1 +1,17 @@
 \section{Problemstellung}
+
+„Reinforcement Learning“ ist im Bereich des maschinellen Lernens eine Herangehensweise zur Lösung von Entscheidungsproblemen. \footcite[Vgl.][S. 3]{Schuderer.2021}
+Ein Software-Agent leitet dabei durchzuführende Aktionen aus seiner Umgebung ab, mit dem Ziel die kumulierte erhaltene Belohnung zu maximieren, währenddessen sich seine Umgebung durch alle Aktionen verändert. \footcite[Vgl.][S. 3]{Schuderer.2021}
+Die Umgebungen beinhalten in ihrer einfachsten Form eine simulierte Welt, welche zu jedem Zeitschritt eine Aktion entgegennimmt, und den eigenen nächsten Zustand sowie einen Belohnungswert zurückgibt. \footcite[Vgl.][S. 1]{Reda.2020}
+Der Einsatz einer Simulationsumgebung unterstützt besonders, wenn Limitierungen bestehen, Daten in der echten Welt zu sammeln und fürs Training zu verwenden. \footcite[Vgl.][S. 737]{Zhao.2020}
+Eine Limitierung können bspw. Sicherheitsaspekte sein, welche beim Training von Roboterarmen, oder sich autonom bewegenden Systemen auftreten, da die einzelnen physischen Bewegungen nicht vorhersehbar abschätzbar sind. \footcite[Vgl.][S. 738]{Zhao.2020}
+Simulationen nehmen damit als Testumgebung eine wichtige Rolle ein in der Entwicklung von Kontrollalgorithmen. \footcite[Vgl.][S. 2]{Cutler.2014}
+Insgesamt bedarf die erfolgreiche Anwendung von Reinforcement Learning demnach nicht nur effiziente Algorithmen, sondern auch geeignete Simulationsumgebungen. \footcite[Vgl.][S. 8]{Reda.2020}
+Besonders schwierig, und daher sehr wichtig zu erforschen, ist es die Trainingsumgebung bestmöglich an die echte Welt anzupassen, sodass die Agenten für Roboter und autonome Fahrzeuge nach dem Training, mit generalisierten Policies in der Realität eingesetzt werden können. \footcite[Vgl.][S. 1]{DBLP:journals/corr/abs-1910-10537}
+In der Forschungsliteratur wird diese beschriebene Problematik als „Sim to real“-Transfer beschrieben. \footcite[Vgl.][S. 738]{Zhao.2020}
+Eine Methodik diesen Transfer zu begünstigen ist die Veränderung von visuellen oder dynamischen Parametern der Umgebung, was in der Forschungsliteratur als „Domain Randomization“ referenziert wird. \footcite[Vgl.][S. 2]{DBLP:journals/corr/abs-1910-10537}
+Eine Domäne der echten Welt wird dabei eher selten durch nur eine Person oder nur eine Organisation geprägt. 
+Oftmals beeinflussen mehrere Parteien teilweise kooperierend aber auch teilweise konkurrierend den eigenen Erfolg. 
+Stellt man sich ein solches Szenario vor, wie bspw. einen dem Wettbewerb unterliegenden Markt, ist es naheliegend, dass jene Einflüsse auch ein Teil der Simulationsumgebung sein müssen, um ein generalisierendes Modell erlernen zu können.
+
+Daher soll neben Domain Randomization im Rahmen dieser Arbeit untersucht werden, ob die Integrierung von weiteren Methoden, wie der Domain Adaptation oder dem Einsatz eines Gegenspielers in der Simulation, die Umgebung so beeinflussen kann, dass die erlernte Policy robuster gegenüber veränderten dynamischen Bedingungen wird. 
