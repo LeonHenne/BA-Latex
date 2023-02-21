@@ -1,11 +1,12 @@
 \section{Zielsetzung}
 
-Untersuchung der erreichten Generalisierung von erlernten Policies durch Hinzufügen von Agenten als regelbasierten und als mittels RL angelernten Gegenspieler in der Simulationsumgebung. Vergleich mit bekannten Methoden der Domain Adaptation oder Domain Randomization, wie dem Verändern von Dynamikparametern der Umgebung.
+Daher soll im Rahmen dieser Arbeit untersucht werden, ob die Integrierung von weiteren Methoden, wie der Domain Adaptation oder dem Einsatz eines Gegenspielers in einer Simulation die Umgebung so beeinflussen kann, dass die erlernten Verhaltensmodelle, welche im Kontext von RL oftmals als Policies referenziert werden, robuster unter den veränderten dynamischen Bedingungen agieren. 
 
-Dazu 
+Dazu soll eine kompetitive Simulationsumgebung entwickelt werden, in welcher sich zwei konkurrierender Spieler in Form von Flugobjekten spielerisch gegenseitig bekämpfen.
+Diese ermöglicht das Training von Policies mit regelbasiertem und bereits trainiertem Gegenspieler.
+Unter dessen Verwendung können daraufhin Policies gegen den regelbasierten- und RL-Gegenspieler angelernt werden. 
+Anschließend wird die erreichte Generalisierung mit bereits bekannten Methoden zur Erhöhung der Robustheit von Policies wie Domain Randomization verglichen.
+Dazu werden Performance-Metriken, wie die durchschnittlich erzielte Belohnung und Stabilitäts-Metriken, wie die Belohnungsvarianz oder die Anzahl an Abstürzen betrachtet. 
 
-Entwicklung einer beispielhaften Simulationsumgebung zweier sich konkurrierender Spieler in Form von Flugobjekten, welche sich spielerisch gegenseitig bekämpfen. Trainieren einer Policy gegen einen Regelbasierten Gegenspieler. 
-Training einer weiteren Policy zum Einsatz als Gegenspieler. 
-Training einer Policy im Konkurrenzverhalten gegen den zuvor trainierten Gegenspieler.  
-Vergleich der Policies aus dem Training mit regelbasiertem und RL gesteuerten Gegenspieler in einer Dynamik veränderten Umgebung.
-Testen von Performance-Metriken, wie der durchschnittlich erzielten Belohnung und Stabilitäts-Metriken, wie der Belohnungsvarianz oder der Anzahl an Abstürzen.
+%Anschließend sind die Policies in einer mittels Domain Randomization veränderten Simulationsumgebung auf ihre Generalisierung zu testen.
+
