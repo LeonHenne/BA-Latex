@@ -1,12 +1,23 @@
 \section{Zielsetzung}
 
-Daher soll im Rahmen dieser Arbeit untersucht werden, ob die Integrierung eines Gegenspielers in einer Simulation die Umgebung so beeinflussen kann, dass die erlernten Verhaltensmodelle, welche im Kontext von RL oftmals als Policies referenziert werden, robuster unter den veränderten dynamischen Bedingungen agieren. %von dem Einsatz weiteren Methoden, wie der Domain Adaptation oder 
+Daher soll im Rahmen dieser Arbeit untersucht werden, ob die Integrierung eines RL basierten Gegenspielers in einer Simulation die Umgebung so beeinflussen kann, dass die erlernten Verhaltensmodelle, welche im Kontext von RL oftmals als Policies referenziert werden, robuster agieren unter den veränderten dynamischen Bedingungen und alternativen deterministischen Gegenspielern im Testszenario. 
 
 Dazu soll eine kompetitive Simulationsumgebung entwickelt werden, in welcher sich zwei konkurrierender Spieler in Form von Flugobjekten spielerisch gegenseitig bekämpfen.
-Diese ermöglicht das Training von Policies mit regelbasiertem und bereits durch RL optimierten Gegenspieler.
-Unter dessen Verwendung können daraufhin Policies gegen den regelbasierten- und RL-Gegenspieler angelernt werden. 
-Anschließend wird die erreichte Generalisierung mit bereits bekannten Methoden zur Erhöhung der Robustheit von Policies wie Domain Randomization verglichen.
-Dazu werden Performance-Metriken, wie die durchschnittlich erzielte Belohnung und Stabilitäts-Metriken, wie die Varianz der Belohnungen oder die Anzahl an Abstürzen betrachtet. 
+In der Simulation werden folgend Policies in drei verschiedenen Szenarien trainiert.
+\begin{itemize}
+    \item Training mit regelbasiertem Gegenspieler unter gleichbleibenden Dynamikparametern
+    \item Training mit RL basiertem Gegenspieler unter gleichbleibenden Dynamikparametern
+    \item Training mit regelbasiertem Gegenspieler unter sich verändernden Dynamikparametern
+\end{itemize}
 
-%Anschließend sind die Policies in einer mittels Domain Randomization veränderten Simulationsumgebung auf ihre Generalisierung zu testen.
+Anschließend werden alle trainierten Policies in einer Reihe von Testszenarien untersucht.
+Jedes Testszenario verfügt dabei über festgelegte sich vom Training unterscheidende Dynamikparameter und jeweils leicht unterschiedliche Handlungspräferenzen des deterministischen Gegenspielers.
+Bei der Untersuchung werden jeweils die folgenden Variablen als Key Performance Indicator (KPI) betrachtet.
+\begin{itemize}
+    \item durchschnittlich erzielte Belohnung
+    \item Varianz der Belohnungen
+    \item Anzahl an Abstürzen
+\end{itemize}
+
+Aus der Auswertung der Testszenarien kann der Effekt des RL basierten Gegenspielers auf die Robustheit mittels des Vergleichs mit dem regelbasierten Gegenspieler und der Domain Randomization evaluiert werden.
 
