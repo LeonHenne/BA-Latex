@@ -16,32 +16,51 @@ Zusammengefasst lässt sich die beschriebene Interaktion des Agenten mit seiner 
 
 Ein Standardaufbau einer Aufgabe für verstärkendes Lernen kann demnach verstanden werden, als sequentielles Entscheidungsproblem zu dessen Lösung ein Agent zu jedem diskreten Zeitschritt eine Aktion ausführt welche den Zustand der Umgebung verändert. \footcite[Vgl.][S. 2]{Zhao.2020}
 Betrachtet man die technische Umsetzung einer solchen Interaktion zwischen dem Agenten und dessen Umgebung, wird häufig zur Modellierung ein Markov Entscheidungsprozess verwendet.
-Im Kontext von RL ist der Entscheidungsprozess definiert nach einem Tupel aus folgenden sechs Elementen:\footcite[Vgl.][S. 2]{Zhang.2018}
+Im Kontext von RL ist der Entscheidungsprozess definiert nach einem Tupel aus folgenden Elementen:\footcite[Vgl.][S. 2]{Zhang.2018}
 \begin{itemize}
     \item Alle Zustände $S$
     \item Alle Aktionen $A$
     \item initiale Zustandsverteilung $p0(S)$
     \item Übergangswahrscheinlichkeit $T(S_{t+1}|S_{t},A_{t})$
     \item Belohnungswahrscheinlichkeit $R(r_{t+1}|S_{t},A_{t})$
-    \item Abzinsungsfaktor $\gamma \in \left[0,1\right)$
 \end{itemize}
-Der Agent sucht in diesem Kontext die optimale Strategie $\pi_{\phi}$, welche allen Zuständen $S$ die jeweilige Aktion $A(S)$ zuordnet, sodass die kummulierte Belohnungswahrscheinlichkeit $R(r_{t+1}|S_{t},A_{t})$ über alle Zeitschritte $t$ maximal ist. \footcite[Vgl.][S. 2]{Reda.2020}
 
-Neben dieser kurzfristigen direkten Belohnung müssen auch die langfristigen zukünftigen Belohnungen aus den neuen Zuständen betrachtet werden, wofür das Konzept der Wertigkeit eingeführt wird. \footcite[Vgl.][S. 3]{Wang.2020}
-Über eine Zustands- oder Aktionswertigkeitsfunktion, oftmals als Q-Funktion referenziert, wird eine Vorhersage über die zu erwartende kumulierte abgezinste zukünftige Belohnung berechnet.\footcite[Vgl.][S. 5]{Li.2019}
-Durch den Abzinsungsfaktor $\gamma$ wird der Einfluss zukünftiger Belohnungen nach ihrer zeitlichen Reihenfolge priorisiert.\footcite[Vgl][S. 5]{Li.2019}
-Mit der Wertigkeitsfunktion kann evaluiert werden, welche Strategie langfristig am erfolgreichsten ist, da bspw. manche Aktionen trotz geringer sofortiger Belohnung einen hohen Wert aufweisen können, wenn aus dem zukünftigen Zustand eine hohe Belohnung zu erwarten ist.\footcite[Vgl.][S. 6]{Sutton.2018}
-Die Wertigkeitsfunktion und die daraus berechneten Wertigkeiten von Aktionen oder Zuständen werden über alle Zeitschritte neu geschätzt und stellen mit die wichtigste Komponenten in Algorithmen des verstärkenden Lernens dar. \footcite[Vgl.][S. 6f.]{Sutton.2018}
-Methoden basierend auf diesem Wertigkeitswert lernen eine Schätzfunktion der Wertigkeit für alle Zustände ($V_{\pi}(s) \forall S$) und alle Zustandsaktions-Paare ($Q_{\pi}(s_{t},a_{t}) \forall s,a \in (S,A)$) der optimalen Strategie $\pi$ durch aktualisieren der folgenden Funktionen: \footcite[Vgl.][S. 2]{Zhang.2018}
-\begin{itemize}
-    %\item 1: $Q(s_{t}, a_{t}| \omega_{t+1}) \leftarrow Q(s_{t}, a_{t}|\omega_{t}) + \alpha\left[r_{t+1} + \gamma\max\limits_{a}Q(s_{t+1},a|\omega)-Q(s_{t},a_{t}|\omega)\right]*\nabla_{\omega}Q(s_{t},a_{t}|\omega)$
-    \item 1: $Q(s_{t}, a_{t}) \leftarrow Q(s_{t}, a_{t}) + \alpha\left[r_{t+1} + \gamma\max\limits_{a}Q(s_{t+1},a)-Q(s_{t},a_{t})\right]$
-    \item 2: $V(s_{t}) = \max\limits_{a}Q(s_{t},a|\omega)$
-\end{itemize}
-Aus den geschätzten Wertigkeit jedes Zustandsaktions Paares kann die optimale Strategie $\pi^{*}(s)$ durch $\underset{a}{\arg\max}$ $Q(s,a)$ bestimmt werden. \footcite[Vgl.][S. 2]{Zhang.2018}
-
-Neben den Methoden welche auf dem Konzept der Wertigkeit basieren können Strategie basierende Methoden die Strategie direkt durch bspw. ihren Gradienten optimieren.
-
-%Zum Finden der optimalen Strategie existieren die beiden Herangehensweisen des modellbasierenden verstärkenden Lernens und des modellfreien verstärkenden Lernens. \footcite[Vgl.][S. 3]{Wang.2020}
+Zum Finden der optimalen Strategie existieren modellbasierende und modellfreie Algorithmen des verstärkenden Lernens. \footcite[Vgl.][S. 3]{Wang.2020}
+Bei modellbasierenden Algorithmen wird das Umgebungsverhalten, also die Übergangs- und Belohnungswahrscheinlichkeiten als bekannt vorausgesetzt. \footcite[Vgl.][S. 3]{Wang.2020}
+Unter modellbasierenden Algorithmen wird dynamische Programmierung eingesetzt, um mittels Strategieevaluation und Strategieiteration die optimale Strategie zu finden. \footcite[Vgl.][S. 5]{Li.2019}
+Unter modellfreien Algorithmen werden die drei verschiedenen Ansätze Wertebasierend, Strategiebasierend und Akteur-Kritiker basierend unterschieden \footcite[Vgl.][S. 5]{Li.2019}
 %Im Kontext von modellbasierendem RL im Vergleich zum modellfreien RL sind die Übergangs- und Belohnungswahrscheinlichkeiten bekannt, wodurch mittels Strategie- und Werteevaluation sowie Optimierung die bestmögliche Strategie gefunden werden kann. \footcite[Vgl.][S. 5]{Li.2019}
 
+\subsection{Wertebasierende Methoden}
+Der Agent sucht in diesem Kontext die optimale Strategie $\pi_{\phi}$, welche allen Zuständen $S$ die jeweilige Aktion $A(S)$ zuordnet, sodass die kummulierte Belohnungswahrscheinlichkeit $R(r_{t+1}|S_{t},A_{t})$ über alle Zeitschritte $t$ maximal ist. \footcite[Vgl.][S. 2]{Reda.2020}
+Neben dieser kurzfristigen direkten Belohnung müssen auch die langfristigen zukünftigen Belohnungen aus den neuen Zuständen betrachtet werden, wofür das Konzept der Wertigkeit eingeführt wird. \footcite[Vgl.][S. 3]{Wang.2020}
+Über eine Zustands- oder Aktionswertigkeitsfunktion, oftmals als Q-Funktion referenziert, wird eine Vorhersage über die zu erwartende kumulierte abgezinste zukünftige Belohnung berechnet.\footcite[Vgl.][S. 5]{Li.2019}
+Durch den Abzinsungsfaktor $\gamma \in \left[0,1\right)$ wird der Einfluss zukünftiger Belohnungen nach ihrer zeitlichen Reihenfolge priorisiert.\footcite[Vgl][S. 5]{Li.2019}
+Mit der Wertigkeitsfunktion kann evaluiert werden, welche Strategie langfristig am erfolgreichsten ist, da bspw. manche Aktionen trotz geringer sofortiger Belohnung einen hohen Wert aufweisen können, wenn aus dem zukünftigen Zustand eine hohe Belohnung zu erwarten ist.\footcite[Vgl.][S. 6]{Sutton.2018}
+Die Wertigkeitsfunktion und die daraus berechneten Wertigkeiten von Aktionen oder Zuständen werden über alle Zeitschritte neu geschätzt und stellen mit die wichtigste Komponenten in Algorithmen des verstärkenden Lernens dar. \footcite[Vgl.][S. 6f.]{Sutton.2018}
+Methoden basierend auf diesem Wertigkeitswert lernen eine Schätzfunktion der Wertigkeit für alle Zustände ($V_{\pi}(s) \forall S$) und alle Zustandsaktions-Paare ($Q_{\pi}(s_{t},a_{t}) \forall s,a \in (S,A)$) der optimalen Strategie $\pi$ durch aktualisieren der folgenden Funktionen eins und zwei: \footcite[Vgl.][S. 2]{Zhang.2018}
+\begin{description}
+    %\item 1: $Q(s_{t}, a_{t}| \omega_{t+1}) \leftarrow Q(s_{t}, a_{t}|\omega_{t}) + \alpha\left[r_{t+1} + \gamma\max\limits_{a}Q(s_{t+1},a|\omega)-Q(s_{t},a_{t}|\omega)\right]*\nabla_{\omega}Q(s_{t},a_{t}|\omega)$
+    \item \begin{center} (1) $Q(s_{t}, a_{t}) \leftarrow Q(s_{t}, a_{t}) + \alpha\left[r_{t+1} + \gamma\max\limits_{a}Q(s_{t+1},a)-Q(s_{t},a_{t})\right]$ \end{center}
+    \item \begin{center} (2) $V(s_{t}) = \max\limits_{a}Q(s_{t},a|\omega)$ \end{center}
+\end{description}
+Aus den geschätzten Wertigkeit jedes Zustandsaktions Paares kann die optimale Strategie $\pi^{*}(s)$ durch $\underset{a}{\arg\max}$ $Q(s,a)$ bestimmt werden. \footcite[Vgl.][S. 2]{Zhang.2018}
+
+\subsection{Strategiebasierende Methoden}
+Methoden welche die Strategie durch dessen Parametrisierung anstelle einer Wertigkeitsfunktion optimieren werden als strategiebasierend bezeichnet. \footcite[Vgl.][S. 2]{Zhang.2018}
+Diese Methodik kann beim Trainieren deterministischer Strategien zu unerwarteten Aktionen führen, weshalb häufig das Optimieren einer Wahrscheinlichkeitsverteilung für alle Aktionen bevorzugt wird. \footcite[Vgl.][S. 3]{Ningombam.2022}
+Als Subklasse der RL Methoden wird der statistische Gradientenabstieg verwendet um die parametrisierte Strategie $\pi_{\theta}$ hinsichtlich der maximalen langfristigen kumulierten Belohnung zu optimieren. \footcite[Vgl.][S. 3]{Ningombam.2022}
+Die Strategie $\pi_{\theta}$ oder auch $\pi(a|s,\theta)$ beschreibt dabei die Wahrscheinlichkeit Aktion $a$ im Zustand $s$ auszuwählen unter dem Parametervektor $\theta$. \footcite[Vgl.][S. 321]{Sutton.2018}
+Zur Optimierung der Strategie wird die Funktion der kumulierten Belohnungen $J$ nach dem Parameter der Gewichte $\theta$ wie folgt in Formel drei abgeleitet und der optimierte Parametervektor anhand Formel vier aktualisiert. \footcite[Vgl.][S. 6]{Wang.2020}
+\begin{description}
+    \item \begin{center} (3) $\nabla_{\theta}J(\theta) \approx \frac{1}{N} \sum \limits_{i=1}^{N} \left[(\sum \limits_{t=1}^{T} \nabla_{\theta}\log\pi_{\theta}(a_{t}|s_{t}))(\sum \limits_{t=1}^{T} r(s_{t},a_{t}))\right]$ \end{center}
+    \item \begin{center} (4) $\theta \leftarrow \theta + \alpha\nabla_{\theta}J(\theta)$ \end{center}
+\end{description}
+Zusammengefasst kann Formel vier und fünf dabei so interpretiert werden, dass die logarithmierte Wahrscheinlichkeit Aktion $a_{t}$ im Zustand $s_{t}$ auszuwählen erhöht werden soll, wenn $a_{t}$ in einer höheren kumumlierten Belohnung resultiert. \footcite[Vgl.][S. 6]{Wang.2020}
+
+\subsection{Akteur-Kritiker Methoden}
+Unter Akteur-Kritiker Methoden werden hybride wertebasierende und strategiebasierende Methoden verstanden, welche zugleich die Strategie optimieren und eine Wertefunktion approximieren. \footcite[Vgl.][S. 2f.]{Zhang.2018}
+Die strategiebasierende Methodik mit der lernenden Strategie agiert dabei als Akteur, wohingegen die Wertefunktion, welche jeder Aktion und jedem Zustand einen Behlohnungswert zuweist, als Kritiker handelt. \footcite[Vgl.][S. 321]{Sutton.2018}
+Der Akteur wählt somit aus seiner Wahrscheinlichkeitsverteilung die auszuführende Aktionen aus, während der Kritiker diese anhand seiner Wertigkeit bewertet. \footcite[Vgl.][S. 3]{Ningombam.2022}
+
+\subsection{Limitierungen von RL}
