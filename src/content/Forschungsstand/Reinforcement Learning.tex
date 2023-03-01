@@ -29,6 +29,7 @@ Zum Finden der optimalen Strategie existieren modellbasierende und modellfreie A
 Bei modellbasierenden Algorithmen wird das Umgebungsverhalten, also die Übergangs- und Belohnungswahrscheinlichkeiten als bekannt vorausgesetzt. \footcite[Vgl.][S. 3]{Wang.2020}
 Unter modellbasierenden Algorithmen wird dynamische Programmierung eingesetzt, um mittels Strategieevaluation und Strategieiteration die optimale Strategie zu finden. \footcite[Vgl.][S. 5]{Li.2019}
 Unter modellfreien Algorithmen werden die drei verschiedenen Ansätze Wertebasierend, Strategiebasierend und Akteur-Kritiker basierend unterschieden \footcite[Vgl.][S. 5]{Li.2019}
+Der Agent im Kontext von modellfreien RL Methoden nur die Zustände $S$ und die Aktionen $A$, jedoch nicht die Umgebungsverhalten $T$ und die Belohnungswahrscheinlichkeit $R$. \footcite[Vgl.][S. 2]{Cutler.2014}
 %Im Kontext von modellbasierendem RL im Vergleich zum modellfreien RL sind die Übergangs- und Belohnungswahrscheinlichkeiten bekannt, wodurch mittels Strategie- und Werteevaluation sowie Optimierung die bestmögliche Strategie gefunden werden kann. \footcite[Vgl.][S. 5]{Li.2019}
 
 \subsection{Wertebasierende Methoden}
@@ -62,5 +63,28 @@ Zusammengefasst kann Formel vier und fünf dabei so interpretiert werden, dass d
 Unter Akteur-Kritiker Methoden werden hybride wertebasierende und strategiebasierende Methoden verstanden, welche zugleich die Strategie optimieren und eine Wertefunktion approximieren. \footcite[Vgl.][S. 2f.]{Zhang.2018}
 Die strategiebasierende Methodik mit der lernenden Strategie agiert dabei als Akteur, wohingegen die Wertefunktion, welche jeder Aktion und jedem Zustand einen Behlohnungswert zuweist, als Kritiker handelt. \footcite[Vgl.][S. 321]{Sutton.2018}
 Der Akteur wählt somit aus seiner Wahrscheinlichkeitsverteilung die auszuführende Aktionen aus, während der Kritiker diese anhand seiner Wertigkeit bewertet. \footcite[Vgl.][S. 3]{Ningombam.2022}
+Betrachtet man den Trainingsprozess von Akteur-Kritiker basierten Methoden ist dieser wie folgt aufgebaut: \footcite[Vgl.][S. 4]{Ningombam.2022}
+\begin{itemize}
+    \item Aktueller Zustand der Umgebung als Eingabe dem Akteur und Kritiker übergeben
+    \item Akteur liefert eine auszuführende Aktion basierend auf dem Umgebungszustand
+    \item Der Kritiker bekommt die Aktion als Eingabe und berechnet dessen Wertigkeit mittels Q-Funktion
+    \item Durch die Wertigkeit seiner Aktion kann der Akteur seine Strategie anpassen
+    \item Mit der neuen Strategie führt der Akteur die nächste Aktion im folgenden Zustand aus
+    \item Die Q-Funktion des Kritikers wird mit den neuen Informationen aus der erhaltenen Belohnung angepasst
+\end{itemize}
 
-\subsection{Limitierungen von RL}
+\subsection{Limitierungen und Herausforderungen von RL}
+%Ein vorteilhafter Kernanspekt von RL ist die vollständige Betrachtung des Problems eines Zielgerichteten Agenten in einer unsicheren Umgebung. \footcite[Vgl.][S. 3]{Sutton.2018}
+Trotz signifikanter Errungenschaften bewirkt der Einsatz von den besprochenen RL Algorithmen weiterhin Limitierungen und Risiken für ungewolltes Verhalten. \footcite[Vgl.][S. 7]{Li.2019}
+
+Eine der Herausforderungen zeigt sich bei der Representation der Agentenumwelt, da RL stark auf diesem Konzept basiert. \footcite[Vgl.][S. 8]{Sutton.2018}
+Daraus ergibt sich die Aufgabe, die Umwelt und dessen Verhalten sowie die Wahrnehmung durch den Agenten realitätsgetreu und präzise zu gestalten. \footcite[Vgl.][S. 7]{Sutton.2018}
+Neben der Definition und Wahrnehmung des Umweltverhaltens ist die Spezifikation des Ziels des Agenten ein ebenso kritischer Teil, da unerwartete Intentionen aus der Zielstellung abgeleitet werden könnten. \footcite[Vgl.][S. 7]{Li.2019}
+Zusätzlich teilen RL Algorithmen auch Herausforderungen aus anderen Gebieten des maschinellen Lernens wie Genauigkeit, Interpretierbarkeit und die im Rahmen dieser Arbeit untersuchte Robustheit von Modellen. \footcite[Vgl.][S. 7]{Li.2019}
+
+Eine weitere Limitierung stellt der große Suchraum an Aktionen und das unbekannte Verhalten der Umgebung dar.
+Dies sorgt dafür, dass häufig die Effizienz einzelner Daten sehr gering ist und die Abwägung zwischen Exploration neuer Strategie und der Optimierung bekannter Verhaltensmuster ein wichtiger Bestandteil ist. \footcite[Vgl.][S. 7]{Li.2019}
+Aufgrund der geringen Effizienz der Daten aber des dennoch hohen Bedarfs an bewerteter Agentenerfahrung wird häufig auf simulierte Daten zurückgegriffen. \footcite[Vgl.][S. 7]{Zhao.2020}
+Simulierte Daten werden dabei häufig von möglichst hoch qualitativen Simulationsumgebungen bereitgestellt, da zu dem hohen Bedarf der Methodik häufig Limitierungen in der Sammlung von Daten in der echten Welt bestehen. \footcite[Vgl.][S. 8]{Li.2019}
+
+Aufgrund dieser Bedeutung der Simulationsumgebung für RL Algorithmen und deren Transfer in die echte Welt wird im nachfolgenden Kapitel dessen Entwicklung genauer betrachtet.
