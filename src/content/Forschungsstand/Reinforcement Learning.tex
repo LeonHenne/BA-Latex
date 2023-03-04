@@ -31,6 +31,15 @@ Unter modellbasierenden Algorithmen wird dynamische Programmierung eingesetzt, u
 Unter modellfreien Algorithmen werden die drei verschiedenen Ansätze Wertebasierend, Strategiebasierend und Akteur-Kritiker basierend unterschieden \footcite[Vgl.][S. 5]{Li.2019}
 Der Agent im Kontext von modellfreien RL Methoden nur die Zustände $S$ und die Aktionen $A$, jedoch nicht die Umgebungsverhalten $T$ und die Belohnungswahrscheinlichkeit $R$. \footcite[Vgl.][S. 2]{Cutler.2014}
 %Im Kontext von modellbasierendem RL im Vergleich zum modellfreien RL sind die Übergangs- und Belohnungswahrscheinlichkeiten bekannt, wodurch mittels Strategie- und Werteevaluation sowie Optimierung die bestmögliche Strategie gefunden werden kann. \footcite[Vgl.][S. 5]{Li.2019}
+Fasst man die Klassifizierung der Algorithmen und Methoden von RL zusammen, lässt sie sich wie folgt darstellen:
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[height=4cm]{lib/graphics/taxonomy of RL algorithms.png}
+    \caption[Klassifizierung von Algorithmen im Bereich des RL]{Klassifizierung von Algorithmen im Bereich des RL\footnotemark}
+    \label{abb:RL-algorithm-classification}
+\end{figure}
+\footnotetext{Enthalten in: \cite[][S. 6]{Canese.2021}}
 
 \subsection{Wertebasierende Methoden}
 Der Agent sucht in diesem Kontext die optimale Strategie $\pi_{\phi}$, welche allen Zuständen $S$ die jeweilige Aktion $A(S)$ zuordnet, sodass die kummulierte Belohnungswahrscheinlichkeit $R(r_{t+1}|S_{t},A_{t})$ über alle Zeitschritte $t$ maximal ist. \footcite[Vgl.][S. 2]{Reda.2020}
@@ -72,6 +81,17 @@ Betrachtet man den Trainingsprozess von Akteur-Kritiker basierten Methoden ist d
     \item Mit der neuen Strategie führt der Akteur die nächste Aktion im folgenden Zustand aus
     \item Die Q-Funktion des Kritikers wird mit den neuen Informationen aus der erhaltenen Belohnung angepasst
 \end{itemize}
+
+\subsection{Abgrenzung zu Multi-Agent Reinforcement Learning (MARL) Algorithmen}
+Innerhalb dieses Unterkapitels soll der beschriebene Aufbau von RL Algorithmen und deren Optimierungsproblem zu den von MARL Systemen abgegrenzt werden.
+Bei MARL Systemen wird anstatt einem Agenten eine Menge von Agenten eingesetzt welche alle mit ihrer Umgebung interagieren um den Weg der Zielerreichung zu lernen. \footcite[Vgl.][S. 6]{Wong.2022}
+Dieser Ansatz dient dazu Problemstellungen welche nicht vollständig durch einen Agenten lösbar sind zu bearbeiten. \footcite[Vgl.][S. 1]{Canese.2021}
+Einsatzgebiete von MARL sind dabei unter anderem das Routing von Netzwerkpaketen, Wirtschaftsmodellierung oder zusammenhängende Robotersysteme. \footcite[Vgl.][S. 1]{Canese.2021}
+Je nach Ziel und der demnach definierter Belohnungsfunktion können die Agenten auf die drei unterschiedlichen Arten vollständig kooperativ, vollständig kompetitiv und der Mischung aus beiden miteinander interagieren. \footcite[Vgl.][S. 8f.]{Canese.2021}
+Aus der unterschiedlichen Interaktion jedes Agenten mit der selben Umgebung ergibt sich der Unterschied, dass die Umgebungsdynamik aus der Kombination aller Aktionen der Agenten beeinflusst wird anstatt aus der Aktion des einzelnen Agenten. \footcite[Vgl.][S. 2]{Wong.2022}
+Da dieser Effekt auch die Annahme der Stationarität von Markov Entscheidungsprozessen verletzt, bedarf dieUmgebung  auch einer anderen Representation. \footcite[Vgl.][S. 6]{Wong.2022}
+Ein Konzept was dafür häufig verwendet ist das Markov Spiel, welches sich anders als der Entscheidungsprozess durch einen mehrdimensionalen Aktions- und Belohnungsraum aus der Kombination aller $N$ Agenten auszeichnet. \footcite[Vgl.][S. 4]{Canese.2021}
+Betrachtet man die Limitierungen von MARL erkennt man aus den beschriebenen Punkten die Herausforderungen der nicht vorhandenen Stationarität und der Skalierbarkeit, welcher sich die Herausforderung der teilweisen Beobachtbarkeit der Umgebung anschließt. \footcite[Vgl.][S. 9ff.]{Canese.2021}
 
 \subsection{Limitierungen und Herausforderungen von RL}
 %Ein vorteilhafter Kernanspekt von RL ist die vollständige Betrachtung des Problems eines Zielgerichteten Agenten in einer unsicheren Umgebung. \footcite[Vgl.][S. 3]{Sutton.2018}
