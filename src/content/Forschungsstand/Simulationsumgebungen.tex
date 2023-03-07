@@ -1,0 +1,39 @@
+\section{Simulationsumgebungen für RL}
+
+Anders als im klassischen Bereich des maschinellen Lernens wie überwachtes- und unüberwachtes Lernen, werden beim verstärkenden Lernen viele der Testdatensätze nicht aus der echten Welt akquiriert. \footcite[Vgl.][S. 1]{Zhang.2018}
+Um entsprechend realistische Daten für das Training bereitzustellen, werden Simulationsumgebungen in Abhängigkeit von ihrer RL Anwendung ausgewählt. \footcite[Vgl.][S. 7]{Korber.2021}
+Dennoch bleibt nahezu immer eine gewisse Diskrepanz zwischen der Dynamik in der Simulation und der Dynamik in der echten Welt. \footcite[Vgl.][S. 1]{Bharadhwaj.2019}
+%Möglichkeiten diese Diskrepanz zu verkleinern sind zum einen das Fehlverhalten von Sensoren einzubinden, oder ein reales Signal mit der virtuellen Umgebung zu verknüpfen. \footcite[Vgl.][S. 1]{Zhang.2018}
+Daher ist es kaum garantiert, dass erlernte Strategien der Agenten sich auf auch nur leicht veränderte Umgebungen übertragen lassen. \footcite[Vgl.][S. 1]{Bharadhwaj.2019}
+
+\subsection{Definitionen von Simulationsumgebungen}
+Ausgehend von der Literaturreche zeigte sich, dass in der Forschungsliteratur die allgemeine Definition von Simulation kaum aufgegriffen wird.
+Lediglich nach \cite[]{Maria.1997} wird eine mögliche Definition wie folgt dargelegt:
+
+\textit{Eine Simulation eines existierenden Systems stellt die Anwendung eines Modells dar, welches konfigurierbar zu experimentellen Zwecken das eigentliche System vertritt, um wirtschaftliche oder systematische Herausforderungen des existierenden Systems zu umgehen.
+Das Model wird in diesem Kontext definiert als Repräsentation des Aufbaus und der Verhaltensweise des existierenden Systems.}
+%Virtuelle Simulation sind dabei ein Teil einer 
+
+Innerhalb bestimmter Anwendungsgebiete wie der Medizin und der Pflege werden zusätzlich virtuelle Simulationen wie nachstehend definiert.
+
+\textit{Unter virtuellen Simulationen versteht man eine digitale Lernumgebung, welche durch teilweiser Immersion eine wahrnehmbare Erfahrung bereitstellt.\footcite[Vgl.][S. 1]{Foronda.2021}}
+
+\subsection{Entwicklung von Simulationsumgebungen für RL Anwendungen}
+Im weiteren Teil dieses Kapitels wird aufbauend auf den Definitionen, die Entwicklung von Simulationen betrachtet.
+Allgemein lässt sich dieser Entwicklungsprozess in die folgenden Teilschritte gliedern:\footcite[Vgl.][S. 8f.]{Maria.1997}
+\begin{enumerate}
+    \item Identifikation der Herausforderungen im existierenden System und Ableitung von Anforderungen für die Simulation.
+    \item Zielgruppe, Funktionsrahmen und quantitative Bewertungskriterien der Simulation definieren.
+    \item Analyse des zu simulierenden Systemverhaltens durch Sammeln und Verarbeiten von realen Daten des existierenden Systems.
+    \item Entwicklung einer schematischen Darstellung des Modells und dessen Überführung in nutzbare Software.
+    \item Validierung des Modells durch bspw. den Vergleich mit dem existierenden System.
+    \item Dokumentierung des Modells, dessen Variablen, Metriken und getroffene Annahmen.
+\end{enumerate}
+
+Die derartige Entwicklung von Simulationen wurde in der Forschungsliteratur besonders durch den Fortschritt im Bereich des verstärkenden Lernens vorangetrieben, da der Vergleich von Algorithmen zuverlässige Benchmarks in Form von Simulationsumgebungen benötigt.\footcite[Vgl.][S. 1]{Brockman.2016}
+
+\textbf{OPEN AI GYM beschreiben - Ziel des Toolkits, Funktionsweise und Aufbau}
+%Dazu wird sich auf den für diese Arbeit wichtigen Kontext des verstärkenden Lernens im Bereich der Robotik beschränkt.
+%Wichtige Faktoren welche bei der Entwicklung von Simulationen zu Beachten sind, umfassen die Stabilität, Geschwindigkeit, Präzision, Genauigkeit, Bedienbarkeit und den Ressourcenverbrauch.\footcite[Vgl.][S. 5]{Ivaldi.2272014}
+%Weiterhin konnte durch die Umfrage von \cite[text]{Ivaldi} die wichtigsten Eigenschaften und Auswahlkriterien identifiziert werden.
+\section{aktuelle Physik-Engines}
