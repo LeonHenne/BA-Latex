@@ -8,7 +8,7 @@ Daher ist es kaum garantiert, dass erlernte Strategien der Agenten sich auf auch
 
 \subsection{Definitionen von Simulationsumgebungen}
 Ausgehend von der Literaturreche zeigte sich, dass in der Forschungsliteratur die allgemeine Definition von Simulation kaum aufgegriffen wird.
-Lediglich nach \cite[]{Maria.1997} wird eine mögliche Definition wie folgt dargelegt:
+Eine mögliche Definition nach \cite[]{Maria.1997} wird wie folgt dargelegt:
 
 \textit{Eine Simulation eines existierenden Systems stellt die Anwendung eines Modells dar, welches konfigurierbar zu experimentellen Zwecken das eigentliche System vertritt, um wirtschaftliche oder systematische Herausforderungen des existierenden Systems zu umgehen.
 Das Model wird in diesem Kontext definiert als Repräsentation des Aufbaus und der Verhaltensweise des existierenden Systems.}
@@ -30,10 +30,60 @@ Allgemein lässt sich dieser Entwicklungsprozess in die folgenden Teilschritte g
     \item Dokumentierung des Modells, dessen Variablen, Metriken und getroffene Annahmen.
 \end{enumerate}
 
-Die derartige Entwicklung von Simulationen wurde in der Forschungsliteratur besonders durch den Fortschritt im Bereich des verstärkenden Lernens vorangetrieben, da der Vergleich von Algorithmen zuverlässige Benchmarks in Form von Simulationsumgebungen benötigt.\footcite[Vgl.][S. 1]{Brockman.2016}
+Die derartige Entwicklung von Simulationen wurde in der Forschungsliteratur besonders durch den Fortschritt im Bereich des verstärkenden Lernens vorangetrieben, da der Vergleich von RL-Algorithmen zuverlässige Benchmarks in Form von Simulationsumgebungen benötigt.\footcite[Vgl.][S. 1]{Brockman.2016}
+Aus dieser Motivation wurde 2016 durch die OpenAI der OpenAI Gym Werkzeugkasten entwickelt, welcher eine Sammlung an Benchmarksimulationen mit einheitlicher Schnittstelle für RL Algorithmen enthält. \footcite[Vgl.][S. 1]{Brockman.2016}
+Seither wurde diese definierte Schnittstelle vielfach verwendet um RL Umgebungen mit dem Ziel zu entwickeln, diese zu publizieren und dessen Wiederverwendung zu ermöglichen. \footcite[Vgl.][S. 4]{Schuderer.2021}
+Die Schnittstelle ist definiert als Python Klasse \textit{gym.Env} von welcher weitere Klassen erben, und benötigte Funktionen zum Zeitschritt und zum Zurücksetzen der Simulation implementieren. \footcite[Vgl.][S. 4]{Schuderer.2021}
+Der Werkzeugkasten von OpenAI fokussiert sich damit auf einen Episoden ähnlichen Rahmen, in welchem der Agent durch zunächst zufälliges Auswählen von Interaktionen lernt. \footcite[Vgl.][S. 1]{Brockman.2016}
+Weitere Entwicklungsentscheidungen des OpenAI Gym Werkzeugkastens umfassen z.B. die bewusst fehlende Schnittstelle des Agenten, die strikte Versionierung der Umgebung oder die standardmäßige Simulationsüberwachung. \footcite[Vgl.][S. 2f.]{Brockman.2016}
 
-\textbf{OPEN AI GYM beschreiben - Ziel des Toolkits, Funktionsweise und Aufbau}
-%Dazu wird sich auf den für diese Arbeit wichtigen Kontext des verstärkenden Lernens im Bereich der Robotik beschränkt.
-%Wichtige Faktoren welche bei der Entwicklung von Simulationen zu Beachten sind, umfassen die Stabilität, Geschwindigkeit, Präzision, Genauigkeit, Bedienbarkeit und den Ressourcenverbrauch.\footcite[Vgl.][S. 5]{Ivaldi.2272014}
-%Weiterhin konnte durch die Umfrage von \cite[text]{Ivaldi} die wichtigsten Eigenschaften und Auswahlkriterien identifiziert werden.
-\section{aktuelle Physik-Engines}
+Werden Lernumgebungen nach der Gym Schnittstelle oder nach eigener Definition für RL Anwendungen eingesetzt, kann sich deren Gestaltung unterschiedlich auf die Leistung der Anwendung auswirken. \footcite[Vgl.][S. 1]{Reda.2020}
+Eine enge initiale Wahrscheinlichkeitsverteilung des Umgebungszustands kann so die Lerneffizienz erhöhen, wohingegen eine weite Wahrscheinlichkeitsverteilung positiv auf die Robustheit der erlernten Strategie beeinflusst. \footcite[Vgl.][S. 3]{Reda.2020}
+Die Robustheit kann zusätzlich auch durch die Einbindung von Fehlverhalten in der Wahrnehmung der Umgebung beeinflusst werden, da auch in realen Szenarien ein Risiko für Fehlverhalten besteht. \footcite[Vgl.][S. 2]{YanDuan.2016} 
+Weiterer Gestaltungsspielraum ergibst sich aus der Wahl des Handlungsbereichs, welcher häufig Drehmoment basierend gewählt wird, obwohl durch PID-Regler ein effektiverer und effizienterer Lernprozess stattfinden kann. \footcite[Vgl.][S. 7]{Reda.2020}
+
+Neben den beschriebenen Eigenschaften von Umgebungen für verstärkendes Lernen unterliegen auch die verwendeten Simulationen bestimmten Merkmalen welche in der Entwicklung zu berücksichtigen sind.
+Laut einer Umfrage nach \cite[]{Ivaldi.2272014} sind diese wichtigsten Eigenschaften die Stabilität, Geschwindigkeit, Präzision, Genauigkeit, Bedienbarkeit und der Ressourcenverbrauch.
+Die Entwicklung des Modells, welches das existierende System ersetzt, sollte sich demnach möglichst positiv auf die beschriebenen Eigenschaften auswirken.
+Neben den beschriebenen Leistungsbezogenen Merkmalen sind die folgenden weiteren Kriterien mitunter die wichtigsten zur Auswahl einer Simulation:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|}
+    \hline
+    Rank & Most important criteria                     \\ \hline
+    1    & Simulation very close to reality            \\
+    2    & Open-source                                 \\
+    3    & Same code for both real and simulated robot \\
+    4    & Light and fast                              \\
+    5    & Customization                               \\
+    6    & No interpenetration between bodies          \\ \hline
+    \end{tabular}
+    \caption{wichtigsten Kriterien zur Auswahl von Simulatoren \footcite[][S. 4]{Ivaldi.2272014}}
+    \label{tab:important-criteria}
+\end{table}
+\footnotetext{Enthalten in: \cite[][s. 4]{Ivaldi.2272014}}
+
+Aus Tabelle zwei lässt sich entnehmen, das besonders die Nähe zur Realität ein wichtiges Auswahlkriterium ist.
+Im Kontext von verstärkendem Lernen im Robotik Bereich ist ein wichtiger Baustein die Physik-Engine zur Modellierung von Dynamiken. \footcite[Vgl.][S. 2]{Ayala.2020}
+
+\subsection{aktuelle Physik-Engines und Simulationsanwendungen}
+Innerhalb dieses Abschnittes wird aufgrund der Bedeutung der Physik-Engine für den Grad der Simulationsrealität, eine Auswahl der aktuellen Physik-Engines und deren Simulationsanwendung betrachtet.
+
+\textit{Gazebo}
+
+Gazebo ist eine durch die Open Source Robotics Foundation entwickelte Simulationsanwendung, welche mehrere Physik-Engines unterstützt. \footcite[Vgl.][S. 7]{Ivaldi.2272014}
+Mittels Gazebo lassen sich Interaktionen zwischen Robotern in Innen-und Außenbereichen unter realistischer Sensorik simulieren. \footcite[Vgl.][S. 4]{Ayala.2020}
+Die unterstützten Physik-Engines umfassen Bullet, Dynamic Animation and Robotics Toolkit (DART), Open Dynamics Engine (ODE) and Simbody. \footcite[Vgl.][S. 3]{Korber.2021}
+
+\textit{MuJoCo}
+
+MuJoCo stellt eine Physik-Engine für modellbasierte Steuerung dar, dessen Objekte durch C++ oder XML definiert und Gelenkzustände im Koordinatensystem beschriebenen werden. \footcite[Vgl.][S. 1]{Todorov.2012} 
+Diese beschriebene Eigenschaft lässt sich auch aus dem Namen als Abkürzung für \textbf{Mu}lti-\textbf{Jo}int dynamics with \textbf{Co}ntact ableiten. \footcite[Vgl.][S. 2]{Todorov.2012}
+Dabei ist die MuJoCo Anwendung lizensiert, was diesen Besitz einer Lizenz für die Installation oder die Virtualisierung innerhalb eines Containers voraussetzt. \footcite[Vgl.][S. 3]{Korber.2021}
+
+\textit{PyBullet}
+
+PyBullet basiert als Simulationssoftware auf der Bullet-Engine und fokussiert funktional auf die Anwendung von RL im Robotikbereich. \footcite[Vgl.][S. 3]{Korber.2021}
+Die Bullet-Engine ist eine ebenso offene Softwarebibliothek welche neben verstärkenden Lernen auch auf bei Computeranimationen angewendet wird. \footcite[Vgl.][S. 7]{Ivaldi.2272014}
+Bie Handhabung von PyBullet profitiert von der ausgiebigen Dokumentation, der großen Entwicklergemeinschaft und der Unterstützung von verschiedenen Dateiformaten wie SDA, URDF und MJCF zur Einbindung von Objekten. \footcite[Vgl.][S. 6]{Korber.2021}
