@@ -19,7 +19,7 @@ Innerhalb bestimmter Anwendungsgebiete wie der Medizin und der Pflege werden zus
 \textit{Unter virtuellen Simulationen versteht man eine digitale Lernumgebung, welche durch teilweiser Immersion eine wahrnehmbare Erfahrung bereitstellt.\footcite[Vgl.][S. 1]{Foronda.2021}}
 
 \subsection{Entwicklung von Simulationsumgebungen für RL Anwendungen}
-Im weiteren Teil dieses Kapitels wird aufbauend auf den Definitionen, die Entwicklung von Simulationen betrachtet.
+Im weiteren Teil dieses Kapitels wird aufbauend auf den zuvor angeführten Definitionen, die Entwicklung von Simulationen betrachtet.
 Allgemein lässt sich dieser Entwicklungsprozess in die folgenden Teilschritte gliedern:\footcite[Vgl.][S. 8f.]{Maria.1997}
 \begin{enumerate}
     \item Identifikation der Herausforderungen im existierenden System und Ableitung von Anforderungen für die Simulation.
@@ -32,7 +32,7 @@ Allgemein lässt sich dieser Entwicklungsprozess in die folgenden Teilschritte g
 
 Die Entwicklung von Simulationen wurde in der Forschungsliteratur besonders durch den Fortschritt im Bereich des verstärkenden Lernens vorangetrieben, da der Vergleich von RL-Algorithmen zuverlässige Benchmarks in Form von Simulationsumgebungen benötigt.\footcite[Vgl.][S. 1]{Brockman.2016}
 Aus dieser Motivation wurde 2016 durch die OpenAI der OpenAI Gym Werkzeugkasten entwickelt, welcher eine Sammlung an Benchmarksimulationen mit einheitlicher Schnittstelle für RL Algorithmen enthält. \footcite[Vgl.][S. 1]{Brockman.2016}
-Seither wurde diese definierte Schnittstelle vielfach verwendet um RL Umgebungen mit dem Ziel zu entwickeln, diese zu publizieren und dessen Wiederverwendung zu ermöglichen. \footcite[Vgl.][S. 4]{Schuderer.2021}
+Seither wurde diese definierte Schnittstelle vielfach verwendet, um RL Umgebungen mit dem Ziel zu entwickeln, diese zu publizieren und dessen Wiederverwendung zu ermöglichen. \footcite[Vgl.][S. 4]{Schuderer.2021}
 Die Schnittstelle ist definiert als Python Klasse \textit{gym.Env}, von welcher weitere Klassen erben und die vorgeschriebenen Funktionen zum Zeitschritt und zum Zurücksetzen der Simulation implementieren. \footcite[Vgl.][S. 4]{Schuderer.2021}
 Der Werkzeugkasten von OpenAI fokussiert sich auf einen Episoden ähnlichen Rahmen, in welchem der Agent durch zunächst zufälliges Auswählen von Interaktionen lernt. \footcite[Vgl.][S. 1]{Brockman.2016}
 Weitere Entwicklungsentscheidungen des OpenAI Gym Werkzeugkastens umfassen z.B. die bewusst fehlende Schnittstelle des Agenten, die strikte Versionierung der Umgebung oder die standardmäßige Simulationsüberwachung. \footcite[Vgl.][S. 2f.]{Brockman.2016}
@@ -40,7 +40,7 @@ Weitere Entwicklungsentscheidungen des OpenAI Gym Werkzeugkastens umfassen z.B. 
 Werden Lernumgebungen nach der Gym Schnittstelle oder nach eigener Definition für RL Anwendungen eingesetzt, kann sich deren Gestaltung unterschiedlich auf die Leistung der Anwendung auswirken. \footcite[Vgl.][S. 1]{Reda.2020}
 Eine enge initiale Wahrscheinlichkeitsverteilung des Umgebungszustandes kann die Lerneffizienz erhöhen, wohingegen eine weite Wahrscheinlichkeitsverteilung positiv die Robustheit der erlernten Strategie beeinflusst. \footcite[Vgl.][S. 3]{Reda.2020}
 Die Robustheit kann zusätzlich durch die Einbindung von Fehlverhalten in der Wahrnehmung der Umgebung beeinflusst werden, da auch in realen Szenarien ein Risiko für Fehlverhalten besteht. \footcite[Vgl.][S. 2]{YanDuan.2016} 
-Weiterer Gestaltungsspielraum ergibst sich aus der Wahl des Handlungsbereichs, welcher häufig Drehmoment basierend gewählt wird, obwohl durch PID-Regler ein effektiverer und effizienterer Lernprozess stattfinden kann. \footcite[Vgl.][S. 7]{Reda.2020}
+Im Bereich der Robotik bzw. in der Simulation von Bewegungen, kann auch durch die Gestaltung des Aktionsraumes, basierend auf elektrischer Regelungstechnik mittels PID-Regler, anstatt basierend auf Drehmomenten ein effizienterer Lernprozess stattfinden.\footcite[Vgl.][S. 7]{Reda.2020}
 
 Neben den beschriebenen Eigenschaften von Umgebungen für verstärkendes Lernen unterliegen auch die verwendeten Simulationen bestimmten Merkmalen welche in der Entwicklung zu berücksichtigen sind.
 Laut einer Umfrage nach \cite[]{Ivaldi.2272014} sind diese wichtigsten Eigenschaften die Stabilität, Geschwindigkeit, Präzision, Genauigkeit, Bedienbarkeit und der Ressourcenverbrauch.
