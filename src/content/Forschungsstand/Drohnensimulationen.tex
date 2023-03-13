@@ -1,6 +1,7 @@
-\section{Simulationen zur Steuerung von Quadrokoptern}
-Die Popularität von Unbemannten Flugzeugen im letzten Jahrzehnt nahm besonders im Bereich der Quadrokopter zu, sodass zahlreiche zukunftsträchtige Ergebnisse und Anwendungen erforscht worden sind durch die sinkenden Kosten von Sensorik und Minicomputern. \footcite[Vgl.][S. 1]{Koch.2018}
+\section{Simulation der Steuerungsaufgabe von Quadrokoptern}
+Die Popularität von unbemannten Flugzeugen im letzten Jahrzehnt nahm besonders im Bereich der Quadrokopter zu, sodass zahlreiche zukunftsträchtige Ergebnisse und Anwendungen erforscht worden sind durch die sinkenden Kosten von Sensorik und Minicomputern. \footcite[Vgl.][S. 1]{Koch.2018}
 Anwendungsfälle beinhalten z.B. die Landwirtschaft, den Pakettransport oder die Überwachung von großflächiger Infrastruktur wie Stromnetze. \footcite[Vgl.][S. 1]{Deshpande.2020}
+Eine Simulation von unbemannten Flugzeugen sollte ein Flugumgebung bereitstellen, welche vielseite Sensorik bereitstellt und je nach Anwendung Effekte wie Wind, Wolken und Niederschlag einbezieht. \footcite[Vgl.][S. 1496]{Hentati.2018}
 
 \subsection{Flugdynamiken eines Quadrokopters}
 Die Simulation des Quadrokopters stellt eine Simulation eines Flugkörpers mit drei Rotations- und drei Translationsbewegungen und demnach insgesamt sechs verschiedenen Freiheitsgraden dar. \footcite[Vgl.][S. 2]{Koch.2018}
@@ -36,4 +37,35 @@ Der Schub, der in der Länge $l$ vom Schwerpunkt entfernten Rotatoren, wird mitt
 \end{description}
 Weiterhin ist die Beschleunigung in Richtung der Koordinaten $\ddot x$, $\ddot y$ und $\ddot z$ durch die die Masse $m$ und der Gravitation $g$ beeinflusst. \footcite[Vgl.][S. 3]{Deshpande.2020}
 
-\subsection{Repräsentation von Flugdynamiken im Kontext von RL}
+\subsection{existierende Simulationen von Quadrokoptern}
+
+\textit{RotorS}
+
+Die Simulationsumgebung RotorS wurde auf Basis des Robot Operating Systems (ROS) entwickelt um Programmtestzeiten zu verkürzen, Fehlersuche zu vereinfachen und Unfälle mit echten Mikroflugzeugen zu vermindern. \footcite[Vgl.][S. 596]{Furrer}
+Dabei wurde die Simulation modular entworfen, sodass Komponenten wie Steuerung oder Zustandsschätzung austauschbar sind und das Hinzufügen von neuen Drohnen erleichtert wird. \footcite[Vgl.][S. 595]{Furrer}
+Die Komponenten der Drohne stellen dabei Plug-ins der verwendeten Gazebo Physik-Engine dar, wodurch ein Mikroflugzeug an einer zunächst fixen Position aus den Teilen des Körper, der Anzahl der Rotoren und Sensorik zusammengesetzt wird. \footcite[Vgl.][S. 597]{Furrer}
+Mittels der standardmäßigen Sensorik können Informationen über die direkte und visuell gemessene Trägheit sowie über die Wegbestimmung erzielt werden. \footcite[Vgl.][S. 597]{Furrer}
+Anstelle des Wegbestimmungssensors kann auch eine Komponente zur Zustandsschätzung für hochfrequente Abragen implementiert werden. \footcite[Vgl.][S. 598]{Furrer}
+Die Steuerungskomponente wird durch eine einfache Schnittstelle einer geometrischen Steuerung bedient, welche Aktionen in Form von Rotationswinkeln, Höhen oder Positionen entgegen nimmt. \footcite[Vgl.][S. 598]{Furrer}
+
+\textit{CrazyS}
+
+CrazyS stellt eine Erweiterung der Simulation RotorS auf Basis des selben ROS dar, um die Modellierung des Nano-Quadrokopters Crazyflie samt ihrer Dynamik ihres Kontrollsystems und ihrer Sensorik. \footcite[Vgl.][S. 81]{Guiseppe}
+Mit der Modellierung der Nanodrohne wurde gleichzeitig ein Konzept zur Erweiterung der RotorS Fähigkeiten dargelegt sowie die Entwicklung von Software-in-the-Loop (SITL) als nahezu Echtzeitüberwachung vorangetrieben. \footcite[Vgl.][S. 82]{Guiseppe}
+
+\textit{AirSim}
+
+AirSim ist eine open-source Simulationsplattform, dessen mit der das Ziel verfolgt wird, durch eine detailreiche Simulation die Entwicklung von RL und anderen Methoden des maschinellen Lernens voranzutreiben \footcite[Vgl.][S. 2]{Shah}
+Zur Modellierung der Simulationsphysik wird die Unreal Engine aufgrund ihres hohen Grades an physikalischer und visueller Realität eingesetzt. \footcite[Vgl.][S. 1]{Shah}
+Der Aufbau der Simulation folgt einem modularen Entwurf, welcher unter anderem die einzelnen Komponenten Fahrzeug, Umgebung, Physik-Engine, Sensorik und Darstellungsschnittstelle beinhaltet. \footcite[Vgl.][S. 3]{Shah}
+Die Schnittstelle des Fahrzeugs erlaubt eine Steuerung über viele Betätigungselemente und deren Eigenschaftsparameter wie Masse, Trägheit, Widerstand oder Reibung. \footcite[Vgl.][S. 5]{Shah}
+Ein Fahrzeug ist dabei durch die Umgebungskomponente beeinflusst, welche physikalische Effekte wie Gravitation, Luftwiederstand, Luftdruck und magnetische Felder simuliert. \footcite[Vgl.][S. 6]{Shah}
+Die Umgebung wird für das Fahrzeug wahrnehmbar durch die Modellierung von Sensoren wie GPS, Beschleunigungsmesser, Gyroskop, Barometer und Magnetometer. \footcite[Vgl.][S. 9]{Shah}
+\textbf{Text zur Physik-Engine und zum Rendering noch möglich}
+
+\textit{gym-pybullet-drones}
+
+Eine weitere nach der Gym Schnittstelle definierte Simulationsumgebung ist gym-pybullet-drones. \footcite[Vgl.][S. 1]{Panerati.332021}
+Basierend auf der Bullet Physik-Engine ermöglicht die Simulation unter anderem das visuell basierte Training von mehreren Agenten mittels RL unter realistischer Modellierung von Kollisionen und aerodynamischen Effekten. \footcite[Vgl.][S. 1]{Panerati.332021}
+Die Wahl der Physik-Engine wurde aufgrund des CPU und GPU basierenden Renderings, des Kollisionsmanagements und der Kompatibilität mit dem Unified Robot Description Format (URDF) getroffen \footcite[Vgl.][S. 3]{Panerati.332021}
+Durch die Kompabilität mit dem URDF Format kann die standardmäßige Simulation des Drohnenmodells Bitcraze Crazyflie 2.x um weitere Nanoquadrokopter erweitert werden. \footcite[Vgl.][S. 3]{Panerati.332021}
