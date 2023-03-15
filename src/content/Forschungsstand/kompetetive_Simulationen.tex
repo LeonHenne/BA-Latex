@@ -1,0 +1,17 @@
+\section{gegnerisches verstärkendes Lernen}
+
+Methoden des gegnerischen verstärkenden Lernens verfolgen das Ziel die angelernten Strategien robuster gegenüber Risiken wie beeinflusste Wahrnehmung, unbekannte Situationen oder ansteigende Umgebungskomplexität zu trainieren. \footcite[Vgl.][S. 2]{Schott}
+Die Robustheit gegenüber fehlerhafter Umgebungsbetrachtung kann durch Störung des Wahrnehmungszustands des trainierenden Agenten erzielt werden. \footcite[Vgl.][S. 2]{Schott}
+Das Ziel ist es dabei, durch die gegnerische Aktion eine veränderte Umgebungswahrnehmnung herzustellen, zu dessen Basis sich der lernende Agent verbessert. \footcite[Vgl.][S. 3]{Schoot}
+
+Um die lernende Strategie besser gegenüber unbekannte Situationen und steigende Komplexität vorzubereiten können destabilisierende Kräfte in der Dynamik eingeführt werden. \footcite[Vgl.][S. 1]{Pinto}
+Anders als beim ersten Ansatz wird dafür nicht nur lediglich die Wahrnehmung für den lernenden Agenten beeinflusst, sondern direkte Einflüsse auf die Umgebung ausgeübt. \footcite[Vgl.][S. 2]{Schott}
+Hierbei wird der gegnerische Agent dafür belohnt, mittels Kräfteinfluss die Umgebungsdynamik zu verändern, so dass der lernende Agent an seiner Aufgabe scheitert. \footcite[Vgl.][S. 2]{Pinto}
+Dazu kann ein zusätzlicher Agent mit z.B. gleichem Aktionsraum den gemeinsamen Umgebungszustand beeinrächtigen. \footcite[Vgl.][S. 2]{Pinto}
+\cite[]{Pan} zeigt eine solche Anwendung im Rahmen der Kontrolle eines Stromnetzes, bei welchem ein gegnerischer Agent für das trennen von Verbindungen im Netz belohnt wird. \footcite[Vgl.][S. 2]{Pan}
+Zum Generieren von Störeinflüssen auf die Umgebungsdynamik kann das \textit{Robust Adversarial Reinforcement Learning} (RARL) Framework verwendet werden. \footcite[Vgl.][S. 2]{Schott}
+Dabei wird der gegnerische Agent selbst durch RL daran angelernt, die möglichst effektivsten Destabilisierungsmaßnahmen zu finden. \footcite[Vgl.][S. 1]{Pinto}
+Formal dargestellt folgt dieses gegnerische Spiel der nachträglich angefügten Minimax Optimierung. \footcite[Vgl.][S. 3]{Pinto}
+\begin{description}
+    \item \begin{center} (7) $R^{1*} = \underset{\nu}{\min}\underset{\mu}{\max} E_{s_{0}\sim p,a^{1}\sim\mu(s),a^{2}\sim\nu(s)} [\sum_{t=0}^{T-1} r^{1} (s,a^{1},a^{2})]$ \end{center} 
+\end{description}
