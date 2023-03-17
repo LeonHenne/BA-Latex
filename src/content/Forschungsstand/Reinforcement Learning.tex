@@ -41,7 +41,8 @@ Fasst man die Klassifizierung der Algorithmen und Methoden von RL zusammen, läs
 \end{figure}
 \footnotetext{Enthalten in: \cite[][S. 6]{Canese.2021}}
 
-\subsection{Wertebasierende Methoden}
+\subsection{Methoden des verstärkenden Lernens}
+%\subsection{Wertebasierende Methoden}
 Der Agent sucht in diesem Kontext die optimale Strategie $\pi^{*}$, welche allen Zuständen $S$ die jeweilige Aktion $A(S)$ zuordnet, sodass die kummulierte Belohnungswahrscheinlichkeit $R(r_{t+1}|S_{t},A_{t})$ über alle Zeitschritte $t$ maximal ist. \footcite[Vgl.][S. 2]{Reda.2020}
 Neben dieser kurzfristigen direkten Belohnung müssen auch die langfristigen zukünftigen Belohnungen aus den neuen Zuständen betrachtet werden, wofür das Konzept der Wertigkeit eingeführt wird. \footcite[Vgl.][S. 3]{Wang.2020}
 Über eine Zustands- oder Aktionswertigkeitsfunktion, oftmals als Q-Funktion referenziert, wird eine Vorhersage über die zu erwartende kumulierte abgezinste zukünftige Belohnung berechnet.\footcite[Vgl.][S. 5]{Li.2019}
@@ -56,7 +57,7 @@ Methoden basierend auf diesem Wertigkeitswert lernen eine Schätzfunktion der We
 \end{description}
 Aus den geschätzten Wertigkeit jedes Zustandsaktions Paares kann die optimale Strategie $\pi^{*}(s)$ durch $\underset{a}{\arg\max}$ $Q(s,a)$ bestimmt werden. \footcite[Vgl.][S. 2]{Zhang.2018}
 
-\subsection{Strategiebasierende Methoden}
+%\subsection{Strategiebasierende Methoden}
 Methoden, welche die Strategie durch deren direkte Parametrisierung anstelle einer Bewertung aller Handlungsalternativen mittels Wertigkeitsfunktion optimieren, werden als strategiebasierend bezeichnet. \footcite[Vgl.][S. 2]{Zhang.2018}
 Diese Methodik kann beim Trainieren deterministischer Strategien zu unerwarteten Aktionen führen, weshalb häufig das Optimieren einer Wahrscheinlichkeitsverteilung für alle Aktionen bevorzugt wird. \footcite[Vgl.][S. 3]{Ningombam.2022}
 Als Subklasse der RL Methoden wird der statistische Gradientenabstieg verwendet um die parametrisierte Strategie $\pi_{\theta}$ hinsichtlich der maximalen langfristigen kumulierten Belohnung zu optimieren. \footcite[Vgl.][S. 3]{Ningombam.2022}
@@ -68,7 +69,7 @@ Zur Optimierung der Strategie wird die Funktion der kumulierten Belohnungen $J$ 
 \end{description}
 Zusammengefasst kann Formel vier und fünf dabei so interpretiert werden, dass die logarithmierte Wahrscheinlichkeit Aktion $a_{t}$ im Zustand $s_{t}$ auszuwählen erhöht werden soll, wenn $a_{t}$ in einer höheren kumulierten Belohnung resultiert. \footcite[Vgl.][S. 6]{Wang.2020}
 
-\subsection{Akteur-Kritiker Methoden}
+%\subsection{Akteur-Kritiker Methoden}
 Unter Akteur-Kritiker Methoden werden hybride wertebasierende und strategiebasierende Methoden verstanden, welche zugleich die Strategie optimieren und eine Wertefunktion approximieren. \footcite[Vgl.][S. 2f.]{Zhang.2018}
 Die strategiebasierende Methodik mit der lernenden Strategie agiert dabei als Akteur, wohingegen die Wertefunktion, welche jeder Aktion und jedem Zustand einen Behlohnungswert zuweist, als Kritiker handelt. \footcite[Vgl.][S. 321]{Sutton.2018}
 Der Akteur wählt somit aus seiner Wahrscheinlichkeitsverteilung die auszuführende Aktionen aus, während der Kritiker diese anhand seiner Wertigkeit bewertet. \footcite[Vgl.][S. 3]{Ningombam.2022}
@@ -81,6 +82,8 @@ Betrachtet man den Trainingsprozess von Akteur-Kritiker basierten Methoden ist d
     \item Mit der neuen Strategie führt der Akteur die nächste Aktion im folgenden Zustand aus
     \item Die Q-Funktion des Kritikers wird mit den neuen Informationen aus der erhaltenen Belohnung angepasst
 \end{itemize}
+
+\subsection{Algorithmen des verstärkenden Lernens}
 
 \subsection{Abgrenzung zu Multi-Agent Reinforcement Learning (MARL) Algorithmen}
 Innerhalb dieses Unterkapitels soll der beschriebene Aufbau von RL Algorithmen und deren Optimierungsproblem zu den von MARL Systemen abgegrenzt werden.
