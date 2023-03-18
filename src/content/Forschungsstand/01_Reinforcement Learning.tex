@@ -85,6 +85,7 @@ Betrachtet man den Trainingsprozess von Akteur-Kritiker basierten Methoden ist d
 Im vorherigen Kapitel sind die Methoden des verstärkenden Lernens klassifiziert und deren Unterschiede beschrieben worden.
 Anschließend daran wird in diesem Abschnitt der Arbeit, auf eine Auswahl konkreter Algorithmen und Implementierungen, der verschiedenen Methoden sowie deren Funktionsweise eingegangen.
 Die Auswahl an Algorithmen beinhaltet die fundamentalen Algorithmen des verstärkenden Lernens deep Q-Learning (DQL), Trust Region Policy Optimization (TRPO) und Asynchronous Advantage Actor-Critic (A3C). \footcite[Vgl.][S. 1]{Arulkumaran.2017}
+% DQL
 
 Mit der Entwicklung von DQL konnte erstmals ein Algorithmus entwickelt werden, welcher eine Reihe von Atari 2600 Spielen auf der Fähigkeitsebene eines professionellen Videospieltesters spielen konnte. \footcite[Vgl.][S. 6]{Arulkumaran.2017}
 Als wertbasierte Methode wird für jeden Zustand die Wertigkeit berechnet, was unter DQL mittels eines neuronalen Netzes erreicht wird, welches die Q-Funktion darstellt. \footcite[Vgl.][S. 4]{Huang.2017}
@@ -94,14 +95,25 @@ Erfahrungswiederholung beschreibt die Technik die Erfahrung des Agenten, also in
 Durch die Erfahrungswiederholung wird eine bessere Dateneffizienz zum einen durch die Wiederholung erzielt, und zum anderen durch das Auflösen von Korrelationen zwischen aufeinanderfolgenden Zuständen. \footcite[Vgl.][S. 4f.]{Mnih.2013}
 Das Zielnetzwerk beinhaltet die zunächst fixen Gewichte der Strategie, welche lediglich nach einer festen Anzahl an Schritten angepasst werden, um die Fluktuation der approximierten Q-Funktion auszugleichen. \footcite[Vgl.][S. 7]{Arulkumaran.2017}
 Die Stärke von DQL liegt in der kompakten Repräsentation der Q-Funktion und der hochgradig dimensionierten Zustandsbeobachtungen durch neuronale Netze. \footcite[Vgl.][S. 7]{Arulkumaran.2017}
+%TRPO & PPO
+Trust Region Policy Optimization (TRPO) ist ein strategiebasierender Gradientenalgorithmus zur effektiven Optimierung großer nicht linearer Strategien wie z.B. neuronale Netze. \footcite[Vgl.][S. 1]{Schulman.2015}
+Der Algorithmus weist dabei die zwei Varianten single-path, welcher im modellfreien Kontext angewendet werden kann, und \textit{vine} auf, welcher sich nur in Simulationen eignet, da das System zu bestimmten Zuständen gespeichert wird. \footcite[Vgl.][S. 1]{Schulman.2015}
+Die Varianten unterscheiden sich im Schätzverfahren des Gradienten, wobei die single-path Methodik diesen anhand einer Aktions-Zustandskette der initialen Verteilung bestimmt, und unter \textit{vine} eine Teilmenge mehrerer verschiedener Aktion-Zustandspaare verwendet werden. \footcite[Vgl.][S. 4]{Schulman.2015}
+Die daraus entstehenden Anpassungen der Strategieparameter $\theta$ zwischen der alten und neuen Strategie werden mittels Kullback-Leibler-Divergenz bemessen und kontrolliert. \footcite[Vgl.][S. 4]{Huang.2017}
+Eine Weiterentwicklung des TRPO Algorithmus ist Proximal Policy Optimization (PPO), durch dessen Verwendung die Implementierung erleichtert und die Datenprobenkomplexität verbessert wird. \footcite[Vgl.][S. 1]{Schulman.2017}
+PPO passt die Beschränkung der KL-Divergenz an, indem die Wahrscheinlichkeitsmasse der Optimierung außerhalb der gesetzten Hyperparametergrenzen bearbeitet, oder die Größe der KL-Divergenz bestraft wird. \footcite[Vgl.][S. 3f.]{Schulman.2017}
+Durch diese Anpassung der KL-Divergenz Beschränkung ermöglicht der PPO Algorithmus mehrfache Berechnungen des Gradienten anhand eines Datenobjektes. \footcite[Vgl.][S. 4]{Schulman.2017}
 
-\textit{PPO}
-\textit{TRPO?}
-
-
-
-\textit{A3C}
-
+%\textit{DDPG ?}
+%\textit{A3C}
+Zusätzlich zu den bisherigen Algorithmen kann durch jeweilige asynchrone Varianten, welche den Trainingsprozess des Agenten parallelisieren, die Stabilität des Trainings verbessert werden. \footcite[Vgl.][S. 1]{Mnih.2016}
+Einer dieser asynchronen Algorithmen im Bereich der Akteur-Kritiker Methodik stellt der asynchronous advantage actor-critic (A3C) Algorithmus dar, welcher anstelle von Erfahrungswiederholung mehrere Agenten parallel in unterschiedlichen Umgebungsinstanzen trainiert. \footcite[Vgl.][S. 1]{Mnih.2016}
+A3C kombiniert die Berechnung der relativen Wertigkeit einer Aktion, anstelle der absoluten Wertigkeit durch die Q-Funktion, mit der Akteur-Kritiker Struktur und lässt sich auf einzelnen sowie verteilten Systemen einsetzen. \footcite[Vgl.][S. 9]{Arulkumaran.2017} 
+Wird der mit dem Algorithmus lediglich ein Agent trainiert, wird dies häufig auch als advantage actor-critic (A2C) referenziert. \footcite[Vgl.][S. 9]{Arulkumaran.2017} 
+Neben A3C ist der soft actor-critic Algorithmus ein weiterer Algorithmus der Akteur-Kritiker Methodik, welcher die kumulierte Belohnung, aber auch die Entropie maximiert. \footcite[Vgl.][S. 1]{Haarnoja.2018}
+Durch dieses Konzept der Maximierung der Belohnung und der Entropie ergeben sich die Vorteile eines stärker erkundenden Algorithmus, welcher gleichzeitig mehrere nahezu optimale Lösungen erfassen kann. \footcite[Vgl.][S. 3]{Haarnoja.2018}
+Zur Evaluation wird die auf der Belohnung und Entropie basierten Wertigkeit iterativ anhand des Bellman Operators nach \cite[]{Bellman.1966} bestimmt, und anschließend die Strategie hinsichtlich der exponentialen Q-Funktion angepasst. \footcite[Vgl.][S. 4]{Haarnoja.2018}
+Durch die abwechselnde Approximation der Q-Funktion des Kritikers und der Strategie des Akteurs, anstelle der Berechnung dieser bis zur Konvergenz, kann der soft actor-critic Algorithmus besonders mit großen kontinuierlichen Handlungsbereichen umgehen. \footcite[Vgl.][S. 4]{Haarnoja.2018}
 
 \subsection{Abgrenzung zu Multi-Agent Reinforcement Learning (MARL) Algorithmen}
 Innerhalb dieses Unterkapitels soll der beschriebene Aufbau von RL Algorithmen und deren Optimierungsproblem zu den von MARL Systemen abgegrenzt werden.
