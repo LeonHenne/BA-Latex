@@ -42,8 +42,8 @@ Fasst man die Klassifizierung der Algorithmen und Methoden von RL zusammen, läs
 \footnotetext{Enthalten in: \cite[][S. 6]{Canese.2021}}
 
 \subsection{Methoden des verstärkenden Lernens}
-%\subsection{Wertebasierende Methoden}
-Der Agent sucht in diesem Kontext die optimale Strategie $\pi^{*}$, welche allen Zuständen $S$ die jeweilige Aktion $A(S)$ zuordnet, sodass die kummulierte Belohnungswahrscheinlichkeit $R(r_{t+1}|S_{t},A_{t})$ über alle Zeitschritte $t$ maximal ist. \footcite[Vgl.][S. 2]{Reda.2020}
+
+Der Agent sucht in diesem Kontext von wertbasierenden Methoden die optimale Strategie $\pi^{*}$, welche allen Zuständen $S$ die jeweilige Aktion $A(S)$ zuordnet, sodass die kummulierte Belohnungswahrscheinlichkeit $R(r_{t+1}|S_{t},A_{t})$ über alle Zeitschritte $t$ maximal ist. \footcite[Vgl.][S. 2]{Reda.2020}
 Neben dieser kurzfristigen direkten Belohnung müssen auch die langfristigen zukünftigen Belohnungen aus den neuen Zuständen betrachtet werden, wofür das Konzept der Wertigkeit eingeführt wird. \footcite[Vgl.][S. 3]{Wang.2020}
 Über eine Zustands- oder Aktionswertigkeitsfunktion, oftmals als Q-Funktion referenziert, wird eine Vorhersage über die zu erwartende kumulierte abgezinste zukünftige Belohnung berechnet.\footcite[Vgl.][S. 5]{Li.2019}
 Durch den Abzinsungsfaktor $\gamma \in \left[0,1\right)$ wird der Einfluss zukünftiger Belohnungen nach ihrer zeitlichen Reihenfolge priorisiert.\footcite[Vgl][S. 5]{Li.2019}
@@ -57,7 +57,6 @@ Methoden basierend auf diesem Wertigkeitswert lernen eine Schätzfunktion der We
 \end{description}
 Aus den geschätzten Wertigkeit jedes Zustandsaktions Paares kann die optimale Strategie $\pi^{*}(s)$ durch $\underset{a}{\arg\max}$ $Q(s,a)$ bestimmt werden. \footcite[Vgl.][S. 2]{Zhang.2018}
 
-%\subsection{Strategiebasierende Methoden}
 Methoden, welche die Strategie durch deren direkte Parametrisierung anstelle einer Bewertung aller Handlungsalternativen mittels Wertigkeitsfunktion optimieren, werden als strategiebasierend bezeichnet. \footcite[Vgl.][S. 2]{Zhang.2018}
 Diese Methodik kann beim Trainieren deterministischer Strategien zu unerwarteten Aktionen führen, weshalb häufig das Optimieren einer Wahrscheinlichkeitsverteilung für alle Aktionen bevorzugt wird. \footcite[Vgl.][S. 3]{Ningombam.2022}
 Als Subklasse der RL Methoden wird der statistische Gradientenabstieg verwendet um die parametrisierte Strategie $\pi_{\theta}$ hinsichtlich der maximalen langfristigen kumulierten Belohnung zu optimieren. \footcite[Vgl.][S. 3]{Ningombam.2022}
@@ -69,7 +68,6 @@ Zur Optimierung der Strategie wird die Funktion der kumulierten Belohnungen $J$ 
 \end{description}
 Zusammengefasst kann Formel vier und fünf dabei so interpretiert werden, dass die logarithmierte Wahrscheinlichkeit Aktion $a_{t}$ im Zustand $s_{t}$ auszuwählen erhöht werden soll, wenn $a_{t}$ in einer höheren kumulierten Belohnung resultiert. \footcite[Vgl.][S. 6]{Wang.2020}
 
-%\subsection{Akteur-Kritiker Methoden}
 Unter Akteur-Kritiker Methoden werden hybride wertebasierende und strategiebasierende Methoden verstanden, welche zugleich die Strategie optimieren und eine Wertefunktion approximieren. \footcite[Vgl.][S. 2f.]{Zhang.2018}
 Die strategiebasierende Methodik mit der lernenden Strategie agiert dabei als Akteur, wohingegen die Wertefunktion, welche jeder Aktion und jedem Zustand einen Behlohnungswert zuweist, als Kritiker handelt. \footcite[Vgl.][S. 321]{Sutton.2018}
 Der Akteur wählt somit aus seiner Wahrscheinlichkeitsverteilung die auszuführende Aktionen aus, während der Kritiker diese anhand seiner Wertigkeit bewertet. \footcite[Vgl.][S. 3]{Ningombam.2022}
@@ -84,6 +82,26 @@ Betrachtet man den Trainingsprozess von Akteur-Kritiker basierten Methoden ist d
 \end{itemize}
 
 \subsection{Algorithmen des verstärkenden Lernens}
+Im vorherigen Kapitel sind die Methoden des verstärkenden Lernens klassifiziert und deren Unterschiede beschrieben worden.
+Anschließend daran wird in diesem Abschnitt der Arbeit, auf eine Auswahl konkreter Algorithmen und Implementierungen, der verschiedenen Methoden sowie deren Funktionsweise eingegangen.
+Die Auswahl an Algorithmen beinhaltet die fundamentalen Algorithmen des verstärkenden Lernens deep Q-Learning (DQL), Trust Region Policy Optimization (TRPO) und Asynchronous Advantage Actor-Critic (A3C). \footcite[Vgl.][S. 1]{Arulkumaran.2017}
+
+Mit der Entwicklung von DQL konnte erstmals ein Algorithmus entwickelt werden, welcher eine Reihe von Atari 2600 Spielen auf der Fähigkeitsebene eines professionellen Videospieltesters spielen konnte. \footcite[Vgl.][S. 6]{Arulkumaran.2017}
+Als wertbasierte Methode wird für jeden Zustand die Wertigkeit berechnet, was unter DQL mittels eines neuronalen Netzes erreicht wird, welches die Q-Funktion darstellt. \footcite[Vgl.][S. 4]{Huang.2017}
+Durch Auswählen der Aktion mit der höchsten Wertigkeit in jedem Zustand, kann die deterministische Strategie abgeleitet werden. \footcite[Vgl.][S. 4]{Huang.2017}
+DQL adressiert das Instabilitätsproblem von Funktionsapproximation unter dem Einsatz von Erfahrungswiederholung und Zielnetzwerke. \footcite[Vgl.][S. 7]{Arulkumaran.2017}
+Erfahrungswiederholung beschreibt die Technik die Erfahrung des Agenten, also in welchem Zustand welche Aktion zu welcher Belohnung und welchem Folgezustand führt, in jedem Zeitschritt zu speichern und zufällig anhand neuer Erfahrung anzupassen. \footcite[Vgl.][S. 4]{Mnih.2013}
+Durch die Erfahrungswiederholung wird eine bessere Dateneffizienz zum einen durch die Wiederholung erzielt, und zum anderen durch das Auflösen von Korrelationen zwischen aufeinanderfolgenden Zuständen. \footcite[Vgl.][S. 4f.]{Mnih.2013}
+Das Zielnetzwerk beinhaltet die zunächst fixen Gewichte der Strategie, welche lediglich nach einer festen Anzahl an Schritten angepasst werden, um die Fluktuation der approximierten Q-Funktion auszugleichen. \footcite[Vgl.][S. 7]{Arulkumaran.2017}
+Die Stärke von DQL liegt in der kompakten Repräsentation der Q-Funktion und der hochgradig dimensionierten Zustandsbeobachtungen durch neuronale Netze. \footcite[Vgl.][S. 7]{Arulkumaran.2017}
+
+\textit{PPO}
+\textit{TRPO?}
+
+
+
+\textit{A3C}
+
 
 \subsection{Abgrenzung zu Multi-Agent Reinforcement Learning (MARL) Algorithmen}
 Innerhalb dieses Unterkapitels soll der beschriebene Aufbau von RL Algorithmen und deren Optimierungsproblem zu den von MARL Systemen abgegrenzt werden.
