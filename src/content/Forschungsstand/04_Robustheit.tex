@@ -64,3 +64,7 @@ Innerhalb der Literaturanalyse nach \cite[]{Pullum.2022} werden quantitative Met
 
 \subsection{experimenteller Rahmen zur Messung der Robustheit}
 
+Tabelle drei und vier zeigen auf, das trotz der Existenz weiterer Metriken die Belohnung, dessen Durchschnitt, Varianz und Entwicklung am häufigsten eingesetzt wird um die Robustheit von RL Algorithmen zu messen.
+Hierfür werden dann Experimente unter festgelegten oder optimierten Hyperparametern, in mehreren Simulationsumgebungen  durchgeführt, um aus dem Vergleich des selben Algorithmus in unterschiedlichen Umfeldern, Rückschlüsse auf die Robustheit ziehen zu können. \footcite[Vgl.][S. 5]{Pinto.2017}
+Unterschiede in den Umgebungen können bspw. durch fixe Dynamiken wie z.B. Reibwerte während des Trainingsprozesses und unterschiedlicher Reibwerte während der Testphase realisiert werden. \footcite[Vgl.][S. 6]{Pinto.2017}
+Ein weiterer Ansatz kann die Sim-to-Sim Verifikation sein, bei derer die optimierten Strategien in einer nicht während des Trainings verwendeten Simulationen untersucht werden. \footcite[Vgl.][S. 5]{Molchanov.2019}
