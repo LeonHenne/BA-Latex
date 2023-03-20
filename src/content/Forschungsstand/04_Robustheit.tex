@@ -1,7 +1,7 @@
 \section{Robustheit und Stabilität von Strategien des verstärkenden Lernens}
 
-Anders als innerhalb von Simulationen lassen sich in der echten Welt häufig Unsicherheiten, Störeinflüsse und grundlegende Veränderungen der Umgebung wahrnehmen, für welche die Methoden des RL standardmäßig nicht robust genug sind. \footcite[Vgl.][S. 1]{Moos.2022}
-Im nachfolgenden Kapitel wird daher genauer dargestellt, was unter der Robustheit von Algorithmen des verstärkenden Lernens verstanden wird, was Kenngrößen sind und wie man diese misst.
+Anders als innerhalb von Simulationen, lassen sich in der echten Welt häufig Unsicherheiten, Störeinflüsse und grundlegende Veränderungen der Umgebung wahrnehmen, für welche die Methoden des RL standardmäßig nicht robust genug sind. \footcite[Vgl.][S. 1]{Moos.2022}
+Im nachfolgenden Kapitel wird daher genauer dargestellt, was unter der Robustheit von Algorithmen des verstärkenden Lernens verstanden wird, was Kenngrößen sind und in welchem Kontext sich diese messen lassen.
 
 \subsection{Definitionen von Robustheit und Stabilität}
 
@@ -11,16 +11,16 @@ Die Definition der Robustheit im Kontext von verstärkendem Lernen wird verschie
 
 \textit{Stabilität ist eine Eigenschaft des lernenden Algorithmus, die sich auf dessen Leistungsvarianz bezieht und bei geringer Varianz auf ein stabiles Modell hinweist.} \footcite[Vgl.][S. 5]{Pullum.2022}
 
-\textit{Robustheit im Kontext von Software, referenziert eine Eigenschaft eines System, welches nicht nur ausschließlich unter normalen, sondern auch unter außergewöhnlichen Bedingungen, welche die Annahmen des Entwicklers übersteigen, gut funktioniert.} \footcite[Vgl.][S. 5]{Pullum.2022}
+\textit{Robustheit im Kontext von Software, referenziert eine Eigenschaft eines System, welches nicht nur ausschließlich unter normalen, sondern auch unter außergewöhnlichen Bedingungen, die die Annahmen des Entwicklers übersteigen, gut funktioniert.} \footcite[Vgl.][S. 5]{Pullum.2022}
 
-\cite[]{Moos.2022} beschreibt die Robustheit in seiner Literaturanalyse hingegen als Fähigkeit mit Variationen und Unsicherheiten in der Umgebung umgehen zu können, wobei Unsicherheiten häufig variierende physische Parameter darstellen. \footcite[Vgl.][S. 1]{Moos.2022}
+\cite[]{Moos.2022} beschreibt die Robustheit in seiner Literaturanalyse als Fähigkeit mit Variationen und Unsicherheiten in der Umgebung umgehen zu können, wobei Unsicherheiten häufig variierende physische Parameter darstellen. \footcite[Vgl.][S. 1]{Moos.2022}
 
 \subsection{Metriken der Robustheit}
 
-Werden Algorithmen und der Erfolg deren Veränderung durch Experimente betrachtet, kommt es dazu, dass oftmals die nur die Leistung und Stabilität verglichen wird, und so die Belohnung die einzige Kenngröße bildet. \footcite[Vgl.][S. 6]{YanDuan.2016}
+Werden Algorithmen und der Erfolg deren Veränderung durch Experimente betrachtet, kommt es oftmals dazu, dass nur die Leistung und Stabilität verglichen wird, und so die Belohnung die einzige Kenngröße bildet. \footcite[Vgl.][S. 6]{YanDuan.2016}
 Wird diese Metrik im Kontext unterschiedlicher Umgebungen überprüft, kann allerdings so auch die Robustheit von RL Algorithmen betrachtet werden. \footcite[Vgl.][S. 6]{Pinto.2017}
 Neben Betrachtung der Belohnung lassen sich auch weitere quantitative sowie qualitative Kenngrößen untersuchen, welche die Robustheit und Stabilität eines Algorithmus innerhalb der Umgebung widerspiegeln. \footcite[Vgl.][S. 15]{Pullum.2022}
-Innerhalb der Literaturanalyse nach \cite[]{Pullum.2022} werden quantitative Metriken zusätzlich nach internen Kenngrößen, welche den Trainingsprozess beschreiben, und externen Kenngrößen, welche die Modellqualität repräsentieren, klassifiziert und zu ihnen folgende Tabellen drei und vier, aller untersuchten Metriken angeführt. \footcite[Vgl.][S. 16]{Pullum.2022}
+In der Literaturanalyse nach \cite[]{Pullum.2022} werden quantitative Metriken zusätzlich nach internen Kenngrößen, welche den Trainingsprozess beschreiben, und externen Kenngrößen, welche die Modellqualität repräsentieren, klassifiziert sowie folgende Tabellen drei und vier, zu dessen Metriken angeführt. \footcite[Vgl.][S. 16]{Pullum.2022}
 
 \begin{table}[htb]
     \centering
@@ -38,7 +38,7 @@ Innerhalb der Literaturanalyse nach \cite[]{Pullum.2022} werden quantitative Met
         \multicolumn{1}{|c|}{\begin{tabular}[c]{@{}c@{}}Wasserstein function\\ bounds calculated\end{tabular}}                                                                                & Robustness                                                      & 1                                   \\ \hline
         \multicolumn{1}{l}{}                                                                                                                                                                  & \multicolumn{1}{l|}{}                                           & \cellcolor[HTML]{EFEFEF}\textbf{85} \\ \cline{3-3} 
     \end{tabular}
-    \caption{Interne quantitative Metriken mit gemessenen Verhalten und ihrer Häufigkeit\footcite[][S.17]{Pullum.2022}}
+    \caption{Interne quantitative Metriken, dessen gemessenes Verhalten und ihre Häufigkeit\footcite[][S.17]{Pullum.2022}}
     \label{tab:quantitive metric}
 \end{table}
 \footnotetext{Ähnlich enthalten in: \cite[][S.17]{Pullum.2022}}
@@ -57,14 +57,14 @@ Innerhalb der Literaturanalyse nach \cite[]{Pullum.2022} werden quantitative Met
     \multicolumn{1}{|c|}{\begin{tabular}[c]{@{}c@{}}Variance of the estimation of loss,\\ regret\end{tabular}} & Robustness & 5 \\ \hline
     \multicolumn{1}{l}{} & \multicolumn{1}{l|}{} & \cellcolor[HTML]{EFEFEF}\textbf{122} \\ \cline{3-3} 
     \end{tabular}
-    \caption{Auszug der externen quantitativen Metriken mit gemessenen Verhalten und ihrer Häufigkeit\footcite[][S.19]{Pullum.2022}}
+    \caption{Auszug der externen quantitativen Metriken, dessen gemessenes Verhalten und ihre Häufigkeit\footcite[][S.19]{Pullum.2022}}
     \label{tab:qualitive metric}
 \end{table}
 \footnotetext{Ähnlich enthalten in: \cite[][S.19]{Pullum.2022}}
 
-\subsection{experimenteller Rahmen zur Messung der Robustheit}
+\subsection{Experimenteller Rahmen zur Messung der Robustheit}
 
-Tabelle drei und vier zeigen auf, das trotz der Existenz weiterer Metriken die Belohnung, dessen Durchschnitt, Varianz und Entwicklung am häufigsten eingesetzt wird um die Robustheit von RL Algorithmen zu messen.
-Hierfür werden dann Experimente unter festgelegten oder optimierten Hyperparametern, in mehreren Simulationsumgebungen  durchgeführt, um aus dem Vergleich des selben Algorithmus in unterschiedlichen Umfeldern, Rückschlüsse auf die Robustheit ziehen zu können. \footcite[Vgl.][S. 5]{Pinto.2017}
+Tabelle drei und vier zeigen auf, das trotz der Existenz weiterer Metriken, die Belohnung, dessen Durchschnitt, Varianz und Entwicklung am häufigsten eingesetzt wird um die Robustheit von RL Algorithmen zu messen.
+Dabei werden Experimente unter festgelegten oder optimierten Hyperparametern, in mehreren Simulationsumgebungen  durchgeführt, um aus dem Vergleich der selben Strategie in unterschiedlichen Umfeldern, Rückschlüsse auf die Robustheit zu ziehen. \footcite[Vgl.][S. 5]{Pinto.2017}
 Unterschiede in den Umgebungen können bspw. durch fixe Dynamiken wie z.B. Reibwerte während des Trainingsprozesses und unterschiedlicher Reibwerte während der Testphase realisiert werden. \footcite[Vgl.][S. 6]{Pinto.2017}
 Ein weiterer Ansatz kann die Sim-to-Sim Verifikation sein, bei derer die optimierten Strategien in einer nicht während des Trainings verwendeten Simulationen untersucht werden. \footcite[Vgl.][S. 5]{Molchanov.2019}
