@@ -17,5 +17,50 @@ Die Definition der Robustheit im Kontext von verstärkendem Lernen wird verschie
 
 \subsection{Metriken der Robustheit}
 
-\subsection{Messung der Robustheit}
+Werden Algorithmen und der Erfolg deren Veränderung durch Experimente betrachtet, kommt es dazu, dass oftmals die nur die Leistung und Stabilität verglichen wird, und so die Belohnung die einzige Kenngröße bildet. \footcite[Vgl.][S. 6]{YanDuan.2016}
+Wird diese Metrik im Kontext unterschiedlicher Umgebungen überprüft, kann allerdings so auch die Robustheit von RL Algorithmen betrachtet werden. \footcite[Vgl.][S. 6]{Pinto.2017}
+Neben Betrachtung der Belohnung lassen sich auch weitere quantitative sowie qualitative Kenngrößen untersuchen, welche die Robustheit und Stabilität eines Algorithmus innerhalb der Umgebung widerspiegeln. \footcite[Vgl.][S. 15]{Pullum.2022}
+Innerhalb der Literaturanalyse nach \cite[]{Pullum.2022} werden quantitative Metriken zusätzlich nach internen Kenngrößen, welche den Trainingsprozess beschreiben, und externen Kenngrößen, welche die Modellqualität repräsentieren, klassifiziert und zu ihnen folgende Tabellen drei und vier, aller untersuchten Metriken angeführt. \footcite[Vgl.][S. 16]{Pullum.2022}
+
+\begin{table}[htb]
+    \centering
+    \begin{tabular}{cc|c|}
+        \hline
+        \rowcolor[HTML]{EFEFEF} 
+        \multicolumn{1}{|c|}{\cellcolor[HTML]{EFEFEF}\textbf{\begin{tabular}[c]{@{}c@{}}Internal Quantitative\\ Metric\end{tabular}}}                                                         & \textbf{Behavior}                                               & \textbf{Total citations}            \\ \hline
+        \multicolumn{1}{|c|}{\begin{tabular}[c]{@{}c@{}}Reward or Score –\\ magnitude, mean/\\ variance, variation in\\ average reward, time to\\ threshold, episode duration\end{tabular}} & \begin{tabular}[c]{@{}c@{}}Stability,\\ Robustness\end{tabular} & 75                                  \\ \hline
+        \multicolumn{1}{|c|}{Policy entropy}                                                                                                                                                  & Stability                                                       & 2                                   \\ \hline
+        \multicolumn{1}{|c|}{\begin{tabular}[c]{@{}c@{}}Variations in control \\ strategy approximation weights\end{tabular}}                                                              & \begin{tabular}[c]{@{}c@{}}Stability,\\ Robustness\end{tabular} & 2                                   \\ \hline
+        \multicolumn{1}{|c|}{Convergence rate}                                                                                                                                                & Stability                                                       & 2                                   \\ \hline
+        \multicolumn{1}{|c|}{\begin{tabular}[c]{@{}c@{}}Lyapunov stability criteria calculated\end{tabular}}                                                                                & Stability                                                       & 1                                   \\ \hline
+        \multicolumn{1}{|c|}{Policy weight}                                                                                                                                                   & Robustness                                                      & 1                                   \\ \hline
+        \multicolumn{1}{|c|}{Regret}                                                                                                                                                          & Robustness                                                      & 1                                   \\ \hline
+        \multicolumn{1}{|c|}{\begin{tabular}[c]{@{}c@{}}Wasserstein function\\ bounds calculated\end{tabular}}                                                                                & Robustness                                                      & 1                                   \\ \hline
+        \multicolumn{1}{l}{}                                                                                                                                                                  & \multicolumn{1}{l|}{}                                           & \cellcolor[HTML]{EFEFEF}\textbf{85} \\ \cline{3-3} 
+    \end{tabular}
+    \caption{Interne quantitative Metriken mit gemessenen Verhalten und ihrer Häufigkeit\footcite[][S.17]{Pullum.2022}}
+    \label{tab:quantitive metric}
+\end{table}
+\footnotetext{Ähnlich enthalten in: \cite[][S.17]{Pullum.2022}}
+
+\begin{table}[htb]
+    \centering
+    \begin{tabular}{cc|c|}
+    \hline
+    \rowcolor[HTML]{EFEFEF} 
+    \multicolumn{1}{|c|}{\cellcolor[HTML]{EFEFEF}\textbf{\begin{tabular}[c]{@{}c@{}}External Quantitative\\ Metric\end{tabular}}} & \textbf{Behavior} & \textbf{Total citations} \\ \hline
+    \multicolumn{1}{|c|}{\begin{tabular}[c]{@{}c@{}}Deviations/variation in other (than\\ precision, accuracy and recall)\\ performance-related metrics\end{tabular}} & \begin{tabular}[c]{@{}c@{}}Stability,\\ Robustness,\\ Resilience\end{tabular} & 39 \\ \hline
+    \multicolumn{1}{|c|}{Error and failure rates/success rate} & \begin{tabular}[c]{@{}c@{}}Stability,\\ Robustness\end{tabular} & 28 \\ \hline
+    \multicolumn{1}{|c|}{\begin{tabular}[c]{@{}c@{}}Performance of tracking/trajectories\\ estimation error; mean absolute\\ deviation, mean square error, mean\\ absolute percentage error, margins\\ and magnitude of correlation\\ coefficient\end{tabular}} & \begin{tabular}[c]{@{}c@{}}Stability,\\ Robustness\end{tabular} & 23 \\ \hline
+    \multicolumn{1}{|c|}{\begin{tabular}[c]{@{}c@{}}Network-related timing/delay, path\\ and link metrics, connectivity,\\ delivery ratio, routing loops, path\\ optimality, visitation distribution,\\ structural Hamming distance, Small\\ base station-serving ratio, sum-rate\\ and 5th percentile rate\end{tabular}} & \begin{tabular}[c]{@{}c@{}}Stability,\\ Robustness\end{tabular} & 15 \\ \hline
+    \multicolumn{1}{|c|}{\begin{tabular}[c]{@{}c@{}}Mean/average and variation inaccuracy, \\ precision and recall, area under \\ the receiver operating characteristic \\ (ROC) curve (AUC)\end{tabular}} & \begin{tabular}[c]{@{}c@{}}Stability,\\ Robustness,\\ Resilience\end{tabular} & 12 \\ \hline
+    \multicolumn{1}{|c|}{\begin{tabular}[c]{@{}c@{}}Variance of the estimation of loss,\\ regret\end{tabular}} & Robustness & 5 \\ \hline
+    \multicolumn{1}{l}{} & \multicolumn{1}{l|}{} & \cellcolor[HTML]{EFEFEF}\textbf{122} \\ \cline{3-3} 
+    \end{tabular}
+    \caption{Auszug der externen quantitativen Metriken mit gemessenen Verhalten und ihrer Häufigkeit\footcite[][S.19]{Pullum.2022}}
+    \label{tab:qualitive metric}
+\end{table}
+\footnotetext{Ähnlich enthalten in: \cite[][S.19]{Pullum.2022}}
+
+\subsection{experimenteller Rahmen zur Messung der Robustheit}
 
