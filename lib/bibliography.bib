@@ -184,7 +184,7 @@
   publisher = {IEEE},
   isbn      = {978-1-7281-9077-8},
   booktitle = {2021 IEEE International Conference on Robotics and Automation (ICRA)},
-  year      = {5/30/2021 - 6/5/2021},
+  year      = {2021},
   doi       = {10.1109/ICRA48506.2021.9561134},
   file      = {Benchmarking Domain Randomisation for Visual Sim-to-Real:Attachments/Benchmarking Domain Randomisation for Visual Sim-to-Real.pdf:application/pdf}
 }
@@ -897,6 +897,49 @@ archivePrefix = {arXiv},
  primaryClass = {eess.SY},
        adsurl = {https://ui.adsabs.harvard.edu/abs/2021arXiv211008956P},
       adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@INPROCEEDINGS{Tobin.2017,
+  author={Tobin, Josh and Fong, Rachel and Ray, Alex and Schneider, Jonas and Zaremba, Wojciech and Abbeel, Pieter},
+  booktitle={2017 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
+  title={Domain randomization for transferring deep neural networks from simulation to the real world},
+  year={2017},
+  volume={},
+  number={},
+  pages={23-30},
+  doi={10.1109/IROS.2017.8202133}
+}
+
+@article{Chen.2021,
+  author    = {Xiaoyu Chen and
+               Jiachen Hu and
+               Chi Jin and
+               Lihong Li and
+               Liwei Wang},
+  title     = {Understanding Domain Randomization for Sim-to-real Transfer},
+  journal   = {CoRR},
+  volume    = {abs/2110.03239},
+  year      = {2021},
+  url       = {https://arxiv.org/abs/2110.03239},
+  eprinttype = {arXiv},
+  eprint    = {2110.03239},
+  timestamp = {Tue, 30 Aug 2022 08:20:02 +0200},
+  biburl    = {https://dblp.org/rec/journals/corr/abs-2110-03239.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@article{Hsu.2023,
+  title = {Sim-to-Lab-to-Real: Safe reinforcement learning with shielding and generalization guarantees},
+  journal = {Artificial Intelligence},
+  volume = {314},
+  pages = {103811},
+  year = {2023},
+  issn = {0004-3702},
+  doi = {https://doi.org/10.1016/j.artint.2022.103811},
+  url = {https://www.sciencedirect.com/science/article/pii/S0004370222001515},
+  author = {Kai-Chieh Hsu and Allen Z. Ren and Duy P. Nguyen and Anirudha Majumdar and Jaime F. Fisac},
+  keywords = {Reinforcement learning, Sim-to-Real transfer, Safety analysis, Generalization},
+  abstract = {Safety is a critical component of autonomous systems and remains a challenge for learning-based policies to be utilized in the real world. In particular, policies learned using reinforcement learning often fail to generalize to novel environments due to unsafe behavior. In this paper, we propose Sim-to-Lab-to-Real to bridge the reality gap with a probabilistically guaranteed safety-aware policy distribution. To improve safety, we apply a dual policy setup where a performance policy is trained using the cumulative task reward and a backup (safety) policy is trained by solving the Safety Bellman Equation based on Hamilton-Jacobi (HJ) reachability analysis. In Sim-to-Lab transfer, we apply a supervisory control scheme to shield unsafe actions during exploration; in Lab-to-Real transfer, we leverage the Probably Approximately Correct (PAC)-Bayes framework to provide lower bounds on the expected performance and safety of policies in unseen environments. Additionally, inheriting from the HJ reachability analysis, the bound accounts for the expectation over the worst-case safety in each environment. We empirically study the proposed framework for ego-vision navigation in two types of indoor environments with varying degrees of photorealism. We also demonstrate strong generalization performance through hardware experiments in real indoor spaces with a quadrupedal robot. See https://sites.google.com/princeton.edu/sim-to-lab-to-real for supplementary material.}
 }
 
 @misc{Panerati.332021,
