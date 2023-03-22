@@ -85,8 +85,8 @@ Betrachtet man den Trainingsprozess von Akteur-Kritiker basierten Methoden ist d
 Im vorherigen Kapitel sind die Methoden des verstärkenden Lernens klassifiziert und deren Unterschiede beschrieben worden.
 Anschließend daran wird in diesem Abschnitt der Arbeit, auf eine Auswahl konkreter Algorithmen und Implementierungen, der verschiedenen Methoden sowie deren Funktionsweise eingegangen.
 Die Auswahl an Algorithmen beinhaltet die fundamentalen Algorithmen des verstärkenden Lernens deep Q-Learning (DQL), Trust Region Policy Optimization (TRPO) und Asynchronous Advantage Actor-Critic (A3C). \footcite[Vgl.][S. 1]{Arulkumaran.2017}
-% DQL
 
+% DQL
 Mit der Entwicklung von DQL konnte erstmals ein Algorithmus entwickelt werden, welcher eine Reihe von Atari 2600 Spielen auf der Fähigkeitsebene eines professionellen Videospieltesters spielen konnte. \footcite[Vgl.][S. 6]{Arulkumaran.2017}
 Als wertbasierte Methode wird für jeden Zustand die Wertigkeit berechnet, was unter DQL mittels eines neuronalen Netzes erreicht wird, welches die Q-Funktion darstellt. \footcite[Vgl.][S. 4]{Huang.2017}
 Durch Auswählen der Aktion mit der höchsten Wertigkeit in jedem Zustand, kann die deterministische Strategie abgeleitet werden. \footcite[Vgl.][S. 4]{Huang.2017}
@@ -95,6 +95,7 @@ Erfahrungswiederholung beschreibt die Technik die Erfahrung des Agenten, also in
 Durch die Erfahrungswiederholung wird eine bessere Dateneffizienz zum einen durch die Wiederholung erzielt, und zum anderen durch das Auflösen von Korrelationen zwischen aufeinanderfolgenden Zuständen. \footcite[Vgl.][S. 4f.]{Mnih.2013}
 Das Zielnetzwerk beinhaltet die zunächst fixen Gewichte der Strategie, welche lediglich nach einer festen Anzahl an Schritten angepasst werden, um die Fluktuation der approximierten Q-Funktion auszugleichen. \footcite[Vgl.][S. 7]{Arulkumaran.2017}
 Die Stärke von DQL liegt in der kompakten Repräsentation der Q-Funktion und der hochgradig dimensionierten Zustandsbeobachtungen durch neuronale Netze. \footcite[Vgl.][S. 7]{Arulkumaran.2017}
+
 %TRPO & PPO
 Trust Region Policy Optimization (TRPO) ist ein strategiebasierender Gradientenalgorithmus zur effektiven Optimierung großer nicht linearer Strategien wie z.B. neuronale Netze. \footcite[Vgl.][S. 1]{Schulman.2015}
 Der Algorithmus weist dabei die zwei Varianten single-path, welcher im modellfreien Kontext angewendet werden kann, und \textit{vine} auf, welcher sich nur in Simulationen eignet, da das System zu bestimmten Zuständen gespeichert wird. \footcite[Vgl.][S. 1]{Schulman.2015}
@@ -104,7 +105,8 @@ Eine Weiterentwicklung des TRPO Algorithmus ist Proximal Policy Optimization (PP
 PPO passt die Beschränkung der KL-Divergenz an, indem die Wahrscheinlichkeitsmasse der Optimierung außerhalb der gesetzten Hyperparametergrenzen bearbeitet, oder die Größe der KL-Divergenz bestraft wird. \footcite[Vgl.][S. 3f.]{Schulman.2017}
 Durch diese Anpassung der KL-Divergenz Beschränkung ermöglicht der PPO Algorithmus mehrfache Berechnungen des Gradienten anhand eines Datenobjektes. \footcite[Vgl.][S. 4]{Schulman.2017}
 
-%\textit{DDPG ?}
+%\textbf{DDPG ?}
+
 %\textit{A3C}
 Zusätzlich zu den bisherigen Algorithmen kann durch jeweilige asynchrone Varianten, welche den Trainingsprozess des Agenten parallelisieren, die Stabilität des Trainings verbessert werden. \footcite[Vgl.][S. 1]{Mnih.2016}
 Einer dieser asynchronen Algorithmen im Bereich der Akteur-Kritiker Methodik stellt der asynchronous advantage actor-critic (A3C) Algorithmus dar, welcher anstelle von Erfahrungswiederholung mehrere Agenten parallel in unterschiedlichen Umgebungsinstanzen trainiert. \footcite[Vgl.][S. 1]{Mnih.2016}
@@ -118,13 +120,15 @@ Durch die abwechselnde Approximation der Q-Funktion des Kritikers und der Strate
 \subsection{Abgrenzung zu Multi-Agent Reinforcement Learning (MARL) Algorithmen}
 Innerhalb dieses Unterkapitels soll der beschriebene Aufbau von RL Algorithmen und deren Optimierungsproblem zu den von MARL Systemen abgegrenzt werden.
 Bei MARL Systemen wird anstatt einem Agenten eine Menge von Agenten eingesetzt welche alle mit ihrer Umgebung interagieren um den Weg der Zielerreichung zu lernen. \footcite[Vgl.][S. 6]{Wong.2022}
-Dieser Ansatz dient dazu Problemstellungen welche nicht vollständig durch einen Agenten lösbar sind zu bearbeiten. \footcite[Vgl.][S. 1]{Canese.2021}
+Dieser Ansatz dient dazu die Vielzahl an Problemstellungen in der echten Welt, welche nicht vollständig durch einen Agenten lösbar sind zu bearbeiten. \footcite[Vgl.][S. 1]{Canese.2021}
 Einsatzgebiete von MARL sind dabei unter anderem das Routing von Netzwerkpaketen, Wirtschaftsmodellierung oder zusammenhängende Robotersysteme. \footcite[Vgl.][S. 1]{Canese.2021}
 Je nach Ziel und der demnach definierter Belohnungsfunktion können die Agenten auf die drei unterschiedlichen Arten vollständig kooperativ, vollständig kompetitiv und der Mischung aus beiden miteinander interagieren. \footcite[Vgl.][S. 8f.]{Canese.2021}
 Aus der unterschiedlichen Interaktion jedes Agenten mit der selben Umgebung ergibt sich der Unterschied, dass die Umgebungsdynamik aus der Kombination aller Aktionen der Agenten beeinflusst wird anstatt aus der Aktion des einzelnen Agenten. \footcite[Vgl.][S. 2]{Wong.2022}
-Da dieser Effekt auch die Annahme der Stationarität von Markov Entscheidungsprozessen verletzt, bedarf dieUmgebung  auch einer anderen Representation. \footcite[Vgl.][S. 6]{Wong.2022}
+Da dieser Effekt auch die Annahme der Stationarität von Markov Entscheidungsprozessen verletzt, bedarf die Umgebung auch einer anderen Representation. \footcite[Vgl.][S. 6]{Wong.2022}
 Ein Konzept was dafür häufig verwendet ist das Markov Spiel, welches sich anders als der Entscheidungsprozess durch einen mehrdimensionalen Aktions- und Belohnungsraum aus der Kombination aller $N$ Agenten auszeichnet. \footcite[Vgl.][S. 4]{Canese.2021}
 Betrachtet man die Limitierungen von MARL erkennt man aus den beschriebenen Punkten die Herausforderungen der nicht vorhandenen Stationarität und der Skalierbarkeit, welcher sich die Herausforderung der teilweisen Beobachtbarkeit der Umgebung anschließt. \footcite[Vgl.][S. 9ff.]{Canese.2021}
+
+%\textbf{MARL nochmal verstärkt beschreiben ?}
 
 \subsection{Limitierungen und Herausforderungen von RL}
 %Ein vorteilhafter Kernanspekt von RL ist die vollständige Betrachtung des Problems eines Zielgerichteten Agenten in einer unsicheren Umgebung. \footcite[Vgl.][S. 3]{Sutton.2018}
