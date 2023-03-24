@@ -1,9 +1,9 @@
 \section{Verstärkendes Lernen}
-Verstärkendes Lernen oder als RL in der Fachsprache bezeichnet, definiert einen konzeptionellen Ansatz zielorientiertes Lernen von Entscheidungen zu verstehen und zu automatisieren. \footcite[Vgl.][S. 13]{Sutton.2018}
-Dabei besteht der Fokus darauf, dass ein Agent aus der direkten Interaktion mit seiner Umgebung lernt, ohne das explizite Überwachung notwendig ist. \footcite[Vgl.][S. 13]{Sutton.2018}
+Verstärkendes Lernen, oder auch als Reinforcement Learning (RL) in der Fachsprache bezeichnet, definiert einen konzeptionellen Ansatz zielorientiertes Lernen von Entscheidungen zu verstehen und zu automatisieren. \footcite[Vgl.][S. 13]{Sutton.2018}
+Dabei besteht der Fokus darauf, dass ein Agent aus der direkten Interaktion mit seiner Umgebung lernt, ohne dass explizite Überwachung notwendig ist. \footcite[Vgl.][S. 13]{Sutton.2018}
 Der Agent lernt über die Zeit eine optimale Strategie zur Lösung des Entscheidungsproblems aus dem Ausprobieren und Scheitern mittels verschiedener Aktionen die gewünschte Veränderung in seiner Umwelt herzustellen. \footcite[Vgl.][S. 4]{Li.2019}
-Notwendig dabei ist es, dass der Agent den Zustand seiner Umgebung wahrnehmen, und auch durch entsprechende Aktionen beeinflussen kann, sodass die Erreichung des Zielzustandes möglich ist. \footcite[Vgl.][S. 2]{Sutton.2018}
-Zur Erreichung dieses Zielzustandes muss der Agent alle Aktionen entdecken, welche ihm die größtmögliche kumulierte Belohnung liefern, wobei Aktionen nicht nur die unmittelbare sondern auch zukünftige Belohnungen beeinflussen. \footcite[Vgl.][S. 1]{Sutton.2018}
+Notwendig dabei ist es, dass der Agent den Zustand seiner Umgebung wahrnehmen und auch durch entsprechende Aktionen beeinflussen kann, sodass die Erreichung des Zielzustandes möglich ist. \footcite[Vgl.][S. 2]{Sutton.2018}
+Zur Erreichung dieses Zielzustandes muss der Agent diejenigen Aktionen entdecken, welche ihm die größtmögliche kumulierte Belohnung liefern, wobei Aktionen nicht nur die unmittelbare sondern auch zukünftige Belohnungen beeinflussen. \footcite[Vgl.][S. 1]{Sutton.2018}
 %Damit grenzt RL sich vom überwachten Lernen in der Art und Weise ab, dass dem Agenten zwar evaluiertes Feedback zur Verfügung steht, jedoch keine direkte Kennzeichnung ob seine Aktion korrekt oder falsch war.\footcite[Vgl.][S. 4]{Li.2019} 
 Zusammengefasst lässt sich die beschriebene Interaktion des Agenten mit seiner Umgebung wie folgt in Abbildung 1 darstellen.
 \begin{figure}[htb]
@@ -14,7 +14,7 @@ Zusammengefasst lässt sich die beschriebene Interaktion des Agenten mit seiner 
 \end{figure}
 \footnotetext{Enthalten in: \cite[][S. 5]{Li.2019}}
 
-Ein Standardaufbau einer Aufgabe für verstärkendes Lernen kann demnach verstanden werden, als sequentielles Entscheidungsproblem zu dessen Lösung ein Agent zu jedem diskreten Zeitschritt eine Aktion ausführt, welche den Zustand der Umgebung verändert. \footcite[Vgl.][S. 2]{Zhao.2020}
+Ein Standardaufbau einer Aufgabe für verstärkendes Lernen kann demnach als sequentielles Entscheidungsproblem verstanden werden, zu dessen Lösung ein Agent zu jedem diskreten Zeitschritt eine Aktion ausführt, welche den Zustand der Umgebung verändert. \footcite[Vgl.][S. 2]{Zhao.2020}
 Betrachtet man die technische Umsetzung einer solchen Interaktion zwischen dem Agenten und dessen Umgebung, wird häufig zur Modellierung ein Markov Entscheidungsprozess verwendet.
 Im Kontext von RL ist der Entscheidungsprozess definiert nach einem Tupel aus folgenden Elementen:\footcite[Vgl.][S. 2]{Zhang.2018}
 \begin{itemize}
@@ -26,10 +26,10 @@ Im Kontext von RL ist der Entscheidungsprozess definiert nach einem Tupel aus fo
 \end{itemize}
 
 Zum Finden der optimalen Strategie existieren modellbasierende und modellfreie Algorithmen des verstärkenden Lernens. \footcite[Vgl.][S. 3]{Wang.2020}
-Bei modellbasierenden Algorithmen wird das Umgebungsverhalten, also die Übergangs- und Belohnungswahrscheinlichkeiten als bekannt vorausgesetzt. \footcite[Vgl.][S. 3]{Wang.2020}
-Unter modellbasierenden Algorithmen wird dynamische Programmierung eingesetzt, um mittels Strategieevaluation und Strategieiteration die optimale Strategie zu finden. \footcite[Vgl.][S. 5]{Li.2019}
+Bei modellbasierenden Algorithmen wird das Umgebungsverhalten, also die Übergangs- und Belohnungswahrscheinlichkeiten, als bekannt vorausgesetzt. \footcite[Vgl.][S. 3]{Wang.2020}
+Als modellbasierender Algorithmus wird z.B. dynamische Programmierung eingesetzt, um mittels Strategieevaluation und Strategieiteration die optimale Strategie zu finden. \footcite[Vgl.][S. 5]{Li.2019}
 Unter modellfreien Algorithmen werden die drei verschiedenen Ansätze Wertebasierend, Strategiebasierend und Akteur-Kritiker basierend unterschieden \footcite[Vgl.][S. 5]{Li.2019}
-Der Agent im Kontext von modellfreien RL Methoden kennt nur die Zustände $S$ und die Aktionen $A$, jedoch nicht die Umgebungsverhalten $T$ und die Belohnungswahrscheinlichkeit $R$. \footcite[Vgl.][S. 2]{Cutler.2014}
+Der Agent im Kontext von modellfreien RL Methoden kennt nur die Zustände $S$ und die Aktionen $A$, jedoch nicht das Umgebungsverhalten $T$ und die Belohnungswahrscheinlichkeit $R$. \footcite[Vgl.][S. 2]{Cutler.2014}
 %Im Kontext von modellbasierendem RL im Vergleich zum modellfreien RL sind die Übergangs- und Belohnungswahrscheinlichkeiten bekannt, wodurch mittels Strategie- und Werteevaluation sowie Optimierung die bestmögliche Strategie gefunden werden kann. \footcite[Vgl.][S. 5]{Li.2019}
 Fasst man die Klassifizierung der Algorithmen und Methoden von RL zusammen, lässt sie sich wie folgt darstellen:
 
@@ -43,13 +43,13 @@ Fasst man die Klassifizierung der Algorithmen und Methoden von RL zusammen, läs
 
 \subsection{Methoden des verstärkenden Lernens}
 
-Der Agent sucht in diesem Kontext von wertbasierenden Methoden die optimale Strategie $\pi^{*}$, welche allen Zuständen $S$ die jeweilige Aktion $A(S)$ zuordnet, sodass die kummulierte Belohnungswahrscheinlichkeit $R(r_{t+1}|S_{t},A_{t})$ über alle Zeitschritte $t$ maximal ist. \footcite[Vgl.][S. 2]{Reda.2020}
+Der Agent sucht im Kontext von wertbasierenden Methoden die optimale Strategie $\pi^{*}$, welche allen Zuständen $S$ die jeweilige Aktion $A(S)$ zuordnet, sodass die kummulierte Belohnungswahrscheinlichkeit $R(r_{t+1}|S_{t},A_{t})$ über alle Zeitschritte $t$ maximal ist. \footcite[Vgl.][S. 2]{Reda.2020}
 Neben dieser kurzfristigen direkten Belohnung müssen auch die langfristigen zukünftigen Belohnungen aus den neuen Zuständen betrachtet werden, wofür das Konzept der Wertigkeit eingeführt wird. \footcite[Vgl.][S. 3]{Wang.2020}
 Über eine Zustands- oder Aktionswertigkeitsfunktion, oftmals als Q-Funktion referenziert, wird eine Vorhersage über die zu erwartende kumulierte abgezinste zukünftige Belohnung berechnet.\footcite[Vgl.][S. 5]{Li.2019}
 Durch den Abzinsungsfaktor $\gamma \in \left[0,1\right)$ wird der Einfluss zukünftiger Belohnungen nach ihrer zeitlichen Reihenfolge priorisiert.\footcite[Vgl][S. 5]{Li.2019}
 Mit der Wertigkeitsfunktion kann evaluiert werden, welche Strategie langfristig am erfolgreichsten ist, da bspw. manche Aktionen trotz geringer sofortiger Belohnung einen hohen Wert aufweisen können, wenn aus dem zukünftigen Zustand eine hohe Belohnung zu erwarten ist.\footcite[Vgl.][S. 6]{Sutton.2018}
-Die Wertigkeitsfunktion und die daraus berechneten Wertigkeiten von Aktionen oder Zuständen werden über alle Zeitschritte neu geschätzt und stellen mit die wichtigste Komponenten in Algorithmen des verstärkenden Lernens dar. \footcite[Vgl.][S. 6f.]{Sutton.2018}
-Methoden basierend auf diesem Wertigkeitswert lernen eine Schätzfunktion der Wertigkeit für alle Zustände ($V_{\pi}(s) \forall S$) und alle Zustandsaktions-Paare ($Q_{\pi}(s_{t},a_{t}) \forall s,a \in (S,A)$) der optimalen Strategie $\pi^{*}$ durch aktualisieren der folgenden Funktionen eins und zwei: \footcite[Vgl.][S. 2]{Zhang.2018}
+Die Wertigkeitsfunktion und die daraus berechneten Wertigkeiten von Aktionen oder Zuständen werden über alle Zeitschritte neu geschätzt und stellen mit die wichtigsten Komponenten in Algorithmen des verstärkenden Lernens dar. \footcite[Vgl.][S. 6f.]{Sutton.2018}
+Methoden basierend auf diesem Wertigkeitswert lernen eine Schätzfunktion der Wertigkeit für alle Zustände ($V_{\pi}(s) \forall S$) und alle Zustandsaktions-Paare ($Q_{\pi}(s_{t},a_{t}) \forall s,a \in (S,A)$) der optimalen Strategie $\pi^{*}$ durch aktualisieren der folgenden Funktionen eins und zwei: \footcite[Vgl.][S. 2]{Zhang.2018} % Wird nur die Wertigkeit der Zustandsaktionspaare der optimalen Strategie gelernt oder aller Zustandsaktionspaare? Ich dachte eigentlich Letzteres. Dann sollte der Satzteil 'der optimalen Strategie $\pi^{*}$' entfernt werden.
 \begin{description}
     %\item 1: $Q(s_{t}, a_{t}| \omega_{t+1}) \leftarrow Q(s_{t}, a_{t}|\omega_{t}) + \alpha\left[r_{t+1} + \gamma\max\limits_{a}Q(s_{t+1},a|\omega)-Q(s_{t},a_{t}|\omega)\right]*\nabla_{\omega}Q(s_{t},a_{t}|\omega)$
     \item \begin{center} (1) $Q(s_{t}, a_{t}) \leftarrow Q(s_{t}, a_{t}) + \alpha\left[r_{t+1} + \gamma\max\limits_{a}Q(s_{t+1},a)-Q(s_{t},a_{t})\right]$ \end{center}
@@ -66,7 +66,7 @@ Zur Optimierung der Strategie wird die Funktion der kumulierten Belohnungen $J$ 
     \item \begin{center} (3) $\nabla_{\theta}J(\theta) \approx \frac{1}{N} \sum \limits_{i=1}^{N} \left[(\sum \limits_{t=1}^{T} \nabla_{\theta}\log\pi_{\theta}(a_{t}|s_{t}))(\sum \limits_{t=1}^{T} r(s_{t},a_{t}))\right]$ \end{center}
     \item \begin{center} (4) $\theta \leftarrow \theta + \alpha\nabla_{\theta}J(\theta)$ \end{center}
 \end{description}
-Zusammengefasst kann Formel vier und fünf dabei so interpretiert werden, dass die logarithmierte Wahrscheinlichkeit Aktion $a_{t}$ im Zustand $s_{t}$ auszuwählen erhöht werden soll, wenn $a_{t}$ in einer höheren kumulierten Belohnung resultiert. \footcite[Vgl.][S. 6]{Wang.2020}
+Zusammengefasst können die Formeln vier und fünf dabei so interpretiert werden, dass die logarithmierte Wahrscheinlichkeit Aktion $a_{t}$ im Zustand $s_{t}$ auszuwählen erhöht wird, wenn $a_{t}$ in einer höheren kumulierten Belohnung resultiert. \footcite[Vgl.][S. 6]{Wang.2020}
 
 Unter Akteur-Kritiker Methoden werden hybride wertebasierende und strategiebasierende Methoden verstanden, welche zugleich die Strategie optimieren und eine Wertefunktion approximieren. \footcite[Vgl.][S. 2f.]{Zhang.2018}
 Die strategiebasierende Methodik mit der lernenden Strategie agiert dabei als Akteur, wohingegen die Wertefunktion, welche jeder Aktion und jedem Zustand einen Behlohnungswert zuweist, als Kritiker handelt. \footcite[Vgl.][S. 321]{Sutton.2018}
@@ -75,7 +75,7 @@ Betrachtet man den Trainingsprozess von Akteur-Kritiker basierten Methoden ist d
 \begin{itemize}
     \item Aktueller Zustand der Umgebung als Eingabe dem Akteur und Kritiker übergeben
     \item Akteur liefert eine auszuführende Aktion basierend auf dem Umgebungszustand
-    \item Der Kritiker bekommt die Aktion als Eingabe und berechnet dessen Wertigkeit mittels Q-Funktion
+    \item Der Kritiker bekommt die Aktion als Eingabe und berechnet deren Wertigkeit mittels Q-Funktion
     \item Durch die Wertigkeit seiner Aktion kann der Akteur seine Strategie anpassen
     \item Mit der neuen Strategie führt der Akteur die nächste Aktion im folgenden Zustand aus
     \item Die Q-Funktion des Kritikers wird mit den neuen Informationen aus der erhaltenen Belohnung angepasst
@@ -83,22 +83,22 @@ Betrachtet man den Trainingsprozess von Akteur-Kritiker basierten Methoden ist d
 
 \subsection{Algorithmen des verstärkenden Lernens}
 Im vorherigen Kapitel sind die Methoden des verstärkenden Lernens klassifiziert und deren Unterschiede beschrieben worden.
-Anschließend daran wird in diesem Abschnitt der Arbeit, auf eine Auswahl konkreter Algorithmen und Implementierungen, der verschiedenen Methoden sowie deren Funktionsweise eingegangen.
-Die Auswahl an Algorithmen beinhaltet die fundamentalen Algorithmen des verstärkenden Lernens deep Q-Learning (DQL), Trust Region Policy Optimization (TRPO) und Asynchronous Advantage Actor-Critic (A3C). \footcite[Vgl.][S. 1]{Arulkumaran.2017}
+Anschließend daran wird in diesem Abschnitt der Arbeit auf eine Auswahl konkreter Algorithmen und Implementierungen, die verschiedenen Methoden sowie deren Funktionsweise eingegangen.
+Die Auswahl an Algorithmen beinhaltet die fundamentalen Algorithmen des verstärkenden Lernens Deep Q-Learning (DQL), Trust Region Policy Optimization (TRPO) und Asynchronous Advantage Actor-Critic (A3C). \footcite[Vgl.][S. 1]{Arulkumaran.2017}
 
 % DQL
 Mit der Entwicklung von DQL konnte erstmals ein Algorithmus entwickelt werden, welcher eine Reihe von Atari 2600 Spielen auf der Fähigkeitsebene eines professionellen Videospieltesters spielen konnte. \footcite[Vgl.][S. 6]{Arulkumaran.2017}
-Als wertbasierte Methode wird für jeden Zustand die Wertigkeit berechnet, was unter DQL mittels eines neuronalen Netzes erreicht wird, welches die Q-Funktion darstellt. \footcite[Vgl.][S. 4]{Huang.2017}
+Als wertbasierte Methode wird für jeden Zustand die Wertigkeit berechnet, was unter DQL mittels eines neuronalen Netzes erreicht wird, welches die Q-Funktion darstellt. \footcite[Vgl.][S. 4]{Huang.2017} %darstellt oder approximiert?
 Durch Auswählen der Aktion mit der höchsten Wertigkeit in jedem Zustand, kann die deterministische Strategie abgeleitet werden. \footcite[Vgl.][S. 4]{Huang.2017}
-DQL adressiert das Instabilitätsproblem von Funktionsapproximation unter dem Einsatz von Erfahrungswiederholung und Zielnetzwerke. \footcite[Vgl.][S. 7]{Arulkumaran.2017}
-Erfahrungswiederholung beschreibt die Technik die Erfahrung des Agenten, also in welchem Zustand welche Aktion zu welcher Belohnung und welchem Folgezustand führt, in jedem Zeitschritt zu speichern und zufällig anhand neuer Erfahrung anzupassen. \footcite[Vgl.][S. 4]{Mnih.2013}
+DQL adressiert das Instabilitätsproblem von Funktionsapproximation unter dem Einsatz von Erfahrungswiederholung und Zielnetzwerken. \footcite[Vgl.][S. 7]{Arulkumaran.2017}
+Erfahrungswiederholung beschreibt die Technik die Erfahrung des Agenten, also in welchem Zustand welche Aktion zu welcher Belohnung und welchem Folgezustand führt, in jedem Zeitschritt zu speichern und zufällig anhand neuer Erfahrung anzupassen. \footcite[Vgl.][S. 4]{Mnih.2013} % Werden hier tatsächlich gespeicherte Erfahrungen angepasst? Mein Verständnis ist, dass beim Training zufällig auf gespeicherte Zustansübergänge zugreift und diese damit auch aus der festen und stark korrelierten Abfolge in dem tatsächlichen Verlauf einer Episode nimmt. Die Updates/Anpassungen beziehen sich dagegen auf die Gewichte der Q-Funktion.
 Durch die Erfahrungswiederholung wird eine bessere Dateneffizienz zum einen durch die Wiederholung erzielt, und zum anderen durch das Auflösen von Korrelationen zwischen aufeinanderfolgenden Zuständen. \footcite[Vgl.][S. 4f.]{Mnih.2013}
 Das Zielnetzwerk beinhaltet die zunächst fixen Gewichte der Strategie, welche lediglich nach einer festen Anzahl an Schritten angepasst werden, um die Fluktuation der approximierten Q-Funktion auszugleichen. \footcite[Vgl.][S. 7]{Arulkumaran.2017}
 Die Stärke von DQL liegt in der kompakten Repräsentation der Q-Funktion und der hochgradig dimensionierten Zustandsbeobachtungen durch neuronale Netze. \footcite[Vgl.][S. 7]{Arulkumaran.2017}
 
 %TRPO & PPO
 Trust Region Policy Optimization (TRPO) ist ein strategiebasierender Gradientenalgorithmus zur effektiven Optimierung großer nicht linearer Strategien wie z.B. neuronale Netze. \footcite[Vgl.][S. 1]{Schulman.2015}
-Der Algorithmus weist dabei die zwei Varianten single-path, welcher im modellfreien Kontext angewendet werden kann, und \textit{vine} auf, welcher sich nur in Simulationen eignet, da das System zu bestimmten Zuständen gespeichert wird. \footcite[Vgl.][S. 1]{Schulman.2015}
+Der Algorithmus weist dabei die zwei Varianten single-path, welche im modellfreien Kontext angewendet werden kann, und \textit{vine} auf, welche sich nur in Simulationen eignet, da das System zu bestimmten Zuständen gespeichert wird. \footcite[Vgl.][S. 1]{Schulman.2015}
 Die Varianten unterscheiden sich im Schätzverfahren des Gradienten, wobei die single-path Methodik diesen anhand einer Aktions-Zustandskette der initialen Verteilung bestimmt, und unter \textit{vine} eine Teilmenge mehrerer verschiedener Aktion-Zustandspaare verwendet werden. \footcite[Vgl.][S. 4]{Schulman.2015}
 Die daraus entstehenden Anpassungen der Strategieparameter $\theta$ zwischen der alten und neuen Strategie werden mittels Kullback-Leibler-Divergenz bemessen und kontrolliert. \footcite[Vgl.][S. 4]{Huang.2017}
 Eine Weiterentwicklung des TRPO Algorithmus ist Proximal Policy Optimization (PPO), durch dessen Verwendung die Implementierung erleichtert und die Datenprobenkomplexität verbessert wird. \footcite[Vgl.][S. 1]{Schulman.2017}
@@ -111,23 +111,23 @@ Durch diese Anpassung der KL-Divergenz Beschränkung ermöglicht der PPO Algorit
 Zusätzlich zu den bisherigen Algorithmen kann durch jeweilige asynchrone Varianten, welche den Trainingsprozess des Agenten parallelisieren, die Stabilität des Trainings verbessert werden. \footcite[Vgl.][S. 1]{Mnih.2016}
 Einer dieser asynchronen Algorithmen im Bereich der Akteur-Kritiker Methodik stellt der asynchronous advantage actor-critic (A3C) Algorithmus dar, welcher anstelle von Erfahrungswiederholung mehrere Agenten parallel in unterschiedlichen Umgebungsinstanzen trainiert. \footcite[Vgl.][S. 1]{Mnih.2016}
 A3C kombiniert die Berechnung der relativen Wertigkeit einer Aktion, anstelle der absoluten Wertigkeit durch die Q-Funktion, mit der Akteur-Kritiker Struktur und lässt sich auf einzelnen sowie verteilten Systemen einsetzen. \footcite[Vgl.][S. 9]{Arulkumaran.2017} 
-Wird der mit dem Algorithmus lediglich ein Agent trainiert, wird dies häufig auch als advantage actor-critic (A2C) referenziert. \footcite[Vgl.][S. 9]{Arulkumaran.2017} 
+Wird mit dem Algorithmus lediglich ein Agent trainiert, wird dies häufig auch als advantage actor-critic (A2C) referenziert. \footcite[Vgl.][S. 9]{Arulkumaran.2017} 
 Neben A3C ist der soft actor-critic Algorithmus ein weiterer Algorithmus der Akteur-Kritiker Methodik, welcher die kumulierte Belohnung, aber auch die Entropie maximiert. \footcite[Vgl.][S. 1]{Haarnoja.2018}
 Durch dieses Konzept der Maximierung der Belohnung und der Entropie ergeben sich die Vorteile eines stärker erkundenden Algorithmus, welcher gleichzeitig mehrere nahezu optimale Lösungen erfassen kann. \footcite[Vgl.][S. 3]{Haarnoja.2018}
-Zur Evaluation wird die auf der Belohnung und Entropie basierten Wertigkeit iterativ anhand des Bellman Operators nach \cite[]{Bellman.1966} bestimmt, und anschließend die Strategie hinsichtlich der exponentialen Q-Funktion angepasst. \footcite[Vgl.][S. 4]{Haarnoja.2018}
+Zur Evaluation wird die auf der Belohnung und Entropie basierte Wertigkeit iterativ anhand des Bellman Operators nach \cite[]{Bellman.1966} bestimmt, und anschließend die Strategie hinsichtlich der exponentialen Q-Funktion angepasst. \footcite[Vgl.][S. 4]{Haarnoja.2018}
 Durch die abwechselnde Approximation der Q-Funktion des Kritikers und der Strategie des Akteurs, anstelle der Berechnung dieser bis zur Konvergenz, kann der soft actor-critic Algorithmus besonders mit großen kontinuierlichen Handlungsbereichen umgehen. \footcite[Vgl.][S. 4]{Haarnoja.2018}
 
 \subsection{Abgrenzung zu Multi-Agent Reinforcement Learning (MARL) Algorithmen}
 Innerhalb dieses Unterkapitels soll der beschriebene Aufbau von RL Algorithmen und deren Optimierungsproblem zu den von MARL Systemen abgegrenzt werden.
-Bei MARL Systemen wird anstatt einem Agenten eine Menge von Agenten eingesetzt welche alle mit ihrer Umgebung interagieren um den Weg der Zielerreichung zu lernen. \footcite[Vgl.][S. 6]{Wong.2022}
-Dieser Ansatz dient dazu die Vielzahl an Problemstellungen in der echten Welt, welche nicht vollständig durch einen Agenten lösbar sind zu bearbeiten. \footcite[Vgl.][S. 1]{Canese.2021}
+Bei MARL Systemen wird anstatt einem Agenten eine Menge von Agenten eingesetzt, welche alle mit ihrer Umgebung interagieren um den Weg der Zielerreichung zu lernen. \footcite[Vgl.][S. 6]{Wong.2022}
+Dieser Ansatz dient dazu die Vielzahl an Problemstellungen in der echten Welt, welche nicht vollständig durch einen Agenten lösbar sind, zu bearbeiten. \footcite[Vgl.][S. 1]{Canese.2021}
 Einsatzgebiete von MARL sind dabei unter anderem das Routing von Netzwerkpaketen, Wirtschaftsmodellierung oder zusammenhängende Robotersysteme. \footcite[Vgl.][S. 1]{Canese.2021}
-Je nach Ziel und der demnach definierter Belohnungsfunktion können die Agenten auf die drei unterschiedlichen Arten vollständig kooperativ, vollständig kompetitiv und der Mischung aus beiden miteinander interagieren. \footcite[Vgl.][S. 8f.]{Canese.2021}
-Aus der unterschiedlichen Interaktion jedes Agenten mit der selben Umgebung ergibt sich der Unterschied, dass die Umgebungsdynamik aus der Kombination aller Aktionen der Agenten beeinflusst wird anstatt aus der Aktion des einzelnen Agenten. \footcite[Vgl.][S. 2]{Wong.2022}
-Da dieser Effekt auch die Annahme der Stationarität von Markov Entscheidungsprozessen verletzt, bedarf die Umgebung auch einer anderen Representation. \footcite[Vgl.][S. 6]{Wong.2022}
-Ein Konzept was dafür häufig verwendet ist das Markov Spiel, welches sich anders als der Entscheidungsprozess durch einen mehrdimensionalen Aktions- und Belohnungsraum aus der Kombination aller $N$ Agenten auszeichnet. \footcite[Vgl.][S. 4]{Canese.2021}
-Betrachtet man die Limitierungen von MARL erkennt man aus den beschriebenen Punkten die Herausforderungen der nicht vorhandenen Stationarität und der Skalierbarkeit, welcher sich die Herausforderung der teilweisen Beobachtbarkeit der Umgebung anschließt. \footcite[Vgl.][S. 9ff.]{Canese.2021}
-
+Je nach Ziel und der demnach definierten Belohnungsfunktion können die Agenten auf die drei unterschiedlichen Arten vollständig kooperativ, vollständig kompetitiv und der Mischung aus beiden miteinander interagieren. \footcite[Vgl.][S. 8f.]{Canese.2021}
+Aus der unterschiedlichen Interaktion jedes Agenten mit der selben Umgebung ergibt sich der Unterschied, dass die Umgebungsdynamik aus der Kombination aller Aktionen der Agenten beeinflusst wird anstatt aus der Aktion des einzelnen Agenten. \footcite[Vgl.][S. 2]{Wong.2022} % 'Aus der unterschiedlichen Interaktion' -> 'Aus den einzelnen Interaktionen'
+Da dieser Effekt auch die Annahme der Stationarität von Markov Entscheidungsprozessen verletzt, bedarf die Umgebung auch einer anderen Representation. \footcite[Vgl.][S. 6]{Wong.2022} % zweimal 'auch' in einem Satz, das erste 'auch' kann mMn weggelassen werden
+Ein Konzept, das dafür häufig verwendet wird, ist das Markov Spiel, welches sich anders als der Entscheidungsprozess durch einen mehrdimensionalen Aktions- und Belohnungsraum aus der Kombination aller $N$ Agenten auszeichnet. \footcite[Vgl.][S. 4]{Canese.2021}
+Betrachtet man die Limitierungen von MARL, erkennt man aus den beschriebenen Punkten die Herausforderungen der nicht vorhandenen Stationarität und der Skalierbarkeit, welchen sich die Herausforderung der teilweisen Beobachtbarkeit der Umgebung anschließt. \footcite[Vgl.][S. 9ff.]{Canese.2021}
+% Hier sollte noch ein Satz zu der Einordnung deines Szenarios kommen, z.B. "Das für die Experimente vorgesehene Szenario lässt sich demnach in das kompetitive Multi-Agent Reincorfement Learning einordnen."
 %\textbf{MARL nochmal verstärkt beschreiben ?}
 
 \subsection{Limitierungen und Herausforderungen von RL}
@@ -135,12 +135,12 @@ Betrachtet man die Limitierungen von MARL erkennt man aus den beschriebenen Punk
 Trotz signifikanter Errungenschaften birgt der Einsatz von den besprochenen RL Algorithmen weiterhin Limitierungen und Risiken für ungewolltes Verhalten. \footcite[Vgl.][S. 7]{Li.2019}
 
 Eine der Herausforderungen zeigt sich bei der Representation der Agentenumwelt, da RL stark auf diesem Konzept basiert. \footcite[Vgl.][S. 8]{Sutton.2018}
-Daraus ergibt sich die Aufgabe, die Umwelt und dessen Verhalten sowie die Wahrnehmung durch den Agenten realitätsgetreu und präzise zu gestalten. \footcite[Vgl.][S. 7]{Sutton.2018}
+Daraus ergibt sich die Aufgabe, die Umwelt und deren Verhalten sowie die Wahrnehmung durch den Agenten realitätsgetreu und präzise zu gestalten. \footcite[Vgl.][S. 7]{Sutton.2018}
 Neben der Definition und Wahrnehmung des Umweltverhaltens ist die Spezifikation des Ziels des Agenten ein ebenso kritischer Teil, da unerwartete Intentionen aus der Zielstellung abgeleitet werden könnten. \footcite[Vgl.][S. 7]{Li.2019}
 Zusätzlich teilen RL Algorithmen auch Herausforderungen aus anderen Gebieten des maschinellen Lernens wie Genauigkeit, Interpretierbarkeit und die im Rahmen dieser Arbeit untersuchte Robustheit von Modellen. \footcite[Vgl.][S. 7]{Li.2019}
 
 Eine weitere Limitierung stellt der große Suchraum an Aktionen und das unbekannte Verhalten der Umgebung dar.
-Dies sorgt dafür, dass häufig die Effizienz einzelner Daten sehr gering ist und die Abwägung zwischen Exploration neuer Strategie und der Optimierung bekannter Verhaltensmuster ein wichtiger Bestandteil ist. \footcite[Vgl.][S. 7]{Li.2019}
+Dies sorgt dafür, dass häufig die Effizienz einzelner Daten sehr gering ist und die Abwägung zwischen der Exploration neuer Strategie und der Optimierung bekannter Verhaltensmuster ein wichtiger Bestandteil ist. \footcite[Vgl.][S. 7]{Li.2019}
 Aufgrund der geringen Effizienz der Daten aber des dennoch hohen Bedarfs an bewerteter Agentenerfahrung wird häufig auf simulierte Daten zurückgegriffen. \footcite[Vgl.][S. 7]{Zhao.2020}
 Simulierte Daten werden dabei häufig von möglichst hoch qualitativen Simulationsumgebungen bereitgestellt, da zu dem hohen Bedarf der Methodik häufig Limitierungen in der Sammlung von Daten in der echten Welt bestehen. \footcite[Vgl.][S. 8]{Li.2019}
 
