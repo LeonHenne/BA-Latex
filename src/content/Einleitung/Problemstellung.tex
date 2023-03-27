@@ -8,11 +8,11 @@ Da ein Problem beim Einsatz von RL Algorithmen die Limitierungen sein können, D
 Eine Limitierung können bspw. Sicherheitsaspekte sein, welche beim Training von Roboterarmen, oder sich autonom bewegenden Systemen auftreten, da die einzelnen physischen Bewegungen nicht vorhersehbar abschätzbar sind. \footcite[Vgl.][S. 738]{Zhao.2020}
 Simulationen nehmen damit zum einen als Testumgebung eine wichtige Rolle ein in der Entwicklung von Kontrollalgorithmen. \footcite[Vgl.][S. 2]{Cutler.2014}
 Zum anderen bedarf die erfolgreiche Anwendung von RL neben effizienten Algorithmen eben auch geeignete Simulationsumgebungen. \footcite[Vgl.][S. 8]{Reda.2020}
-Besonders schwierig, und daher sehr wichtig zu erforschen, ist es die Trainingsumgebung bestmöglich an die echte Welt anzupassen, sodass bspw. die Agenten für Roboter und autonome Fahrzeuge, nach dem Training mit robusten Strategien in der Realität eingesetzt werden können. \footcite[Vgl.][S. 1]{DBLP:journals/corr/abs-1910-10537}
+Besonders schwierig, und daher sehr wichtig zu erforschen, ist es, die Trainingsumgebung bestmöglich an die echte Welt anzupassen, sodass bspw. die Agenten für Roboter und autonome Fahrzeuge nach dem Training mit robusten Strategien in der Realität eingesetzt werden können. \footcite[Vgl.][S. 1]{DBLP:journals/corr/abs-1910-10537}
 In der Forschungsliteratur wird diese beschriebene Problematik als „Sim to real“-Transfer beschrieben. \footcite[Vgl.][S. 738]{Zhao.2020}
 %Eine Methodik diesen Transfer zu begünstigen ist die Veränderung von visuellen oder dynamischen Parametern der Umgebung, was in der Forschungsliteratur als „Domain Randomization“ referenziert wird. \footcite[Vgl.][S. 2]{DBLP:journals/corr/abs-1910-10537}
 
-Ein Forschungsgebiet, bei dessen die Lösung des Sim to Real Transfers betrachtet wird, ist die autonome Steuerung von unbemannten Luftfahrzeugen bzw. Drohnen. \footcite[Vgl.][S. 1]{Deshpande.2021}
+Ein Forschungsgebiet, bei dem die Lösung des Sim to Real Transfers betrachtet wird, ist die autonome Steuerung von unbemannten Luftfahrzeugen bzw. Drohnen. \footcite[Vgl.][S. 1]{Deshpande.2021}
 Das Transferproblem entsteht bspw. dabei, dass zur automatisierten Kollisionsvermeidung die Kollisionsbeispiele einer Simulationsumgebung entnommen werden, um physischen Schaden oder Drohnenverlust zu vermeiden. \footcite[Vgl.][S. 4]{Sadeghi.2016}
 Drohnen tragen dabei bereits in der heutigen Zeit zur Lösung vieler komplexer Aufgaben bei, wie der Katastrophenüberwachung oder der Waldbrandbekämpfung. \footcite[Vgl.][S. 1495]{Hentati.2018}
 Zusätzlich steigen immer weiter die komplexen Einsatzanforderungen unter dem Anstieg an Anwendungsgebieten für unbemannte Luftfahrzeuge. \footcite[Vgl.][S. 1]{Deshpande.2020}
@@ -20,6 +20,6 @@ Zusätzlich steigen immer weiter die komplexen Einsatzanforderungen unter dem An
 Die Simulation einer möglichst realistischen Umgebung in diesem Kontext wird in der Forschung häufig mit dem Ansatz von Domain Randomization (DR) begleitet. \footcite[Vgl.][S. 1]{Sadeghi.2016}
 Unter dem Themenfeld der DR wird die Idee erforscht, anstelle der akkuraten Modellierung realistischer Dynamiken, diese so stark zu randomisieren, dass reale Dynamikeffekte abgedeckt sind. \footcite[Vgl.][S. 4f.]{Zhao.2020}
 Neben den dynamischen Bedingungen unterliegt die Realität jedoch häufig auch dem Einfluss mehrerer Parteien.
-Diese tragen teilweise kooperierend aber auch teilweise konkurrierend zum eigenen Erfolg bei, wie z.B. im Rahmen eines dem Wettbewerb unterliegenden Markt. \footcite[Vgl.][S. 2]{COLLINS2022101217}
+Diese tragen teilweise kooperierend aber auch teilweise konkurrierend zum eigenen Erfolg bei, wie z.B. im Rahmen eines dem Wettbewerb unterliegenden Marktes. \footcite[Vgl.][S. 2]{COLLINS2022101217}
 Stellt man sich ein Szenario im Kontext kooperativer oder konkurrierender Drohnen vor, ist es naheliegend, dass auch jene Einflüsse möglichst präzise in die Simulationsumgebung integriert sein müssen, um ein robustes Modell erlernen zu können.
 Während bereits in Produkten wie PowerTAC von \cite[][]{COLLINS2022101217} die Simulation von Märkten entwickelt wurde, scheint der Einfluss des Gegenspielers in kompetitiven Drohnensimulationen auf die Robustheit von RL Algorithmen und demnach auf die Lösung des „Sim to real“-Transfers unerforscht.

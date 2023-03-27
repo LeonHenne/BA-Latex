@@ -1,10 +1,12 @@
 \section{Simulationsumgebungen für RL}
 
-Anders als im klassischen Bereich des maschinellen Lernens wie überwachtes- und unüberwachtes Lernen, werden beim verstärkenden Lernen viele der Testdatensätze nicht aus der echten Welt akquiriert. \footcite[Vgl.][S. 1]{Zhang.2018}
+Anders als im klassischen Bereich des maschinellen Lernens wie dem überwachten- und unüberwachten Lernen, werden beim verstärkenden Lernen viele der Testdatensätze nicht aus der echten Welt akquiriert. \footcite[Vgl.][S. 1]{Zhang.2018}
 Um entsprechend realistische Daten für das Training bereitzustellen, werden Simulationsumgebungen in Abhängigkeit von ihrer RL Anwendung ausgewählt. \footcite[Vgl.][S. 7]{Korber.2021}
 Dennoch bleibt nahezu immer eine gewisse Diskrepanz zwischen der Dynamik in der Simulation und der Dynamik in der echten Welt. \footcite[Vgl.][S. 1]{Bharadhwaj.2019}
-Möglichkeiten diese Diskrepanz zu verkleinern sind zum einen das Fehlverhalten von Sensoren einzubinden, oder ein reales Signal mit der virtuellen Umgebung zu verknüpfen. \footcite[Vgl.][S. 1]{Zhang.2018}
+Möglichkeiten, diese Diskrepanz zu verkleinern, sind zum einen das Fehlverhalten von Sensoren einzubinden oder ein reales Signal mit der virtuellen Umgebung zu verknüpfen. \footcite[Vgl.][S. 1]{Zhang.2018}
 Trotzdem ist es kaum garantiert, dass erlernte Strategien der Agenten sich auch auf nur leicht veränderte Umgebungen übertragen lassen. \footcite[Vgl.][S. 1]{Bharadhwaj.2019}
+Anders als in der Simulation von Flüssigkeiten und deren Dynamik, bedarf RL eine reaktive Umgebung dessen Verhältnis der Simulationszeit zur echten Zeit mindestens eins oder darüber liegt. \footcite[Vgl.][S. 3]{Korber.2021}
+RL kann von einem erhöhten Echtzeitfaktor profitieren, trotz der damit einhergehenden verringerten Präzision. \footcite[Vgl.][S. 3]{Korber.2021}
 
 \subsection{Definitionen von Simulationsumgebungen}
 Ausgehend von der Literaturrecherche zeigte sich, dass in der Forschungsliteratur die allgemeine Definition von Simulationen kaum aufgegriffen wird.
@@ -34,14 +36,14 @@ Aus dieser Motivation wurde 2016 durch die OpenAI der OpenAI Gym Werkzeugkasten 
 Seither wurde diese definierte Schnittstelle vielfach verwendet, um RL Umgebungen mit dem Ziel zu entwickeln, diese zu publizieren und dessen Wiederverwendung zu ermöglichen. \footcite[Vgl.][S. 4]{Schuderer.2021}
 Die Schnittstelle ist definiert als Python Klasse \textit{gym.Env}, von welcher weitere Klassen erben und die vorgeschriebenen Funktionen zum Zeitschritt und zum Zurücksetzen der Simulation implementieren. \footcite[Vgl.][S. 4]{Schuderer.2021}
 Der Werkzeugkasten von OpenAI fokussiert sich auf einen Episoden ähnlichen Rahmen, in welchem der Agent durch zunächst zufälliges Auswählen von Interaktionen lernt. \footcite[Vgl.][S. 1]{Brockman.2016}
-Weitere Entwicklungsentscheidungen des OpenAI Gym Werkzeugkastens umfassen z.B. die bewusst fehlende Schnittstelle des Agenten, die strikte Versionierung der Umgebung oder die standardmäßige Simulationsüberwachung. \footcite[Vgl.][S. 2f.]{Brockman.2016}
+Weitere Entwicklungsentscheidungen des OpenAI Gym Werkzeugkastens umfassen z.B. die bewusst fehlende Schnittstelle des Agenten, die strikte Versionierung der Umgebung oder die standardmäßige Simulationsüberwachung. \footcite[Vgl.][S. 2f.]{Brockman.2016} % Welche Schnittstelle des Agenten ist hier gemeint? Oder die Implementierung des Agenten?
 
 Werden Lernumgebungen nach der Gym Schnittstelle oder nach eigener Definition für RL Anwendungen eingesetzt, kann sich deren Gestaltung unterschiedlich auf die Leistung der Anwendung auswirken. \footcite[Vgl.][S. 1]{Reda.2020}
 Eine enge initiale Wahrscheinlichkeitsverteilung des Umgebungszustandes kann die Lerneffizienz erhöhen, wohingegen eine weite Wahrscheinlichkeitsverteilung positiv die Robustheit der erlernten Strategie beeinflusst. \footcite[Vgl.][S. 3]{Reda.2020}
 Die Robustheit kann zusätzlich durch die Einbindung von Fehlverhalten in der Wahrnehmung der Umgebung beeinflusst werden, da auch in realen Szenarien ein Risiko für Fehlverhalten besteht. \footcite[Vgl.][S. 2]{YanDuan.2016} 
 Im Bereich der Robotik bzw. in der Simulation von Bewegungen, kann auch durch die Gestaltung des Aktionsraumes, basierend auf elektrischer Regelungstechnik mittels PID-Regler, anstatt basierend auf Drehmomenten ein effizienterer Lernprozess stattfinden.\footcite[Vgl.][S. 7]{Reda.2020}
 
-Neben den beschriebenen Eigenschaften von Umgebungen für verstärkendes Lernen unterliegen auch die verwendeten Simulationen bestimmten Merkmalen welche in der Entwicklung zu berücksichtigen sind.
+Neben den beschriebenen Eigenschaften von Umgebungen für verstärkendes Lernen unterliegen auch die verwendeten Simulationen bestimmten Merkmalen, welche in der Entwicklung zu berücksichtigen sind.
 Laut einer Umfrage nach \cite[]{Ivaldi.2272014} sind diese wichtigsten Eigenschaften die Stabilität, Geschwindigkeit, Präzision, Genauigkeit, Bedienbarkeit und der Ressourcenverbrauch.
 Die Entwicklung des Modells, welches das existierende System ersetzt, sollte sich demnach möglichst positiv auf die beschriebenen Eigenschaften auswirken.
 Neben den beschriebenen Leistungsbezogenen Merkmalen sind die folgenden weiteren Kriterien mitunter die wichtigsten zur Auswahl einer Simulation:
@@ -63,11 +65,11 @@ Neben den beschriebenen Leistungsbezogenen Merkmalen sind die folgenden weiteren
 \end{table}
 \footnotetext{Enthalten in: \cite[][s. 4]{Ivaldi.2272014}}
 
-Aus Tabelle zwei lässt sich entnehmen, das besonders die Nähe zur Realität ein wichtiges Auswahlkriterium ist.
+Aus Tabelle zwei lässt sich entnehmen, dass besonders die Nähe zur Realität ein wichtiges Auswahlkriterium ist.
 Im Kontext von verstärkendem Lernen im Robotik Bereich ist ein wichtiger Baustein die Physik-Engine zur Modellierung von Dynamiken. \footcite[Vgl.][S. 2]{Ayala.2020}
 
 \subsection{aktuelle Physik-Engines und Simulationsanwendungen}
-Innerhalb dieses Abschnittes wird aufgrund der Bedeutung der Physik-Engine für den Grad der Simulationsrealität, eine Auswahl der aktuellen Physik-Engines und deren Simulationsanwendung betrachtet.
+Innerhalb dieses Abschnittes wird aufgrund der Bedeutung der Physik-Engine für den Grad der Simulationsrealität eine Auswahl der aktuellen Physik-Engines und deren Simulationsanwendung betrachtet.
 
 \textit{Gazebo}
 
@@ -79,12 +81,12 @@ Die unterstützten Physik-Engines umfassen Bullet, Dynamic Animation and Robotic
 
 MuJoCo stellt eine Physik-Engine für modellbasierte Steuerung dar, dessen Objekte durch C++ oder XML definiert und Gelenkzustände im Koordinatensystem beschriebenen werden. \footcite[Vgl.][S. 1]{Todorov.2012} 
 Diese beschriebene Eigenschaft lässt sich auch aus dem Namen als Abkürzung für \textbf{Mu}lti-\textbf{Jo}int dynamics with \textbf{Co}ntact ableiten. \footcite[Vgl.][S. 2]{Todorov.2012}
-Die MuJoCo Anwendung ist lizensiert, was diesen Besitz einer Lizenz für die Installation oder die Virtualisierung innerhalb eines Containers voraussetzt. \footcite[Vgl.][S. 3]{Korber.2021}
+Die MuJoCo Anwendung ist lizensiert, was den Besitz einer Lizenz für die Installation oder die Virtualisierung innerhalb eines Containers voraussetzt. \footcite[Vgl.][S. 3]{Korber.2021}
 
 \textit{PyBullet}
 
-PyBullet basiert als Simulationssoftware auf der Bullet-Engine und fokussiert funktional auf die Anwendung von RL im Robotikbereich. \footcite[Vgl.][S. 3]{Korber.2021}
-Die Bullet-Engine ist hingegen eine offene Softwarebibliothek welche neben verstärkenden Lernen auch bei Computeranimationen angewendet wird. \footcite[Vgl.][S. 7]{Ivaldi.2272014}
+PyBullet basiert als Simulationssoftware auf der Bullet-Engine und fokussiert sich funktional auf die Anwendung von RL im Robotikbereich. \footcite[Vgl.][S. 3]{Korber.2021}
+Die Bullet-Engine ist hingegen eine offene Softwarebibliothek, welche neben verstärkenden Lernen auch bei Computeranimationen angewendet wird. \footcite[Vgl.][S. 7]{Ivaldi.2272014}
 Bie Handhabung von PyBullet profitiert von der ausgiebigen Dokumentation, der großen Entwicklergemeinschaft und der Unterstützung von verschiedenen Dateiformaten wie SDA, URDF und MJCF zur Einbindung von Objekten. \footcite[Vgl.][S. 6]{Korber.2021}
 
 %\textbf{Hier noch mehr SimEnvs mit aufnehmen ?}
