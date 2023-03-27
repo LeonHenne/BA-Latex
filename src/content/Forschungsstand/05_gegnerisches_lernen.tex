@@ -17,7 +17,7 @@ Formal dargestellt folgt dieses gegnerische Spiel der in Formel sieben angeführ
 Zu jedem Zeitschritt $t$ in der gegnerischen Simulation wird von beiden Spielern eine Aktion $a_{t}^{N} \sim \mu(s_{t}) \forall N \in \{1,2\}$ nach der Wahrnehmung des Umgebungszustands $s$ ausgeübt, was zum Erhalt der Belohnung $r_{t}^{1} = r_{t}$ und $r_{t}^{2} = -r_{t}$ führt. \footcite[Vgl.][S. 3f.]{Pinto.2017}
 Das Training erfolgt aus der abwechselnden Optimierung einer der beiden Strategien bis zu deren Konvergenz, während die jeweils andere nicht verändert wird. \footcite[Vgl.][S. 4]{Pinto.2017}
 
-Im Kontext der Steuerung von Quadrokoptern greifen \cite[]{Zhai.2022} das \textit{Robust Adaptive Ensemble Adversarial Reinforcement Learning Framework (EARL)} auf.
+Im Kontext der Steuerung von Quadrokoptern greifen \cite[]{Zhai.2022} das \textit{Robust Adaptive Ensemble Adversarial Reinforcement Learning Framework (RAEARL)} auf.
 Unter dessen Einsatz wird der Trainingsprozess des normalen und gegnerischen Agenten zu Gunsten der Kontinuität und Stabilität getrennt, und das System mit einem PID-Regler erweitert, um die Stärke des Gegners über den Trainingsverlauf anzupassen. \footcite[Vgl.][S. 2]{Zhai.2022}
 Das getrennte Training des normalen und gegnerischen Agenten verwendet kopierte Agenten des jeweiligen Gegenparts, welche zwar die selben neuronalen Netzstrukturen und initialen Parameter besitzen, jedoch schwächer sind, da deren Lernfortschritt ein Zeitschritt verschoben ist. \footcite[Vgl.][S. 2f.]{Zhai.2022}
 
