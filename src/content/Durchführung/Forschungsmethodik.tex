@@ -1,21 +1,91 @@
 Anschließend an die Diskussion des aktuellen Stands der Forschung und der Praxis wird im Rahmen dieses Kapitels die Forschungsmethodik durchgeführt, um folgende Forschungsfrage zu beantworten:
 
-\textit{Kann durch den Einsatz eines mittels RL trainierten Gegenspielers die Robustheit der gelernten Policy verbessert werden?}
+\textit{Kann durch den Einsatz eines mittels RL trainierten Gegenspielers die Robustheit der gelernten Strategie verbessert werden?}
 
-Dazu wird die in der Einleitung beschriebene Zielsetzung bearbeitet, ein Experiment zur Robustheit der erlernten Strategien unter deterministischem und trainiertem Gegenspieler durchzuführen.
-In der ersten Sektion wird auf den Aufbau des Experiments eingegangen, indem beschrieben wird, welche Metriken gemessen werden und wie der Einfluss auf die Laborumgebung ausgeübt wird.
-Anschließend werden daraus resultierende Anforderungen für die Entwicklung der Testumgebung abgeleitet und in der nachfolgenden Sektion dargelegt. 
-Die dritte Sektion setzt daraufhin die beschriebenen Anforderungen um und erläutert die endgültige Implementierung des Experiments sowie dessen Auswertung.
+\textbf{die Nachfolgende Begründung des Experiments ausarbeiten}
+
+Für die Beantwortung dient ein Laborexperiment indem die Robustheit der erlernten Strategien unter deterministischem und trainiertem Gegenspieler betrachtet wird, und so mögliche Verbesserungen des Sim-to-Real Problems ergründet werden. 
+
+In der ersten Sektion dieses Kapitels wird auf den Aufbau des Laborexperiments eingegangen.
+Dabei werden grundlegende Trainingsdaten sowie zu untersuchende Hypothesen, ausgeübte Einflüsse und gemessene Metriken beschrieben.
+Anschließend werden daraus in der nächsten Sektion resultierende Anforderungen für die Entwicklung der Simulation und der Testumgebung abgeleitet. 
+Die dritte Sektion setzt daraufhin die beschriebenen Anforderungen um, und erläutert die endgültige Implementierung der Simulation, der Testdatenerhebung und deren Auswertung.
 
 \section{Erläuterung der Forschungsmethodik}
 
-\textbf{Wie werden die Daten }
+Innerhalb des Laborexperiments soll die Beziehung zwischen dem Trainingsszenario als Ursache und der Leistungsrobustheit als Wirkung betrachtet werden.
+Dabei sind zunächst Strategien durch verstärkendes Lernen unter unterschiedlichen Szenarien zu optimieren. 
+Anschließend werden die trainierten Policies in mehreren Testszenarien ausgeübt und währenddessen verschiedene Metriken der Strategieleistung betrachtet.
 
-\subsection{Hypothesen}
+Beginnend mit dem Training der Policies durch verstärkendes Lernen, wird hierfür anders als bei überwachtem und unüberwachtem Lernen kein unmittelbar vorliegender Datensatz benötigt.
+Anstelle dessen basiert das Training auf der vollständigen oder teilweisen Wahrnehmung einer Lernumgebung, welche den lernenden Agenten für ausgeführte Aktionen positiv oder negativ belohnt.
+Wie auch in der Anleitung erwähnt wird im Kontext dieser Arbeit die Simulation von Quadrokoptern dafür verwendet, die Lernumgebung und damit die Trainingsdaten für die Algorithmen des RL zur Verfügung zu stellen.
+Die Simulation von Quadrokoptern stellt ein hochdynamisches Anwendungsgebiet dar, bei dem von einer hohen Diskrepanz zwischen der echten und simulierten Welt ausgegangen werden kann. 
+Die Simulationsumgebung stellt grundsätzlich ein Szenario dar, in welchem zwei verschiedene Drohnen kompetitiv gegeneinander agieren.
+Das Ziel einer Drohne ist es zu einem festgelegten Punkt hinter der zweiten Drohne zu gelangen, währenddessen die zweite Drohne versucht die angreifende Drohne auf seinem Weg abfzuangen. 
+Die verteidigende Drohne verwendet dafür das Mittel einer bewussten Kollision und wird zu Beginn näher an dem Zielpunkt platziert als die angreifende Drohne. 
+Initial können die Drohnen zwar zufällig im Raum platziert werden, jedoch ausschließlich unter der Bedingung, dass die direkte Strecke für die verteidigende Drohne kürzer ist, als für die angreifende Drohne.
+Als Spielgebiet wird eine flache feste Ebene auf der Höhe Null eingesetzt, über dessen der drei dimensionale Raum \textbf{unbegrenzt ?} in X-, Y-, und Z-Richtung zur Verfügung steht.
+In der Simulation agiert stets ausschließlich ein Agent zur Steuerung des verteidigenden Quadrokopters, welcher während des Trainings seine Strategie zum Abfangen der gegnerischen Drohne mittels RL-Algorithmus optimiert. 
+Die angreifende Drohne verfolgt während der Trainings- und Testphasen des Agenten ausschließlich deterministisch vorgeschriebene Strategien, welche sich nicht zugleich optimieren.
 
-\textbf{Hypothesen aus Kapitel eins als H0 und H1 Hypothesen formulieren.}
+Durch die erläuterte Simulation können insgesamt für das Laborexperiment vier Strategien mit RL erlernt werden.
+Jede dieser Policies wird dabei in einer der nachfolgenden Simulationsszenarien optimiert.
+\begin{enumerate}
+    \item Das erste Szenario beinhaltet das Training der zu verteidigenden Drohne gegen eine angreifende Drohne, welche eine deterministische regelbasierte Strategie ausführt.
+    \item Im zweiten Szenario wird eine deterministische Strategie für die anzugreifende Drohne mittels RL optimiert, während die verteidigende Drohne anhand ihrer zuvor optimierten Strategie agiert.
+    \item Anschließend enthält das dritte Szenario das Training einer Verteidigungsstrategie im kompetitiven Spiel mit der anzugreifenden Drohne unter zuvor optimierter Policy.
+    \item Zum Abschluss wird das erste Szenario mit regelbasiertem Gegenspieler unter DR, also unter der Randomisierung dynamischer Parameter, als viertes Szenario wiederholt. 
+\end{enumerate}
 
-\subsection{Messverfahren}
+Nach den Trainingsphasen werden einzelne Policies in mehreren vom Training abweichenden Testszenarien ausgeführt und deren Leistungsverhalten gemessen.
+Aus der Abweichung zwischen dem Leistungsverhalten während des Trainings und während des Tests, soll so die Robustheit von RL Policies erkennbar und messbar gestaltet werden.
+Der Fokus liegt dabei auf der Messung der Robustheit von den optimierten Strategien aus Szenario eins, zwei und vier.
+Aus dem Vergleich der Robustheit zwischen Strategie eins und zwei kann eine mögliche Verbesserung abgeleitet werden.
+Anschließend kann der erzielte Effekt mit der Abweichung zwischen eins und vier verglichen, und so aktuell verwendete Methoden zur Erhöhung der Robustheit einbezogen werden.
+
 \textbf{Welche Daten werden gemessen ?}
+\begin{itemize}
+    \item gemessene Variablen
+    \item untersuchte Algorithmen
+    \item Stichprobengröße
+\end{itemize}
 
-\textbf{Welche tests werden verwendet ?}
+Durch den Vergleich einzelner Strategien mittels dieser Methodik werden im Laborexperiment die zu Beginn der Arbeit aufgestellten Hypothesen auf ihre Gültigkeit untersucht.
+\begin{enumerate}
+    \item \textit{Die in den Testszenarien durchschnittlich erzielte Belohnung ist under Verwendung der Policy aus dem Training mit RL basiertem Gegenspieler signifikant und zuverlässig höher als die Policy aus dem Training mit regelbasiertem Gegenspieler.}
+    \item \textit{Die Varianz der in den Testszenarien erzielten Belohnung ist under Verwendung der Policy aus dem Training mit RL basiertem Gegenspieler signifikant und zuverlässig geringer als die Policy aus dem Training mit regelbasiertem Gegenspieler.}
+    \item \textit{Die in den Testszenarien erreichte Anzahl von unbeabsichtigten Abstürzen ist under Verwendung der Policy aus dem Training mit RL basiertem Gegenspieler signifikant und zuverlässig geringer als die Policy aus dem Training mit regelbasiertem Gegenspieler.}
+\end{enumerate}
+
+Jede der drei oben genannten Behauptungen wird ohne die Aspekte der Signifikanz und Zuverlässigkeit, zur Auswertung in zwei statistischen Tests als H0 Hypothese verwendet.
+Die entsprechenden Gegenhypothesen formulieren in gleicher Weise jeweils die gegensätzliche Annahme einer besseren Metrik unter dem Training mit regelbasiertem Gegenspieler. 
+Zur Veranschaulichung dieses Aufbaus lässt sich folgendes Beispiel anhand der ersten Hypothese anführen. 
+Zur Überprüfung der Gültigkeit der H0 und H1 Hypothesen werden statistische Signifikanztests basierend auf den Messdaten durchgeführt. 
+Die Auswahl des Signifikanztests wird anhand der Wahrscheinlichkeit einer vorliegenden Normalverteilung vorgenommen.
+Kann nach einem \textbf{Kolmogorov- / Shapiro- Test} zu einem Signifikanzniveau von \textbf{10\% ?} eine Normalverteilung angenommen werden, lässt sich zut Überprüfung der Hypothesen ein T-Test einsetzten.
+Ist keine Normalverteilung gegeben, wird ein Mann-Whitney U Test verwendet.
+
+\textbf{Test ob die Daten abweichen H0 != H1}
+
+Liegt schlussendlich der P-Wert des T- oder Mann-Whitney U Signifikanztests unter \textbf{10\% ?} wird die H0 Hypothese angenommen und die Abweichung in den Robustheitsdaten als signifikant betrachtet.
+
+\textbf{Test ob H0 > H1}
+
+\begin{itemize}
+    \item \textbf{Hypothese H0:} \textit{Die in den Testszenarien durchschnittlich erzielte Belohnung ist under Verwendung der Policy aus dem Training mit RL basiertem Gegenspieler signifikant und zuverlässig höher als die Policy aus dem Training mit regelbasiertem Gegenspieler.}
+    \item \textbf{Hypothese H1:} \textit{Die in den Testszenarien durchschnittlich erzielte Belohnung ist under Verwendung der Policy aus dem Training mit regelbasiertem Gegenspieler signifikant und zuverlässig höher als die Policy aus dem Training mit RL basiertem Gegenspieler.}
+\end{itemize}
+
+
+\section{Programmanforderungen}
+\subsection{Anforderungen der Simulationsumgebung}
+\begin{itemize}
+    \item beschreiben das ein Observation space und Action Space benötigt wird?
+\end{itemize}
+
+\subsection{Anforderungen des Experimentverfahrens}
+
+\section{Implementierung der Simulation und des Experiments}
+\subsection{Programmumsetzung der Simulationsumgebung}
+\subsection{Programmumsetzung zur Experimentdurchführung}
