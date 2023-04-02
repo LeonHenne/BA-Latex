@@ -1,6 +1,6 @@
 Anschließend an die Diskussion des aktuellen Stands der Forschung und der Praxis wird im Rahmen dieses Kapitels die Forschungsmethodik durchgeführt, um folgende Forschungsfrage zu beantworten:
 
-\textit{Kann durch den Einsatz eines mittels RL trainierten Gegenspielers die Robustheit der gelernten Strategie verbessert werden?}
+\textit{Inwiefern kann durch den Einsatz eines mittels RL trainierten Gegenspielers die Robustheit der gelernten Strategie verbessert werden?}
 
 Die in der Forschungsfrage formulierte These stellt ein Weg einer mögliche Verbesserungen des Sim-to-Real Problems dar, welchen es zu Überprüfen gilt.
 Für diese Überprüfung wird ein Laborexperiment nach \cite[]{Recker.2021} durchgeführt, indem die Robustheit der erlernten Strategien unter deterministischem und trainiertem Gegenspieler betrachtet wird. 
@@ -15,7 +15,10 @@ Die dritte Sektion setzt daraufhin die beschriebenen Anforderungen um, und erlä
 
 Innerhalb des Laborexperiments soll die Beziehung zwischen dem Trainingsszenario als Ursache und der Leistungsrobustheit als Wirkung betrachtet werden.
 Dabei sind zunächst Strategien durch verstärkendes Lernen unter unterschiedlichen Szenarien zu optimieren. 
-Anschließend werden die trainierten Policies in mehreren Testszenarien ausgeübt und währenddessen verschiedene Metriken der Strategieleistung betrachtet.
+Anschließend werden die trainierten Policies in mehreren Testszenarien einer veränderten Simulation ausgeübt und währenddessen verschiedene Metriken der Strategieleistung betrachtet.
+Kein Teil der umzusetzenden Forschungsmethodik ist daher die Anwendung der simulationsbasierten Strategien zur Steuerung von Quadrokoptern in der echten Welt. 
+Weiterhin wird nicht die Ergebnisabhängigkeit zu Faktoren untersucht, wie der Wahl der Simulationsumgebung, der Physik-Engine oder des Abstraktionsniveaus.
+Die Auswahl jener Aspekte wird unter den Gesichtspunkten der Softwarearchitektur getroffen, dessen Anforderungen und Implementierung in nachfolgenden Sektionen behandelt wird.
 
 \subsection{Beschreibung der Simulationsumgebung}
 
@@ -48,6 +51,7 @@ Nach den Trainingsphasen werden einzelne Policies in mehreren vom Training abwei
 Die in den Testszenarien betrachteten abhängigen Variablen sind die durchschnittlich erzielte Belohnung, dessen Varianz sowie die Anzahl an unbeabsichtigten Abstürzen.
 Die erzielte Belohnung und dessen Varianz stellen wie bereits beschrieben in der Forschung wichtige Kenngrößen dar, um die Robustheit von RL Policies zu bestimmen.
 Die Metrik der Anzahl von unbeabsichtigten Abstürzen spiegelt im behandelten Anwendungsfall zusätzlich das Fehlschlagen der trainierten Strategie wider.
+Mit der Auswahl der Metriken werden die Strategieeigenschaften der maximalen Strategieleistung, der Leistungsabweichung und der Strategiesicherheit deutlich.
 Aus der Abweichung zwischen dem Leistungsverhalten während des Trainings und während des Tests, soll so die Robustheit von RL Policies erkennbar und messbar gestaltet werden.
 Der Fokus liegt dabei auf der Messung der Robustheit von den optimierten Strategien aus Szenario eins, zwei und vier.
 Aus dem Vergleich der Robustheit zwischen Strategie eins und zwei kann eine mögliche Verbesserung abgeleitet werden.
@@ -56,7 +60,9 @@ Anschließend kann der erzielte Effekt mit der Abweichung zwischen eins und vier
 \subsection{Auswertung mittels statistischer Tests}
 
 Durch den Vergleich einzelner Strategien mittels dieser Methodik werden im Laborexperiment die zu Beginn der Arbeit aufgestellten Hypothesen auf ihre Gültigkeit untersucht.
+Die nachfolgend angeführten Hypothesen beinhalten wie im vorherigen Kapitel diskutiert, verschiedene Aspekte der Robustheit von RL Strategien, welche in späteren Abschnitten einzeln ausgewertet werden.
 \begin{enumerate}
+    % verschiedene Aspekte: max. Reward, Stabilität des Rewards, Fehlschlag von Strategien
     \item \textit{Die in den Testszenarien durchschnittlich erzielte Belohnung ist unter Verwendung der Policy aus dem Training mit RL basiertem Gegenspieler signifikant und zuverlässig höher als die Policy aus dem Training mit regelbasiertem Gegenspieler.}
     \item \textit{Die Varianz der in den Testszenarien erzielten Belohnung ist unter Verwendung der Policy aus dem Training mit RL basiertem Gegenspieler signifikant und zuverlässig geringer als die Policy aus dem Training mit regelbasiertem Gegenspieler.}
     \item \textit{Die in den Testszenarien erreichte Anzahl von unbeabsichtigten Abstürzen ist unter Verwendung der Policy aus dem Training mit RL basiertem Gegenspieler signifikant und zuverlässig geringer als die Policy aus dem Training mit regelbasiertem Gegenspieler.}
