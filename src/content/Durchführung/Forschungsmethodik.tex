@@ -111,9 +111,9 @@ Fasst man dieses Aufbau der statistischen Signifikanztests zusammen können folg
 \end{itemize}
 
 Die Auswahl des Signifikanztests wird anhand der Wahrscheinlichkeit einer vorliegenden Normalverteilung vorgenommen.
-Kann nach einem \textbf{Kolmogorov- / Shapiro- Test} zu einem Signifikanzniveau von \textbf{10\% ?} eine Normalverteilung angenommen werden, lässt sich zut Überprüfung der Hypothesen ein T-Test einsetzten.
+Kann nach einem Kolmogorov- oder Shapiro- Test zu einem Signifikanzniveau von 10\% eine Normalverteilung angenommen werden, lässt sich zut Überprüfung der Hypothesen ein T-Test einsetzten.
 Ist keine Normalverteilung gegeben, wird ein Mann-Whitney U Test verwendet.
-Liegt schlussendlich der P-Wert des T- oder Mann-Whitney U Signifikanztests unter \textbf{10\% ?} wird die H0 Hypothese angenommen und die Abweichung in den Robustheitsdaten oder deren Verbesserung als signifikant betrachtet.
+Liegt schlussendlich der P-Wert des T- oder Mann-Whitney U Signifikanztests unter 10\% wird die H0 Hypothese angenommen und die Abweichung in den Robustheitsdaten oder deren Verbesserung als signifikant betrachtet.
 Zeigen die statistischen Signifikanztests, dass eine Metrik sich durch die Auswahl des Trainingsszenarios verbessert, wird die Abweichung als signifikant wahrgenommen, und die Hypothese bestätigt.
 Wird unter allen untersuchten Hypothese mindestens eine angenommen, und zugleich keine Hypothese aufgrund einer Verschlechterung der Metrik abgelehnt, kann die Forschungsfrage damit beantwortet werden, dass ein Training von RL Policies mittels trainiertem Gegenspieler die Robustheit erhöhen kann.
 
@@ -124,34 +124,55 @@ In diesem Kapitel werden die dafür bestehenden technischen Anforderungen genaue
 
 \subsection{Anforderungen der Simulationsumgebung}
 
-Die übergeordneten Hauptaufgaben der Simulation sind die Generierung von Trainingsdaten für die Optimierung von Strategien mittels RL und die Bereitstellung der Testszenarien.
-In diesem Abschnitt werden die beiden Anforderungen zu mehreren kleineren Bedingungen getrennt, welche im Entwicklungsprozess umzusetzen sind.
+Die übergeordnete Hauptaufgabe der Simulation ist die Generierung von Trainingsdaten für die Optimierung von Strategien mittels RL.
+In diesem Abschnitt wird diese Anforderung zu mehreren kleineren Bedingungen getrennt, welche im Entwicklungsprozess umzusetzen sind.
 
-Eine der ersten Bedingungen ist die Wahl einer Entwicklungssprache, welche zum einen die Entwicklung der Simulation anhand von Softwareframeworks, und zugleich die Integration mit Algorithmen des verstärkenden Lernens erlaubt.
-Hierbei sollten die Entwicklungssprache und verwendete Softwarebibliotheken einer möglichst aktuellen Version entsprechen, und eingesetzte Pakete und Sprachen mit ihrer Version dokumentiert sein.
-Durch dessen Dokumentierung kann ein gleiches Abbild der Softwareumgebung auf anderen Instanzen eines Betriebssystems eingerichtet werden. 
+Eine der ersten Bedingungen ist die Wahl einer Entwicklungssprache, welche die Entwicklung der Simulation anhand von Softwareframeworks, und zugleich die Integration mit Algorithmen des verstärkenden Lernens erlaubt.
+Die Entwicklungssprache und verwendete Softwarebibliotheken sollten einer möglichst aktuellen Version entsprechen, und deren Einsatz mit ihrer Version dokumentiert sein.
+Durch die Dokumentierung kann ein gleiches Abbild der Softwareumgebung auf anderen Instanzen eines Betriebssystems eingerichtet werden. 
 
-Aus der Betrachtung des aktuellen Standes der Forschung und der Praxis für die Entwicklung von Simulationen geht hervor, dass besonders das OpenAI Gym Framework bzw. dessen Nachfolger Gymnasium in diesem Kontext ein wichtiger Bestandteil ist.
-Das Gymnasium Framework definiert die wichtigsten Funktionsschnittstellen, welche zur Erstellung von Simulationen zu implementieren sind.
+Aus der Betrachtung des aktuellen Stands der Forschung und der Praxis für die Entwicklung von Simulationen geht hervor, dass besonders das OpenAI Gym Framework bzw. dessen Nachfolger Gymnasium in diesem Kontext ein wichtiger Bestandteil ist.
+Das Gymnasium Framework definiert die wichtigsten Funktionsschnittstellen, welche zur Entwicklung von Simulationen zu implementieren sind.
 Eine dieser Funktionen beinhaltet die Definition des Beobachtungsraums, also welche Informationen für den Agenten Wahrnehmbar sind. 
-In der beschriebenen Simulation soll der Agent die Position, die Ausrichtung, die dreidimensionale Geschwindigkeit der Drohne und die Rotationsgeschwindigkeit wahrnehmen.
+In der beschriebenen Simulation soll der Agent die Position, die Ausrichtung, die dreidimensionale Geschwindigkeit der Drohne und die Geschwindigkeit der Rotatoren wahrnehmen.
 Jede diese Eigenschaften wird von der verteidigenden Drohne und zusätzlich von der angreifenden Drohne wahrgenommen. 
 Neben dem Beobachtungsraums des Agenten muss auch sein Handlungsraum festgelegt werden, welcher die Steuerung der verteidigenden Drohne umfassen soll.
-Hierbei soll durch den Agenten lediglich die Geschwindigkeit und ihre Richtung durch den Agenten vorgegeben werden.
+Hierbei soll durch den Agenten die Geschwindigkeit und ihre Richtung durch den Agenten vorgegeben werden.
 Anschließend besteht die Anforderung diese Kenngrößen in konkrete Drehzahlen der einzelnen Rotatoren zu übersetzen.
 
 Führt der Agent eine Aktion seines Handlungsraums aus, wird die Implementierung eines Zeitschritts der Simulation benötigt.
 In dieser muss deklariert sein, wie sich die gewählte Aktion auf den Zustand der Drohnen auswirkt.
 Die Funktion berechnet daraus die neue Erscheinungsform der Simulation.
-Während jedes Zeitschritts der Simulation sind die Kriterien zum Zurücksetzen der Simulation zu prüfen.
-Dabei gilt es die Simulation zurückzusetzen, sobald das Abfangen der angreifenden Drohne erfolgt ist, oder eine der Drohnen abstürzt.
-
-Ist das Zurücksetzen der Simulation nach der Aktion nicht notwendig, so ist der neue Zustand zusätzlich eines Belohnungswertes an den Agenten zu übergeben.
+Zusätzlich zum neuen Zustand wird ein Belohnungswert an den Agenten übergeben.
 Zur Berechnung einer adequaten Belohnung für die Ausführung der gewählten Aktion ist eine Belohnungsfunktion einzusetzen.
 Diese muss anhand der Zustandsvariablen und deren Gewichtung eine numerische Bewertung der neuen Situation vornehmen.
 Der Agent bedarf dabei einen Algorithmus des verstärkenden Lernens, welcher die Aktionen hinsichtlich der Maximierung des Belohnungswertes ausrichtet. 
+Während jedes Zeitschritts der Simulation sind die Kriterien zum Zurücksetzen der Simulation zu prüfen.
+Dabei gilt es die Simulation zurückzusetzen, sobald das Abfangen der angreifenden Drohne erfolgt ist, oder eine der Drohnen in Kontakt mit dem Untergrund kommt.
 
-\subsection{Anforderungen des Experimentenverfahrens}
+\subsection{Anforderungen des Laborexperiments}
+
+Anhand der Implementierung des Laborexperiments sollen die notwendigen Messdaten erhoben, die Forschungshypothesen evaluiert, und die Forschungsfrage beantwortet werden.
+Dazu ist es notwendig die beschriebenen Metriken, also die Belohnung, dessen Varianz und die Anzahl an Abstürzen, zu allen Testszenarien zu erfassen.
+Die Testszenarien werden durch eine Instanz der Simulationsumgebung repräsentiert, die eine veränderte Situation als während des Trainings beinhaltet.
+
+\textbf{Konkrete Beschreibung der Eigenschaften der Testszenarios}
+
+Innerhalb eines Testszenarios sind zu jedem Zeitschritt die aktuelle Belohnung zu speichern und zu Messen, ob ein Absturz der Drohne vorliegt.
+Beide Variablen folgen dem Format einer Zeitreihe über den Verlauf der Testsimulation.
+Das Programm zur Auswertung muss nach 30-facher Ausführung der Policy im Testszenario die Kennzahlen der durchschnittlichen Belohnung und dessen Varianz berechnen.
+Zur Dokumentation und für die weitere Auswertung mittels statistischer Tests sind die Messdaten als kommaseperierte Wertedatei (CSV) zu speichern.
+
+Durch das Laden der Messdaten aus den CSV-Dateien in entsprechende Datenobjekte liegen alle Metriken zur Bestimmung des statistischen Tests vor.
+Anschließend sind die Daten durch das Auswertungsprogramm auf ihre Verteilung hin zu untersuchen.
+Hierfür ist ein Kolmogorov- oder Shapiro- Test, anhand verfügbarer Softwarebibliotheken zu verwenden.
+Können die Messdaten als normalverteilt angenommen werden, gilt es ein T-Test, andernfalls einen Mann-Whitney U Test zur Überprüfung der Hypothesen einzusetzen.
+
+Die genaue Implementierung dieser Tests soll ebenfalls durch zusätzliche Softwarebibliotheken bestimmt sein.
+Anhand der Testergebnisse sind durch das Programm die H0 und H1 Hypothesen zu evaluieren und darauf aufbauend die Forschungshypothesen zu bestätigen oder zu verwerfen.
+Zusätzlich zu den Messdaten der Testszenarien sind auch die Ergebnisse der Signifikanztests zu speichern.
+Schlussendlich sind in einer Tabelle zu jeder Forschungshypothese die Ergebnisse der statistischen Tests anzuführen.
+Durch die gesamteinheitliche Betrachtung der Robustheitsmerkmale kann final die Forschungsfrage beantwortet werden.
 
 \section{Implementierung der Simulation und des Experiments}
 \subsection{Programmumsetzung der Simulationsumgebung}
@@ -161,4 +182,4 @@ Der Agent bedarf dabei einen Algorithmus des verstärkenden Lernens, welcher die
     \item die Entwicklung einer eigenen Aviary 
     \item Wrapping des eigenen Aviaries zur SingleDrone Applikation
 \end{itemize}
-\subsection{Programmumsetzung zur Experimentdurchführung}
+\subsection{Programmumsetzung zur Laborexperiments}
