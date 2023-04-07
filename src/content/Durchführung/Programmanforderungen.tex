@@ -1,0 +1,74 @@
+\section{Programmanforderungen}
+
+Für die Durchführung des Laborexperiments ist ein Softwareprogramm anzufertigen, welches in der Lage ist, die zuvor beschriebene Methodik umzusetzen.
+In diesem Kapitel werden die dafür bestehende technische und funktionale Anforderungen genauer untersucht und thematisiert. 
+
+\subsection{Anforderungen der Simulationsumgebung}
+
+Die übergeordnete Hauptaufgabe der Simulation ist die Generierung von Trainingsdaten für die Optimierung von Strategien mittels RL.
+In diesem Abschnitt wird diese Anforderung zu mehreren kleineren Bedingungen getrennt, welche im Entwicklungsprozess umzusetzen sind.
+
+% allgemeine Programmanforderung
+Eine der ersten Bedingungen ist die Wahl einer Entwicklungssprache, welche die Entwicklung der Simulation anhand von Softwareframeworks, und zugleich die Integration mit Algorithmen des verstärkenden Lernens erlaubt.
+Die Entwicklungssprache und verwendete Softwarebibliotheken sollten einer möglichst aktuellen Version entsprechen, und deren Einsatz mit ihrer Version dokumentiert sein.
+Durch die Dokumentierung kann ein gleiches Abbild der Softwareumgebung auf anderen Instanzen eines Betriebssystems eingerichtet werden. 
+
+% Programmanforderung der Gymnasium Schnittstelle
+Aus der Betrachtung des aktuellen Stands der Forschung und der Praxis für die Entwicklung von Simulationen geht hervor, dass besonders das OpenAI Gym Framework bzw. dessen Nachfolger Gymnasium in diesem Kontext ein wichtiger Bestandteil ist.
+Das Gymnasium Framework definiert die wichtigsten Funktionsschnittstellen, welche zur Entwicklung von Simulationen zu implementieren sind.
+
+Eine der Funktionen beschreibt die Initialisierung der eigenen Umgebungsklasse, welche von der Umgebungsklasse der Gymnasium-Bibliothek erbt.
+Initial sind darin für die Simulation die Startpositionen der verteidigenden Drohne und der angreifenden Drohne sowie der anzugreifende Zielpunkt anzugeben.
+Die Simulation soll eine zufällige Platzierung der Drohnen im Raum ermöglichen, jedoch ausschließlich unter der Bedingung, dass die direkte Strecke zum Zielpunkt für die verteidigende Drohne kürzer ist, als für die angreifende Drohne.
+Zur Erfüllung dieser Anforderung muss eine Wahrscheinlichkeitsfunktion je Drohne, für die drei Startkoordinaten X,Y und Z bestimmt werden.
+Als Spielgebiet wird eine flache feste Ebene auf der Höhe Null eingesetzt, über dessen der drei dimensionale Raum unbegrenzt in X-, Y-, und Z-Richtung zur Verfügung steht.
+
+Eine weitere Funktionen beinhaltet die Definition des Beobachtungsraums, also welche Informationen für den Agenten Wahrnehmbar sind. 
+In der beschriebenen Simulation soll der Agent die Position, die Ausrichtung, die dreidimensionale Beschleunigung der Drohne und die Geschwindigkeit der Rotatoren wahrnehmen. 
+Jede diese Eigenschaften wird von der verteidigenden Drohne und zusätzlich von der angreifenden Drohne wahrgenommen. 
+Insgesamt stelle der Beobachtungsraum somit einen Vektor dar, welcher alle Informationen wie Koordinaten, Beschleunigungen und Drehzahlen beinhalte.
+
+Neben dem Beobachtungsraums des Agenten muss auch sein Handlungsraum festgelegt werden, welcher die Steuerung der verteidigenden Drohne umfassen soll.
+Hierbei soll durch den Agenten die Beschleunigung und ihre Richtung durch den Agenten in Form eines vier-elementigen Vektors vorgegeben werden.
+Anschließend besteht die Anforderung diese Kenngrößen in konkrete Drehzahlen der vier Rotatoren des Quadrokopters zu übersetzen.
+
+Führt der Agent eine Aktion seines Handlungsraums aus, wird die Implementierung eines Zeitschritts der Simulation benötigt.
+In dieser muss deklariert sein, wie sich die gewählte Aktion auf den Zustand der Drohnen auswirkt.
+Während jedes Zeitschritts der Simulation sind dabei die Kriterien zum Zurücksetzen der Simulation zu prüfen.
+Im Anwendungsbereich dieser Arbeit ist die Simulation Zurücksetzen, sobald das Abfangen der angreifenden Drohne erfolgt ist, oder eine der Drohnen in Kontakt mit dem Untergrund kommt.
+Durch die Schrittfunktion ist abschließend die neue Wahrnehmung der Simulation, die Erfüllung des Rücksetzkriteriums und der Belohnungswert zurückzugeben.
+
+das Gymnasium Framework definiert die Rücksetzfunktion, welche in dieser den initialen Simulationszustand herstellt, sobald ein Kriterium erfüllt ist.
+Zur Berechnung einer entsprechenden Belohnung, für die Ausführung der gewählten Aktion, ist eine Belohnungsfunktion einzusetzen.
+Diese muss anhand des neuen Simulationszustandes Kennzahlen ermitteln und gewichten, und dadurch eine numerische Bewertung der neuen Situation vornehmen.
+Hinsichtlich der Maximierung des Belohnungswertes, optimiert der Agent mittels des RL Algorithmus seine Aktion in Abhängigkeit der Simulation. 
+Die Anforderungen dieser Optimierung der Agentenaktionen werden in der nachfolgenden Sektion detailliert betrachtet.
+
+\subsection{Anforderungen des Optimierungsverfahrens}
+
+In der Simulation agiert stets ausschließlich ein Agent zur Steuerung des verteidigenden Quadrokopters, welcher während des Trainings seine Strategie zum Abfangen der gegnerischen Drohne mittels RL-Algorithmus optimiert. 
+Die angreifende Drohne verfolgt während der Trainings- und Testphasen des Agenten ausschließlich deterministisch vorgeschriebene Strategien, welche sich nicht zugleich optimieren.
+
+\subsection{Anforderungen des Laborexperiments}
+
+Anhand der Implementierung des Laborexperiments sollen die notwendigen Messdaten erhoben, die Forschungshypothesen evaluiert, und die Forschungsfrage beantwortet werden.
+Dazu ist es notwendig die beschriebenen Metriken, also die Belohnung, dessen Varianz und die Anzahl an Abstürzen, zu allen Testszenarien zu erfassen.
+Die Testszenarien werden durch eine Instanz der Simulationsumgebung repräsentiert, die eine veränderte Situation als während des Trainings beinhaltet.
+
+\textbf{Konkrete Beschreibung, wie die Eigenschaften der Testszenarios umgesetzt werden sollen}
+
+Innerhalb eines Testszenarios sind zu jedem Zeitschritt die aktuelle Belohnung zu speichern und zu Messen, ob ein Absturz der Drohne vorliegt.
+Beide Variablen folgen dem Format einer Zeitreihe über den Verlauf der Testsimulation.
+Das Programm zur Auswertung muss nach 30-facher Ausführung der Policy im Testszenario die Kennzahlen der durchschnittlichen Belohnung und dessen Varianz berechnen.
+Zur Dokumentation und für die weitere Auswertung mittels statistischer Tests sind die Messdaten als kommaseperierte Wertedatei (CSV) zu speichern.
+
+Durch das Laden der Messdaten aus den CSV-Dateien in entsprechende Datenobjekte liegen alle Metriken zur Bestimmung des statistischen Tests vor.
+Anschließend sind die Daten durch das Auswertungsprogramm auf ihre Verteilung hin zu untersuchen.
+Hierfür ist ein Kolmogorov- oder Shapiro- Test, anhand verfügbarer Softwarebibliotheken zu verwenden.
+Können die Messdaten als normalverteilt angenommen werden, gilt es ein T-Test, andernfalls einen Mann-Whitney U Test zur Überprüfung der Hypothesen einzusetzen.
+
+Die genaue Implementierung dieser Tests soll ebenfalls durch zusätzliche Softwarebibliotheken bestimmt sein.
+Anhand der Testergebnisse sind durch das Programm die H0 und H1 Hypothesen zu evaluieren und darauf aufbauend die Forschungshypothesen zu bestätigen oder zu verwerfen.
+Zusätzlich zu den Messdaten der Testszenarien sind auch die Ergebnisse der Signifikanztests zu speichern.
+Schlussendlich sind in einer Tabelle zu jeder Forschungshypothese die Ergebnisse der statistischen Tests anzuführen.
+Durch die gesamteinheitliche Betrachtung der Robustheitsmerkmale kann final die Forschungsfrage beantwortet werden.

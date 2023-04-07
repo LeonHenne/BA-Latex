@@ -17,7 +17,7 @@ Innerhalb des Laborexperiments soll die Beziehung zwischen dem Trainingsszenario
 Dabei sind zunächst Strategien durch verstärkendes Lernen unter unterschiedlichen Szenarien zu optimieren. 
 Anschließend werden die trainierten Policies in mehreren Testszenarien einer veränderten Simulation ausgeübt und währenddessen verschiedene Metriken der Strategieleistung betrachtet.
 Kein Teil der umzusetzenden Forschungsmethodik ist daher die Anwendung der simulationsbasierten Strategien zur Steuerung von Quadrokoptern in der echten Welt. 
-Weiterhin wird nicht die Ergebnisabhängigkeit zu Faktoren untersucht, wie der Wahl der Simulationsumgebung, der Physik-Engine oder des Abstraktionsniveaus.
+Weiterhin wird nicht die Ergebnisabhängigkeit zu Faktoren untersucht, wie der Wahl des Simulationsframeworks, der Physik-Engine oder des Abstraktionsniveaus.
 Die Auswahl jener Aspekte wird unter den Gesichtspunkten der Softwarearchitektur getroffen, dessen Anforderungen und Implementierung in nachfolgenden Sektionen behandelt wird.
 
 \subsection{Beschreibung der Simulationsumgebung}
@@ -27,17 +27,17 @@ Anstelle dessen basiert das Training auf der vollständigen oder teilweisen Wahr
 Wie auch in der Anleitung erwähnt wird im Kontext dieser Arbeit die Simulation von Quadrokoptern dafür verwendet, die Lernumgebung und damit die Trainingsdaten für die Algorithmen des RL zur Verfügung zu stellen.
 Die Simulation von Quadrokoptern stellt ein hochdynamisches Anwendungsgebiet dar, bei dem von einer hohen Diskrepanz zwischen der echten und simulierten Welt ausgegangen werden kann. 
 Die Simulationsumgebung stellt grundsätzlich ein Szenario dar, in welchem zwei verschiedene Drohnen kompetitiv gegeneinander agieren.
-Das Ziel einer Drohne ist es zu einem festgelegten Punkt hinter der zweiten Drohne zu gelangen, währenddessen die zweite Drohne versucht die angreifende Drohne auf seinem Weg abfzuangen. 
-Die verteidigende Drohne verwendet dafür das Mittel einer bewussten Kollision und wird zu Beginn näher an dem Zielpunkt platziert als die angreifende Drohne. 
-Initial können die Drohnen zwar zufällig im Raum platziert werden, jedoch ausschließlich unter der Bedingung, dass die direkte Strecke für die verteidigende Drohne kürzer ist, als für die angreifende Drohne.
-Als Spielgebiet wird eine flache feste Ebene auf der Höhe Null eingesetzt, über dessen der drei dimensionale Raum unbegrenzt in X-, Y-, und Z-Richtung zur Verfügung steht.
-In der Simulation agiert stets ausschließlich ein Agent zur Steuerung des verteidigenden Quadrokopters, welcher während des Trainings seine Strategie zum Abfangen der gegnerischen Drohne mittels RL-Algorithmus optimiert. 
-Die angreifende Drohne verfolgt während der Trainings- und Testphasen des Agenten ausschließlich deterministisch vorgeschriebene Strategien, welche sich nicht zugleich optimieren.
+Das Ziel einer Drohne ist es zu einem festgelegten Punkt hinter der zweiten Drohne zu gelangen, währenddessen die zweite Drohne versucht die angreifende Drohne auf seinem Weg abzufangen. 
+Die verteidigende Drohne verwendet dafür das Mittel einer bewussten Kollision.
+Beide Drohnen werden unter der Einschränkung ihrer Nähe zum Zielpunkt zufällig in einem drei dimensionalem Raum initialisiert, welcher nur horizontal einseitig beschränkt wird.
+Durch die einseitige Beschränkung des Flugraums wird der natürliche Untergrund dargestellt.
+Zu Beginn soll die verteidigenden Drohne näher am Zielpunkt als die angreifende Drohne starten, sodass stets ein Abfangen möglich ist.
+Ist das Ziel einer der beiden Drohnen erreicht, oder besteht Kontakt mit dem Untergrund, so wird die Simulation beendet.
 
-\subsection{Erläuterung der Teststzenarien}
+\subsection{Erläuterung der Trainingsszenarien}
 
 Durch die erläuterte Simulation werden insgesamt für das Laborexperiment vier Strategien mit RL erlernt.
-Jede dieser Policies wird dabei in einer der nachfolgenden Simulationsszenarien optimiert, dessen Auswahl eine der unabhängige Variablen des Laborexperiments darstellt.
+Jede dieser Policies wird dabei in einer der nachfolgenden Simulationsszenarien optimiert, dessen Auswahl die unabhängige Variable des Laborexperiments darstellt.
 \begin{enumerate}
     \item Das erste Szenario beinhaltet das Training der zu verteidigenden Drohne gegen eine angreifende Drohne, welche eine deterministische regelbasierte Strategie ausführt.
     \item Im zweiten Szenario wird eine deterministische Strategie für die anzugreifende Drohne mittels RL optimiert, während die verteidigende Drohne anhand ihrer zuvor optimierten Strategie agiert.
@@ -45,9 +45,13 @@ Jede dieser Policies wird dabei in einer der nachfolgenden Simulationsszenarien 
     \item Zum Abschluss wird das erste Szenario mit regelbasiertem Gegenspieler unter DR, also unter der Randomisierung dynamischer Parameter, als viertes Szenario wiederholt. 
 \end{enumerate}
 
-\subsection{Messung des Robustheit von RL Policies}
+\subsection{Erläuterung der Testszenarien}
 
 Nach den Trainingsphasen werden einzelne Policies in mehreren vom Training abweichenden Testszenarien ausgeführt und deren Leistungsverhalten gemessen.
+\textbf{Konkrete Beschreibung der Eigenschaften der Testszenarios}
+
+\subsection{Messung der Robustheit von RL Policies}
+
 Die in den Testszenarien betrachteten abhängigen Variablen sind die durchschnittlich erzielte Belohnung, dessen Varianz sowie die Anzahl an unbeabsichtigten Abstürzen.
 Die erzielte Belohnung und dessen Varianz stellen wie bereits beschrieben in der Forschung wichtige Kenngrößen dar, um die Robustheit von RL Policies zu bestimmen.
 Die Metrik der Anzahl von unbeabsichtigten Abstürzen spiegelt im behandelten Anwendungsfall zusätzlich das Fehlschlagen der trainierten Strategie wider.
@@ -116,70 +120,3 @@ Ist keine Normalverteilung gegeben, wird ein Mann-Whitney U Test verwendet.
 Liegt schlussendlich der P-Wert des T- oder Mann-Whitney U Signifikanztests unter 10\% wird die H0 Hypothese angenommen und die Abweichung in den Robustheitsdaten oder deren Verbesserung als signifikant betrachtet.
 Zeigen die statistischen Signifikanztests, dass eine Metrik sich durch die Auswahl des Trainingsszenarios verbessert, wird die Abweichung als signifikant wahrgenommen, und die Hypothese bestätigt.
 Wird unter allen untersuchten Hypothese mindestens eine angenommen, und zugleich keine Hypothese aufgrund einer Verschlechterung der Metrik abgelehnt, kann die Forschungsfrage damit beantwortet werden, dass ein Training von RL Policies mittels trainiertem Gegenspieler die Robustheit erhöhen kann.
-
-\section{Programmanforderungen}
-
-Für die Durchführung des Laborexperiments ist ein Softwareprogramm anzufertigen, welches in der Lage ist, die zuvor beschriebene Methodik umzusetzen.
-In diesem Kapitel werden die dafür bestehenden technischen Anforderungen genauer untersucht und thematisiert. 
-
-\subsection{Anforderungen der Simulationsumgebung}
-
-Die übergeordnete Hauptaufgabe der Simulation ist die Generierung von Trainingsdaten für die Optimierung von Strategien mittels RL.
-In diesem Abschnitt wird diese Anforderung zu mehreren kleineren Bedingungen getrennt, welche im Entwicklungsprozess umzusetzen sind.
-
-Eine der ersten Bedingungen ist die Wahl einer Entwicklungssprache, welche die Entwicklung der Simulation anhand von Softwareframeworks, und zugleich die Integration mit Algorithmen des verstärkenden Lernens erlaubt.
-Die Entwicklungssprache und verwendete Softwarebibliotheken sollten einer möglichst aktuellen Version entsprechen, und deren Einsatz mit ihrer Version dokumentiert sein.
-Durch die Dokumentierung kann ein gleiches Abbild der Softwareumgebung auf anderen Instanzen eines Betriebssystems eingerichtet werden. 
-
-Aus der Betrachtung des aktuellen Stands der Forschung und der Praxis für die Entwicklung von Simulationen geht hervor, dass besonders das OpenAI Gym Framework bzw. dessen Nachfolger Gymnasium in diesem Kontext ein wichtiger Bestandteil ist.
-Das Gymnasium Framework definiert die wichtigsten Funktionsschnittstellen, welche zur Entwicklung von Simulationen zu implementieren sind.
-Eine dieser Funktionen beinhaltet die Definition des Beobachtungsraums, also welche Informationen für den Agenten Wahrnehmbar sind. 
-In der beschriebenen Simulation soll der Agent die Position, die Ausrichtung, die dreidimensionale Geschwindigkeit der Drohne und die Geschwindigkeit der Rotatoren wahrnehmen.
-Jede diese Eigenschaften wird von der verteidigenden Drohne und zusätzlich von der angreifenden Drohne wahrgenommen. 
-Neben dem Beobachtungsraums des Agenten muss auch sein Handlungsraum festgelegt werden, welcher die Steuerung der verteidigenden Drohne umfassen soll.
-Hierbei soll durch den Agenten die Geschwindigkeit und ihre Richtung durch den Agenten vorgegeben werden.
-Anschließend besteht die Anforderung diese Kenngrößen in konkrete Drehzahlen der einzelnen Rotatoren zu übersetzen.
-
-Führt der Agent eine Aktion seines Handlungsraums aus, wird die Implementierung eines Zeitschritts der Simulation benötigt.
-In dieser muss deklariert sein, wie sich die gewählte Aktion auf den Zustand der Drohnen auswirkt.
-Die Funktion berechnet daraus die neue Erscheinungsform der Simulation.
-Zusätzlich zum neuen Zustand wird ein Belohnungswert an den Agenten übergeben.
-Zur Berechnung einer adequaten Belohnung für die Ausführung der gewählten Aktion ist eine Belohnungsfunktion einzusetzen.
-Diese muss anhand der Zustandsvariablen und deren Gewichtung eine numerische Bewertung der neuen Situation vornehmen.
-Der Agent bedarf dabei einen Algorithmus des verstärkenden Lernens, welcher die Aktionen hinsichtlich der Maximierung des Belohnungswertes ausrichtet. 
-Während jedes Zeitschritts der Simulation sind die Kriterien zum Zurücksetzen der Simulation zu prüfen.
-Dabei gilt es die Simulation zurückzusetzen, sobald das Abfangen der angreifenden Drohne erfolgt ist, oder eine der Drohnen in Kontakt mit dem Untergrund kommt.
-
-\subsection{Anforderungen des Laborexperiments}
-
-Anhand der Implementierung des Laborexperiments sollen die notwendigen Messdaten erhoben, die Forschungshypothesen evaluiert, und die Forschungsfrage beantwortet werden.
-Dazu ist es notwendig die beschriebenen Metriken, also die Belohnung, dessen Varianz und die Anzahl an Abstürzen, zu allen Testszenarien zu erfassen.
-Die Testszenarien werden durch eine Instanz der Simulationsumgebung repräsentiert, die eine veränderte Situation als während des Trainings beinhaltet.
-
-\textbf{Konkrete Beschreibung der Eigenschaften der Testszenarios}
-
-Innerhalb eines Testszenarios sind zu jedem Zeitschritt die aktuelle Belohnung zu speichern und zu Messen, ob ein Absturz der Drohne vorliegt.
-Beide Variablen folgen dem Format einer Zeitreihe über den Verlauf der Testsimulation.
-Das Programm zur Auswertung muss nach 30-facher Ausführung der Policy im Testszenario die Kennzahlen der durchschnittlichen Belohnung und dessen Varianz berechnen.
-Zur Dokumentation und für die weitere Auswertung mittels statistischer Tests sind die Messdaten als kommaseperierte Wertedatei (CSV) zu speichern.
-
-Durch das Laden der Messdaten aus den CSV-Dateien in entsprechende Datenobjekte liegen alle Metriken zur Bestimmung des statistischen Tests vor.
-Anschließend sind die Daten durch das Auswertungsprogramm auf ihre Verteilung hin zu untersuchen.
-Hierfür ist ein Kolmogorov- oder Shapiro- Test, anhand verfügbarer Softwarebibliotheken zu verwenden.
-Können die Messdaten als normalverteilt angenommen werden, gilt es ein T-Test, andernfalls einen Mann-Whitney U Test zur Überprüfung der Hypothesen einzusetzen.
-
-Die genaue Implementierung dieser Tests soll ebenfalls durch zusätzliche Softwarebibliotheken bestimmt sein.
-Anhand der Testergebnisse sind durch das Programm die H0 und H1 Hypothesen zu evaluieren und darauf aufbauend die Forschungshypothesen zu bestätigen oder zu verwerfen.
-Zusätzlich zu den Messdaten der Testszenarien sind auch die Ergebnisse der Signifikanztests zu speichern.
-Schlussendlich sind in einer Tabelle zu jeder Forschungshypothese die Ergebnisse der statistischen Tests anzuführen.
-Durch die gesamteinheitliche Betrachtung der Robustheitsmerkmale kann final die Forschungsfrage beantwortet werden.
-
-\section{Implementierung der Simulation und des Experiments}
-\subsection{Programmumsetzung der Simulationsumgebung}
-\begin{itemize}
-    \item verwendetes Repository
-    \item dessen Struktur in Form von Aviaries
-    \item die Entwicklung einer eigenen Aviary 
-    \item Wrapping des eigenen Aviaries zur SingleDrone Applikation
-\end{itemize}
-\subsection{Programmumsetzung zur Laborexperiments}
