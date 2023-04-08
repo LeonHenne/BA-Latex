@@ -1,15 +1,15 @@
-Anschließend an die Diskussion des aktuellen Stands der Forschung und der Praxis wird im Rahmen dieses Kapitels die Forschungsmethodik durchgeführt, um folgende Forschungsfrage zu beantworten:
+Anschließend an die Diskussion des aktuellen Stands der Forschung und der Praxis wird im Rahmen dieses Kapitels die Forschungsmethodik angewandt, um die folgende Forschungsfrage zu beantworten:
 
 \textit{Inwiefern kann durch den Einsatz eines mittels RL trainierten Gegenspielers die Robustheit der gelernten Strategie verbessert werden?}
 
-Die in der Forschungsfrage formulierte These stellt ein Weg einer mögliche Verbesserungen des Sim-to-Real Problems dar, welchen es zu Überprüfen gilt.
-Für diese Überprüfung wird ein Laborexperiment nach \cite[]{Recker.2021} durchgeführt, indem die Robustheit der erlernten Strategien unter deterministischem und trainiertem Gegenspieler betrachtet wird. 
-Die quantitative Auswertung mittels des Laborexperiments kann hierbei besonders die Ursache-Wirkungs Beziehung zwischen dem gewählten Trainingsszenario und der erzielten Robustheit untersuchen.
+Die in der Forschungsfrage formulierte These stellt ein Weg einer mögliche Verbesserungen des Sim-to-Real Problems dar, welchen es zu Überprüfen gilt. %\todo{umformulieren!}
+Für diese Überprüfung wird ein Laborexperiment nach \cite[]{Recker.2021} durchgeführt, indem die Robustheit der erlernten Strategien unter der Verwendung eines deterministischen und eines trainierten Gegenspielers betrachtet wird. 
+Die quantitative Auswertung mittels des Laborexperiments kann hierbei besonders die Ursache-Wirkung Beziehung zwischen dem gewählten Trainingsszenarien und der erzielten Robustheit untersuchen.
 
 In der ersten Sektion dieses Kapitels wird auf den Aufbau des Laborexperiments eingegangen.
-Dabei werden grundlegende Trainingsdaten sowie zu untersuchende Hypothesen, ausgeübte Einflüsse und gemessene Metriken beschrieben.
+Dabei werden grundlegende Trainingsdaten sowie zu untersuchende Hypothesen, ausgeübte Einflüsse und erfasste Metriken beschrieben.
 Anschließend werden daraus in der nächsten Sektion resultierende Anforderungen für die Entwicklung der Simulation und der Testumgebung abgeleitet. 
-Die dritte Sektion setzt daraufhin die beschriebenen Anforderungen um, und erläutert die endgültige Implementierung der Simulation, der Testdatenerhebung und deren Auswertung.
+Die dritte Sektion setzt daraufhin die beschriebenen Anforderungen um und erläutert die endgültige Implementierung der Simulation, der Testdatenerhebung und deren Auswertung.
 
 \section{Erläuterung der Forschungsmethodik}
 
@@ -36,8 +36,9 @@ Ist das Ziel einer der beiden Drohnen erreicht, oder besteht Kontakt mit dem Unt
 
 \subsection{Erläuterung der Trainingsszenarien}
 
-Durch die erläuterte Simulation werden insgesamt für das Laborexperiment vier Strategien mit RL erlernt.
-Jede dieser Policies wird dabei in einer der nachfolgenden Simulationsszenarien optimiert, dessen Auswahl die unabhängige Variable des Laborexperiments darstellt.
+Durch die erläuterte Simulation werden insgesamt für das Laborexperiment Strategien in vier unterschiedlichen Szenarien mit verstärkendem Lernen optimiert.
+Zur Prüfung der Zuverlässigkeit werden je Trainingsszenario zwei optimale Policies durch zwei verschiedene RL-Algorithmen erlernt.
+Jede der Policies wird dabei in einer der nachfolgenden Simulationsszenarien optimiert, dessen Auswahl die unabhängige Variable des Laborexperiments darstellt.
 \begin{enumerate}
     \item Das erste Szenario beinhaltet das Training der zu verteidigenden Drohne gegen eine angreifende Drohne, welche eine deterministische regelbasierte Strategie ausführt.
     \item Im zweiten Szenario wird eine deterministische Strategie für die anzugreifende Drohne mittels RL optimiert, während die verteidigende Drohne anhand ihrer zuvor optimierten Strategie agiert.
@@ -119,4 +120,5 @@ Kann nach einem Kolmogorov- oder Shapiro- Test zu einem Signifikanzniveau von 10
 Ist keine Normalverteilung gegeben, wird ein Mann-Whitney U Test verwendet.
 Liegt schlussendlich der P-Wert des T- oder Mann-Whitney U Signifikanztests unter 10\% wird die H0 Hypothese angenommen und die Abweichung in den Robustheitsdaten oder deren Verbesserung als signifikant betrachtet.
 Zeigen die statistischen Signifikanztests, dass eine Metrik sich durch die Auswahl des Trainingsszenarios verbessert, wird die Abweichung als signifikant wahrgenommen, und die Hypothese bestätigt.
-Wird unter allen untersuchten Hypothese mindestens eine angenommen, und zugleich keine Hypothese aufgrund einer Verschlechterung der Metrik abgelehnt, kann die Forschungsfrage damit beantwortet werden, dass ein Training von RL Policies mittels trainiertem Gegenspieler die Robustheit erhöhen kann.
+Die Beantwortung der Forschungsfrage erfolgt abschließend mit der Betrachtung der angenommenen oder abgelehnten Forschungshypothesen.
+So werden die verschiedenen Merkmale der RL Policies untersucht und es kann festgestellt werden, welche Effekte auf Robustheit erzielt worden sind.

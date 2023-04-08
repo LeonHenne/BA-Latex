@@ -24,30 +24,44 @@ Zur Erfüllung dieser Anforderung muss eine Wahrscheinlichkeitsfunktion je Drohn
 Als Spielgebiet wird eine flache feste Ebene auf der Höhe Null eingesetzt, über dessen der drei dimensionale Raum unbegrenzt in X-, Y-, und Z-Richtung zur Verfügung steht.
 
 Eine weitere Funktionen beinhaltet die Definition des Beobachtungsraums, also welche Informationen für den Agenten Wahrnehmbar sind. 
-In der beschriebenen Simulation soll der Agent die Position, die Ausrichtung, die dreidimensionale Beschleunigung der Drohne und die Geschwindigkeit der Rotatoren wahrnehmen. 
+In der beschriebenen Simulation soll der Agent die Position, die Ausrichtung, die dreidimensionale Geschwindigkeit der Drohne und die Geschwindigkeit der Rotatoren wahrnehmen. 
 Jede diese Eigenschaften wird von der verteidigenden Drohne und zusätzlich von der angreifenden Drohne wahrgenommen. 
-Insgesamt stelle der Beobachtungsraum somit einen Vektor dar, welcher alle Informationen wie Koordinaten, Beschleunigungen und Drehzahlen beinhalte.
+Insgesamt stelle der Beobachtungsraum somit ein Datenobjekt dar, welches alle Informationen wie Koordinaten, Geschwindigkeiten und Drehzahlen beinhalte.
 
 Neben dem Beobachtungsraums des Agenten muss auch sein Handlungsraum festgelegt werden, welcher die Steuerung der verteidigenden Drohne umfassen soll.
-Hierbei soll durch den Agenten die Beschleunigung und ihre Richtung durch den Agenten in Form eines vier-elementigen Vektors vorgegeben werden.
+Hierbei soll durch den Agenten die Geschwindigkeit und ihre Richtung in Form eines vier-elementigen Liste vorgegeben werden.
 Anschließend besteht die Anforderung diese Kenngrößen in konkrete Drehzahlen der vier Rotatoren des Quadrokopters zu übersetzen.
 
 Führt der Agent eine Aktion seines Handlungsraums aus, wird die Implementierung eines Zeitschritts der Simulation benötigt.
 In dieser muss deklariert sein, wie sich die gewählte Aktion auf den Zustand der Drohnen auswirkt.
 Während jedes Zeitschritts der Simulation sind dabei die Kriterien zum Zurücksetzen der Simulation zu prüfen.
 Im Anwendungsbereich dieser Arbeit ist die Simulation Zurücksetzen, sobald das Abfangen der angreifenden Drohne erfolgt ist, oder eine der Drohnen in Kontakt mit dem Untergrund kommt.
+Das Gymnasium Framework definiert die Rücksetzfunktion, welche den initialen Simulationszustand herstellt, sobald ein Kriterium erfüllt ist.
 Durch die Schrittfunktion ist abschließend die neue Wahrnehmung der Simulation, die Erfüllung des Rücksetzkriteriums und der Belohnungswert zurückzugeben.
 
-das Gymnasium Framework definiert die Rücksetzfunktion, welche in dieser den initialen Simulationszustand herstellt, sobald ein Kriterium erfüllt ist.
 Zur Berechnung einer entsprechenden Belohnung, für die Ausführung der gewählten Aktion, ist eine Belohnungsfunktion einzusetzen.
 Diese muss anhand des neuen Simulationszustandes Kennzahlen ermitteln und gewichten, und dadurch eine numerische Bewertung der neuen Situation vornehmen.
 Hinsichtlich der Maximierung des Belohnungswertes, optimiert der Agent mittels des RL Algorithmus seine Aktion in Abhängigkeit der Simulation. 
-Die Anforderungen dieser Optimierung der Agentenaktionen werden in der nachfolgenden Sektion detailliert betrachtet.
+Die Anforderungen dieser Optimierung der Aktionen werden in der nachfolgenden Sektion detailliert betrachtet.
 
 \subsection{Anforderungen des Optimierungsverfahrens}
 
-In der Simulation agiert stets ausschließlich ein Agent zur Steuerung des verteidigenden Quadrokopters, welcher während des Trainings seine Strategie zum Abfangen der gegnerischen Drohne mittels RL-Algorithmus optimiert. 
-Die angreifende Drohne verfolgt während der Trainings- und Testphasen des Agenten ausschließlich deterministisch vorgeschriebene Strategien, welche sich nicht zugleich optimieren.
+Das Optimierungsverfahren trägt die Aufgabe zur Bestimmung der bestmöglichen Aktion zu jedem Zeitschritt der Simulation.
+Dabei ist die Strategie zur Steuerung des Quadrokopters mittels RL-Algorithmen zu optimieren.
+Hierfür sollen zwei RL-Algorithmen des aktuellen Stands der Forschung und der Praxis eingesetzt werden.
+Da die eigene Implementierung der RL-Algorithmen nicht im Fokus dieser Arbeit liegt, werden frei verfügbare Softwarebibliotheken dazu verwendet.
+Eine Bibliothek welche eine Vielzahl an RL-Algorithmen beinhaltet ist Stable-Baselines3 nach \cite[]{Raffin.2021}.
+Die Softwarebibliothek integriert weitere Bibliotheken wie Tensorboard zum Messen von Trainings- und Evalutationskennzahlen, was die Durchführung der Forschungsmethodik unterstützt.
+Weiterhin ist eine umfangreiche Dokumentation zur Implementierung von RL Algorithmen in Verbindung mit dem Gymnasium Framework voranden, was die Umsetzung des Trainingsprozesses in Verbindung mit der Simulationsumgebung erleichtert.
+Aus der Softwarebibliothek Stable-Baselines3 sollen der A2C- und PPO- Algorithmus für das Optimieren einer Policy in jedem Trainingsszenario verwendet werden. 
+
+Der Trainingsprozess beinhaltet im ersten Schritt die Bestimmung der unabhängigen Variablen. 
+In Kontext unserer Arbeit ist dies die Wahl des Trainingsszenarios, dessen Eigenschaften in der Simulation einzustellen sind.
+Anschließend sind die gewählten Metriken anzugeben, welche im Trainingsprozess erfasst werden sollen.
+Dabei gilt es, die Integration mit der Tensorboard Bibliothek zu nutzen.
+Daraufhin ist das Training über die dafür vorgesehene Funktion des RL-Modells zu starten und nach dessen Ablauf das optimierte Modell zu speichern.
+
+\textbf{Imitation Learning ?}
 
 \subsection{Anforderungen des Laborexperiments}
 
