@@ -47,18 +47,20 @@ Die Anforderungen dieser Optimierung der Aktionen werden in der nachfolgenden Se
 \subsection{Anforderungen des Optimierungsverfahrens}
 
 Das Optimierungsverfahren trägt die Aufgabe zur Bestimmung der bestmöglichen Aktion zu jedem Zeitschritt der Simulation.
-Dabei ist die Strategie zur Steuerung des Quadrokopters mittels RL-Algorithmen zu optimieren.
+Dabei ist die Strategie zur Steuerung des Quadrokopters mittels RL-Algorithmus zu optimieren.
 Hierfür sollen zwei RL-Algorithmen des aktuellen Stands der Forschung und der Praxis eingesetzt werden.
-Da die eigene Implementierung der RL-Algorithmen nicht im Fokus dieser Arbeit liegt, werden frei verfügbare Softwarebibliotheken dazu verwendet.
+Da die eigene Implementierung der RL-Algorithmen nicht im Fokus dieser Arbeit liegt, werden frei verfügbare Softwarebibliotheken verwendet.
 Eine Bibliothek welche eine Vielzahl an RL-Algorithmen beinhaltet ist Stable-Baselines3 nach \cite[]{Raffin.2021}.
 Die Softwarebibliothek integriert weitere Bibliotheken wie Tensorboard zum Messen von Trainings- und Evalutationskennzahlen, was die Durchführung der Forschungsmethodik unterstützt.
-Weiterhin ist eine umfangreiche Dokumentation zur Implementierung von RL Algorithmen in Verbindung mit dem Gymnasium Framework voranden, was die Umsetzung des Trainingsprozesses in Verbindung mit der Simulationsumgebung erleichtert.
-Aus der Softwarebibliothek Stable-Baselines3 sollen der A2C- und PPO- Algorithmus für das Optimieren einer Policy in jedem Trainingsszenario verwendet werden. 
+Weiterhin ist eine umfangreiche Dokumentation zur Implementierung von RL Algorithmen in Verbindung mit dem Gymnasium Framework vorhanden, was die Umsetzung des Trainingsprozesses in Verbindung mit der Simulationsumgebung erleichtert.
+Aus der Softwarebibliothek Stable-Baselines3 sollen der A2C- und PPO- Algorithmus zum Optimieren je einer Policy in jedem Trainingsszenario eingesetzt werden. 
 
 Der Trainingsprozess beinhaltet im ersten Schritt die Bestimmung der unabhängigen Variablen. 
-In Kontext unserer Arbeit ist dies die Wahl des Trainingsszenarios, dessen Eigenschaften in der Simulation einzustellen sind.
+In Kontext unserer Arbeit ist dies die Wahl des Trainingsszenarien, dessen Eigenschaften in der Simulation einzustellen sind.
+Alle Eigenschaften der Szenarios sollen über die Veränderung eines Parameters als zentrale Schnittstelle im Programm veränderbar sein.
 Anschließend sind die gewählten Metriken anzugeben, welche im Trainingsprozess erfasst werden sollen.
-Dabei gilt es, die Integration mit der Tensorboard Bibliothek zu nutzen.
+Diese beinhalten die durchschnittliche Länge und kumulierte Belohnung sowie die Erfolgsrate des Zusammenstoßes beider Drohnen, über alle im Trainingsprozess evaluierten Strategien.
+Zur Erfassung dieser Trainingsmetriken gilt es, die Integration mit der Tensorboard Bibliothek zu nutzen.
 Daraufhin ist das Training über die dafür vorgesehene Funktion des RL-Modells zu starten und nach dessen Ablauf das optimierte Modell zu speichern.
 
 \textbf{Imitation Learning ?}
