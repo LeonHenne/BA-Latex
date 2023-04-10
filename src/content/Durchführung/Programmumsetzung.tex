@@ -1,5 +1,33 @@
 \section{Implementierung der Simulation und des Experiments}
+
+Fortfolgend an die in der letzten Sektion beschriebenen Anforderungen, wird in dieser Sektion die finale Implementierung der einzelnen Programmabschnitte erläutert.
+In Anlehnung an den Aufbau der letzten Sektion, wird die Umsetzung der Anforderungen zu den Programmabschnitten Simulationsumgebung, Trainingsverfahrens und Laborexperiment dargelegt.
+
+Allgemeiner Natur ist die Wahl der Entwicklungsprache Python.
+Die Entwicklungsprache ermöglicht eine hohe Kompatibilität mit bekannten Simulationsframeworks, RL-Softwarebibliotheken und Bibliotheken zur statischen Auswertung von Messdaten.
+Im Rahmen dieser Arbeit wird konkret die Python Version 3.10 eingesetzt, um von den Möglichkeiten neuer Funktionen zu profitieren und zugleich eine möglichst hohe Kompatibilität zu existieren frei verfügbaren Bibliotheken aufzuweisen.
+Alle in dieser Arbeit verwendeten Bibliotheken sowie deren Abhängigkeiten sind in einer virtuellen Umgebung installiert, sodass bestmöglich Störeinflüsse durch bereits installierte Pakete vermieden werden.
+Ebenso sind alle eingesetzten Softwarepakete in einer Textdatei inklusive ihrer Version dokumentiert.
+
 \subsection{Programmumsetzung der Simulationsumgebung}
+
+Die Umsetzung der Anforderungen der Simulationsumgebung beinhaltet im Fokus die Entwicklung einer Simulationsumgebung anhand des Gymnasium Programmiergerüsts.
+Die entwickelte Simulation baut dabei auf bestehende Programmbibliotheken auf.
+Dies fördert vor allem die im Zuge dieser Arbeit umsetzbare Qualität und ermöglicht einen hohen Grad an Realismus, welcher wie in den Anforderungen beschrieben unmittelbar das Sim2Real Problem und damit die Robustheit beeinflusst.
+Weiterhin stellt die Neuentwicklung einer Simulationsumgebung kein Entwicklungsaufwand dar, welcher einen Einfluss auf die auszuwertende Forschungsfrage ausübt.
+
+Wird die im zweiten Kapitel angeführte Auswahl an in der Literatur beschriebenen Simulationsumgebungen betrachtet, ist aus diesen eine Basis zur Entwicklung der eigenen Simulationen zu Wählen.
+Für die Auswahl werden folgende Kriterien definiert.
+
+\textbf{Auswahl einer Drohnensimulation}
+\begin{itemize}
+    \item Aktualität
+    \item Integration der Gymnasium Schnittstelle
+    \item Python
+    \item Dokumentation
+    \item RL Integration
+\end{itemize}
+
 \begin{itemize}
     \item verwendetes Repository
     \item dessen Struktur in Form von Aviaries

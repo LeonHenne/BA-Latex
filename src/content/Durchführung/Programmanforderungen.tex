@@ -3,19 +3,20 @@
 Für die Durchführung des Laborexperiments ist ein Softwareprogramm anzufertigen, welches in der Lage ist, die zuvor beschriebene Methodik umzusetzen.
 In diesem Kapitel werden die dafür bestehende technische und funktionale Anforderungen genauer untersucht und thematisiert. 
 
-\subsection{Anforderungen der Simulationsumgebung}
-
-Die übergeordnete Hauptaufgabe der Simulation ist die Generierung von Trainingsdaten für die Optimierung von Strategien mittels RL.
-In diesem Abschnitt wird diese Anforderung zu mehreren kleineren Bedingungen getrennt, welche im Entwicklungsprozess umzusetzen sind.
-
 % allgemeine Programmanforderung
-Eine der ersten Bedingungen ist die Wahl einer Entwicklungssprache, welche die Entwicklung der Simulation anhand von Softwareframeworks, und zugleich die Integration mit Algorithmen des verstärkenden Lernens erlaubt.
+Eine allgemeine Anforderung besteht in der Wahl einer Entwicklungssprache, welche die Entwicklung der Simulation anhand von Softwareframeworks, und zugleich die Integration mit Algorithmen des verstärkenden Lernens erlaubt.
 Die Entwicklungssprache und verwendete Softwarebibliotheken sollten einer möglichst aktuellen Version entsprechen, und deren Einsatz mit ihrer Version dokumentiert sein.
 Durch die Dokumentierung kann ein gleiches Abbild der Softwareumgebung auf anderen Instanzen eines Betriebssystems eingerichtet werden. 
 
+\subsection{Anforderungen der Simulationsumgebung}
+
+Die übergeordnete Hauptaufgabe der Simulation ist die Generierung von Trainingsdaten für die Optimierung von Strategien mittels RL.
+Die Qualität der Simulation und besonders der Grad des Realismus spielen dabei besonders für die spätere Auswertung der Robustheit einzelner Policies eine wichtige Rolle.
+In diesem Abschnitt wird diese Anforderung zu mehreren kleineren Bedingungen getrennt, welche im Entwicklungsprozess umzusetzen sind.
+
 % Programmanforderung der Gymnasium Schnittstelle
 Aus der Betrachtung des aktuellen Stands der Forschung und der Praxis für die Entwicklung von Simulationen geht hervor, dass besonders das OpenAI Gym Framework bzw. dessen Nachfolger Gymnasium in diesem Kontext ein wichtiger Bestandteil ist.
-Das Gymnasium Framework definiert die wichtigsten Funktionsschnittstellen, welche zur Entwicklung von Simulationen zu implementieren sind.
+Das Gymnasium Framework definiert die wichtigsten Funktionsschnittstellen, welche zur Entwicklung der Simulation im Rahmen dieser Arbeit zu implementieren sind.
 
 Eine der Funktionen beschreibt die Initialisierung der eigenen Umgebungsklasse, welche von der Umgebungsklasse der Gymnasium-Bibliothek erbt.
 Initial sind darin für die Simulation die Startpositionen der verteidigenden Drohne und der angreifenden Drohne sowie der anzugreifende Zielpunkt anzugeben.
