@@ -63,8 +63,15 @@ Anschließend sind die gewählten Metriken anzugeben, welche im Trainingsprozess
 Diese beinhalten die durchschnittliche Länge und kumulierte Belohnung sowie die Erfolgsrate des Zusammenstoßes beider Drohnen, über alle im Trainingsprozess evaluierten Strategien.
 Zur Erfassung dieser Trainingsmetriken gilt es, die Integration mit der Tensorboard Bibliothek zu nutzen.
 Daraufhin ist das Training über die dafür vorgesehene Funktion des RL-Modells zu starten und nach dessen Ablauf das optimierte Modell zu speichern.
+Das Speicherformat ist so zu wählen, dass gespeicherte Modelle innerhalb der Testszenarien zu deren Bemessung geladen werden können.
 
-\textbf{Imitation Learning ?}
+% Imitation Learning
+Aufgrund des hohen dreidimensionalen Aktionsraums, welcher zu jedem Zeitschritt zu optimieren ist, soll vor dem beschriebenen Trainingsprozess ein Training durch Imitation Learning (IL) eingesetzt werden.
+Im IL Prozess ist ein Modell dahingehend zu optimieren, eine vorgeschriebene regel-basierte Strategie zur Steuerung des Quadrokopters nachzuahmen. 
+Die Policies der später mittels RL zu optimierenden Quadrokopter werden demnach zunächst regelbasiert als Experte definiert. 
+Daraufhin ist es das Ziel die Gewichte eines IL-Modells wie z.B. Behavioral Cloning so anzupassen, dass diese bestmöglich die regelbasierte Strategie wiederspiegeln.
+Anschließend sind die in diesem Prozess erlernten Gewichte zu einem RL-Modell zu transferieren und mittels RL-Algorithmus zu verfeinern.
+Durch diesen Transfer soll eine hohe Qualität des RL-Modells gewährleistet werden, sodass die Messung der Robustheit valide Ergebnisse erzielt.
 
 \subsection{Anforderungen des Laborexperiments}
 
