@@ -3,8 +3,8 @@
 Fortfolgend an die in der letzten Sektion beschriebenen Anforderungen, wird in dieser Sektion die finale Implementierung der einzelnen Programmabschnitte erläutert.
 In Anlehnung an den Aufbau der letzten Sektion, wird die Umsetzung der Anforderungen zu den Programmabschnitten Simulationsumgebung, Trainingsverfahrens und Laborexperiment dargelegt.
 
-Allgemeiner Natur ist die Wahl der Entwicklungsprache Python.
-Die Entwicklungsprache ermöglicht eine hohe Kompatibilität mit bekannten Simulationsframeworks, RL-Softwarebibliotheken und Bibliotheken zur statischen Auswertung von Messdaten.
+Allgemeiner Natur ist die Wahl der Entwicklungssprache Python.
+Die Entwicklungssprache ermöglicht eine hohe Kompatibilität mit bekannten Simulationsframeworks, RL-Softwarebibliotheken und Bibliotheken zur statischen Auswertung von Messdaten.
 Im Rahmen dieser Arbeit wird konkret die Python Version 3.10 eingesetzt, um von den Möglichkeiten neuer Funktionen zu profitieren und zugleich eine möglichst hohe Kompatibilität zu existieren frei verfügbaren Bibliotheken aufzuweisen.
 Alle in dieser Arbeit verwendeten Bibliotheken sowie deren Abhängigkeiten sind in einer virtuellen Umgebung installiert, sodass bestmöglich Störeinflüsse durch bereits installierte Pakete vermieden werden.
 Ebenso sind alle eingesetzten Softwarepakete in einer Textdatei inklusive ihrer Version dokumentiert.
@@ -21,9 +21,10 @@ Wird die im zweiten Kapitel angeführte Auswahl an in der Literatur beschriebene
 Zur Auswahl einer Basissimulation, in welcher die eigenen Trainings- und Testszenarien abgebildet werden können, sind unterschiedliche Kriterien zu beachten.
 Ein Kriterium ist die Kompatibilität der Basissimulation mit der gewählten Entwicklungssprache. 
 Hierbei sollte entweder die Simulation selbst in Python, oder eine entsprechende Schnittstelle entwickelt sein.
-Die gewählte Simulation sollte eine Physik-Engine einsetzen, welche einen möglichst hohen Grad an Realismus erlaubt, um die Forschungsfrage möglichst valide zu beantworten.
+Die gewählte Simulation sollte eine Physik-Engine einsetzen, welche zum einen möglichst hohen Grad an Realismus erlaubt, um die Forschungsfrage möglichst valide zu beantworten.
+Zum Anderen sollte die Simulation einen beherrschbaren Rechenleistungsaufwand verursachen, da die Zielsetzung die Optimierung mehrerer Policies beinhaltet.
 Weiterhin, zur Erfüllung der zuvor beschriebenen Anforderungen, muss die Basissimulation dem Framework Gym oder dessen Nachfolger Gymnasium entsprechen.
-Um die Entwicklung des Optimierungsverfahrens zu unterstützen wird eine Integration mit RL Algorithmen oder zumindest eine Umfangreiche Dokumentation zu dessen Einsatz vorausgesetzt.
+Um die Entwicklung des Optimierungsverfahrens zu unterstützen wird eine RL Integration oder zumindest eine Umfangreiche Dokumentation zu dessen Einsatz vorausgesetzt.
 Die nachfolgende Tabelle stellt die in Betracht gezogenen Drohnensimulationen den für die Auswahl getroffenen Kriterien gegenüber.
 
 \begin{table}[H]
@@ -32,14 +33,26 @@ Die nachfolgende Tabelle stellt die in Betracht gezogenen Drohnensimulationen de
     \cline{2-5}
                                          & RotorS & CrazyS & AirSim & gym-pybullet-drones \\ \hline
     \multicolumn{1}{|l|}{Python API}     &   X    &   X    &   X     &       X             \\ \hline
-    \multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Integration des \\ Gymnasium Frameworks\end{tabular}} & X & X &  & X \\ \hline
+    \multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Integration des \\ Gymnasium Frameworks\end{tabular}} & X & X & X & X \\ \hline
     \multicolumn{1}{|l|}{höchster Realismusgrad} &        &        &    X    &                 \\ \hline
-    \multicolumn{1}{|l|}{RL Integration} &   X    &   X    &        &        X             \\ \hline
-    \multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}umfangreiche \\ Dokumentation\end{tabular}}           &  &  & X & X \\ \hline
+    \multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}kontrollierbarer \\ Rechenleistungsaufwand\end{tabular}} &    X    &    X    &      &     X\\ \hline
+    \multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}umfangreiche \\ RL Integration \\ und Dokumentation\end{tabular}}           &  &  &  & X \\ \hline
+    \multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Simulation mehrerer\\ Quadrokopter \\ enthalten \end{tabular}}           &  &  &  & X \\ \hline
     \end{tabular}
     \caption{Gegenüberstellung von Auswahlkriterien und bekannten Drohnensimulationen}
     \label{tab:drone-simulation}
 \end{table}
+
+Aus der Gegenüberstellung von Auswahlkriterien und aktuellen Simulation geht hervor, dass zunächst alle Simulationen eine Schnittstelle für die Entwicklungssprache bereitstellen.
+Dabei wurden native Schnittstellen sowie Schnittstellen aus zusätzlichen Softwarebibliotheken miteinbezogen.
+Auch die Integration des Gym oder Gymnasium Frameworks wird durch alle Simulationen eigens oder durch zusätzliche Bibliotheken sichergestellt.
+Bei der Betrachtung der Realitätsnähe zeigt die AirSim Umgebung aufgrund der verwendeten Unreal Physik-Engine den höchsten Grad an Realismus auf.
+Im Gegenzug wird durch die AirSim Simulation auch Rechenkapazitäten erwartet, welcher im Rahmen dieser Arbeit nicht zur Verfügung steht.
+Eine umfangreiche Dokumentation und bereits vorhandene Integration von RL wird durch AirSim und gym-pybullet-drones gewährleistet.
+Die Simulationen RotorS und CrazyS bieten eine Integration mit RL nur auf Basis zusätzlicher unbekannter Softwarebibliotheken.
+Wird das letzte Kriterium der Simulation mehrerer Drohnen betrachtet, tritt dies nur in Beispielen der gym-pybullet-drones Simulation auf.
+
+%Fazit
 
 \begin{itemize}
     \item verwendetes Repository

@@ -11,15 +11,15 @@ In der Simulation werden folgende Policies in drei verschiedenen Szenarien train
     \item Training mit regelbasiertem Gegenspieler unter sich verändernden Dynamikparametern
 \end{itemize}
 
-Anschließend werden alle trainierten Policies in einer Reihe von Testszenarien untersucht.
-Jedes Testszenario verfügt dabei über festgelegte sich vom Training unterscheidende Dynamikparameter und jeweils leicht unterschiedliche Handlungspräferenzen des deterministischen Gegenspielers.
-\textbf{HIER NOCHMAL NACHBESSERN ?}
+Anschließend werden alle trainierten Policies in einem Testszenario untersucht.
+Das Testszenario verfügt dabei über festgelegte sich vom Training unterscheidende Eigenschaften, wie die Start- und Zielpositionen.
+Außerdem wird ein deterministischen Gegenspieler unter im Gegensatz zum Training, veränderten Handlungspräferenzen eingesetzt.
 Bei der Untersuchung werden jeweils die folgenden Variablen als Key Performance Indicator (KPI) betrachtet.
 \begin{itemize}
-    \item durchschnittlich erzielte Belohnung
+    \item kumulierte erzielte Belohnung
     \item Varianz der Belohnungen
     \item Anzahl an unbeabsichtigten Abstürzen
 \end{itemize}
 
-Aus der Auswertung der Testszenarien kann der Effekt des RL basierten Gegenspielers auf die Robustheit mittels des Vergleichs mit dem regelbasierten Gegenspieler und der Domain Randomization evaluiert werden.
+Aus der Auswertung des Testszenarios kann der Effekt des RL basierten Gegenspielers auf die Robustheit evaluiert werden, indem die Leistungsdiskrepanz zwischen Trainings- und Testszenario mit der des regelbasierten Gegenspieler und der der Domain Randomization verglichen wird.
 

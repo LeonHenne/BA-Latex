@@ -20,8 +20,9 @@ Das Gymnasium Framework definiert die wichtigsten Funktionsschnittstellen, welch
 
 Eine der Funktionen beschreibt die Initialisierung der eigenen Umgebungsklasse, welche von der Umgebungsklasse der Gymnasium-Bibliothek erbt.
 Initial sind darin für die Simulation die Startpositionen der verteidigenden Drohne und der angreifenden Drohne sowie der anzugreifende Zielpunkt anzugeben.
-Die Simulation soll eine zufällige Platzierung der Drohnen im Raum ermöglichen, jedoch ausschließlich unter der Bedingung, dass die direkte Strecke zum Zielpunkt für die verteidigende Drohne kürzer ist, als für die angreifende Drohne.
-Zur Erfüllung dieser Anforderung muss eine Wahrscheinlichkeitsfunktion je Drohne, für die drei Startkoordinaten X,Y und Z bestimmt werden.
+Die Simulation soll eine zufällige Platzierung der Drohnen und des Zielpunktes im Raum ermöglichen, jedoch ausschließlich unter der Bedingung, dass die direkte Strecke zum Zielpunkt für die verteidigende Drohne kürzer ist, als für die angreifende Drohne.
+Zur Erfüllung dieser Anforderung muss eine Wahrscheinlichkeitsfunktion für die Zielpunktkoordinaten sowie je Drohne, für die drei Startkoordinaten X,Y und Z bestimmt werden.
+Die Randomisierung dieser Koordinaten soll über eine Variable an- und abgeschaltet werden können, sodass einfach zwischen Trainings- und Testszenario gewechselt werden kann.
 Als Spielgebiet wird eine flache feste Ebene auf der Höhe Null eingesetzt, über dessen der drei dimensionale Raum unbegrenzt in X-, Y-, und Z-Richtung zur Verfügung steht.
 
 Eine weitere Funktionen beinhaltet die Definition des Beobachtungsraums, also welche Informationen für den Agenten Wahrnehmbar sind. 
@@ -29,9 +30,10 @@ In der beschriebenen Simulation soll der Agent die Position, die Ausrichtung, di
 Jede diese Eigenschaften wird von der verteidigenden Drohne und zusätzlich von der angreifenden Drohne wahrgenommen. 
 Insgesamt stelle der Beobachtungsraum somit ein Datenobjekt dar, welches alle Informationen wie Koordinaten, Geschwindigkeiten und Drehzahlen beinhalte.
 
-Neben dem Beobachtungsraums des Agenten muss auch sein Handlungsraum festgelegt werden, welcher die Steuerung der verteidigenden Drohne umfassen soll.
+Neben dem Beobachtungsraum muss auch ein Handlungsraum festgelegt werden, welcher die Steuerung der verteidigenden Drohne umfassen soll.
 Hierbei soll durch den Agenten die Geschwindigkeit und ihre Richtung in Form eines vier-elementigen Liste vorgegeben werden.
-Anschließend besteht die Anforderung diese Kenngrößen in konkrete Drehzahlen der vier Rotatoren des Quadrokopters zu übersetzen.
+Auch die regelbasiert gesteuerten Drohnen folgen damit dem Ziel eine dieser Form entsprechende Aktion zu erzeugen.
+Anschließend besteht die Anforderung diese Aktionen in einen konkreten Einfuss auf den Zustand des Quadrokopters zu übersetzen.
 
 Führt der Agent eine Aktion seines Handlungsraums aus, wird die Implementierung eines Zeitschritts der Simulation benötigt.
 In dieser muss deklariert sein, wie sich die gewählte Aktion auf den Zustand der Drohnen auswirkt.
@@ -49,8 +51,8 @@ Die Anforderungen dieser Optimierung der Aktionen werden in der nachfolgenden Se
 
 Das Optimierungsverfahren trägt die Aufgabe zur Bestimmung der bestmöglichen Aktion zu jedem Zeitschritt der Simulation.
 Dabei ist die Strategie zur Steuerung des Quadrokopters mittels RL-Algorithmus zu optimieren.
-Hierfür sollen zwei RL-Algorithmen des aktuellen Stands der Forschung und der Praxis eingesetzt werden.
-Da die eigene Implementierung der RL-Algorithmen nicht im Fokus dieser Arbeit liegt, werden frei verfügbare Softwarebibliotheken verwendet.
+Hierfür soll ein RL-Algorithmus des aktuellen Stands der Forschung und der Praxis eingesetzt werden.
+Da die eigene Implementierung des RL-Algorithmus nicht im Fokus dieser Arbeit liegt, werden frei verfügbare Softwarebibliotheken verwendet.
 Eine Bibliothek welche eine Vielzahl an RL-Algorithmen beinhaltet ist Stable-Baselines3 nach \cite[]{Raffin.2021}.
 Die Softwarebibliothek integriert weitere Bibliotheken wie Tensorboard zum Messen von Trainings- und Evalutationskennzahlen, was die Durchführung der Forschungsmethodik unterstützt.
 Weiterhin ist eine umfangreiche Dokumentation zur Implementierung von RL Algorithmen in Verbindung mit dem Gymnasium Framework vorhanden, was die Umsetzung des Trainingsprozesses in Verbindung mit der Simulationsumgebung erleichtert.
@@ -58,12 +60,12 @@ Aus der Softwarebibliothek Stable-Baselines3 sollen der A2C- und PPO- Algorithmu
 
 Der Trainingsprozess beinhaltet im ersten Schritt die Bestimmung der unabhängigen Variablen. 
 In Kontext unserer Arbeit ist dies die Wahl des Trainingsszenarien, dessen Eigenschaften in der Simulation einzustellen sind.
-Alle Eigenschaften der Szenarios sollen über die Veränderung eines Parameters als zentrale Schnittstelle im Programm veränderbar sein.
+Alle Eigenschaften der Szenarios sollen über die Veränderung eines Parameters als zentrale Schnittstelle im Programm auswählbar sein.
 Anschließend sind die gewählten Metriken anzugeben, welche im Trainingsprozess erfasst werden sollen.
-Diese beinhalten die durchschnittliche Länge und kumulierte Belohnung sowie die Erfolgsrate des Zusammenstoßes beider Drohnen, über alle im Trainingsprozess evaluierten Strategien.
+Diese beinhalten die durchschnittliche Episodenlänge und kumulierte Belohnung sowie die Erfolgsrate des Zusammenstoßes beider Drohnen, über alle im Trainingsprozess evaluierten Strategien.
 Zur Erfassung dieser Trainingsmetriken gilt es, die Integration mit der Tensorboard Bibliothek zu nutzen.
 Daraufhin ist das Training über die dafür vorgesehene Funktion des RL-Modells zu starten und nach dessen Ablauf das optimierte Modell zu speichern.
-Das Speicherformat ist so zu wählen, dass gespeicherte Modelle innerhalb der Testszenarien zu deren Bemessung geladen werden können.
+Das Speicherformat ist so zu wählen, dass gespeicherte Modelle zur Auswertung in das Testszenario geladen werden können.
 
 % Imitation Learning
 Aufgrund des hohen dreidimensionalen Aktionsraums, welcher zu jedem Zeitschritt zu optimieren ist, soll vor dem beschriebenen Trainingsprozess ein Training durch Imitation Learning (IL) eingesetzt werden.
@@ -76,14 +78,21 @@ Durch diesen Transfer soll eine hohe Qualität des RL-Modells gewährleistet wer
 \subsection{Anforderungen des Laborexperiments}
 
 Anhand der Implementierung des Laborexperiments sollen die notwendigen Messdaten erhoben, die Forschungshypothesen evaluiert, und die Forschungsfrage beantwortet werden.
-Dazu ist es notwendig die beschriebenen Metriken, also die Belohnung, dessen Varianz und die Anzahl an Abstürzen, zu allen Testszenarien zu erfassen.
-Die Testszenarien werden durch eine Instanz der Simulationsumgebung repräsentiert, die eine veränderte Situation als während des Trainings beinhaltet.
+Dazu ist es notwendig die beschriebenen Metriken, also die kumulierte Belohnung, dessen Varianz und die Anzahl an Abstürzen, zu allen Policies im Testszenario zu erfassen.
+Das Testszenario wird durch eine Instanz der Simulationsumgebung repräsentiert, die eine zum Training veränderte Situation beinhaltet.
 
-\textbf{Konkrete Beschreibung, wie die Eigenschaften der Testszenarios umgesetzt werden sollen}
+Die Abweichung der Domäne zu den Trainingsszenarien wird durch die zusätzliche Randomisierung des Zielpunktes und durch die Verbesserung des regelbasierten Gegenspielers erzielt. 
+Die Verteilung des Zielpunktes soll dabei ähnlich zu den Startkoordinaten so gewählt sein, das sich die verteidigende Drohne näher an ihr befindet.
+Das Abfangen eines direkten Anflugs der anzugreifenden Drohne bleibt dadurch möglich.
+Damit die Validität der Messdaten gegeben ist, muss sichergestellt sein, dass alle Strategien den gleichen Testbedingungen und demnach den selben zufälligen Start- und Zielpunkten unterliegen.
+Hierfür sind vorab 100 Elemente aus den Verteilungen der Start- und Zielkoordinaten zu generieren und zu speichern.
+Anschließend ist jede Policy in den gleichen 100 verschiedenen Episoden auszuführen, und deren Leistungsverhalten zu messen.
+
+\textbf{Konkrete Beschreibung der Implementierungsanforderungen des Enhanced Rule-Based Enemy}
 
 Innerhalb eines Testszenarios sind zu jedem Zeitschritt die aktuelle Belohnung zu speichern und zu Messen, ob ein Absturz der Drohne vorliegt.
 Beide Variablen folgen dem Format einer Zeitreihe über den Verlauf der Testsimulation.
-Das Programm zur Auswertung muss nach 30-facher Ausführung der Policy im Testszenario die Kennzahlen der durchschnittlichen Belohnung und dessen Varianz berechnen.
+Das Programm zur Auswertung muss nach 100-facher Ausführung der Policy im Testszenario die Kennzahlen der durchschnittlichen Belohnung und dessen Varianz berechnen.
 Zur Dokumentation und für die weitere Auswertung mittels statistischer Tests sind die Messdaten als kommaseperierte Wertedatei (CSV) zu speichern.
 
 Durch das Laden der Messdaten aus den CSV-Dateien in entsprechende Datenobjekte liegen alle Metriken zur Bestimmung des statistischen Tests vor.

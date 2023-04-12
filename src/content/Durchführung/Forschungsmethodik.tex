@@ -15,7 +15,7 @@ Die dritte Sektion setzt daraufhin die beschriebenen Anforderungen um und erläu
 
 Innerhalb des Laborexperiments soll die Beziehung zwischen dem Trainingsszenario als Ursache und der Leistungsrobustheit als Wirkung betrachtet werden.
 Dabei sind zunächst Strategien durch verstärkendes Lernen unter unterschiedlichen Szenarien zu optimieren. 
-Anschließend werden die trainierten Policies in mehreren Testszenarien einer veränderten Simulation ausgeübt und währenddessen verschiedene Metriken der Strategieleistung betrachtet.
+Anschließend werden die trainierten Policies in einer veränderten Simulation als Testszenario ausgeübt, und währenddessen verschiedene Metriken der Strategieleistung betrachtet.
 Ziel ist es, die Leistungsdiskrepanzen zu betrachten, zwischen den Strategien des Trainings mit deterministischen und mit optimiertem Gegenspieler.
 Kein Teil der umzusetzenden Forschungsmethodik ist daher die Anwendung der simulationsbasierten Strategien zur Steuerung von Quadrokoptern in der echten Welt. 
 Weiterhin wird nicht die Ergebnisabhängigkeit zu Faktoren untersucht, wie der Wahl des Simulationsframeworks, der Physik-Engine oder des Abstraktionsniveaus.
@@ -37,25 +37,29 @@ Ist das Ziel einer der beiden Drohnen erreicht, oder besteht Kontakt mit dem Unt
 
 \subsection{Erläuterung der Trainingsszenarien}
 
-Durch die erläuterte Simulation werden insgesamt für das Laborexperiment Strategien in vier unterschiedlichen Szenarien mit verstärkendem Lernen optimiert.
-Zur Prüfung der Zuverlässigkeit werden je Trainingsszenario zwei optimale Policies durch zwei verschiedene RL-Algorithmen erlernt.
+Durch die erläuterte Simulation werden insgesamt für das Laborexperiment Strategien in vier unterschiedlichen Szenarien mit einem Algorithmus des verstärkendem Lernen optimiert.
+%Zur Prüfung der Zuverlässigkeit werden je Trainingsszenario zwei optimale Policies durch zwei verschiedene RL-Algorithmen erlernt.
 Jede der Policies wird dabei in einer der nachfolgenden Simulationsszenarien optimiert, dessen Auswahl die unabhängige Variable des Laborexperiments darstellt.
 \begin{enumerate}
     \item Das erste Szenario beinhaltet das Training der zu verteidigenden Drohne gegen eine angreifende Drohne, welche eine deterministische regelbasierte Strategie ausführt.
     \item Im zweiten Szenario wird eine deterministische Strategie für die anzugreifende Drohne mittels RL optimiert, während die verteidigende Drohne anhand ihrer zuvor optimierten Strategie agiert.
     \item Anschließend enthält das dritte Szenario das Training einer Verteidigungsstrategie im kompetitiven Spiel mit der anzugreifenden Drohne unter zuvor optimierter Policy.
     \item Zum Abschluss wird das erste Szenario mit regelbasiertem Gegenspieler unter DR, also unter der Randomisierung dynamischer Parameter, als viertes Szenario wiederholt. 
+    zur Randomisierung der Trainingsdomäne wird ein konstanter Windeffekt simuliert, dessen Richtung und Stärke zu jeder Trainingsepisode variiert. 
 \end{enumerate}
 
-\subsection{Erläuterung der Testszenarien}
+\subsection{Erläuterung des Testszenarios}
 
-Nach den Trainingsphasen werden einzelne Policies in mehreren vom Training abweichenden Testszenarien ausgeführt und deren Leistungsverhalten gemessen.
-\textbf{Konkrete Beschreibung der Eigenschaften der Testszenarios}
+Nach den Trainingsphasen werden einzelne Policies in mehreren Episoden, eines vom Training abweichenden Testszenarios, ausgeführt und deren Leistungsverhalten gemessen.
+Eine Episode entspricht dabei einer Simulation des Testszenarios bis zu ihrem erfolgreichen oder nicht erfolgreichem Ende durch Drohnen-, Ziel-, oder Bodenkontakt.
+Zusätzlich zu den Trainingsszenarien ist neben den initialen Startpositionen der Drohnen auch der von der Angreiferdrohne zu erreichende Zielpunkt zufällig zu verändern.
+Neben der zusätzlichen Randomisierung des Zielpunktes wird außerdem ein zum Trainingsszenario verbesserter regelbasierter Gegenspieler verwendet.
+\textbf{Konkrete Beschreibung der Eigenschaften des Enhanced Rule-Based Enemy}
 
 \subsection{Messung der Robustheit von RL Policies}
 
-Die in den Testszenarien betrachteten abhängigen Variablen sind die durchschnittlich erzielte Belohnung, dessen Varianz sowie die Anzahl an unbeabsichtigten Abstürzen.
-Die erzielte Belohnung und dessen Varianz stellen wie bereits beschrieben in der Forschung wichtige Kenngrößen dar, um die Robustheit von RL Policies zu bestimmen.
+Die in den Testszenarien betrachteten abhängigen Variablen sind die erzielte kumulierte Belohnung, dessen Varianz sowie die Anzahl an unbeabsichtigten Abstürzen.
+Die kumulierte Belohnung und dessen Varianz stellen wie bereits beschrieben in der Forschung wichtige Kenngrößen dar, um die Robustheit von RL Policies zu bestimmen.
 Die Metrik der Anzahl von unbeabsichtigten Abstürzen spiegelt im behandelten Anwendungsfall zusätzlich das Fehlschlagen der trainierten Strategie wider.
 Mit der Auswahl der Metriken werden die Strategieeigenschaften der maximalen Strategieleistung, der Leistungsabweichung und der Strategiesicherheit deutlich.
 Aus der Abweichung zwischen dem Leistungsverhalten während des Trainings und während des Tests, soll so die Robustheit von RL Policies erkennbar und messbar gestaltet werden.
@@ -66,60 +70,60 @@ Anschließend kann der erzielte Effekt mit der Abweichung zwischen eins und vier
 \subsection{Auswertung mittels statistischer Tests}
 
 Durch den Vergleich einzelner Strategien mittels dieser Methodik werden im Laborexperiment die zu Beginn der Arbeit aufgestellten Hypothesen auf ihre Gültigkeit untersucht.
-Die nachfolgend angeführten Hypothesen beinhalten wie im vorherigen Kapitel diskutiert, verschiedene Aspekte der Robustheit von RL Strategien, welche in späteren Abschnitten einzeln ausgewertet werden.
+Die nachfolgenden bereits zu Beginn angeführten Hypothesen beinhalten wie im vorherigen Kapitel diskutiert, verschiedene Aspekte der Robustheit von RL Strategien, welche in späteren Abschnitten einzeln ausgewertet werden.
 \begin{enumerate}
     % verschiedene Aspekte: max. Reward, Stabilität des Rewards, Fehlschlag von Strategien
-    \item \textit{Die in den Testszenarien durchschnittlich erzielte Belohnung ist unter Verwendung der Policy aus dem Training mit RL basiertem Gegenspieler signifikant und zuverlässig höher als die Policy aus dem Training mit regelbasiertem Gegenspieler.}
-    \item \textit{Die Varianz der in den Testszenarien erzielten Belohnung ist unter Verwendung der Policy aus dem Training mit RL basiertem Gegenspieler signifikant und zuverlässig geringer als die Policy aus dem Training mit regelbasiertem Gegenspieler.}
-    \item \textit{Die in den Testszenarien erreichte Anzahl von unbeabsichtigten Abstürzen ist unter Verwendung der Policy aus dem Training mit RL basiertem Gegenspieler signifikant und zuverlässig geringer als die Policy aus dem Training mit regelbasiertem Gegenspieler.}
+    \item \textit{Die im Testszenario erzielte kumulierte Belohnung ist unter Verwendung der Policy aus dem Training mit RL basiertem Gegenspieler signifikant und zuverlässig höher als die Policy aus dem Training mit regelbasiertem Gegenspieler.}
+    \item \textit{Die Varianz der im Testszenario erzielten Belohnung ist unter Verwendung der Policy aus dem Training mit RL basiertem Gegenspieler signifikant und zuverlässig geringer als die Policy aus dem Training mit regelbasiertem Gegenspieler.}
+    \item \textit{Die im Testszenario erreichte Anzahl von unbeabsichtigten Abstürzen ist unter Verwendung der Policy aus dem Training mit RL basiertem Gegenspieler signifikant und zuverlässig geringer als die Policy aus dem Training mit regelbasiertem Gegenspieler.}
 \end{enumerate}
 
 Jede der drei oben genannten Behauptungen wird in zwei statistischen Tests ausgewertet.
 Dabei wird zum einen ein Test auf Ungleichheit und zum anderen ein Test zum Verbesserungseffekt durch RL basierten Gegenspieler durchgeführt.
 Die Thesen zur ungleichen oder besseren Metrik durch trainierten Gegenspieler werden in den Signifikanztests als H0 Hypothese eingesetzt.
 Die entsprechenden Gegenhypothesen formulieren jeweils die gegensätzliche Annahme mit regelbasiertem Gegenspieler. 
-Fasst man dieses Aufbau der statistischen Signifikanztests zusammen können folgende Testhypothesen festgelegt werden. 
+Fasst man diesen Aufbau der statistischen Signifikanztests zusammen, können folgende Testhypothesen festgelegt werden. 
 
 \textbf{Ungleichheit des ersten Messwerts}
 \begin{itemize}
-    \item \textbf{Hypothese H0:} \textit{Die durchschnittlich erzielte Belohnung im dritten Testszenarios ist signifikant unterschiedlich zu der des ersten Testszenarios.}
-    \item \textbf{Hypothese H1:} \textit{Die durchschnittlich erzielte Belohnung im dritten Testszenarios ist signifikant gleich zu der des ersten Testszenarios.}
+    \item \textbf{Hypothese H0:} \textit{Die erzielte kumulierte Belohnung im dritten Testszenario ist signifikant unterschiedlich zu der des ersten Testszenarios.}
+    \item \textbf{Hypothese H1:} \textit{Die erzielte kumulierte Belohnung im dritten Testszenario ist signifikant gleich zu der des ersten Testszenarios.}
 \end{itemize}
 
 \textbf{Verbesserung des ersten Messwerts}
 \begin{itemize}
-    \item \textbf{Hypothese H0:} \textit{Die durchschnittlich erzielte Belohnung im dritten Testszenarios ist signifikant höher zu der des ersten Testszenarios.}
-    \item \textbf{Hypothese H1:} \textit{Die durchschnittlich erzielte Belohnung im dritten Testszenarios ist signifikant geringer zu der des ersten Testszenarios.}
+    \item \textbf{Hypothese H0:} \textit{Die erzielte kumulierte Belohnung im dritten Testszenario ist signifikant höher zu der des ersten Testszenarios.}
+    \item \textbf{Hypothese H1:} \textit{Die erzielte kumulierte Belohnung im dritten Testszenario ist signifikant geringer zu der des ersten Testszenarios.}
 \end{itemize}
 
 \textbf{Ungleichheit des zweiten Messwerts}
 \begin{itemize}
-    \item \textbf{Hypothese H0:} \textit{Die Varianz der erzielten Belohnung im dritten Testszenarios ist signifikant unterschiedlich zu der des ersten Testszenarios.}
-    \item \textbf{Hypothese H1:} \textit{Die Varianz der erzielten Belohnung im dritten Testszenarios ist signifikant gleich zu der des ersten Testszenarios.}
+    \item \textbf{Hypothese H0:} \textit{Die Varianz der erzielten Belohnung im dritten Testszenario ist signifikant unterschiedlich zu der des ersten Testszenarios.}
+    \item \textbf{Hypothese H1:} \textit{Die Varianz der erzielten Belohnung im dritten Testszenario ist signifikant gleich zu der des ersten Testszenarios.}
 \end{itemize}
 
 \textbf{Verbesserung des zweiten Messwerts}
 \begin{itemize}
-    \item \textbf{Hypothese H0:} \textit{Die Varianz der erzielten Belohnung im dritten Testszenarios ist signifikant geringer zu der des ersten Testszenarios.}
-    \item \textbf{Hypothese H1:} \textit{Die Varianz der erzielten Belohnung im dritten Testszenarios ist signifikant höher zu der des ersten Testszenarios.}
+    \item \textbf{Hypothese H0:} \textit{Die Varianz der erzielten Belohnung im dritten Testszenario ist signifikant geringer zu der des ersten Testszenarios.}
+    \item \textbf{Hypothese H1:} \textit{Die Varianz der erzielten Belohnung im dritten Testszenario ist signifikant höher zu der des ersten Testszenarios.}
 \end{itemize}
 
 \textbf{Ungleichheit des dritten Messwerts}
 \begin{itemize}
-    \item \textbf{Hypothese H0:} \textit{Die erreichte Anzahl von unbeabsichtigten Abstürzen ist im dritten Testszenarios ist signifikant unterschiedlich zu der des ersten Testszenarios.}
-    \item \textbf{Hypothese H1:} \textit{Die erreichte Anzahl von unbeabsichtigten Abstürzen ist im dritten Testszenarios ist signifikant gleich zu der des ersten Testszenarios.}
+    \item \textbf{Hypothese H0:} \textit{Die erreichte Anzahl von unbeabsichtigten Abstürzen ist im dritten Testszenario ist signifikant unterschiedlich zu der des ersten Testszenarios.}
+    \item \textbf{Hypothese H1:} \textit{Die erreichte Anzahl von unbeabsichtigten Abstürzen ist im dritten Testszenario ist signifikant gleich zu der des ersten Testszenarios.}
 \end{itemize}
 
 \textbf{Verbesserung des dritten Messwerts}
 \begin{itemize}
-    \item \textbf{Hypothese H0:} \textit{Die erreichte Anzahl von unbeabsichtigten Abstürzen ist im dritten Testszenarios ist signifikant geringer zu der des ersten Testszenarios.}
-    \item \textbf{Hypothese H1:} \textit{Die erreichte Anzahl von unbeabsichtigten Abstürzen ist im dritten Testszenarios ist signifikant höher zu der des ersten Testszenarios.}
+    \item \textbf{Hypothese H0:} \textit{Die erreichte Anzahl von unbeabsichtigten Abstürzen ist im dritten Testszenario ist signifikant geringer zu der des ersten Testszenarios.}
+    \item \textbf{Hypothese H1:} \textit{Die erreichte Anzahl von unbeabsichtigten Abstürzen ist im dritten Testszenario ist signifikant höher zu der des ersten Testszenarios.}
 \end{itemize}
 
 Die Auswahl des Signifikanztests wird anhand der Wahrscheinlichkeit einer vorliegenden Normalverteilung vorgenommen.
-Kann nach einem Kolmogorov- oder Shapiro- Test zu einem Signifikanzniveau von 10\% eine Normalverteilung angenommen werden, lässt sich zut Überprüfung der Hypothesen ein T-Test einsetzten.
+Kann nach einem Kolmogorov- oder Shapiro- Test zu einem Signifikanzniveau von 10\% eine Normalverteilung angenommen werden, lässt sich zur Überprüfung der Hypothesen ein T-Test einsetzten.
 Ist keine Normalverteilung gegeben, wird ein Mann-Whitney U Test verwendet.
-Liegt schlussendlich der P-Wert des T- oder Mann-Whitney U Signifikanztests unter 10\% wird die H0 Hypothese angenommen und die Abweichung in den Robustheitsdaten oder deren Verbesserung als signifikant betrachtet.
-Zeigen die statistischen Signifikanztests, dass eine Metrik sich durch die Auswahl des Trainingsszenarios verbessert, wird die Abweichung als signifikant wahrgenommen, und die Hypothese bestätigt.
+Liegt schlussendlich der P-Wert des T- oder Mann-Whitney U Signifikanztests zur Prüdung eines Unterschieds unter 10\%, so wird die H0 Hypothese angenommen und die Abweichung in den Robustheitsdaten als signifikant betrachtet.
+Zeigen die anschließenden statistischen Signifikanztests, dass eine Metrik sich durch die Auswahl des Trainingsszenarios mit trainiertem Gegenspieler verbessert, wird die Verbesserung als signifikant wahrgenommen, und die Hypothese bestätigt.
 Die Beantwortung der Forschungsfrage erfolgt abschließend mit der Betrachtung der angenommenen oder abgelehnten Forschungshypothesen.
 So werden die verschiedenen Merkmale der RL Policies untersucht und es kann festgestellt werden, welche Effekte auf Robustheit erzielt worden sind.
