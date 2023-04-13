@@ -117,7 +117,16 @@ Anschließend wird die neue Zustandsbeobachtung, die entstandene Belohnung, das 
 
 % Reward ?
 Die Bestimmung des Rewards ist unter der \textbf{reward-Funktion} der DualDroneAviary Klasse implementiert.
-\textbf{Hier die Belohnungsfunktion und deren Optimierung erläutern}
+Innerhalb dieser Funktion werden aus dem aktuellen Zustand der Simulation Kennzahlen zu dessen Evaluation berechnet und gewichtet.
+Durch die Gewichtung und dessen Optimierung kann das Strategieziel formuliert und der Einfluss des Wertebereichs der Kennzahlen angepasst werden.
+Die Aufsummierung der Produkte aus den folgenden Kennzahlen und deren Gewichtung spiegelt die Belohnung zu jedem Zeitschritt wieder.
+\begin{itemize}
+    \item Distanz zwischen der angreifenden und verteidigenden Drohne
+    \item Belohnung bei erfolgreichem Abfangen der angreifenden Drohne
+    \item negative Belohnung sofern der Zielpunkt erreicht wurde
+    \item Belohnung für eine möglichst direkte Flugrichtung zur gegnerischen Drohne
+    \item Lineare Belohnung der Geschwindigkeit
+\end{itemize}
 
 % reset
 Ist das Rücksetzkriterium erfüllt wird die Simulationsumgebung mittels \textbf{reset-Funktion} erneut gestartet.
@@ -130,13 +139,26 @@ Am Ende der Funktion wird der erste Beobachtungsvektor der neuen Episode sowie e
 
 % Single Drone Wrapper
 Die zuvor beschriebene Klasse vererbt ihre Variablen und Funktionen auf die höhergelegene Abstraktionsschicht der \textbf{SingleDroneWrapper} Klasse.
+Auf dieser Ebene wird bietet die Simulation ihre Schnittstelle für die Verwendung durch den IL- und RL-Algorithmus.
+Dafür ist es notwendig den Beobachtungsraum sowie den Aktionsraum zu neu zu definieren.
 
+Zur \textbf{Initialisierung} werden zum einen alle Parameter zur Instanziierung des DualDroneAviary Objekt erwartet.
+Zum Anderen sind zusätzlich die Strategie und dessen Rauschverhalten der angreifenden Drohne anzugeben, sodass diese in Klassenvariablen gespeichert werden.
+Auf der Ebene des SingleDroneWrapper-Klasse wird der \textbf{Beobachtungsraum} mit allen Informationen beider Quadrokopter zu einem 40-elementigen Vektor zusammengefasst.
+Der \textbf{Handlungsraum} hingegen umfasst auf dieser Ebene lediglich einen elementigen Vektor mit dem bekannten Wertebereich.
+Zur Ausführung eines Simulationsschrittes werden in der \textbf{Step-Funtkion} die Aktion der Angreiferstrategie und die übergebene Aktion in ein Datenobjekt überführt.
+Anschließend kann mittels diesen Datenobjektes die Schrittfunktion der Elternklasse aufgerufen, und deren Rückgabewerte an den zu optimierenden Algorithmus weitergereicht werden.
+Als \textbf{Belohnungswert} wird dabei lediglich auf die im Trainingsszenario relevante Kompontente des Belohnungsobjektes zugegriffen.
 
-\begin{itemize}
-    \item Wrapping des eigenen Aviaries zur SingleDrone Applikation
-\end{itemize}
 \subsection{Programmumsetzung des Optimierungsverfahrens}
+
+Die Umsetzung des Optimierungsverfahrens eines RL-Modells wird in der Python Datei train zusammengefasst.
 \begin{itemize}
+    \item train.py process
     \item Imitation Learning process
 \end{itemize}
+
 \subsection{Programmumsetzung zur Laborexperiments}
+\begin{itemize}
+    \item test.py
+\end{itemize}
