@@ -18,31 +18,32 @@ In diesem Abschnitt wird diese Anforderung zu mehreren kleineren Bedingungen get
 Aus der Betrachtung des aktuellen Stands der Forschung und der Praxis für die Entwicklung von Simulationen geht hervor, dass besonders das OpenAI Gym Framework bzw. dessen Nachfolger Gymnasium in diesem Kontext ein wichtiger Bestandteil ist.
 Das Gymnasium Framework definiert die wichtigsten Funktionsschnittstellen, welche zur Entwicklung der Simulation im Rahmen dieser Arbeit zu implementieren sind.
 
-Eine der Funktionen beschreibt die Initialisierung der eigenen Umgebungsklasse, welche von der Umgebungsklasse der Gymnasium-Bibliothek erbt.
+Eine der Funktionen beschreibt die \textbf{Initialisierung} der eigenen Umgebungsklasse, welche von der Umgebungsklasse der Gymnasium-Bibliothek erbt.
 Initial sind darin für die Simulation die Startpositionen der verteidigenden Drohne und der angreifenden Drohne sowie der anzugreifende Zielpunkt anzugeben.
 Die Simulation soll eine zufällige Platzierung der Drohnen und des Zielpunktes im Raum ermöglichen, jedoch ausschließlich unter der Bedingung, dass die direkte Strecke zum Zielpunkt für die verteidigende Drohne kürzer ist, als für die angreifende Drohne.
 Zur Erfüllung dieser Anforderung muss eine Wahrscheinlichkeitsfunktion für die Zielpunktkoordinaten sowie je Drohne, für die drei Startkoordinaten X,Y und Z bestimmt werden.
 Die Randomisierung dieser Koordinaten soll über eine Variable an- und abgeschaltet werden können, sodass einfach zwischen Trainings- und Testszenario gewechselt werden kann.
 Als Spielgebiet wird eine flache feste Ebene auf der Höhe Null eingesetzt, über dessen der drei dimensionale Raum unbegrenzt in X-, Y-, und Z-Richtung zur Verfügung steht.
 
-Eine weitere Funktionen beinhaltet die Definition des Beobachtungsraums, also welche Informationen für den Agenten Wahrnehmbar sind. 
+Eine weitere Funktionen beinhaltet die Definition des \textbf{Beobachtungsraums}, also welche Informationen für den Agenten Wahrnehmbar sind. 
 In der beschriebenen Simulation soll der Agent die Position, die Ausrichtung, die dreidimensionale Geschwindigkeit der Drohne und die Geschwindigkeit der Rotatoren wahrnehmen. 
 Jede diese Eigenschaften wird von der verteidigenden Drohne und zusätzlich von der angreifenden Drohne wahrgenommen. 
 Insgesamt stelle der Beobachtungsraum somit ein Datenobjekt dar, welches alle Informationen wie Koordinaten, Geschwindigkeiten und Drehzahlen beinhalte.
 
-Neben dem Beobachtungsraum muss auch ein Handlungsraum festgelegt werden, welcher die Steuerung der verteidigenden Drohne umfassen soll.
+Neben dem Beobachtungsraum muss auch ein \textbf{Handlungsraum} festgelegt werden, welcher die Steuerung der verteidigenden Drohne umfassen soll.
 Hierbei soll durch den Agenten die Geschwindigkeit und ihre Richtung in Form eines vier-elementigen Liste vorgegeben werden.
 Auch die regelbasiert gesteuerten Drohnen folgen damit dem Ziel eine dieser Form entsprechende Aktion zu erzeugen.
 Anschließend besteht die Anforderung diese Aktionen in einen konkreten Einfuss auf den Zustand des Quadrokopters zu übersetzen.
 
-Führt der Agent eine Aktion seines Handlungsraums aus, wird die Implementierung eines Zeitschritts der Simulation benötigt.
+Führt der Agent eine Aktion seines Handlungsraums aus, wird die Implementierung eines \textbf{Zeitschritts} der Simulation benötigt.
 In dieser muss deklariert sein, wie sich die gewählte Aktion auf den Zustand der Drohnen auswirkt.
 Während jedes Zeitschritts der Simulation sind dabei die Kriterien zum Zurücksetzen der Simulation zu prüfen.
+
 Im Anwendungsbereich dieser Arbeit ist die Simulation Zurücksetzen, sobald das Abfangen der angreifenden Drohne erfolgt ist, oder eine der Drohnen in Kontakt mit dem Untergrund kommt.
-Das Gymnasium Framework definiert die Rücksetzfunktion, welche den initialen Simulationszustand herstellt, sobald ein Kriterium erfüllt ist.
+Das Gymnasium Framework definiert die \textbf{Rücksetzfunktion}, welche den initialen Simulationszustand herstellt, sobald ein Kriterium erfüllt ist.
 Durch die Schrittfunktion ist abschließend die neue Wahrnehmung der Simulation, die Erfüllung des Rücksetzkriteriums und der Belohnungswert zurückzugeben.
 
-Zur Berechnung einer entsprechenden Belohnung, für die Ausführung der gewählten Aktion, ist eine Belohnungsfunktion einzusetzen.
+Zur Berechnung einer entsprechenden Belohnung, für die Ausführung der gewählten Aktion, ist eine \textbf{Belohnungsfunktion} einzusetzen.
 Diese muss anhand des neuen Simulationszustandes Kennzahlen ermitteln und gewichten, und dadurch eine numerische Bewertung der neuen Situation vornehmen.
 Hinsichtlich der Maximierung des Belohnungswertes, optimiert der Agent mittels des RL Algorithmus seine Aktion in Abhängigkeit der Simulation. 
 Die Anforderungen dieser Optimierung der Aktionen werden in der nachfolgenden Sektion detailliert betrachtet.

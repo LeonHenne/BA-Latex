@@ -21,7 +21,7 @@ Wird die im zweiten Kapitel angeführte Auswahl an in der Literatur beschriebene
 Zur Auswahl einer Basissimulation, in welcher die eigenen Trainings- und Testszenarien abgebildet werden können, sind unterschiedliche Kriterien zu beachten.
 Ein Kriterium ist die Kompatibilität der Basissimulation mit der gewählten Entwicklungssprache. 
 Hierbei sollte entweder die Simulation selbst in Python, oder eine entsprechende Schnittstelle entwickelt sein.
-Die gewählte Simulation sollte eine Physik-Engine einsetzen, welche zum einen möglichst hohen Grad an Realismus erlaubt, um die Forschungsfrage möglichst valide zu beantworten.
+Die gewählte Simulation sollte eine Physik-Engine einsetzen, welche zum einen einen möglichst hohen Grad an Realismus erlaubt, um die Forschungsfrage möglichst valide zu beantworten.
 Zum Anderen sollte die Simulation einen beherrschbaren Rechenleistungsaufwand verursachen, da die Zielsetzung die Optimierung mehrerer Policies beinhaltet.
 Weiterhin, zur Erfüllung der zuvor beschriebenen Anforderungen, muss die Basissimulation dem Framework Gym oder dessen Nachfolger Gymnasium entsprechen.
 Um die Entwicklung des Optimierungsverfahrens zu unterstützen wird eine RL Integration oder zumindest eine Umfangreiche Dokumentation zu dessen Einsatz vorausgesetzt.
@@ -49,17 +49,94 @@ Auch die Integration des Gym oder Gymnasium Frameworks wird durch alle Simulatio
 Bei der Betrachtung der Realitätsnähe zeigt die AirSim Umgebung aufgrund der verwendeten Unreal Physik-Engine den höchsten Grad an Realismus auf.
 Im Gegenzug wird durch die AirSim Simulation auch Rechenkapazitäten erwartet, welcher im Rahmen dieser Arbeit nicht zur Verfügung steht.
 Eine umfangreiche Dokumentation und bereits vorhandene Integration von RL wird durch AirSim und gym-pybullet-drones gewährleistet.
-Die Simulationen RotorS und CrazyS bieten eine Integration mit RL nur auf Basis zusätzlicher unbekannter Softwarebibliotheken.
+Die Simulationen RotorS und CrazyS bieten eine Integration mit RL nur auf Basis der zusätzlichen Softwarebibliotheken GymFC und gym\_multirotor.
 Wird das letzte Kriterium der Simulation mehrerer Drohnen betrachtet, tritt dies nur in Beispielen der gym-pybullet-drones Simulation auf.
-
 %Fazit
+Fasst man die Erfüllung der Auswahlkriterien zusammen wird erkenntlich, dass gym-pybullet-drones als einzige Drohnensimulationen die zusätzlichen Anforderungen der RL Integration und der Dokumentation erfüllt.
+Demnach wird für die nachfolgende Entwicklung der eigenen Simulation auf der gym-pybullet-drones Bibliothek aufgebaut.
+
+Die gym-pybullet-drones Simulation ist in einzelne Simulationszenarien gegliedert, welche je eine Python Datei umfassen.
+Als Aviaries gekennzeichnet, bilden sie je eine Trainingsumgebung nach der Schnittstellendefinition des Gymnasium Frameworks ab.
+In der Struktur der Simulationsumgebung wird das Programmierkonzept der Vererbung verwendet, um ähnliche Simulationen auf den selben übergeordneten Klassen zu basieren.
+Jede erbende Klasse enthält damit alle Funktionen und Variablen der übergeordneten Elternklasse.
+Dies ermöglicht die verschieden starke Abstraktion der Simulation auf den unterschiedlichen Vererbungsebenen.
+Weiterhin ermöglicht die Bibliothek verschiedene Steuerungsarten der Quadrokopter. 
+Eine Option ist die Steuerung über die direkte Vorgabe der Drehzahlen aller Rotatoren. 
+Zusätzlich kann auch ein PID-Kontroller eingesetzt werden um die Steuerungssignale entgegenzunehmen.
+Zur Entwicklung der eigenen Simulation wird jedoch die Steuerung über einen Richtungsvektor und einen Geschwindigkeitswert gewählt.
+Unabhängig des gewählten Aktionstyps werden alle Steuerungssignale durch Controllerklassen in konkrete Drehzahlen übersetzt.
+Dessen genaue Übersetzung wird im Rahmen dieses Kapitels nicht erläutert und ist in der entsprechenden Dokumentation nachzulesen.
+Auch der Beobachtungsraum kann zum einen visuell und zum anderen kinetisch erfolgen, was im Rahmen dieser Arbeit verwendet wird.
+Der kinetische Beobachtungsraum stellt eine Reihe von wahrnehmbaren Eigenschaften wie Position, Ausrichtung, Geschwindigkeit und Drehzahl dar.
+Unabhängig der Überwachungsart wird durch die pybullet Physik-Engine ein grafisches Modell der Simulation erzeugt werden, welches über eine Drohnenkamera visuell betrachtet wird.
+%Die nachfolgenden Abbildungen zeigen die grafische Simulation und den visuellen Beobachtungsraum.
+
+% Grundbasis der eigenen Simulation
+Die Umsetzung, der zu Beginn dieses Kapitels beschriebenen Simulationsumgebung, basiert auf der Verwendung der Basissimulation und der Kontrollerklassen. 
+Zusätzlich sind teilweise Funktionen aus ähnlichen bereits nativ vorhandenen Szenarien mit Änderungen übernommen und im Programm entsprechend gekennzeichnet.
+Die beschriebene Simulation ist innerhalb einer Klasse nach dem Gymnasium Framework aufgebaut.
+Zusätzlich wird die Simulation durch eine erbende Klasse umhüllt, um eine für den Algorithmus zu verarbeitbare Abstraktionsschicht zu erzeugen.
+In dieser Schicht wird die Steuerung der angreifenden Drohne abstrahiert, sodass die Trainingsumgebung lediglich die Bestimmung einer Aktion für die verteidigende Drohne erwartet.
+Nachfolgend wird die Umsetzung dieser beiden Klassen nach den einzelnen Funktionen des Gymnasium Frameworks erläutert.
+
+% Init DualDrone Aviary
+Die Simulation beider Quadrokopter ist in der Klasse \textbf{DualDroneAviary} definiert.
+Zur Initialisierung einer Simulationsinstanz wird die \textbf{Init-Funktion} aufgerufen, welche die Übergabe aller simulations relevanten Parameter erwartet.
+Die Parameter umfassen unter anderem Informationen zur Anzahl und Art und Position der Drohnen, gewählte Handlungs- und Beobachtungsarten sowie die unabhängigen Variablen der Trainingsszenarien.
+Außerdem wird die Gewichtung der Belohnungsfunktion als Parameter entgegen genommen.
+Kernaufgabe dieser Funktion ist die Umsetzung der Eigenschaften eines Trainings- und Testszenarios.
+Dies beinhaltet die Erzeugung und Übermittlung der zufälligen Start- und Zielpunkte und des zufälligen Windeffektes mittels unterstützender Funktionen aus der eigenen Hilfsklasse.
+Sind die Eigenschaften bestimmt, können diese zur Erzeugung der darunter liegenden Abstraktionsschicht der BaseAviary Instanz genutzt werden.
+
+% Observation Space
+Der \textbf{Beobachtungsraum} in dieser Simulation wird entweder visuell als Sammlung aller Pixelwerte eines 64x48 großen Bildes, oder durch einen Informationsvektor definiert.
+Der für die Experimente eingesetzte Informationsvektor je Drohne enthält die Position, Ausrichtung, Fortbewegungs- und Drehgeschwindigkeit sowie die Rotationsdrehzahlen.
+Die Position ist durch die dreidimensionale Koordinaten, die Ausrichtung durch Quaternion und Drehwinkel kodiert.
+Positionen können dabei von negativ bis plus unendlich in X- und Y-Richtung und von null bis unendlich in Z-Richtung betrachtet werden.
+Die Quaternion erlauben Werte zwischen $-1$ und $+1$, die Drehwinkel von $-\pi$ bis $+\pi$
+Drohnen-, Dreh-, und Rotatorengeschwindigkeit werden als Geschwindigkeitsvektor von minus bis plus unendlich zu den Koordinatenachsen bzw. als vier einzelne Werte von Null bis zu maximalen Drehzahl definiert.
+Insgesamt ist für jede Drohne ein Beobachtungsvektor mit 20 Elementen innerhalb eines Wörterbuchobjektes definiert.
+
+% Action Space
+Die Definition des \textbf{Aktionsraums} ist in der ActionSpace Funktion bestimmt.
+Je nach Aktionstyp ist ein drei oder vierdimensionaler Vektorbereich definiert.
+Jeder Wert des Vektors kann besitzt eine untere und obere Grenze aus dessen Bereich die endgültige Aktion gewählt wird.
+Zur Steuerung des Quadrokopters wird im Rahmen dieser Arbeit der Aktionstyp auf Basis der Geschwindigkeit verwendet.
+Der Wertebereich des Richtungsvektors ist dabei von $[-1,-1,-1]$ bis $[1,1,1]$ definiert. 
+Das vierte Element spiegelt den Anteil der maximalen Geschwindigkeit von null bis eins wieder.
+
+% Step 
+Ist eine Aktion regelbasiert oder durch einen RL-Algorithmus bestimmt, wird diese als Parameter an die \textbf{Step-Funktion} weitergegeben.
+Auf der Ebene der DualDroneAviary Klasse kann die übergebene Aktion in Abhängigkeit vom anfangs initialisierten Wind abgewandelt werden.
+Der Windvektor wird in Abhängigkeit des Winkels zwischen Bewegungsrichtung der Drohne und des Windes zur Aktion hinzugefügt.
+Der Drohnenbewegungsrichtung wird die Windrichtung addiert und die Geschwindigkeit in Abhängigkeit des Eintreffwinkels vollständig postiv bzw. negatig oder gar nicht beeinflusst.
+Anschließend wird unter veränderter oder unveränderter Aktion die Schrittfunktion der Elternklasse aufgerufen.
+Die Schrittfunktion der Elternklasse übersetzt die Aktion aus dem Aktionsraum in konkrete Rotorendrehzahlen und übt diese unter der simulierten Physik aus.
+Zur Erhöhung des Realismusgrads wird zusätzlich zu den Effekten der pybullet Physik-Engine ein Boden- und Trägheitseffekt eingesetzt.
+Anschließend wird die neue Zustandsbeobachtung, die entstandene Belohnung, das Rücksetzkriterium und ein Datenobjekt für Zusatzinformationen zurückgegeben.
+
+% Reward ?
+Die Bestimmung des Rewards ist unter der \textbf{reward-Funktion} der DualDroneAviary Klasse implementiert.
+\textbf{Hier die Belohnungsfunktion und deren Optimierung erläutern}
+
+% reset
+Ist das Rücksetzkriterium erfüllt wird die Simulationsumgebung mittels \textbf{reset-Funktion} erneut gestartet.
+Dabei sind neue Zufallspositionen der Drohnen und des Ziels sowie im vierten Trainingsszenario eine neue Windeigenschaften zu generieren.
+Sind diese Variablen verändert kann die Rücksetzfunktion der darunterliegenden Abstraktionsschicht aufgerufen werden.
+Die Funktion der BaseAviary-Klasse setzt darin die Zeitschritte und die Drohneninformationen zurück und baut das grafische Modell neu auf.
+Über den Zugriff auf den Klienten der pybullet Physik-Engine werden die Drohnenobjekte sowie das Untergrundobjekt aus den URDF-Dateien geladen und an entsprechenden Stellen platziert.
+Zur Unterscheidung des verteidigenden Quadrokopters von der angreifenden Drohne werden zwei nahezu identische URDF-Dateien verwendet, welche sich nur in der Farbgebung zwischen rot und blau unterscheiden.
+Am Ende der Funktion wird der erste Beobachtungsvektor der neuen Episode sowie ein Infoobjekt zurückgegeben.
+
+% Single Drone Wrapper
+Die zuvor beschriebene Klasse vererbt ihre Variablen und Funktionen auf die höhergelegene Abstraktionsschicht der \textbf{SingleDroneWrapper} Klasse.
+
 
 \begin{itemize}
-    \item verwendetes Repository
-    \item dessen Struktur in Form von Aviaries
-    \item die Entwicklung einer eigenen Aviary 
     \item Wrapping des eigenen Aviaries zur SingleDrone Applikation
 \end{itemize}
 \subsection{Programmumsetzung des Optimierungsverfahrens}
+\begin{itemize}
+    \item Imitation Learning process
+\end{itemize}
 \subsection{Programmumsetzung zur Laborexperiments}
-% \section{Optimierung der Hyperparameter}
