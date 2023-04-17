@@ -1,18 +1,18 @@
 \section{Gegnerisches verstärkendes Lernen}
 Methoden des gegnerischen verstärkenden Lernens verfolgen das Ziel Strategien zu lernen, die robuster gegenüber Risiken wie beeinflusste Wahrnehmung, unbekannte Situationen oder ansteigende Umgebungskomplexität agieren. \footcite[Vgl.][S. 2]{Schott.2022}
 Die Robustheit gegenüber fehlerhafter Umgebungsbetrachtung kann durch Störung des Wahrnehmungszustands des trainierenden Agenten erzielt werden. \footcite[Vgl.][S. 2]{Schott.2022}
-Das Ziel ist es dabei, durch die gegnerische Aktion eine veränderte Umgebungswahrnehmnung herzustellen, auf deren Basis sich der lernende Agent verbessert. \footcite[Vgl.][S. 3]{Schott.2022}
+Das Ziel ist es dabei durch gegnerische Aktionen eine veränderte Umgebungswahrnehmnung herzustellen, auf deren Basis sich der lernende Agent verbessert. \footcite[Vgl.][S. 3]{Schott.2022}
 
-Um die lernende Strategie besser auf unbekannte Situationen und steigende Komplexität vorbereiten zu können, werden destabilisierende Kräfte in der Dynamik eingeführt. \footcite[Vgl.][S. 1]{Pinto.2017}
-Anders als beim ersten Ansatz werden dafür nicht nur lediglich die Wahrnehmung des lernenden Agenten beeinflusst, sondern direkte Einflüsse auf die Umgebung ausgeübt. \footcite[Vgl.][S. 2]{Schott.2022}
-Hierbei wird der gegnerische Agent dafür belohnt, mittels Kräfteeinfluss die Umgebungsdynamik zu verändern, so dass der lernende Agent an seiner Aufgabe scheitert. \footcite[Vgl.][S. 2]{Pinto.2017}
+Um die lernende Strategie besser auf unbekannte Situationen und steigende Komplexität vorbereiten zu können werden destabilisierende Kräfte in der Dynamik eingeführt. \footcite[Vgl.][S. 1]{Pinto.2017}
+Anders als beim ersten Ansatz werden dafür nicht nur die Wahrnehmung des lernenden Agenten beeinflusst, sondern direkte Einflüsse auf die Umgebung ausgeübt. \footcite[Vgl.][S. 2]{Schott.2022}
+Hierbei wird der gegnerische Agent dafür belohnt, mittels Kräfteeinfluss die Umgebungsdynamik zu verändern, sodass der lernende Agent an seiner Aufgabe scheitert. \footcite[Vgl.][S. 2]{Pinto.2017}
 Dazu kann ein zusätzlicher Agent mit z.B. gleichem Aktionsraum den gemeinsamen Umgebungszustand beeinrächtigen. \footcite[Vgl.][S. 2]{Pinto.2017}
 \cite[]{Pan.2021} zeigt eine solche Anwendung im Rahmen der Kontrolle eines Stromnetzes, bei welcher ein gegnerischer Agent für das Trennen von Verbindungen im Netz belohnt wird. \footcite[Vgl.][S. 2]{Pan.2021}
 Zum Generieren von Störeinflüssen auf die Umgebungsdynamik kann das \textit{Robust Adversarial Reinforcement Learning} (RARL) Framework verwendet werden. \footcite[Vgl.][S. 2]{Schott.2022}
 Dabei wird der gegnerische Agent selbst durch RL daran angelernt, die möglichst effektivsten Destabilisierungsmaßnahmen zu finden. \footcite[Vgl.][S. 1]{Pinto.2017}
 Formal dargestellt folgt dieses gegnerische Spiel der in Formel sieben angeführten Minimax Optimierung. \footcite[Vgl.][S. 3]{Pinto.2017}
 \begin{description}
-    \item \begin{center} (7) $R^{1*} = \underset{\nu}{\min}\underset{\mu}{\max} E_{s_{0}\sim p,a^{1}\sim\mu(s),a^{2}\sim\nu(s)} [\sum_{t=0}^{T-1} r^{1} (s,a^{1},a^{2})]$ \end{center} 
+    \item \begin{center} $R^{1*} = \underset{\nu}{\min}\underset{\mu}{\max} E_{s_{0}\sim p,a^{1}\sim\mu(s),a^{2}\sim\nu(s)} [\sum_{t=0}^{T-1} r^{1} (s,a^{1},a^{2})]$ (7)\end{center} 
 \end{description}
 Zu jedem Zeitschritt $t$ in der gegnerischen Simulation wird von beiden Spielern eine Aktion $a_{t}^{N} \sim \mu(s_{t}) \forall N \in \{1,2\}$ nach der Wahrnehmung des Umgebungszustands $s$ ausgeübt, was zum Erhalt der Belohnung $r_{t}^{1} = r_{t}$ und $r_{t}^{2} = -r_{t}$ führt. \footcite[Vgl.][S. 3f.]{Pinto.2017}
 Das Training erfolgt aus der abwechselnden Optimierung einer der beiden Strategien bis zu deren Konvergenz, während die jeweils andere nicht verändert wird. \footcite[Vgl.][S. 4]{Pinto.2017}

@@ -1,5 +1,6 @@
 \section{Simulation der Steuerungsaufgabe von Quadrokoptern}
 Die Popularität von unbemannten Flugzeugen im letzten Jahrzehnt nahm besonders im Bereich der Quadrokopter zu, sodass durch die sinkenden Kosten von Sensorik und Minicomputern, zahlreiche zukunftsträchtige Ergebnisse und Anwendungen erforscht worden sind. \footcite[Vgl.][S. 1]{Koch.2018}
+Daher gilt dieses Kapitel der theoretischen Betrachtung dessen Eigenschaften und deren Simulation.
 Anwendungsgebiete beinhalten z.B. die Landwirtschaft, den Pakettransport oder die Überwachung von großflächiger Infrastruktur wie Stromnetze. \footcite[Vgl.][S. 1]{Deshpande.2020}
 Eine Simulation von unbemannten Flugzeugen stellt eine Flugumgebung und vielseitige Sensorik bereit und kann je nach Anwendung Effekte wie Wind, Wolken und Niederschlag einbeziehen. \footcite[Vgl.][S. 1496]{Hentati.2018}
 
@@ -7,8 +8,8 @@ Eine Simulation von unbemannten Flugzeugen stellt eine Flugumgebung und vielseit
 Die Simulation des Quadrokopters stellt eine Simulation eines Flugkörpers mit drei Rotations- und drei Translationsbewegungen und demnach insgesamt sechs verschiedenen Freiheitsgraden dar. \footcite[Vgl.][S. 2]{Koch.2018}
 Ein Quadrokopter ist ein fester Körper mit vier befestigten Rotoren, welche sich ausschließlich in eine Richtung drehen und positiven Schub in die Z-Achse des Körpers ausüben können. \footcite[Vgl.][S. 3]{Molchanov.2019}
 Die vier Rotoren werden als + oder X Konfiguration entweder direkt in Richtung der X- und Y-Achse (+), oder um 45° gedreht (X) an der Drohne befestigt. \footcite[Vgl.][S. 2]{Koch.2018}
-Jede Bewegung der sechs verschiedenen Arten wird durch die unterschiedliche Steuerung, der im Fall des Quadrokopters, vier Rotoren getätigt.
-Eine unterschiedliche Ansteuerung der Rotoren und den demnach verschieden starken Auftrieben resultiert in den drei Rotationsbewegungen Rollen, Nicken und Gieren. \footcite[Vgl.][S. 2]{Koch.2018}
+Jede Bewegung der sechs verschiedenen Arten wird durch die unterschiedliche Ansteuerung, der im Fall des Quadrokopters, vier Rotoren getätigt.
+Aus den verschieden starken Auftrieben resultieren die drei Rotationsbewegungen Rollen, Nicken und Gieren. \footcite[Vgl.][S. 2]{Koch.2018}
 \begin{figure}[htb]
     \centering
     \includegraphics[height=3cm]{lib/graphics/Drone axis.png}
@@ -24,16 +25,16 @@ Diese Rotationsbewegungen werden mathematisch als Matrix der Eulerschen Winkel r
 Das Zusammenspiel dieser Rotationsbewegungen, dargestellt anhand Formel vier, mit der durch die Rotatoren entlang der Z-Achse der Drone erzeugte Schubkraft und den Rollraten, beschrieben in Formel fünf, sorgt für die Bewegung der Drohne in Richtung der zukünftigen Koordinaten nach Formel sechs. \footcite[Vgl.][S. 2]{Deshpande.2021}
 
 \begin{description}
-    \item \begin{center} (4) $R = \begin{pmatrix} C_{\psi}C_{p} & S_{\xi}S_{p}C_{\psi} - S_{\psi}C_{\xi} & S_{\xi}S_{\psi}+S_{p}C_{\xi}C_{\psi} \\ S_{\psi}C_{p} & S_{\xi}S_{\psi}S_{p} + C_{\xi}C_{\psi} &  -S_{\xi}C_{\psi} + S_{\psi}S_{p}C_{\xi}\\ -S_{p} & S_{\xi}C_{p} & C_{\xi}C_{p} \end{pmatrix}$ \end{center}
+    \item \begin{center} $R = \begin{pmatrix} C_{\psi}C_{p} & S_{\xi}S_{p}C_{\psi} - S_{\psi}C_{\xi} & S_{\xi}S_{\psi}+S_{p}C_{\xi}C_{\psi} \\ S_{\psi}C_{p} & S_{\xi}S_{\psi}S_{p} + C_{\xi}C_{\psi} &  -S_{\xi}C_{\psi} + S_{\psi}S_{p}C_{\xi}\\ -S_{p} & S_{\xi}C_{p} & C_{\xi}C_{p} \end{pmatrix}$ (4)\end{center}
 \end{description}
 In Formel vier wird der Rotationszustand der Drohne zu den Weltachsen durch die Sinus- und Cosinuswinkel $S_{a}$ und $C_{a}$ repräsentiert, wobei für $a$ die Art der Rotation also Rollen $(\xi)$, Nicken $(p)$ und Gieren $(\psi)$ eingesetzt wird. \footcite[Vgl.][S. 2]{Deshpande.2021}
 \begin{description}
-    \item \begin{center} (5) $I\begin{pmatrix} \dot p \\ \dot q \\ \dot r\end{pmatrix} = \begin{pmatrix} l(F_{1} + F_{2} - F_{3} - F_{4}) \\ l(-F_{1} + F_{2} + F_{3} - F_{4}) \\ -M_{1} + M_{2} - M_{3} + M_{4}\end{pmatrix} - \begin{pmatrix} p \\ q \\ r \end{pmatrix} \times I\begin{pmatrix} p \\ q \\ r \end{pmatrix}$ \end{center}
+    \item \begin{center} $I\begin{pmatrix} \dot p \\ \dot q \\ \dot r\end{pmatrix} = \begin{pmatrix} l(F_{1} + F_{2} - F_{3} - F_{4}) \\ l(-F_{1} + F_{2} + F_{3} - F_{4}) \\ -M_{1} + M_{2} - M_{3} + M_{4}\end{pmatrix} - \begin{pmatrix} p \\ q \\ r \end{pmatrix} \times I\begin{pmatrix} p \\ q \\ r \end{pmatrix}$ (5)\end{center}
 \end{description}
 Formel fünf inkludiert in der Matrix $I$ die Trägheitsmomente um die X-, Y- und Z-Achsen in Abhängigkeit der Rollrate $p$, Nickrate $q$ und Gierrate $r$. \footcite[Vgl.][S. 2]{Deshpande.2021}
 Der Schub der in der Länge $l$ vom Schwerpunkt entfernten Rotatoren wird mittels $F_{i}$ und das Drehmoment mit $M_{i}, \forall i \in \{1,2,3,4\}$ gekennzeichnet. \footcite[Vgl.][S. 3]{Deshpande.2020}
 \begin{description}
-    \item \begin{center} (6) $m\begin{pmatrix} \ddot x \\ \ddot y \\ \ddot z \end{pmatrix} = \begin{pmatrix}0 \\ 0 \\ -mg\end{pmatrix} + R\begin{pmatrix} 0 \\ 0 \\ \sum_{i=1}^{4} F_{i} \end{pmatrix}$ \end{center}
+    \item \begin{center} $m\begin{pmatrix} \ddot x \\ \ddot y \\ \ddot z \end{pmatrix} = \begin{pmatrix}0 \\ 0 \\ -mg\end{pmatrix} + R\begin{pmatrix} 0 \\ 0 \\ \sum_{i=1}^{4} F_{i} \end{pmatrix}$ (6)\end{center}
 \end{description}
 Weiterhin ist die Beschleunigung $\ddot x$, $\ddot y$ und $\ddot z$ in Richtung der drei Achsen durch die Masse $m$ und die Gravitation $g$ beeinflusst. \footcite[Vgl.][S. 3]{Deshpande.2020}
 

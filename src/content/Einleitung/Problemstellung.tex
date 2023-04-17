@@ -1,14 +1,14 @@
 \section{Problemstellung}
 
-Reinforcement Learning (RL) findet heutzutage bereits Anwendung in vielerlei Forschungsprojekten wie Deepmind AlphaStar oder OpenAI Five, aber auch in Produkten und Dienstleistungen wie AWSDeepRacer oder Metas Horizon open-source RL-Plattform. \footcite[Vgl.][S. 4]{Li.2019}
+Reinforcement Learning (RL) findet heutzutage bereits Anwendung in vielerlei Forschungsprojekten wie Deepmind AlphaStar oder OpenAI Five, aber auch in Produkten und Dienstleistungen wie AWSDeepRacer oder Meta's Horizon open-source RL-Plattform. \footcite[Vgl.][S. 4]{Li.2019}
 RL ist im Bereich des maschinellen Lernens eine Herangehensweise zur Lösung von Entscheidungsproblemen. \footcite[Vgl.][S. 3]{Schuderer.2021}
 Ein Software-Agent leitet dabei durchzuführende Aktionen aus seiner Umgebung ab, mit dem Ziel die kumulierte erhaltene Belohnung zu maximieren, währenddessen sich seine Umgebung durch alle Aktionen verändert. \footcite[Vgl.][S. 3]{Schuderer.2021}
 Die Umgebungen beinhalten in ihrer einfachsten Form eine simulierte Welt, welche zu jedem Zeitschritt eine Aktion entgegennimmt, und den eigenen nächsten Zustand sowie einen Belohnungswert zurückgibt. \footcite[Vgl.][S. 1]{Reda.2020}
-Da ein Problem beim Einsatz von RL Algorithmen die Limitierungen sein können, Daten in der echten Welt zu sammeln und fürs Training zu verwenden, werden häufig hierfür Simulationsumgebungen eingesetzt. \footcite[Vgl.][S. 737]{Zhao.2020}
+Da das Sammeln von Daten in der echten Welt für den Einsatz von RL Algorithmen eine Limitierung darstellen kann, werden häufig fürs Training Simulationsumgebungen eingesetzt \footcite[Vgl.][S. 737]{Zhao.2020}
 Eine Limitierung können bspw. Sicherheitsaspekte sein, welche beim Training von Roboterarmen, oder sich autonom bewegenden Systemen auftreten, da die einzelnen physischen Bewegungen nicht vorhersehbar abschätzbar sind. \footcite[Vgl.][S. 738]{Zhao.2020}
-Simulationen nehmen damit zum einen als Testumgebung eine wichtige Rolle ein in der Entwicklung von Kontrollalgorithmen. \footcite[Vgl.][S. 2]{Cutler.2014}
-Zum anderen bedarf die erfolgreiche Anwendung von RL neben effizienten Algorithmen eben auch geeignete Simulationsumgebungen. \footcite[Vgl.][S. 8]{Reda.2020}
-Besonders schwierig, und daher sehr wichtig zu erforschen, ist es, die Trainingsumgebung bestmöglich an die echte Welt anzupassen, sodass bspw. die Agenten für Roboter und autonome Fahrzeuge nach dem Training mit robusten Strategien in der Realität eingesetzt werden können. \footcite[Vgl.][S. 1]{DBLP:journals/corr/abs-1910-10537}
+Simulationen nehmen damit zum einen als Testumgebung eine wichtige Rolle in der Entwicklung von Kontrollalgorithmen ein. \footcite[Vgl.][S. 2]{Cutler.2014}
+Zum anderen bedarf die erfolgreiche Anwendung von RL neben effizienten Algorithmen auch geeignete Simulationsumgebungen. \footcite[Vgl.][S. 8]{Reda.2020}
+Besonders schwierig, und daher sehr wichtig zu erforschen, ist die Anpassung der Trainingsumgebung an die reale Welt, sodass bspw. Agenten für Roboter und autonome Fahrzeuge nach dem Training mit robusten Strategien in der Realität eingesetzt werden können. \footcite[Vgl.][S. 1]{DBLP:journals/corr/abs-1910-10537}
 In der Forschungsliteratur wird diese beschriebene Problematik als „Sim to real“-Transfer beschrieben. \footcite[Vgl.][S. 738]{Zhao.2020}
 %Eine Methodik diesen Transfer zu begünstigen ist die Veränderung von visuellen oder dynamischen Parametern der Umgebung, was in der Forschungsliteratur als „Domain Randomization“ referenziert wird. \footcite[Vgl.][S. 2]{DBLP:journals/corr/abs-1910-10537}
 
@@ -22,4 +22,4 @@ Unter dem Themenfeld der DR wird die Idee erforscht, anstelle der akkuraten Mode
 Neben den dynamischen Bedingungen unterliegt die Realität jedoch häufig auch dem Einfluss mehrerer Parteien.
 Diese tragen teilweise kooperierend aber auch teilweise konkurrierend zum eigenen Erfolg bei, wie z.B. im Rahmen eines dem Wettbewerb unterliegenden Marktes. \footcite[Vgl.][S. 2]{COLLINS2022101217}
 Stellt man sich ein Szenario im Kontext kooperativer oder konkurrierender Drohnen vor, ist es naheliegend, dass auch jene Einflüsse möglichst präzise in die Simulationsumgebung integriert sein müssen, um ein robustes Modell erlernen zu können.
-Während bereits in Produkten wie PowerTAC von \cite[][]{COLLINS2022101217} die Simulation von Märkten entwickelt wurde, scheint der Einfluss des Gegenspielers in kompetitiven Drohnensimulationen auf die Robustheit von RL Algorithmen und demnach auf die Lösung des „Sim to real“-Transfers unerforscht.
+Während bereits in Produkten wie PowerTAC von \cite[][]{COLLINS2022101217} die Simulation von Märkten entwickelt wurde, scheint der Einfluss des Gegenspielers in kompetitiven Drohnensimulationen auf die Robustheit von RL Algorithmen, und demnach auf die Lösung des „Sim to real“-Transfers, unerforscht.

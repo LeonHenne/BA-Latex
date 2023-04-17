@@ -3,19 +3,19 @@
 Anders als im klassischen Bereich des maschinellen Lernens wie dem überwachten- und unüberwachten Lernen, werden beim verstärkenden Lernen viele der Testdatensätze nicht aus der echten Welt akquiriert. \footcite[Vgl.][S. 1]{Zhang.2018}
 Um entsprechend realistische Daten für das Training bereitzustellen, werden Simulationsumgebungen in Abhängigkeit von ihrer RL Anwendung ausgewählt. \footcite[Vgl.][S. 7]{Korber.2021}
 Dennoch bleibt nahezu immer eine gewisse Diskrepanz zwischen der Dynamik in der Simulation und der Dynamik in der echten Welt. \footcite[Vgl.][S. 1]{Bharadhwaj.2019}
-Möglichkeiten, diese Diskrepanz zu verkleinern, sind zum einen das Fehlverhalten von Sensoren einzubinden oder ein reales Signal mit der virtuellen Umgebung zu verknüpfen. \footcite[Vgl.][S. 1]{Zhang.2018}
-Trotzdem ist es kaum garantiert, dass erlernte Strategien der Agenten sich auch auf nur leicht veränderte Umgebungen übertragen lassen. \footcite[Vgl.][S. 1]{Bharadhwaj.2019}
+Möglichkeiten, diese Diskrepanz zu minimieren, sind zum einen das Fehlverhalten von Sensoren einzubinden oder ein reales Signal mit der virtuellen Umgebung zu verknüpfen. \footcite[Vgl.][S. 1]{Zhang.2018}
+Dennoch lässt sich kaum garantieren, dass erlernte Strategien der Agenten sich auf nur leicht veränderte Umgebungen übertragen lassen. \footcite[Vgl.][S. 1]{Bharadhwaj.2019}
 Anders als in der Simulation von Flüssigkeiten und deren Dynamik, bedarf RL eine reaktive Umgebung dessen Verhältnis der Simulationszeit zur echten Zeit mindestens eins oder darüber liegt. \footcite[Vgl.][S. 3]{Korber.2021}
 RL kann von einem erhöhten Echtzeitfaktor profitieren, trotz der damit einhergehenden verringerten Präzision. \footcite[Vgl.][S. 3]{Korber.2021}
 
 \subsection{Definitionen von Simulationsumgebungen}
-Ausgehend von der Literaturrecherche zeigte sich, dass in der Forschungsliteratur die allgemeine Definition von Simulationen kaum aufgegriffen wird.
+Ausgehend von der Literaturrecherche zeigt sich, dass in der Forschungsliteratur die allgemeine Definition von Simulationen kaum aufgegriffen wird.
 Eine mögliche Definition nach \cite[]{Maria.1997} wird wie folgt dargelegt:
 
 \textit{Eine Simulation eines existierenden Systems stellt die Anwendung eines Modells dar, welches konfigurierbar zu experimentellen Zwecken das eigentliche System vertritt, um wirtschaftliche oder systematische Herausforderungen des existierenden Systems zu umgehen.
 Das Model wird in diesem Kontext definiert als Repräsentation des Aufbaus und der Verhaltensweise des existierenden Systems.}
 
-Innerhalb bestimmter Anwendungsgebiete wie der Medizin und der Pflege werden zusätzlich virtuelle Simulationen wie nachstehend definiert.
+Innerhalb bestimmter Anwendungsgebiete, wie der Medizin und der Pflege, werden zusätzlich virtuelle Simulationen wie nachstehend definiert.
 
 \textit{Unter virtuellen Simulationen versteht man eine digitale Lernumgebung, welche durch teilweiser Immersion eine wahrnehmbare Erfahrung bereitstellt.\footcite[Vgl.][S. 1]{Foronda.2021}}
 
@@ -32,11 +32,11 @@ Allgemein lässt sich dieser Entwicklungsprozess in die folgenden Teilschritte g
 \end{enumerate}
 
 Die Entwicklung von Simulationen wurde in der Forschungsliteratur besonders durch den Fortschritt im Bereich des verstärkenden Lernens vorangetrieben, da der Vergleich von RL-Algorithmen zuverlässige Benchmarks in Form von Simulationsumgebungen benötigt.\footcite[Vgl.][S. 1]{Brockman.2016}
-Aus dieser Motivation wurde 2016 durch die OpenAI der OpenAI Gym Werkzeugkasten entwickelt, welcher eine Sammlung an Benchmarksimulationen mit einheitlicher Schnittstelle für RL Algorithmen enthält. \footcite[Vgl.][S. 1]{Brockman.2016}
+Aus dieser Motivation wurde 2016 durch die \textit{OpenAI} der \textit{OpenAI Gym} Werkzeugkasten entwickelt, welcher eine Sammlung an Benchmarksimulationen mit einer einheitlichen Schnittstelle für RL Algorithmen enthält. \footcite[Vgl.][S. 1]{Brockman.2016}
 Seither wurde diese definierte Schnittstelle vielfach verwendet, um RL Umgebungen mit dem Ziel zu entwickeln, diese zu publizieren und dessen Wiederverwendung zu ermöglichen. \footcite[Vgl.][S. 4]{Schuderer.2021}
 Die Entwicklung dieses Softwareframeworks wurde nach der Version 0.26.0 im Jahr 2022 durch ein neues Team unter dem Namen Gymnasium weitergeführt. \footcite[Vgl.][]{GitHub.442023}
 Die Schnittstelle ist definiert als Python Klasse \textit{gym.Env}, von welcher weitere Klassen erben und die vorgeschriebenen Funktionen zum Zeitschritt und zum Zurücksetzen der Simulation implementieren. \footcite[Vgl.][S. 4]{Schuderer.2021}
-Der Werkzeugkasten von OpenAI fokussiert sich auf einen Episoden ähnlichen Rahmen, in welchem der Agent durch zunächst zufälliges Auswählen von Interaktionen lernt. \footcite[Vgl.][S. 1]{Brockman.2016}
+Der Werkzeugkasten von OpenAI fokussiert sich auf einen „Episoden ähnlichen Rahmen“, in welchem der Agent durch zunächst zufälliges Auswählen von Interaktionen lernt. \footcite[Vgl.][S. 1]{Brockman.2016}
 Weitere Entwicklungsentscheidungen des OpenAI Gym Werkzeugkastens umfassen z.B. die bewusst fehlende Schnittstelle des Agenten, die strikte Versionierung der Umgebung oder die standardmäßige Simulationsüberwachung. \footcite[Vgl.][S. 2f.]{Brockman.2016} % Welche Schnittstelle des Agenten ist hier gemeint? Oder die Implementierung des Agenten?
 
 Werden Lernumgebungen nach der Gym Schnittstelle oder nach eigener Definition für RL Anwendungen eingesetzt, kann sich deren Gestaltung unterschiedlich auf die Leistung der Anwendung auswirken. \footcite[Vgl.][S. 1]{Reda.2020}
@@ -69,7 +69,7 @@ Neben den beschriebenen Leistungsbezogenen Merkmalen sind die folgenden weiteren
 Aus Tabelle zwei lässt sich entnehmen, dass besonders die Nähe zur Realität ein wichtiges Auswahlkriterium ist.
 Im Kontext von verstärkendem Lernen im Robotik Bereich ist ein wichtiger Baustein die Physik-Engine zur Modellierung von Dynamiken. \footcite[Vgl.][S. 2]{Ayala.2020}
 
-\subsection{aktuelle Physik-Engines und Simulationsanwendungen}
+\subsection{Aktuelle Physik-Engines und Simulationsanwendungen}
 Innerhalb dieses Abschnittes wird aufgrund der Bedeutung der Physik-Engine für den Grad der Simulationsrealität eine Auswahl der aktuellen Physik-Engines und deren Simulationsanwendung betrachtet.
 
 \textit{Gazebo}

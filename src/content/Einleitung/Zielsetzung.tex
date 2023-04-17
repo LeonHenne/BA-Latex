@@ -1,6 +1,7 @@
 \section{Zielsetzung}
 
-Im Rahmen dieser Arbeit soll untersucht werden, ob die Integrierung eines RL basierten Gegenspielers in einer Simulation die Umgebung so beeinflussen kann, dass die erlernten Verhaltensmodelle, welche im Kontext von RL oftmals als Policies referenziert werden, robuster agieren unter den veränderten dynamischen Bedingungen und alternativen deterministischen Gegenspielern im Testszenario. 
+Im Rahmen dieser Arbeit soll eine Simulationsumgebung entwickelt werden, in welcher sich RL basierter Gegenspieler und deterministische Gegenspieler integrieren lassen.
+Anschließend ist zu Untersuchen, wie sich die Wahl des Trainingsgegenspielers auf das Leistungsverhalten der RL Modelle Verhaltensmodelle, im Kontext von RL oftmals als Policies referenziert, unter verändertem Testszenario auswirkt.
 
 Dazu soll eine kompetitive Simulationsumgebung entwickelt werden, in welcher sich zwei konkurrierender Spieler in Form von Flugobjekten spielerisch gegenseitig bekämpfen.
 In der Simulation werden folgende Policies in drei verschiedenen Szenarien trainiert.
@@ -12,7 +13,7 @@ In der Simulation werden folgende Policies in drei verschiedenen Szenarien train
 \end{itemize}
 
 Anschließend werden alle trainierten Policies in einem Testszenario untersucht.
-Das Testszenario verfügt dabei über festgelegte sich vom Training unterscheidende Eigenschaften, wie die Start- und Zielpositionen.
+Das Testszenario verfügt dabei über festgelegte sich vom Training unterscheidende Eigenschaften, wie Flugbahnen, oder Start- und Zielpositionen.
 Außerdem wird ein deterministischen Gegenspieler unter im Gegensatz zum Training, veränderten Handlungspräferenzen eingesetzt.
 Bei der Untersuchung werden jeweils die folgenden Variablen als Key Performance Indicator (KPI) betrachtet.
 \begin{itemize}
@@ -21,5 +22,5 @@ Bei der Untersuchung werden jeweils die folgenden Variablen als Key Performance 
     \item Anzahl an unbeabsichtigten Abstürzen
 \end{itemize}
 
-Aus der Auswertung des Testszenarios kann der Effekt des RL basierten Gegenspielers auf die Robustheit evaluiert werden, indem die Leistungsdiskrepanz zwischen Trainings- und Testszenario mit der des regelbasierten Gegenspieler und der der Domain Randomization verglichen wird.
+Durch die Auswertung des Testszenarios kann der Effekt des RL basierten Gegenspielers auf die Robustheit evaluiert werden, indem die Leistungsdiskrepanz zwischen Trainings- und Testszenario mit der des regelbasierten Gegenspieler und der der Domain Randomization verglichen wird.
 
