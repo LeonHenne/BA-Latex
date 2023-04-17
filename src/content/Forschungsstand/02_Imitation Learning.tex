@@ -20,3 +20,22 @@ Einzelne Prozessschritte können sich dabei je nach Anwendungsgebiet unterscheid
     \label{abb:IL-process-flowchart}
 \end{figure}
 \footnotetext{Enthalten in: \cite[][S. 4]{Hussein.2017}}
+
+Algorithmen des imitierenden Lernen unterscheiden sich in der Literatur nach den Begriffen \textit{on-policy} und \textit{off-policy}. \footcite[Vgl.][S. 3]{Ashwin.2020}
+Dabei werden zum einen erlernte Strategien in der Umgebung ausgeführt und mittels Experten evaluiert, zum anderen werden lediglich die Expertendemonstrationen verwendet. \footcite[Vgl.][S. 3]{Ashwin.2020}
+DAgger stellt ein \textit{on-policy} Algorithmus dar, welcher zu jeder Iteration die Optimierung aller bisher beobachteten Aktions-Zustands Paare vornimmt. \footcite[Vgl.][S. 5]{attia.2018}
+Behavioral Cloning als \textit{off-policy} Algorithmus erlernt hingegen die direkte Übersetzung der Zustands-und Umgebungsinformationen zu ihren Aktionen, ähnlich einem Label unter überwachtem Lernen. \footcite[Vgl.][S. 4]{fang.2019}
+
+Insgesamt kann der Einsatz von IL unter anderem folgende Vorteile verzeichnen. \footcite[Vgl.][S. 1]{fang.2019}
+\begin{itemize}
+    \item Verbesserung der Anpassungsfähigkeit hinsichtlich neuer Umgebungen
+    \item Erhöhung der Lerneffizienz aufgrund schnellerer Übertragung von Wissen
+    \item Kompatibilität mit anderen Algorithmen des maschinellen Lernens wie z.B. RL
+\end{itemize}
+
+Aufgrund der interdisziplinären Natur von IL ergeben sich jedoch wie folgt auch eine Reihe von Herausforderungen. \footcite[Vgl.][S. 4f.]{Hussein.2017}
+\begin{itemize}
+    \item Der IL Prozess ist sowohl während der Sammlung von Demonstrationsdaten sowie während des Trainingsverlaufs anfällig für Rauschen und Fehler der Sensorik.
+    \item Fähigkeiten, Aufbau und Freiheitsgrade des lernenden Modells und des Experten müssen bestmöglich übereinstimmen.
+    \item Anwendungen lassen sich aufgrund ihres Echtzeitbezugs und Limitierungen der Rechenkapazitäten nur schwierig hinsichtlich hoher Freiheitsgrade skalieren.
+\end{itemize}
