@@ -1,7 +1,7 @@
 \section{Programmanforderungen}
 
-Für die Durchführung des Laborexperiments ist ein Softwareprogramm anzufertigen, welches in der Lage ist, die zuvor beschriebene Methodik umzusetzen.
-In diesem Kapitel werden die dafür bestehende technische und funktionale Anforderungen genauer untersucht und thematisiert. 
+Für die Durchführung des Laborexperiments wird ein Softwareprogramm implementiert, welches in der Lage ist, die zuvor beschriebene Methodik umzusetzen.
+In diesem Kapitel werden die dafür bestehende technische und funktionale Anforderungen genauer thematisiert. 
 
 % allgemeine Programmanforderung
 Eine allgemeine Anforderung besteht in der Wahl einer Entwicklungssprache, welche die Entwicklung der Simulation anhand von Softwareframeworks, und zugleich die Integration mit Algorithmen des verstärkenden Lernens erlaubt.
@@ -12,7 +12,7 @@ Durch die Dokumentierung kann ein gleiches Abbild der Softwareumgebung auf ander
 
 Die übergeordnete Hauptaufgabe der Simulation ist die Generierung von Trainingsdaten für die Optimierung von Strategien mittels RL.
 Die Qualität der Simulation und besonders der Grad des Realismus spielen dabei besonders für die spätere Auswertung der Robustheit einzelner Policies eine wichtige Rolle.
-In diesem Abschnitt wird diese Anforderung zu mehreren kleineren Bedingungen getrennt, welche im Entwicklungsprozess umzusetzen sind.
+In diesem Abschnitt wird die Hauptaufgabe in mehrere Anforderungen unterteilt, welche im Entwicklungsprozess umzusetzen sind.
 
 % Programmanforderung der Gymnasium Schnittstelle
 Aus der Betrachtung des aktuellen Stands der Forschung und der Praxis für die Entwicklung von Simulationen geht hervor, dass besonders das OpenAI Gym Framework bzw. dessen Nachfolger Gymnasium in diesem Kontext ein wichtiger Bestandteil ist.
@@ -26,7 +26,7 @@ Die Randomisierung dieser Koordinaten soll über eine Variable an- und abgeschal
 Als Spielgebiet wird eine flache feste Ebene auf der Höhe Null eingesetzt, über dessen der drei dimensionale Raum unbegrenzt in X-, Y-, und Z-Richtung zur Verfügung steht.
 
 Eine weitere Funktionen beinhaltet die Definition des \textbf{Beobachtungsraums}, also welche Informationen für den Agenten Wahrnehmbar sind. 
-In der beschriebenen Simulation soll der Agent die Position, die Ausrichtung, die dreidimensionale Geschwindigkeit der Drohne und die Geschwindigkeit der Rotatoren wahrnehmen. 
+In der beschriebenen Simulation soll der Agent die Position, die Ausrichtung, die Richtungsgeschwindigkeit der Drohne und die Geschwindigkeit der Rotatoren wahrnehmen. 
 Jede diese Eigenschaften wird von der verteidigenden Drohne und zusätzlich von der angreifenden Drohne wahrgenommen. 
 Insgesamt stelle der Beobachtungsraum somit ein Datenobjekt dar, welches alle Informationen wie Koordinaten, Geschwindigkeiten und Drehzahlen beinhalte.
 
@@ -39,7 +39,7 @@ Führt der Agent eine Aktion seines Handlungsraums aus, wird die Implementierung
 In dieser muss deklariert sein, wie sich die gewählte Aktion auf den Zustand der Drohnen auswirkt.
 Während jedes Zeitschritts der Simulation sind dabei die Kriterien zum Zurücksetzen der Simulation zu prüfen.
 
-Im Anwendungsbereich dieser Arbeit ist die Simulation Zurücksetzen, sobald das Abfangen der angreifenden Drohne erfolgt ist, oder eine der Drohnen in Kontakt mit dem Untergrund kommt.
+Im Anwendungsbereich dieser Arbeit ist die Simulation zurücksetzen, sobald das Abfangen der angreifenden Drohne erfolgt ist, oder eine der Drohnen in Kontakt mit dem Untergrund kommt.
 Das Gymnasium Framework definiert die \textbf{Rücksetzfunktion}, welche den initialen Simulationszustand herstellt, sobald ein Kriterium erfüllt ist.
 Durch die Schrittfunktion ist abschließend die neue Wahrnehmung der Simulation, die Erfüllung des Rücksetzkriteriums und der Belohnungswert zurückzugeben.
 
@@ -52,7 +52,7 @@ Die Anforderungen dieser Optimierung der Aktionen werden in der nachfolgenden Se
 
 Das Optimierungsverfahren trägt die Aufgabe zur Bestimmung der bestmöglichen Aktion zu jedem Zeitschritt der Simulation.
 Dabei ist die Strategie zur Steuerung des Quadrokopters mittels RL-Algorithmus zu optimieren.
-Hierfür soll ein RL-Algorithmus des aktuellen Stands der Forschung und der Praxis eingesetzt werden.
+%Hierfür soll ein RL-Algorithmus des aktuellen Stands der Forschung und der Praxis eingesetzt werden.
 Da die eigene Implementierung des RL-Algorithmus nicht im Fokus dieser Arbeit liegt, werden frei verfügbare Softwarebibliotheken verwendet.
 Eine Bibliothek welche eine Vielzahl an RL-Algorithmen beinhaltet ist Stable-Baselines3 nach \cite[]{Raffin.2021}.
 Die Softwarebibliothek integriert weitere Bibliotheken wie Tensorboard zum Messen von Trainings- und Evalutationskennzahlen, was die Durchführung der Forschungsmethodik unterstützt.
@@ -60,7 +60,7 @@ Weiterhin ist eine umfangreiche Dokumentation zur Implementierung von RL Algorit
 Aus der Softwarebibliothek Stable-Baselines3 sollen der A2C- und PPO- Algorithmus zum Optimieren je einer Policy in jedem Trainingsszenario eingesetzt werden. 
 
 Der Trainingsprozess beinhaltet im ersten Schritt die Bestimmung der unabhängigen Variablen. 
-In Kontext unserer Arbeit ist dies die Wahl des Trainingsszenarien, dessen Eigenschaften in der Simulation einzustellen sind.
+In Kontext unserer Arbeit ist dies die Wahl des Trainingsszenarios, dessen Eigenschaften in der Simulation einzustellen sind.
 Alle Eigenschaften der Szenarios sollen über die Veränderung eines Parameters als zentrale Schnittstelle im Programm auswählbar sein.
 Anschließend sind die gewählten Metriken anzugeben, welche im Trainingsprozess erfasst werden sollen.
 Diese beinhalten die durchschnittliche Episodenlänge und kumulierte Belohnung sowie die Erfolgsrate des Zusammenstoßes beider Drohnen, über alle im Trainingsprozess evaluierten Strategien.
