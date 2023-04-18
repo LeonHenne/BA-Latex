@@ -57,10 +57,10 @@ Neben der zusätzlichen Randomisierung des Zielpunktes wird außerdem ein zum Tr
 
 \subsection{Messung der Robustheit von RL Policies}
 
-Die in den Testszenarien betrachteten abhängigen Variablen sind die erzielte kumulierte Belohnung, dessen Varianz sowie die Anzahl an unbeabsichtigten Abstürzen.
+Die in den Testszenarien betrachteten abhängigen Variablen sind die erzielte kumulierte Belohnung, dessen Varianz sowie die Anzahl an unbeabsichtigten Misserfolgen.
 Die kumulierte Belohnung und dessen Varianz stellen wie bereits beschrieben in der Forschung wichtige Kenngrößen dar, um die Robustheit von RL Policies zu bestimmen.
 Als Robustheit wird im Rahmen dieser Arbeit die Signifikanz und Stabilität einer Leistungsdiskrepanz von Modellen zwischen Trainings- und Testszenarien definiert.
-Die Metrik der Anzahl von unbeabsichtigten Abstürzen spiegelt im behandelten Anwendungsfall zusätzlich das Fehlschlagen der trainierten Strategie wider.
+Die Metrik der Anzahl von unbeabsichtigten Misserfolgen spiegelt im behandelten Anwendungsfall das Fehlschlagen der trainierten Strategie wider die gegnerische Drohne nicht abfangen zu können.
 Mit der Auswahl der Metriken werden die Strategieeigenschaften der maximalen Strategieleistung, der Leistungsabweichung und der Strategiesicherheit deutlich.
 Aus der Abweichung zwischen dem Leistungsverhalten während des Trainings und während des Tests, soll so die Robustheit von RL Policies erkennbar und messbar gestaltet werden.
 Der Fokus liegt dabei auf der Messung der Robustheit von den optimierten Strategien aus Szenario eins, drei und vier.
@@ -75,7 +75,7 @@ Die nachfolgenden bereits zu Beginn angeführten Hypothesen beinhalten wie im vo
     % verschiedene Aspekte: max. Reward, Stabilität des Rewards, Fehlschlag von Strategien
     \item \textit{Die im Testszenario erzielte kumulierte Belohnung ist unter Verwendung der Policy aus dem Training mit RL basiertem Gegenspieler signifikant und zuverlässig höher als die Policy aus dem Training mit regelbasiertem Gegenspieler.}
     \item \textit{Die Varianz der im Testszenario erzielten Belohnung ist unter Verwendung der Policy aus dem Training mit RL basiertem Gegenspieler signifikant und zuverlässig geringer als die Policy aus dem Training mit regelbasiertem Gegenspieler.}
-    \item \textit{Die im Testszenario erreichte Anzahl von unbeabsichtigten Abstürzen ist unter Verwendung der Policy aus dem Training mit RL basiertem Gegenspieler signifikant und zuverlässig geringer als die Policy aus dem Training mit regelbasiertem Gegenspieler.}
+    \item \textit{Die im Testszenario erreichte Anzahl von unbeabsichtigten Misserfolgen ist unter Verwendung der Policy aus dem Training mit RL basiertem Gegenspieler signifikant und zuverlässig geringer als die Policy aus dem Training mit regelbasiertem Gegenspieler.}
 \end{enumerate}
 
 Jede der drei oben genannten Behauptungen wird in zwei statistischen Tests ausgewertet.
@@ -110,14 +110,14 @@ Fasst man diesen Aufbau der statistischen Signifikanztests zusammen, können fol
 
 \textbf{Gleichheit des dritten Messwerts}
 \begin{itemize}
-    \item \textbf{Hypothese H0:} \textit{Die erreichte Anzahl von unbeabsichtigten Abstürzen ist im dritten Testszenario ist signifikant gleich zu der des ersten Testszenarios.}
-    \item \textbf{Hypothese H1:} \textit{Die erreichte Anzahl von unbeabsichtigten Abstürzen ist im dritten Testszenario ist signifikant unterschiedlich zu der des ersten Testszenarios.}
+    \item \textbf{Hypothese H0:} \textit{Die erreichte Anzahl von unbeabsichtigten Misserfolgen ist im dritten Testszenario ist signifikant gleich zu der des ersten Testszenarios.}
+    \item \textbf{Hypothese H1:} \textit{Die erreichte Anzahl von unbeabsichtigten Misserfolgen ist im dritten Testszenario ist signifikant unterschiedlich zu der des ersten Testszenarios.}
 \end{itemize}
 
 \textbf{Verschlechterung des dritten Messwerts}
 \begin{itemize}
-    \item \textbf{Hypothese H0:} \textit{Die erreichte Anzahl von unbeabsichtigten Abstürzen ist im dritten Testszenario ist signifikant höher zu der des ersten Testszenarios.}
-    \item \textbf{Hypothese H1:} \textit{Die erreichte Anzahl von unbeabsichtigten Abstürzen ist im dritten Testszenario ist signifikant geringer zu der des ersten Testszenarios.}
+    \item \textbf{Hypothese H0:} \textit{Die erreichte Anzahl von unbeabsichtigten Misserfolgen ist im dritten Testszenario ist signifikant höher zu der des ersten Testszenarios.}
+    \item \textbf{Hypothese H1:} \textit{Die erreichte Anzahl von unbeabsichtigten Misserfolgen ist im dritten Testszenario ist signifikant geringer zu der des ersten Testszenarios.}
 \end{itemize}
 
 Die Auswahl des Signifikanztests wird anhand der Wahrscheinlichkeit einer vorliegenden Normalverteilung vorgenommen.

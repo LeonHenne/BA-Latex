@@ -79,7 +79,7 @@ Durch diesen Transfer soll eine hohe Qualität des RL-Modells gewährleistet wer
 \subsection{Anforderungen des Laborexperiments}
 
 Anhand der Implementierung des Laborexperiments sollen die notwendigen Messdaten erhoben, die Forschungshypothesen evaluiert, und die Forschungsfrage beantwortet werden.
-Dazu ist es notwendig die beschriebenen Metriken, also die kumulierte Belohnung, dessen Varianz und die Anzahl an Abstürzen, zu allen Policies im Testszenario zu erfassen.
+Dazu ist es notwendig die beschriebenen Metriken, also die kumulierte Belohnung, dessen Varianz und die Anzahl an Misserfolgen, zu allen Policies im Testszenario zu erfassen.
 Das Testszenario wird durch eine Instanz der Simulationsumgebung repräsentiert, die eine zum Training veränderte Situation beinhaltet.
 
 Die Abweichung der Domäne zu den Trainingsszenarien wird durch die zusätzliche Randomisierung des Zielpunktes und durch die Verbesserung des regelbasierten Gegenspielers erzielt. 
@@ -92,7 +92,7 @@ Anschließend ist jede Policy in 100 verschiedenen Episoden auszuführen, und de
 
 \textbf{Konkrete Beschreibung der Implementierungsanforderungen des Enhanced Rule-Based Enemy}
 
-Innerhalb eines Testszenarios sind zu jedem Zeitschritt die aktuelle Belohnung zu speichern und zu Messen, ob ein Absturz der Drohne vorliegt.
+Innerhalb eines Testszenarios sind zu jedem Zeitschritt die aktuelle Belohnung zu speichern und zu Messen, ob ein Misserfolg der Drohne vorliegt.
 Beide Variablen folgen dem Format einer Zeitreihe über den Verlauf der Testsimulation.
 Das Programm zur Auswertung muss nach 100-facher Ausführung der Policy im Testszenario die Kennzahlen der durchschnittlichen Belohnung und dessen Varianz berechnen.
 Zur Dokumentation und für die weitere Auswertung mittels statistischer Tests sind die Messdaten als kommaseperierte Wertedatei (CSV) zu speichern.
