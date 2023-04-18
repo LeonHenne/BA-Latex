@@ -86,8 +86,9 @@ Die Abweichung der Domäne zu den Trainingsszenarien wird durch die zusätzliche
 Die Verteilung des Zielpunktes soll dabei ähnlich zu den Startkoordinaten so gewählt sein, das sich die verteidigende Drohne näher an ihr befindet.
 Das Abfangen eines direkten Anflugs der anzugreifenden Drohne bleibt dadurch möglich.
 Damit die Validität der Messdaten gegeben ist, muss sichergestellt sein, dass alle Strategien den gleichen Testbedingungen und demnach den selben zufälligen Start- und Zielpunkten unterliegen.
-Hierfür sind vorab 100 Elemente aus den Verteilungen der Start- und Zielkoordinaten zu generieren und zu speichern.
-Anschließend ist jede Policy in den gleichen 100 verschiedenen Episoden auszuführen, und deren Leistungsverhalten zu messen.
+%Hierfür sind vorab 100 Elemente aus den Verteilungen der Start- und Zielkoordinaten zu generieren und zu speichern.
+Hierfür ist ein Zufallswert zu übergeben worunter bei jedem Programmstart die gleichen zufälligen Testbedingungen hergestellt werden.
+Anschließend ist jede Policy in 100 verschiedenen Episoden auszuführen, und deren Leistungsverhalten zu messen.
 
 \textbf{Konkrete Beschreibung der Implementierungsanforderungen des Enhanced Rule-Based Enemy}
 
@@ -105,4 +106,4 @@ Die genaue Implementierung dieser Tests soll ebenfalls durch zusätzliche Softwa
 Anhand der Testergebnisse sind durch das Programm die H0 und H1 Hypothesen zu evaluieren und darauf aufbauend die Forschungshypothesen zu bestätigen oder zu verwerfen.
 Zusätzlich zu den Messdaten der Testszenarien sind auch die Ergebnisse der Signifikanztests zu speichern.
 Schlussendlich sind in einer Tabelle zu jeder Forschungshypothese die Ergebnisse der statistischen Tests anzuführen.
-Durch die gesamteinheitliche Betrachtung der Robustheitsmerkmale kann final die Forschungsfrage beantwortet werden.
+Durch die gesamte einheitliche Betrachtung der Robustheitsmerkmale kann final die Forschungsfrage beantwortet werden.
