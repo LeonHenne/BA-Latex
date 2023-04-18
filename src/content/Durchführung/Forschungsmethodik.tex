@@ -79,51 +79,51 @@ Die nachfolgenden bereits zu Beginn angeführten Hypothesen beinhalten wie im vo
 \end{enumerate}
 
 Jede der drei oben genannten Behauptungen wird in zwei statistischen Tests ausgewertet.
-Dabei wird zum einen ein Signifikanztest zur Ungleichheit der Verteilungen und zum anderen ein Signifikanztest zur positiveren Verteilung der Metrik durch RL basierten Gegenspieler durchgeführt.
-Die Thesen zur ungleichen oder positiveren Verteilung der Metrik durch trainierten Gegenspieler werden in den Signifikanztests als H0 Hypothese eingesetzt.
-Die entsprechenden Gegenhypothesen formulieren jeweils die gegensätzliche Annahme mit regelbasiertem Gegenspieler. 
+Dabei wird zum einen ein Signifikanztest zur Gleichheit der Verteilungen und zum anderen ein Signifikanztest zur Verschlechterung der Metrik durch RL basierten Gegenspieler durchgeführt.
+Die Thesen zur gleichen oder schlechteren Verteilung der Metrik durch trainierten Gegenspieler werden in den Signifikanztests als H0 Hypothese eingesetzt.
+Die entsprechenden Gegenhypothesen formulieren jeweils die gegensätzliche Annahme einer Ungleichheit der Verteilungen oder einer Verbesserung der Metrik. 
 Fasst man diesen Aufbau der statistischen Signifikanztests zusammen, können folgende Testhypothesen festgelegt werden. 
 
-\textbf{Ungleichheit des ersten Messwerts}
+\textbf{Gleichheit des ersten Messwerts}
 \begin{itemize}
-    \item \textbf{Hypothese H0:} \textit{Die erzielte kumulierte Belohnung im dritten Testszenario ist signifikant unterschiedlich zu der des ersten Testszenarios.}
-    \item \textbf{Hypothese H1:} \textit{Die erzielte kumulierte Belohnung im dritten Testszenario ist signifikant gleich zu der des ersten Testszenarios.}
+    \item \textbf{Hypothese H0:} \textit{Die erzielte kumulierte Belohnung im dritten Testszenario ist signifikant gleich zu der des ersten Testszenarios.}
+    \item \textbf{Hypothese H1:} \textit{Die erzielte kumulierte Belohnung im dritten Testszenario ist signifikant unterschiedlich zu der des ersten Testszenarios.}
 \end{itemize}
 
-\textbf{Verbesserung des ersten Messwerts}
+\textbf{Verschlechterung des ersten Messwerts}
 \begin{itemize}
-    \item \textbf{Hypothese H0:} \textit{Die erzielte kumulierte Belohnung im dritten Testszenario ist signifikant höher zu der des ersten Testszenarios.}
-    \item \textbf{Hypothese H1:} \textit{Die erzielte kumulierte Belohnung im dritten Testszenario ist signifikant geringer zu der des ersten Testszenarios.}
+    \item \textbf{Hypothese H0:} \textit{Die erzielte kumulierte Belohnung im dritten Testszenario ist signifikant geringer zu der des ersten Testszenarios.}
+    \item \textbf{Hypothese H1:} \textit{Die erzielte kumulierte Belohnung im dritten Testszenario ist signifikant höher zu der des ersten Testszenarios.}
 \end{itemize}
 
-\textbf{Ungleichheit des zweiten Messwerts}
+\textbf{Gleichheit des zweiten Messwerts}
 \begin{itemize}
-    \item \textbf{Hypothese H0:} \textit{Die Varianz der erzielten Belohnung im dritten Testszenario ist signifikant unterschiedlich zu der des ersten Testszenarios.}
-    \item \textbf{Hypothese H1:} \textit{Die Varianz der erzielten Belohnung im dritten Testszenario ist signifikant gleich zu der des ersten Testszenarios.}
+    \item \textbf{Hypothese H0:} \textit{Die Varianz der erzielten Belohnung im dritten Testszenario ist signifikant gleich zu der des ersten Testszenarios.}
+    \item \textbf{Hypothese H1:} \textit{Die Varianz der erzielten Belohnung im dritten Testszenario ist signifikant unterschiedlich zu der des ersten Testszenarios.}
 \end{itemize}
 
-\textbf{Verbesserung des zweiten Messwerts}
+\textbf{Verschlechterung des zweiten Messwerts}
 \begin{itemize}
-    \item \textbf{Hypothese H0:} \textit{Die Varianz der erzielten Belohnung im dritten Testszenario ist signifikant geringer zu der des ersten Testszenarios.}
-    \item \textbf{Hypothese H1:} \textit{Die Varianz der erzielten Belohnung im dritten Testszenario ist signifikant höher zu der des ersten Testszenarios.}
+    \item \textbf{Hypothese H0:} \textit{Die Varianz der erzielten Belohnung im dritten Testszenario ist signifikant höher zu der des ersten Testszenarios.}
+    \item \textbf{Hypothese H1:} \textit{Die Varianz der erzielten Belohnung im dritten Testszenario ist signifikant geringer zu der des ersten Testszenarios.}
 \end{itemize}
 
-\textbf{Ungleichheit des dritten Messwerts}
+\textbf{Gleichheit des dritten Messwerts}
 \begin{itemize}
-    \item \textbf{Hypothese H0:} \textit{Die erreichte Anzahl von unbeabsichtigten Abstürzen ist im dritten Testszenario ist signifikant unterschiedlich zu der des ersten Testszenarios.}
-    \item \textbf{Hypothese H1:} \textit{Die erreichte Anzahl von unbeabsichtigten Abstürzen ist im dritten Testszenario ist signifikant gleich zu der des ersten Testszenarios.}
+    \item \textbf{Hypothese H0:} \textit{Die erreichte Anzahl von unbeabsichtigten Abstürzen ist im dritten Testszenario ist signifikant gleich zu der des ersten Testszenarios.}
+    \item \textbf{Hypothese H1:} \textit{Die erreichte Anzahl von unbeabsichtigten Abstürzen ist im dritten Testszenario ist signifikant unterschiedlich zu der des ersten Testszenarios.}
 \end{itemize}
 
-\textbf{Verbesserung des dritten Messwerts}
+\textbf{Verschlechterung des dritten Messwerts}
 \begin{itemize}
-    \item \textbf{Hypothese H0:} \textit{Die erreichte Anzahl von unbeabsichtigten Abstürzen ist im dritten Testszenario ist signifikant geringer zu der des ersten Testszenarios.}
-    \item \textbf{Hypothese H1:} \textit{Die erreichte Anzahl von unbeabsichtigten Abstürzen ist im dritten Testszenario ist signifikant höher zu der des ersten Testszenarios.}
+    \item \textbf{Hypothese H0:} \textit{Die erreichte Anzahl von unbeabsichtigten Abstürzen ist im dritten Testszenario ist signifikant höher zu der des ersten Testszenarios.}
+    \item \textbf{Hypothese H1:} \textit{Die erreichte Anzahl von unbeabsichtigten Abstürzen ist im dritten Testszenario ist signifikant geringer zu der des ersten Testszenarios.}
 \end{itemize}
 
 Die Auswahl des Signifikanztests wird anhand der Wahrscheinlichkeit einer vorliegenden Normalverteilung vorgenommen.
 Kann nach einem Kolmogorov- oder Shapiro- Test zu einem Signifikanzniveau von 10\% eine Normalverteilung angenommen werden, lässt sich zur Überprüfung der Hypothesen ein T-Test einsetzten.
 Ist keine Normalverteilung gegeben, wird ein Mann-Whitney U Test verwendet.
-Liegt schlussendlich der P-Wert des T- oder Mann-Whitney U Signifikanztests zur Prüdung eines Unterschieds unter 10\%, so wird die H0 Hypothese angenommen und die Abweichung in den Robustheitsdaten als signifikant betrachtet.
-Zeigen die anschließenden statistischen Signifikanztests, dass eine Metrik sich durch die Auswahl des Trainingsszenarios mit trainiertem Gegenspieler verbessert, wird die Verbesserung als signifikant wahrgenommen, und die Hypothese bestätigt.
+Liegt schlussendlich der P-Wert des T- oder Mann-Whitney U Signifikanztests zur Prüdung eines Unterschieds unter 10\%, so wird die H0 Hypothese abgelehnt und die Abweichung in den Robustheitsdaten als signifikant betrachtet.
+Zeigt der anschließende statistische Signifikanztest einen P-Wert unter dem Signifikanzniveau, wird H0 abgelehnt und die Verbesserung mittels RL Gegenspieler als signifikant wahrgenommen.
 Die Beantwortung der Forschungsfrage erfolgt abschließend mit der Betrachtung der angenommenen oder abgelehnten Forschungshypothesen.
 So werden die verschiedenen Merkmale der RL Policies untersucht und es kann festgestellt werden, welche Effekte auf Robustheit erzielt worden sind.
