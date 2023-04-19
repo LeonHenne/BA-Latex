@@ -88,16 +88,16 @@ Das Abfangen eines direkten Anflugs der anzugreifenden Drohne bleibt dadurch mö
 Damit die Validität der Messdaten gegeben ist, muss sichergestellt sein, dass alle Strategien den gleichen Testbedingungen und demnach den selben zufälligen Start- und Zielpunkten unterliegen.
 %Hierfür sind vorab 100 Elemente aus den Verteilungen der Start- und Zielkoordinaten zu generieren und zu speichern.
 Hierfür ist ein Zufallswert zu übergeben worunter bei jedem Programmstart die gleichen zufälligen Testbedingungen hergestellt werden.
-Anschließend ist jede Policy in 100 verschiedenen Episoden auszuführen, und deren Leistungsverhalten zu messen.
+Anschließend ist jede Policy in mehrfachen verschiedenen Episoden auszuführen, und deren Leistungsverhalten zu messen.
 
 \textbf{Konkrete Beschreibung der Implementierungsanforderungen des Enhanced Rule-Based Enemy}
 
 Innerhalb eines Testszenarios sind zu jedem Zeitschritt die aktuelle Belohnung zu speichern und zu Messen, ob ein Misserfolg der Drohne vorliegt.
 Beide Variablen folgen dem Format einer Zeitreihe über den Verlauf der Testsimulation.
 Das Programm zur Auswertung muss nach 100-facher Ausführung der Policy im Testszenario die Kennzahlen der durchschnittlichen Belohnung und dessen Varianz berechnen.
-Zur Dokumentation und für die weitere Auswertung mittels statistischer Tests sind die Messdaten als kommaseperierte Wertedatei (CSV) zu speichern.
+Zur Dokumentation und für die weitere Auswertung mittels statistischer Tests sind die Messdaten zu speichern.
 
-Durch das Laden der Messdaten aus den CSV-Dateien in entsprechende Datenobjekte liegen alle Metriken zur Bestimmung des statistischen Tests vor.
+Durch das Laden der Messdaten aus Dateien in entsprechende Datenobjekte liegen alle Metriken zur Bestimmung des statistischen Tests vor.
 Anschließend sind die Daten durch das Auswertungsprogramm auf ihre Verteilung hin zu untersuchen.
 Hierfür ist ein Kolmogorov- oder Shapiro- Test, anhand verfügbarer Softwarebibliotheken zu verwenden.
 Können die Messdaten als normalverteilt angenommen werden, gilt es ein T-Test, andernfalls einen Mann-Whitney U Test zur Überprüfung der Hypothesen einzusetzen.

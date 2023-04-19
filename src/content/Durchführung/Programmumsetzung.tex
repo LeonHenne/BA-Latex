@@ -179,17 +179,60 @@ Die Umsetzung des Optimierungsverfahrens eines RL-Modells wird in der Python Dat
 \begin{itemize}
     \item train.py process
     \item Imitation Learning process
+    \item Beschreibung der Regelbasierten Policies
 \end{itemize}
 
 \subsection{Programmumsetzung zur Laborexperiments}
-\begin{itemize}
-    \item test.py
-    \item - Hauptaufgabe -> Erzeugung der Messdaten
-    \item - Auswahl des Szenarios durch scenario\_requirements
-    \item - beliebige Anzahl an Iteration der Simulation durchlaufen
-    \item - Je Iteration werden Episode, Zeitschritt, Belohnung, Done, Truncated gespeichert
-    \item experiment\_evaluation.py
-    \item - Laden und Vorverarbeiten der Messdaten
-    \item - Durchführen der statischen Tests
-    \item - Auswertung der Testdaten und Bestimmung der Hypothesen
-\end{itemize}
+
+Als letzter Teil der Umsetzung wird die Durchführung des Experiments betrachtet.
+Kernaufgabe dieses Teils ist die Erhebung und Auswertung der Messdaten zu dem in der Einleitung des Kapitels verfassten Experimentaufbau.
+Die Erhebung der Testdaten erfolgt durch das \textit{test.py} Skript, die Auswertung durch das \textit{experiment\_evaluation.py} Skript.
+
+Mit der Ausführung des ersten Skripts wird ein Testklasse instanziiert und darin enthalten eine Simulationsobjekt nach den Eigenschaften des Testszenarios erzeugt.
+Die Bestimmung des zufälligen Zielpunktes folgt ebenso wie die Initialisierung der Verteidigerdrohne einer uniformen Verteilung bis zu 1,5 Meter um den Ursprung.
+Eine uniforme Verteilung fördert dabei die Varianz der Testszenarien und erhöht so die Validität des Experiments.
+Anders als bei der Initialisierung der Drohnen wird die Höhe des Zielpunktes stets auf 0,5 Meter festgelegt.
+
+\textbf{Hier die Umsetzung des Enhanced Rule-Based Enemy beschreiben}
+
+Alle Messdaten werden aus der hundertfachen Durchführung der Testsimulation erhoben.
+Zu jedem Zeitschritt jeder Episode wird die das RL-Modell bestimmte Aktion ausgeübt und eine Teilmenge dessen Resultats gemessen.
+Die Teilmenge umfasst die durch die Aktion unmittelbar ausgelöste Belohnung und einen Wahrheitswert, ob mit Aktion ein Misserfolg der Simulation eingegangen wurde.
+Beide Werte werden anschließend mit der aktuellen Episode und dem Zeitschritt einer Tabelle als Datensatz hinzugefügt.
+Nach dem erfolgreichem Durchlaufen aller Zeitschritte aller 100 Episoden wird die Tabelle als Komma separierte Wertedatei (CSV) gespeichert.
+
+Die erstellte Datei wird anknüpfend mittels \textit{experiment\_evaluation.py} ausgewertet, indem die Messdaten geladen, die Signifikanztests durchgeführt und daran die Hypothesen bestimmt werden.
+Für jeden diesen drei Schritte wurde eine Funktion entwickelt, welche im Skript aufgerufen wird.
+Zum Laden der Messdaten sind die Speicherpfade zweier Wertedateien anzugeben, woraufhin der Verlauf der Kennzahlen zu einzelnen Episoden aggregiert werden.
+Dabei wird zunächst die Episodenlänge, die kumulierte Belohnung und die Anzahl an Misserfolgen ermittelt.
+Zu dieser Basis kann die Abweichung der Belohnung je Episode zu dem Mittel aller kumulierten Belohnungen im Testprozess berechnet werden. 
+Nach dem Laden und Vorverarbeiten entspricht der Aufbau der Messdaten zweier Tabellen folgender Struktur.
+
+\begin{table}[]
+    \centering
+    \begin{tabular}{lllll}
+    Episode & Episodenlänge & \begin{tabular}[c]{@{}l@{}}kumulierte \\ Belohnung\end{tabular} & \begin{tabular}[c]{@{}l@{}}Belohnungsabweichung \\ zum Mittelwert\end{tabular} & Episodenmisserfolg \\
+    1 & 1931 & 13512 & 3192 & 0 \\
+    2 & 1579 & 8413 & 1873 & 1 \\
+    3 & 1431 & 16920 & 6308 & 0 \\
+    4 & 1944 & 6741 & 3701 & 1 \\
+    5 & 1508 & 10173 & 89 & 0
+    \end{tabular}
+\end{table}
+
+Im nächsten Schritt ist mittels statistischer Signifikanztests die Ähnlichkeit zu einer Normalverteilung sowie die ungleiche Verteilung und mögliche Verbesserung aller Metriken zu untersuchen.
+Die Implementierung der Signifikanztests wird im Rahmen dieser Arbeit durch die Softwarebibliothek SciPy bereitgestellt.
+Iterativ werden für alle Metriken beider Messtabellen die Ähnlichkeit zur Normalverteilung überprüft, um zwischen einem T-Test und einem Mann-Whitney U Test auszuwählen.
+Anschließend wird je Metrik der entsprechende Test zur Ungleichheit und Verbesserung ausgeführt, woraus je Test eine Teststatistik und ein P-Wert gespeichert wird.
+Liegt der P-Wert eines Tests unter dem Signikanzniveau von 10\% wird die H0 Hypothese abgelehnt und daraus schlussfolgernd die Ungleichheit oder Verbesserung der Metrik angenommen.
+Die Auswertung dieser Metriken aus dem Vergleich der Leistungsdaten zweier Strategien in den Testszenarien wird zweimal durchgeführt.
+Dabei werden die Leistungsunterschiede zwischen der Strategien aus Trainingsszenario eins und drei sowie aus Szenario eins und vier betrachtet.
+Abbildung X zeigt nachfolgend den Prozess des Laborexperiments als BPMN Modellierung auf. 
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[height=6cm]{lib/graphics/experimentflow.png}
+    \caption[BPMN Prozess des Laborexperiments]{BPMN Prozess des Laborexperiments\footnotemark}
+    \label{abb:experiment flow}
+\end{figure}
+\footnotetext{Eigene Darstellung}
