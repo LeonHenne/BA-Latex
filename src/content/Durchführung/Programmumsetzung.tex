@@ -42,6 +42,7 @@ Die nachfolgende Tabelle stellt die in Betracht gezogenen Drohnensimulationen de
     \caption{Gegenüberstellung von Auswahlkriterien und bekannten Drohnensimulationen}
     \label{tab:drone-simulation}
 \end{table}
+\footnotetext{Eigene Darstellung}
 
 Aus der Gegenüberstellung von Auswahlkriterien und aktuellen Simulation geht hervor, dass zunächst alle Simulationen eine Schnittstelle für die Entwicklungssprache bereitstellen.
 Dabei wurden native Schnittstellen sowie Schnittstellen aus zusätzlichen Softwarebibliotheken miteinbezogen.
@@ -107,7 +108,7 @@ Der Wertebereich des Richtungsvektors ist dabei von $[-1,-1,-1]$ bis $[1,1,1]$ d
 Das vierte Element spiegelt den Anteil der maximalen Geschwindigkeit von null bis eins wieder.
 
 % Step 
-Ist eine Aktion regelbasiert oder durch einen RL-Algorithmus bestimmt, wird diese als Parameter an die \textbf{Step-Funktion} weitergegeben.
+Ist eine Aktion regelbasiert oder durch einen RL-Modell bestimmt, wird diese als Parameter an die \textbf{Step-Funktion} weitergegeben.
 Auf der Ebene der DualDroneAviary Klasse kann die übergebene Aktion in Abhängigkeit vom anfangs initialisierten Wind abgewandelt werden.
 Der Windvektor wird in Abhängigkeit des Winkels zwischen Bewegungsrichtung der Drohne und des Windes zur Aktion hinzugefügt.
 Der Drohnenbewegungsrichtung wird die Windrichtung addiert und die Geschwindigkeit in Abhängigkeit des Eintreffwinkels vollständig postiv, negativ oder gar nicht beeinflusst.
@@ -129,6 +130,7 @@ Die Aufsummierung der Produkte aus den folgenden Kennzahlen und deren Gewichtung
     \item Lineare Belohnung der Geschwindigkeit
 \end{itemize}
 Eine Optimierung der Gewichte wurde durch Ausprobieren unterschiedlicher Gewichtskombinationen und Messen der entsprechenden Erfolgsrate erzielt.
+Zu jedem Zeitschritt eintretende Kennzahlen wurden aufgrund ihrer Häufigkeit in Fünfer Schritten, außerordentliche Belohnungen in 10000er Schritten untersucht.
 Insgesamt sind daraus folgende Log-Dateien entstanden, welche den Optimierungsprozess wiederspiegeln.
 
 \begin{figure}[htb]
@@ -186,27 +188,27 @@ Die Umsetzung des Optimierungsverfahrens eines RL-Modells wird in der Python Dat
 
 Als letzter Teil der Umsetzung wird die Durchführung des Experiments betrachtet.
 Kernaufgabe dieses Teils ist die Erhebung und Auswertung der Messdaten zu dem in der Einleitung des Kapitels verfassten Experimentaufbau.
-Die Erhebung der Testdaten erfolgt durch das \textit{test.py} Skript, die Auswertung durch das \textit{experiment\_evaluation.py} Skript.
+Die Erhebung der Testdaten erfolgt durch das \textit{test.py}, die Auswertung durch das \textit{experiment\_evaluation.py} Skript.
 
-Mit der Ausführung des ersten Skripts wird ein Testklasse instanziiert und darin enthalten eine Simulationsobjekt nach den Eigenschaften des Testszenarios erzeugt.
-Die Bestimmung des zufälligen Zielpunktes folgt ebenso wie die Initialisierung der Verteidigerdrohne einer uniformen Verteilung bis zu 1,5 Meter um den Ursprung.
+Mit der Ausführung des ersten Skripts wird ein Testklasse instanziiert und darin enthalten die Simulation nach den Eigenschaften des Testszenarios erzeugt.
+Zur zufälligen Bestimmung des Zielpunkts wird ebenso wie zur Initialisierung der Verteidigerdrohne, eine uniforme Verteilung bis zu 1,5 Meter um den Ursprung verwendet.
 Eine uniforme Verteilung fördert dabei die Varianz der Testszenarien und erhöht so die Validität des Experiments.
-Anders als bei der Initialisierung der Drohnen wird die Höhe des Zielpunktes stets auf 0,5 Meter festgelegt.
+Anders als bei der Initialisierung der Drohnen wird die Höhe des Zielpunktes stets auf 0,5 Meter festgelegt, um so Bodenkontakt und Simulationserfolg abzugrenzen.
 
 \textbf{Hier die Umsetzung des Enhanced Rule-Based Enemy beschreiben}
 
 Alle Messdaten werden aus der hundertfachen Durchführung der Testsimulation erhoben.
-Zu jedem Zeitschritt jeder Episode wird die das RL-Modell bestimmte Aktion ausgeübt und eine Teilmenge dessen Resultats gemessen.
+Zu jedem Zeitschritt jeder Episode wird durch das RL-Modell eine bestimmte Aktion ausgeübt und eine Teilmenge dessen Resultats gemessen.
 Die Teilmenge umfasst die durch die Aktion unmittelbar ausgelöste Belohnung und einen Wahrheitswert, ob mit Aktion ein Misserfolg der Simulation eingegangen wurde.
-Beide Werte werden anschließend mit der aktuellen Episode und dem Zeitschritt einer Tabelle als Datensatz hinzugefügt.
-Nach dem erfolgreichem Durchlaufen aller Zeitschritte aller 100 Episoden wird die Tabelle als Komma separierte Wertedatei (CSV) gespeichert.
+Beide Werte werden mit der aktuellen Episode und dem Zeitschritt einer Tabelle als Datensatz hinzugefügt.
+Nach dem erfolgreichem Durchlaufen aller Zeitschritte aller der 100 Episoden wird die Tabelle als Komma separierte Wertedatei (CSV) gespeichert.
 
 Die erstellte Datei wird anknüpfend mittels \textit{experiment\_evaluation.py} ausgewertet, indem die Messdaten geladen, die Signifikanztests durchgeführt und daran die Hypothesen bestimmt werden.
 Für jeden diesen drei Schritte wurde eine Funktion entwickelt, welche im Skript aufgerufen wird.
 Zum Laden der Messdaten sind die Speicherpfade zweier Wertedateien anzugeben, woraufhin der Verlauf der Kennzahlen zu einzelnen Episoden aggregiert werden.
 Dabei wird zunächst die Episodenlänge, die kumulierte Belohnung und die Anzahl an Misserfolgen ermittelt.
 Zu dieser Basis kann die Abweichung der Belohnung je Episode zu dem Mittel aller kumulierten Belohnungen im Testprozess berechnet werden. 
-Nach dem Laden und Vorverarbeiten entspricht der Aufbau der Messdaten zweier Tabellen folgender Struktur.
+Nach dem Laden und Vorverarbeiten entspricht der Aufbau der Messdaten zweier Tabellen ähnlich der Tabelle Sechs.
 
 \begin{table}[]
     \centering
@@ -218,16 +220,18 @@ Nach dem Laden und Vorverarbeiten entspricht der Aufbau der Messdaten zweier Tab
     4 & 1944 & 6741 & 3701 & 1 \\
     5 & 1508 & 10173 & 89 & 0
     \end{tabular}
+    \caption[Beispieltabelle der erhobenen aggregierten Messdaten]{Beispieltabelle der erhobenen aggregierten Messdaten}
 \end{table}
+\footnotetext{Eigene Darstellung}
 
 Im nächsten Schritt ist mittels statistischer Signifikanztests die Ähnlichkeit zu einer Normalverteilung sowie die ungleiche Verteilung und mögliche Verbesserung aller Metriken zu untersuchen.
 Die Implementierung der Signifikanztests wird im Rahmen dieser Arbeit durch die Softwarebibliothek SciPy bereitgestellt.
 Iterativ werden für alle Metriken beider Messtabellen die Ähnlichkeit zur Normalverteilung überprüft, um zwischen einem T-Test und einem Mann-Whitney U Test auszuwählen.
-Anschließend wird je Metrik der entsprechende Test zur Ungleichheit und Verbesserung ausgeführt, woraus je Test eine Teststatistik und ein P-Wert gespeichert wird.
+Anschließend wird je Metrik der entsprechende Test zur Ungleichheit und Verbesserung der Verteilung ausgeführt, woraus je Test eine Teststatistik und ein P-Wert gespeichert wird.
 Liegt der P-Wert eines Tests unter dem Signikanzniveau von 10\% wird die H0 Hypothese abgelehnt und daraus schlussfolgernd die Ungleichheit oder Verbesserung der Metrik angenommen.
-Die Auswertung dieser Metriken aus dem Vergleich der Leistungsdaten zweier Strategien in den Testszenarien wird zweimal durchgeführt.
-Dabei werden die Leistungsunterschiede zwischen der Strategien aus Trainingsszenario eins und drei sowie aus Szenario eins und vier betrachtet.
-Abbildung X zeigt nachfolgend den Prozess des Laborexperiments als BPMN Modellierung auf. 
+Insgesamt wird diese Auswertung der Leistungsdaten zweier Strategien zweimal durchgeführt.
+Dabei werden die erzielten Messdaten zwischen der Strategien aus Trainingsszenario eins und drei sowie aus Szenario eins und vier betrachtet.
+Der vollstände Prozess der Experiments kann auch als BPMN Modell wie in Abbildung Zehn dargestellt werden. 
 
 \begin{figure}[htb]
     \centering

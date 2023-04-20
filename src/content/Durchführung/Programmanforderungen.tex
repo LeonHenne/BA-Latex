@@ -85,12 +85,13 @@ Das Testszenario wird durch eine Instanz der Simulationsumgebung repräsentiert,
 Die Abweichung der Domäne zu den Trainingsszenarien wird durch die zusätzliche Randomisierung des Zielpunktes und durch die Verbesserung des regelbasierten Gegenspielers erzielt. 
 Die Verteilung des Zielpunktes soll dabei ähnlich zu den Startkoordinaten so gewählt sein, das sich die verteidigende Drohne näher an ihr befindet.
 Das Abfangen eines direkten Anflugs der anzugreifenden Drohne bleibt dadurch möglich.
+Im Testszenario soll die Verbesserung der anzugreifenden Drohne aus einer parabelförmigen anstatt geraden Fluglinie zum Zielpunkt bestehen.
+% Unabhängig der initialen Positionierung ist der Scheitelpunkt der Parabel zufällig orthogonal zum Mittelpunkt des direkten Kurs zu platzieren.
+% \textbf{Konkrete Beschreibung der Implementierungsanforderungen des Enhanced Rule-Based Enemy}
 Damit die Validität der Messdaten gegeben ist, muss sichergestellt sein, dass alle Strategien den gleichen Testbedingungen und demnach den selben zufälligen Start- und Zielpunkten unterliegen.
 %Hierfür sind vorab 100 Elemente aus den Verteilungen der Start- und Zielkoordinaten zu generieren und zu speichern.
 Hierfür ist ein Zufallswert zu übergeben worunter bei jedem Programmstart die gleichen zufälligen Testbedingungen hergestellt werden.
 Anschließend ist jede Policy in mehrfachen verschiedenen Episoden auszuführen, und deren Leistungsverhalten zu messen.
-
-\textbf{Konkrete Beschreibung der Implementierungsanforderungen des Enhanced Rule-Based Enemy}
 
 Innerhalb eines Testszenarios sind zu jedem Zeitschritt die aktuelle Belohnung zu speichern und zu Messen, ob ein Misserfolg der Drohne vorliegt.
 Beide Variablen folgen dem Format einer Zeitreihe über den Verlauf der Testsimulation.

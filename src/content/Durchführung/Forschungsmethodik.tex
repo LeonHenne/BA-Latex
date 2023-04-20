@@ -33,6 +33,8 @@ Die verteidigende Drohne verwendet dafür das Mittel einer bewussten Kollision.
 Beide Drohnen werden unter der Einschränkung ihrer Nähe zum Zielpunkt zufällig in einem drei dimensionalem Raum initialisiert, welcher nur horizontal einseitig beschränkt wird.
 Durch die einseitige Beschränkung des Flugraums wird der natürliche Untergrund dargestellt.
 Zu Beginn soll die verteidigenden Drohne näher am Zielpunkt als die angreifende Drohne starten, sodass stets ein Abfangen möglich ist.
+Während der Simulation wird die angreifende Drohne sich entweder regelbasiert auf einer geraden Linie, oder sich durch optimierte Aktionen, zum Zielpunkt bewegen.
+Die Bewegungsaktionen der verteidigenden Drohne werden durch ein sich optimierendes neuronales Netz bestimmt.
 Ist das Ziel einer der beiden Drohnen erreicht, oder besteht Kontakt mit dem Untergrund, so wird die Simulation beendet.
 
 \subsection{Erläuterung der Trainingsszenarien}
