@@ -57,11 +57,11 @@ Da die eigene Implementierung des RL-Algorithmus nicht im Fokus dieser Arbeit li
 Eine Bibliothek welche eine Vielzahl an RL-Algorithmen beinhaltet ist Stable-Baselines3 nach \cite[]{Raffin.2021}.
 Die Softwarebibliothek integriert weitere Bibliotheken wie Tensorboard zum Messen von Trainings- und Evalutationskennzahlen, was die Durchführung der Forschungsmethodik unterstützt.
 Weiterhin ist eine umfangreiche Dokumentation zur Implementierung von RL Algorithmen in Verbindung mit dem Gymnasium Framework vorhanden, was die Umsetzung des Trainingsprozesses in Verbindung mit der Simulationsumgebung erleichtert.
-Aus der Softwarebibliothek Stable-Baselines3 sollen der A2C- und PPO- Algorithmus zum Optimieren je einer Policy in jedem Trainingsszenario eingesetzt werden. 
+Aus der Softwarebibliothek Stable-Baselines3 sollen der PPO-Algorithmus zum Optimieren je einer Policy in jedem Trainingsszenario eingesetzt werden. 
 
 Der Trainingsprozess beinhaltet im ersten Schritt die Bestimmung der unabhängigen Variablen. 
 In Kontext unserer Arbeit ist dies die Wahl des Trainingsszenarios, dessen Eigenschaften in der Simulation einzustellen sind.
-Alle Eigenschaften der Szenarios sollen über die Veränderung eines Parameters als zentrale Schnittstelle im Programm auswählbar sein.
+Alle Eigenschaften der Szenarios sollen über die Veränderung weniger Parameter als zentrale Schnittstelle im Programm auswählbar sein.
 Anschließend sind die gewählten Metriken anzugeben, welche im Trainingsprozess erfasst werden sollen.
 Diese beinhalten die durchschnittliche Episodenlänge und kumulierte Belohnung sowie die Erfolgsrate des Zusammenstoßes beider Drohnen, über alle im Trainingsprozess evaluierten Strategien.
 Zur Erfassung dieser Trainingsmetriken gilt es, die Integration mit der Tensorboard Bibliothek zu nutzen.
@@ -74,7 +74,7 @@ Im IL Prozess ist ein Modell dahingehend zu optimieren, eine vorgeschriebene reg
 Die Policies der später mittels RL zu optimierenden Quadrokopter werden demnach zunächst regelbasiert als Experte definiert. 
 Daraufhin ist es das Ziel die Gewichte eines IL-Modells wie z.B. Behavioral Cloning so anzupassen, dass diese bestmöglich die regelbasierte Strategie wiederspiegeln.
 Anschließend sind die in diesem Prozess erlernten Gewichte zu einem RL-Modell zu transferieren und mittels RL-Algorithmus zu verfeinern.
-Durch diesen Transfer soll eine hohe Qualität des RL-Modells gewährleistet werden, sodass die Messung der Robustheit valide Ergebnisse erzielt.
+Durch diesen Transfer soll eine hohe Qualität der RL-Modelle gewährleistet werden, sodass die Messung der Robustheit valide Ergebnisse erzielt.
 
 \subsection{Anforderungen des Laborexperiments}
 

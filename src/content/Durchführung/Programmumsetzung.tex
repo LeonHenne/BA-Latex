@@ -177,11 +177,34 @@ Fasst man die beschriebene Umsetzung der Simulationsumgebung zusammen, so kann f
 
 \subsection{Programmumsetzung des Optimierungsverfahrens}
 
-Die Umsetzung des Optimierungsverfahrens eines RL-Modells wird in der Python Datei train zusammengefasst.
+Mit der Entwicklung der Simulationsumgebung stehen Trainingsdaten zur Verfügung darauf aufbauend Strategien des verstärkenden Lernens zu optimieren.
+Der gesamte Optimierungsprozess unterteilt sich in den Einsatz von imitierenden Lernen zu Beginn und folgender Optimierung mittels RL-Algorithmen. 
+Die Umsetzung des Optimierungsverfahrens wird innerhalb der Python Dateien \textit{imitation\_train.py} und \textit{train.py} beschrieben.
+
+Das imitierende Training beginnt mit dem Herstellen des Trainingsszenarios zum Akquirieren der Trainingsdaten des Experten. 
+Innerhalb einer Iteration wird die Simulation unter den Trainingsgegebenheiten in \textbf{X} Episoden ausgeführt und alle \textbf{aggr\_physics\_timestep} Zeitschritte die Situation und Expertenaktion gespeichert.
+Hieraus ergeben sich eine Menge von aufeinanderfolgenden oder zeitversetzten \textit{Transitions}-Objekten der verwendeten Softwarebibliothek Imitation.
+Ein Transition-Objekt beschreibt einen durch die Aktion entstehenden Übergang vom bekannten zu einem neuen beobachteten Zustand sowie den Erhalt der Belohnung.
+Die Übergänge in den Trainingsdaten liegen häufig nicht entsprechend ihrer Entstehung geordnet, um die Datenvielfalt zu erhöhen und korrelierende Effekte zu mindern. 
+Basierend auf diesen Transaktionsdaten wird in \textbf{X} Epochen die Parameter der zu optimierenden Strategie angepasst.
+Die Anpassung der Gewichte einer Akteur-Kritiker Strategie wird durch den Behavioral Cloning Algorithmus vorgenommen.
+Insgesamt wird dieser abwechselnde Vorgang der Erhebung von Daten und die zur Basis dessen stattfindende Optimierung so häufig wiederholt, bis durch alle Iterationen die Menge an chargenweise abgearbeitet wurden.
+
+Als Experte dessen Aktion als Trainingsgrundlage dienen wird eine regelbasierte Version der zu optimierenden Drohne eingesetzt. 
+Alle regelbasierten Strategien sind in der \textit{rule-based.py} Datei deklariert und umfassen die verteidigende Drohne und die Trainings- und Testversion der anzugreifenden Drohne.
+Die verteidigende Drohne verfolgt regelbasiert die direkte Flugbahn zu einem Vorhaltepunkt in Bewegungsrichtung der Angreiferdrohne.
+Der Vorhaltepunkt rückt mit geringer werdender Distanz zur generischen Drohne immer näher zu dessen aktueller Position.
+
 \begin{itemize}
-    \item train.py process
     \item Imitation Learning process
-    \item Beschreibung der Regelbasierten Policies
+    \item - Sampling von Experten Transitions - Done
+    \item - (Rule based defender)
+    \item - Behavioral Cloning Algorithmus
+    \item - Parameter und Prozess
+    \item train.py process
+    \item - loading BC Policies into PPO algorithm
+    \item - set environment and retrain
+    \item - Beschreibung der Regelbasierten Policies
 \end{itemize}
 
 \subsection{Programmumsetzung zur Laborexperiments}
