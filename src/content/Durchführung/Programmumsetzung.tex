@@ -69,9 +69,19 @@ Unabhängig des gewählten Aktionstyps werden alle Steuerungssignale durch Contr
 Dessen genaue Übersetzung wird im Rahmen dieses Kapitels nicht erläutert und ist in der entsprechenden Dokumentation nach \cite[]{Panerati.332021} nachzulesen.
 Auch der Beobachtungsraum kann zum einen visuell und zum anderen kinetisch erfolgen, was im Rahmen dieser Arbeit verwendet wird.
 Der kinetische Beobachtungsraum stellt eine Reihe von wahrnehmbaren Eigenschaften wie Position, Ausrichtung, Geschwindigkeit und Drehzahl dar.
-Unabhängig der Überwachungsart wird durch die pybullet Physik-Engine ein grafisches Modell der Simulation erzeugt.
-Unter visuellem Beobachtungsraum wird dieses durch eine Drohnenkamera als Sammlung aller Pixelwerte eines 64x48 großen Bildes wahrgenommen.
-%Die nachfolgenden Abbildungen zeigen die grafische Simulation und den visuellen Beobachtungsraum.
+Unabhängig der Überwachungsart kann durch die pybullet Physik-Engine ein grafisches Modell der Simulation erzeugt werden welches in Abbildung Acht dargestellt wird.
+% Unter visuellem Beobachtungsraum wird dieses durch eine Drohnenkamera als Sammlung aller Pixelwerte eines 64x48 großen Bildes wahrgenommen.
+% Die nachfolgenden Abbildungen zeigen die grafische Simulation und den visuellen Beobachtungsraum.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[height=5cm]{lib/graphics/drone_sim.png}
+    \includegraphics[height=5cm]{lib/graphics/drone_sim2.png}
+    \caption[grafisches Modell der Simulation]{grafisches Modell der Simulation\footnotemark}
+    \label{abb:simenv model}
+\end{figure}
+\footnotetext{Eigene Darstellung}
+
 
 % Grundbasis der eigenen Simulation
 Die Umsetzung, der zu Beginn dieses Kapitels beschriebenen Simulationsumgebung, basiert auf der Verwendung der Basissimulation und der Kontrollerklassen. 
@@ -133,7 +143,7 @@ Die Aufsummierung der Produkte aus den folgenden Kennzahlen und deren Gewichtung
 \end{itemize}
 Eine Optimierung der Gewichte wurde durch Ausprobieren unterschiedlicher Gewichtskombinationen und Messen der entsprechenden Erfolgsrate erzielt.
 Zu jedem Zeitschritt eintretende Kennzahlen wurden aufgrund ihrer Häufigkeit in Fünfer Schritten, außerordentliche Belohnungen in 10000er Schritten untersucht.
-Insgesamt sind daraus folgende Log-Dateien entstanden, welche den Optimierungsprozess wiederspiegeln.
+Insgesamt sind daraus unter anderem folgende in Abbildung Neun dargestellte Log-Dateien entstanden, welche den Optimierungsprozess wiederspiegeln.
 
 \begin{figure}[htb]
     \centering
@@ -141,7 +151,7 @@ Insgesamt sind daraus folgende Log-Dateien entstanden, welche den Optimierungspr
     \caption[Episodenlänge, Belohnung und Erfolgsrate unter verschiedenen Gewichtungen]{Episodenlänge, Belohnung und Erfolgsrate unter verschiedenen Gewichtungen\footnotemark}
     \label{abb:reward-logs}
 \end{figure}
-\footnotetext{Darstellung der Tensorboarddaten}
+\footnotetext{Diagramme durch die Tensorboard Bibliothek erstellt}
 
 Die Optimierung der Belohnungsfunktion brachte $[-10, 50000, 50000, 25, 20]$ als optimalen Gewichtsvektor hervor, da hierunter mehrere Algorithmen wie PPO und A2C, eine positive Erfolgsrate verzeichneten.
 
@@ -167,7 +177,7 @@ Zur Ausführung eines Simulationsschrittes werden in der \textbf{Step-Funtkion} 
 Anschließend kann mittels diesen Datenobjektes die Schrittfunktion der Elternklasse aufgerufen, und deren Rückgabewerte an den zu optimierenden Algorithmus weitergereicht werden.
 Als \textbf{Belohnungswert} wird dabei lediglich auf die im Trainingsszenario relevante Kompontente des Belohnungsobjektes zugegriffen.
 
-Fasst man die beschriebene Umsetzung der Simulationsumgebung zusammen, so kann folgendes Klassendiagramm und deren Funktionsabhängigkeiten in Abbildung Acht betrachtet werden.
+Fasst man die beschriebene Umsetzung der Simulationsumgebung zusammen, so kann folgendes Klassendiagramm und deren Funktionsabhängigkeiten in Abbildung Zehn betrachtet werden.
 
 \begin{figure}[htb]
     \centering
@@ -179,35 +189,35 @@ Fasst man die beschriebene Umsetzung der Simulationsumgebung zusammen, so kann f
 
 \subsection{Programmumsetzung des Optimierungsverfahrens}
 
-Mit der Entwicklung der Simulationsumgebung stehen Trainingsdaten zur Verfügung darauf aufbauend Strategien des verstärkenden Lernens zu optimieren.
+Mit der Entwicklung der Simulationsumgebung stehen Trainingsdaten zur Verfügung um darauf aufbauend Strategien des verstärkenden Lernens zu optimieren.
 Der gesamte Optimierungsprozess unterteilt sich in den Einsatz von imitierenden Lernen zu Beginn und folgender Optimierung mittels RL-Algorithmen. 
 Die Umsetzung des Optimierungsverfahrens wird innerhalb der Python Dateien \textit{imitation\_train.py} und \textit{train.py} beschrieben.
 
-Das imitierende Training beginnt mit dem Herstellen des Trainingsszenarios zum Akquirieren der Trainingsdaten des Experten. 
-Innerhalb einer Iteration wird die Simulation unter den Trainingsgegebenheiten in \textbf{X} Episoden ausgeführt.
-Alle \textbf{aggr\_physics\_timestep} Zeitschritte wird die aktuelle Zustandsveränderung als Transition-Objekt gespeichert.
+Das imitierende Training beginnt mit dem Herstellen des Trainingsszenarios zum Akquirieren der Demonstrationen des Experten. 
+Innerhalb einer Trainingsiteration wird die Simulation unter den Trainingsgegebenheiten in \textbf{X} Episoden ausgeführt.
+Alle \textbf{aggr\_physics\_timestep} Zeitschritte wird die aktuelle Zustandsveränderung als Transition-Objekt der verwendeten Softwarebibliothek Imitation gespeichert.
 Dieses Datenobjekt beschreibt einen durch die Aktion entstehenden Übergang vom bekannten zu einem neuen beobachteten Zustand sowie den Erhalt der Belohnung.
-Hieraus ergeben sich eine Menge von aufeinanderfolgenden oder zeitversetzten \textit{Transitions}-Objekten der verwendeten Softwarebibliothek Imitation.
+Hieraus ergeben sich eine Menge von aufeinanderfolgenden oder zeitversetzten Transition-Objekten.
 Die Übergänge in den Trainingsdaten liegen häufig nicht entsprechend ihrer Entstehung geordnet, um die Datenvielfalt zu erhöhen und korrelierende Effekte zu mindern. 
 Basierend auf diesen Transaktionsdaten wird in \textbf{X} Epochen die Parameter der zu optimierenden Strategie angepasst.
 Die Anpassung der Gewichte einer Akteur-Kritiker Strategie wird durch den Behavioral Cloning Algorithmus vorgenommen.
-Insgesamt wird dieser abwechselnde Vorgang der Erhebung von Daten und die zur Basis dessen stattfindende Optimierung so häufig wiederholt, bis durch alle Iterationen die Menge an chargenweise abgearbeitet wurden.
+Insgesamt wird dieser abwechselnde Vorgang der Erhebung von Daten und die zur Basis dessen stattfindende Optimierung so häufig wiederholt, bis alle Iterationen die Menge an Expertendemonstrationen chargenweise abgearbeitet haben.
 
-Als Experte dessen Aktion als Trainingsgrundlage dienen wird eine regelbasierte Version der zu optimierenden Drohne eingesetzt. 
+Als Experte wird eine regelbasierte Version der zu optimierenden Drohne eingesetzt. 
 Alle regelbasierten Strategien sind in der \textit{rule-based.py} Datei deklariert und umfassen die verteidigende Drohne und die Trainings- und Testversion der anzugreifenden Drohne.
 Die verteidigende Drohne verfolgt regelbasiert die direkte Flugbahn zu einem Vorhaltepunkt in Bewegungsrichtung der Angreiferdrohne.
 Der Vorhaltepunkt rückt mit geringer werdender Distanz zur generischen Drohne immer näher zu dessen aktueller Position.
 Die angreifende Drohne wird im ersten Trainingsszenario regelbasiert gesteuert, indem sie sich von ihrem Startpunkt in gerader Fluglinie zum Zielpunkt begibt.
 Dessen Erweiterung zur parabelförmigen Fluglinie wird in der nachfolgenden Sektion behandelt. 
 
-Wurde ein Akteur-Kritiker Modell durch imitierendes Lernen hin zum regelbasiertem Verhalten optimiert, wird dieses als Basis zur weiteren Optimierung mittels RL eingesetzt.
+Wurde ein Akteur-Kritiker Modell durch imitierendes Lernen hin zum regelbasiertem Verhalten optimiert, wird dieses als Basis zur weiteren Optimierung mittels RL verwendet.
 Mit dem Einsatz des \textit{train.py} Programms lässt sich das in einer Pickle-Datei gespeicherte Modell laden.
 Dazu wird das grundlegende Neuronale Netz des PPO-Objekts mit der selben Struktur der Strategie aus dem imitierenden Lernen initialisiert. 
 Anschließend werden die Gewichte und Vorurteile in ein Objekt des PPO-Algorithmus von Stable-Baselines3 übertragen.
 Mittels der learn-Funktion kann die erzeugte Strategie im gegebenen Trainingsszenario weiter optimiert werden.
-Durch die Tensorboard Bibliothek wird während des Trainingsprozesses gemittelte Metriken über alle Episoden berechnet sowie alle 10000 Zeitschritte eine Evaluation durchgeführt.
-Während der Evaluation wird die aktuelle Strategie bemessen und dessen Episodenlänge, erzielte Belohnung und Erfolg aufgezeichnet.
-Unter dem Erfolg wird verstanden, ob die Strategie der Verteidigerdrohne die angreifende Drohne erfolgreich abfangen konnte.
+Durch die Tensorboard Bibliothek werden während des Trainingsprozesses gemittelte Metriken über alle Episoden berechnet sowie alle 10000 Zeitschritte eine Evaluation durchgeführt.
+In der Evaluationsperiode wird die aktuelle Strategie bemessen und dessen Episodenlänge, erzielte Belohnung und Erfolg aufgezeichnet.
+Als erfolgreich wird die Simulation gekennzeichnet, sobald die Strategie der Verteidigerdrohne die angreifende Drohne durch Kollision abfangen konnte.
 Anschließend an die Optimierung werden die neuen Modelle in Pickle Dateien gespeichert. 
 
 \subsection{Programmumsetzung zur Laborexperiments}
@@ -265,7 +275,7 @@ Anschließend wird je Metrik der entsprechende Test zur Ungleichheit und Verbess
 Liegt der P-Wert eines Tests unter dem Signikanzniveau von 10\% wird die H0 Hypothese abgelehnt und daraus schlussfolgernd die Ungleichheit oder Verbesserung der Metrik angenommen.
 Insgesamt wird diese Auswertung der Leistungsdaten zweier Strategien zweimal durchgeführt.
 Dabei werden die erzielten Messdaten zwischen der Strategien aus Trainingsszenario eins und drei sowie aus Szenario eins und vier betrachtet.
-Der vollstände Prozess der Experiments kann auch als BPMN Modell wie in Abbildung Zehn dargestellt werden. 
+Der vollstände Prozess der Experiments kann auch als BPMN Modell wie in Abbildung Elf dargestellt werden. 
 
 \begin{figure}[htb]
     \centering
