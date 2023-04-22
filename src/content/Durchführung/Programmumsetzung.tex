@@ -88,6 +88,8 @@ Die Parameter umfassen unter anderem Informationen zur Anzahl und Art und Positi
 Außerdem wird die Gewichtung der Belohnungsfunktion als Parameter entgegen genommen.
 Kernaufgabe dieser Funktion ist die Umsetzung der Eigenschaften eines Trainings- und Testszenarios.
 Dies beinhaltet die Erzeugung und Übermittlung der zufälligen Start- und Zielpunkte und des zufälligen Windeffektes mittels unterstützender Funktionen aus der eigenen Hilfsklasse.
+Die verteidigende Drohne wird zufällig innerhalb von 1.5 Meter in X- und Y-Richtung und 0.1 bis 3 Meter in Z-Richtung zum Ursprung initialisiert.
+Hingegen die angreifende Drohne wird im Rahmen von zwei bis sechs Metern uniform um den Ursprung herum auf einer möglichen Höhe von 0.1 bis fünf Meter platziert.
 Sind die Eigenschaften bestimmt, können diese zur Erzeugung der darunter liegenden Abstraktionsschicht der BaseAviary Instanz genutzt werden.
 
 % Observation Space
@@ -182,9 +184,10 @@ Der gesamte Optimierungsprozess unterteilt sich in den Einsatz von imitierenden 
 Die Umsetzung des Optimierungsverfahrens wird innerhalb der Python Dateien \textit{imitation\_train.py} und \textit{train.py} beschrieben.
 
 Das imitierende Training beginnt mit dem Herstellen des Trainingsszenarios zum Akquirieren der Trainingsdaten des Experten. 
-Innerhalb einer Iteration wird die Simulation unter den Trainingsgegebenheiten in \textbf{X} Episoden ausgeführt und alle \textbf{aggr\_physics\_timestep} Zeitschritte die Situation und Expertenaktion gespeichert.
+Innerhalb einer Iteration wird die Simulation unter den Trainingsgegebenheiten in \textbf{X} Episoden ausgeführt.
+Alle \textbf{aggr\_physics\_timestep} Zeitschritte wird die aktuelle Zustandsveränderung als Transition-Objekt gespeichert.
+Dieses Datenobjekt beschreibt einen durch die Aktion entstehenden Übergang vom bekannten zu einem neuen beobachteten Zustand sowie den Erhalt der Belohnung.
 Hieraus ergeben sich eine Menge von aufeinanderfolgenden oder zeitversetzten \textit{Transitions}-Objekten der verwendeten Softwarebibliothek Imitation.
-Ein Transition-Objekt beschreibt einen durch die Aktion entstehenden Übergang vom bekannten zu einem neuen beobachteten Zustand sowie den Erhalt der Belohnung.
 Die Übergänge in den Trainingsdaten liegen häufig nicht entsprechend ihrer Entstehung geordnet, um die Datenvielfalt zu erhöhen und korrelierende Effekte zu mindern. 
 Basierend auf diesen Transaktionsdaten wird in \textbf{X} Epochen die Parameter der zu optimierenden Strategie angepasst.
 Die Anpassung der Gewichte einer Akteur-Kritiker Strategie wird durch den Behavioral Cloning Algorithmus vorgenommen.
@@ -194,13 +197,16 @@ Als Experte dessen Aktion als Trainingsgrundlage dienen wird eine regelbasierte 
 Alle regelbasierten Strategien sind in der \textit{rule-based.py} Datei deklariert und umfassen die verteidigende Drohne und die Trainings- und Testversion der anzugreifenden Drohne.
 Die verteidigende Drohne verfolgt regelbasiert die direkte Flugbahn zu einem Vorhaltepunkt in Bewegungsrichtung der Angreiferdrohne.
 Der Vorhaltepunkt rückt mit geringer werdender Distanz zur generischen Drohne immer näher zu dessen aktueller Position.
+Die Angreiferdrohne wird im ersten Trainingsszenario regelbasiert gesteuert, indem sie sich von ihrem Startpunkt in direkter Fluglinie zum Zielpunkt begibt.
+
+
 
 \begin{itemize}
     \item Imitation Learning process
     \item - Sampling von Experten Transitions - Done
-    \item - (Rule based defender)
-    \item - Behavioral Cloning Algorithmus
-    \item - Parameter und Prozess
+    \item - (Rule based defender) - Done
+    \item - Behavioral Cloning Algorithmus - Done 
+    \item - Parameter und Prozess - Done
     \item train.py process
     \item - loading BC Policies into PPO algorithm
     \item - set environment and retrain
@@ -214,11 +220,19 @@ Kernaufgabe dieses Teils ist die Erhebung und Auswertung der Messdaten zu dem in
 Die Erhebung der Testdaten erfolgt durch das \textit{test.py}, die Auswertung durch das \textit{experiment\_evaluation.py} Skript.
 
 Mit der Ausführung des ersten Skripts wird ein Testklasse instanziiert und darin enthalten die Simulation nach den Eigenschaften des Testszenarios erzeugt.
+Das Testszenario implementiert dabei die Anforderung der Randomisierung des Zielpunktes.
 Zur zufälligen Bestimmung des Zielpunkts wird ebenso wie zur Initialisierung der Verteidigerdrohne, eine uniforme Verteilung bis zu 1,5 Meter um den Ursprung verwendet.
 Eine uniforme Verteilung fördert dabei die Varianz der Testszenarien und erhöht so die Validität des Experiments.
 Anders als bei der Initialisierung der Drohnen wird die Höhe des Zielpunktes stets auf 0,5 Meter festgelegt, um so Bodenkontakt und Simulationserfolg abzugrenzen.
+Zusätzlich zur Randomisierung des Zielpunktes wird im Testszenario der regelbasierte angreifende Quadrokopter im Aspekt seiner parabelförmigen Anflugsstrategie verändert.
+Ausgehend von den Startkoordinaten des Angreifers werden dazu insgesamt fünf Wegpunkte entlang einer unten geöffneten Parabel berechnet, welche nacheinander angeflogen werden.
+Die Parameter der Parabel berechnen sich wie in den Formeln Acht bis Zehn dargestellt.
 
-\textbf{Hier die Umsetzung des Enhanced Rule-Based Enemy beschreiben}
+\begin{description}
+    \item \begin{center} $ a = -1 / (2 * ($Distanz zum Zielpunkt$ / 6))$ (8)\end{center}
+    \item \begin{center} $ b = 0$ (9)\end{center}
+    \item \begin{center} $ c = $ Z-Koordinate des Startpunktes (10)\end{center}
+\end{description}
 
 Alle Messdaten werden aus der hundertfachen Durchführung der Testsimulation erhoben.
 Zu jedem Zeitschritt jeder Episode wird durch das RL-Modell eine bestimmte Aktion ausgeübt und eine Teilmenge dessen Resultats gemessen.
