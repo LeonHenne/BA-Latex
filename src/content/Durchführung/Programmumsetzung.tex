@@ -197,21 +197,18 @@ Als Experte dessen Aktion als Trainingsgrundlage dienen wird eine regelbasierte 
 Alle regelbasierten Strategien sind in der \textit{rule-based.py} Datei deklariert und umfassen die verteidigende Drohne und die Trainings- und Testversion der anzugreifenden Drohne.
 Die verteidigende Drohne verfolgt regelbasiert die direkte Flugbahn zu einem Vorhaltepunkt in Bewegungsrichtung der Angreiferdrohne.
 Der Vorhaltepunkt rückt mit geringer werdender Distanz zur generischen Drohne immer näher zu dessen aktueller Position.
-Die Angreiferdrohne wird im ersten Trainingsszenario regelbasiert gesteuert, indem sie sich von ihrem Startpunkt in direkter Fluglinie zum Zielpunkt begibt.
+Die angreifende Drohne wird im ersten Trainingsszenario regelbasiert gesteuert, indem sie sich von ihrem Startpunkt in gerader Fluglinie zum Zielpunkt begibt.
+Dessen Erweiterung zur parabelförmigen Fluglinie wird in der nachfolgenden Sektion behandelt. 
 
-
-
-\begin{itemize}
-    \item Imitation Learning process
-    \item - Sampling von Experten Transitions - Done
-    \item - (Rule based defender) - Done
-    \item - Behavioral Cloning Algorithmus - Done 
-    \item - Parameter und Prozess - Done
-    \item train.py process
-    \item - loading BC Policies into PPO algorithm
-    \item - set environment and retrain
-    \item - Beschreibung der Regelbasierten Policies
-\end{itemize}
+Wurde ein Akteur-Kritiker Modell durch imitierendes Lernen hin zum regelbasiertem Verhalten optimiert, wird dieses als Basis zur weiteren Optimierung mittels RL eingesetzt.
+Mit dem Einsatz des \textit{train.py} Programms lässt sich das in einer Pickle-Datei gespeicherte Modell laden.
+Dazu wird das grundlegende Neuronale Netz des PPO-Objekts mit der selben Struktur der Strategie aus dem imitierenden Lernen initialisiert. 
+Anschließend werden die Gewichte und Vorurteile in ein Objekt des PPO-Algorithmus von Stable-Baselines3 übertragen.
+Mittels der learn-Funktion kann die erzeugte Strategie im gegebenen Trainingsszenario weiter optimiert werden.
+Durch die Tensorboard Bibliothek wird während des Trainingsprozesses gemittelte Metriken über alle Episoden berechnet sowie alle 10000 Zeitschritte eine Evaluation durchgeführt.
+Während der Evaluation wird die aktuelle Strategie bemessen und dessen Episodenlänge, erzielte Belohnung und Erfolg aufgezeichnet.
+Unter dem Erfolg wird verstanden, ob die Strategie der Verteidigerdrohne die angreifende Drohne erfolgreich abfangen konnte.
+Anschließend an die Optimierung werden die neuen Modelle in Pickle Dateien gespeichert. 
 
 \subsection{Programmumsetzung zur Laborexperiments}
 
