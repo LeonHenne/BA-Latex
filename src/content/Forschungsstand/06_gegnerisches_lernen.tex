@@ -1,12 +1,12 @@
 \section{Gegnerisches verstärkendes Lernen}
-Methoden des gegnerischen verstärkenden Lernens verfolgen das Ziel Strategien zu lernen, die robuster gegenüber Risiken wie beeinflusste Wahrnehmung, unbekannte Situationen oder ansteigende Umgebungskomplexität agieren. \footcite[Vgl.][S. 2]{Schott.2022}
+Methoden des gegnerischen verstärkenden Lernens verfolgen das Ziel, Strategien zu lernen die robuster gegenüber Risiken wie beeinflusste Wahrnehmung, unbekannte Situationen oder ansteigende Umgebungskomplexität agieren. \footcite[Vgl.][S. 2]{Schott.2022}
 Die Robustheit gegenüber fehlerhafter Umgebungsbetrachtung kann durch Störung des Wahrnehmungszustands des trainierenden Agenten erzielt werden. \footcite[Vgl.][S. 2]{Schott.2022}
 Das Ziel ist es dabei durch gegnerische Aktionen eine veränderte Umgebungswahrnehmnung herzustellen, auf deren Basis sich der lernende Agent verbessert. \footcite[Vgl.][S. 3]{Schott.2022}
 
-Um die lernende Strategie besser auf unbekannte Situationen und steigende Komplexität vorbereiten zu können werden destabilisierende Kräfte in der Dynamik eingeführt. \footcite[Vgl.][S. 1]{Pinto.2017}
+Um die lernende Strategie besser auf unbekannte Situationen und steigende Komplexität vorbereiten zu können, werden destabilisierende Kräfte in der Dynamik eingeführt. \footcite[Vgl.][S. 1]{Pinto.2017}
 Anders als beim ersten Ansatz werden dafür nicht nur die Wahrnehmung des lernenden Agenten beeinflusst, sondern direkte Einflüsse auf die Umgebung ausgeübt. \footcite[Vgl.][S. 2]{Schott.2022}
 Hierbei wird der gegnerische Agent dafür belohnt, mittels Kräfteeinfluss die Umgebungsdynamik zu verändern, sodass der lernende Agent an seiner Aufgabe scheitert. \footcite[Vgl.][S. 2]{Pinto.2017}
-Dazu kann ein zusätzlicher Agent mit z.B. gleichem Aktionsraum den gemeinsamen Umgebungszustand beeinrächtigen. \footcite[Vgl.][S. 2]{Pinto.2017}
+Dazu kann ein zusätzlicher Agent mit z. B. gleichem Aktionsraum den gemeinsamen Umgebungszustand beeinträchtigen. \footcite[Vgl.][S. 2]{Pinto.2017}
 \cite[]{Pan.2021} zeigt eine solche Anwendung im Rahmen der Kontrolle eines Stromnetzes, bei welcher ein gegnerischer Agent für das Trennen von Verbindungen im Netz belohnt wird. \footcite[Vgl.][S. 2]{Pan.2021}
 Zum Generieren von Störeinflüssen auf die Umgebungsdynamik kann das \textit{Robust Adversarial Reinforcement Learning} (RARL) Framework verwendet werden. \footcite[Vgl.][S. 2]{Schott.2022}
 Dabei wird der gegnerische Agent selbst durch RL daran angelernt, die möglichst effektivsten Destabilisierungsmaßnahmen zu finden. \footcite[Vgl.][S. 1]{Pinto.2017}
@@ -19,7 +19,7 @@ Das Training erfolgt aus der abwechselnden Optimierung einer der beiden Strategi
 
 Im Kontext der Steuerung von Quadrokoptern greifen \cite[]{Zhai.2022} das \textit{Robust Adaptive Ensemble Adversarial Reinforcement Learning Framework (RAEARL)} auf.
 Unter dessen Einsatz wird der Trainingsprozess des normalen und gegnerischen Agenten zu Gunsten der Kontinuität und Stabilität getrennt, und das System mit einem PID-Regler erweitert, um die Stärke des Gegners über den Trainingsverlauf anzupassen. \footcite[Vgl.][S. 2]{Zhai.2022}
-Das getrennte Training des normalen und gegnerischen Agenten verwendet kopierte Agenten des jeweiligen Gegenparts, welche zwar die selben neuronalen Netzstrukturen und initialen Parameter besitzen, jedoch schwächer sind, da deren Lernfortschritt ein Zeitschritt verschoben ist. \footcite[Vgl.][S. 2f.]{Zhai.2022}
+Das getrennte Training des normalen und gegnerischen Agenten verwendet kopierte Agenten des jeweiligen Gegenparts, welche zwar dieselben neuronalen Netzstrukturen und initialen Parameter besitzen, jedoch schwächer sind, da deren Lernfortschritt ein Zeitschritt verschoben ist. \footcite[Vgl.][S. 2f.]{Zhai.2022}
 
 \begin{figure}[htb]
     \centering

@@ -6,12 +6,12 @@ Im nachfolgenden Kapitel wird daher genauer dargestellt, was unter der Robusthei
 \subsection{Definitionen von Robustheit und Stabilität}
 
 In der aktuellen Forschungsliteratur findet sich nur wenig Gemeinsamkeit innerhalb der unterschiedlichen Definitionen von Stabilität und Robustheit. \footcite[Vgl.][S. 5]{Pullum.2022}
-Die Definition der Robustheit im Kontext von verstärkendem Lernen wird verschieden interpretiert, wie z.B. als Robustheit gegen Störeinflüsse, Beeinflussung der Belohnung, oder Umgebungsunterschiede. \footcite[Vgl.][S. 2]{Liu.2023}
+Die Definition der Robustheit im Kontext von verstärkendem Lernen wird verschieden interpretiert, wie z. B. als Robustheit gegen Störeinflüsse, Beeinflussung der Belohnung, oder Umgebungsunterschiede. \footcite[Vgl.][S. 2]{Liu.2023}
 \cite[]{Pullum.2022} definiert Stabilität und Robustheit im Kontext der Literaturanalyse wie folgt:
 
 \textit{Stabilität ist eine Eigenschaft des lernenden Algorithmus, die sich auf dessen Leistungsvarianz bezieht und bei geringer Varianz auf ein stabiles Modell hinweist.} \footcite[Vgl.][S. 5]{Pullum.2022}
 
-\textit{Robustheit im Kontext von Software, referenziert eine Eigenschaft eines System, welches nicht nur ausschließlich unter normalen, sondern auch unter außergewöhnlichen Bedingungen, die die Annahmen des Entwicklers übersteigen, gut funktioniert.} \footcite[Vgl.][S. 5]{Pullum.2022}
+\textit{Robustheit im Kontext von Software, referenziert eine Eigenschaft eines Systems, welches nicht nur ausschließlich unter normalen, sondern auch unter außergewöhnlichen Bedingungen, die die Annahmen des Entwicklers übersteigen, gut funktioniert.} \footcite[Vgl.][S. 5]{Pullum.2022}
 
 \cite[]{Moos.2022} beschreibt die Robustheit in seiner Literaturanalyse als Fähigkeit mit Variationen und Unsicherheiten in der Umgebung umgehen zu können, wobei Unsicherheiten häufig variierende physische Parameter darstellen. \footcite[Vgl.][S. 1]{Moos.2022}
 
@@ -66,5 +66,5 @@ In der Literaturanalyse nach \cite[]{Pullum.2022} werden quantitative Metriken z
 
 Die Tabellen drei und vier zeigen auf, dass trotz der Existenz weiterer Metriken, die Belohnung, deren Durchschnitt, Varianz und Entwicklung am häufigsten eingesetzt werden, um die Robustheit von RL Algorithmen zu messen.
 Dabei werden Experimente unter festgelegten oder optimierten Hyperparametern, in mehreren Simulationsumgebungen durchgeführt, um aus dem Vergleich derselben Strategie in unterschiedlichen Umfeldern Rückschlüsse auf die Robustheit zu ziehen. \footcite[Vgl.][S. 5]{Pinto.2017}
-Unterschiede in den Umgebungen können bspw. durch fixe Dynamiken wie z.B. Reibwerte während des Trainingsprozesses und unterschiedlicher Reibwerte während der Testphase realisiert werden. \footcite[Vgl.][S. 6]{Pinto.2017}
+Unterschiede in den Umgebungen können bspw. durch fixe Dynamiken wie z. B. Reibwerte während des Trainingsprozesses und unterschiedlicher Reibwerte während der Testphase realisiert werden. \footcite[Vgl.][S. 6]{Pinto.2017}
 Ein weiterer Ansatz kann die Sim-to-Sim Verifikation sein, bei der die optimierten Strategien in einer nicht während des Trainings verwendeten Simulationen untersucht werden. \footcite[Vgl.][S. 5]{Molchanov.2019}

@@ -21,19 +21,19 @@ Das Gymnasium Framework definiert die wichtigsten Funktionsschnittstellen, welch
 Eine der Funktionen beschreibt die \textbf{Initialisierung} der eigenen Umgebungsklasse, welche von der Umgebungsklasse der Gymnasium-Bibliothek erbt.
 Initial sind darin für die Simulation die Startpositionen der verteidigenden Drohne und der angreifenden Drohne sowie der anzugreifende Zielpunkt anzugeben.
 Die Simulation soll eine zufällige Platzierung der Drohnen und des Zielpunktes im Raum ermöglichen, jedoch ausschließlich unter der Bedingung, dass die direkte Strecke zum Zielpunkt für die verteidigende Drohne kürzer ist, als für die angreifende Drohne.
-Zur Erfüllung dieser Anforderung muss eine Wahrscheinlichkeitsfunktion für die Zielpunktkoordinaten sowie je Drohne, für die drei Startkoordinaten X,Y und Z bestimmt werden.
+Zur Erfüllung dieser Anforderung muss eine Wahrscheinlichkeitsfunktion für die Zielpunktkoordinaten sowie je Drohne, für die drei Startkoordinaten X, Y und Z bestimmt werden.
 Die Randomisierung dieser Koordinaten soll über eine Variable an- und abgeschaltet werden können, sodass einfach zwischen Trainings- und Testszenario gewechselt werden kann.
-Als Spielgebiet wird eine flache feste Ebene auf der Höhe Null eingesetzt, über dessen der drei dimensionale Raum unbegrenzt in X-, Y-, und Z-Richtung zur Verfügung steht.
+Als Spielgebiet wird eine flache feste Ebene auf der Höhe Null eingesetzt, über dessen der drei dimensionale Raum unbegrenzt in X-, Y- und Z-Richtung zur Verfügung steht.
 
-Eine weitere Funktionen beinhaltet die Definition des \textbf{Beobachtungsraums}, also welche Informationen für den Agenten Wahrnehmbar sind. 
+Eine weitere Funktion beinhaltet die Definition des \textbf{Beobachtungsraums}, also welche Informationen für den Agenten wahrnehmbar sind. 
 In der beschriebenen Simulation soll der Agent die Position, die Ausrichtung, die Richtungsgeschwindigkeit der Drohne und die Geschwindigkeit der Rotatoren wahrnehmen. 
 Jede diese Eigenschaften wird von der verteidigenden Drohne und zusätzlich von der angreifenden Drohne wahrgenommen. 
 Insgesamt stelle der Beobachtungsraum somit ein Datenobjekt dar, welches alle Informationen wie Koordinaten, Geschwindigkeiten und Drehzahlen beinhalte.
 
 Neben dem Beobachtungsraum muss auch ein \textbf{Handlungsraum} festgelegt werden, welcher die Steuerung der verteidigenden Drohne umfassen soll.
-Hierbei soll durch den Agenten die Geschwindigkeit und ihre Richtung in Form eines vier-elementigen Liste vorgegeben werden.
-Auch die regelbasiert gesteuerten Drohnen folgen damit dem Ziel eine dieser Form entsprechende Aktion zu erzeugen.
-Anschließend besteht die Anforderung diese Aktionen in einen konkreten Einfuss auf den Zustand des Quadrokopters zu übersetzen.
+Hierbei soll durch den Agenten die Geschwindigkeit und ihre Richtung in Form eines vier elementigen Liste vorgegeben werden.
+Auch die regelbasiert gesteuerten Drohnen folgen damit dem Ziel, eine dieser Form entsprechende Aktion zu erzeugen.
+Anschließend besteht die Anforderung, diese Aktionen in einen konkreten Einfluss auf den Zustand des Quadrokopters zu übersetzen.
 
 Führt der Agent eine Aktion seines Handlungsraums aus, wird die Implementierung eines \textbf{Zeitschritts} der Simulation benötigt.
 In dieser muss deklariert sein, wie sich die gewählte Aktion auf den Zustand der Drohnen auswirkt.
@@ -45,7 +45,7 @@ Durch die Schrittfunktion ist abschließend die neue Wahrnehmung der Simulation,
 
 Zur Berechnung einer entsprechenden Belohnung, für die Ausführung der gewählten Aktion, ist eine \textbf{Belohnungsfunktion} einzusetzen.
 Diese muss anhand des neuen Simulationszustandes Kennzahlen ermitteln und gewichten, und dadurch eine numerische Bewertung der neuen Situation vornehmen.
-Hinsichtlich der Maximierung des Belohnungswertes, optimiert der Agent mittels des RL Algorithmus seine Aktion in Abhängigkeit der Simulation. 
+Hinsichtlich der Maximierung des Belohnungswertes optimiert der Agent mittels des RL Algorithmus seine Aktion in Abhängigkeit der Simulation. 
 Die Anforderungen dieser Optimierung der Aktionen werden in der nachfolgenden Sektion detailliert betrachtet.
 
 \subsection{Anforderungen des Optimierungsverfahrens}
@@ -54,7 +54,7 @@ Das Optimierungsverfahren trägt die Aufgabe zur Bestimmung der bestmöglichen A
 Dabei ist die Strategie zur Steuerung des Quadrokopters mittels RL-Algorithmus zu optimieren.
 %Hierfür soll ein RL-Algorithmus des aktuellen Stands der Forschung und der Praxis eingesetzt werden.
 Da die eigene Implementierung des RL-Algorithmus nicht im Fokus dieser Arbeit liegt, werden frei verfügbare Softwarebibliotheken verwendet.
-Eine Bibliothek welche eine Vielzahl an RL-Algorithmen beinhaltet ist Stable-Baselines3 nach \cite[]{Raffin.2021}.
+Eine Bibliothek, welche eine Vielzahl an RL-Algorithmen beinhaltet, ist Stable-Baselines3 nach \cite[]{Raffin.2021}.
 Die Softwarebibliothek integriert weitere Bibliotheken wie Tensorboard zum Messen von Trainings- und Evalutationskennzahlen, was die Durchführung der Forschungsmethodik unterstützt.
 Weiterhin ist eine umfangreiche Dokumentation zur Implementierung von RL Algorithmen in Verbindung mit dem Gymnasium Framework vorhanden, was die Umsetzung des Trainingsprozesses in Verbindung mit der Simulationsumgebung erleichtert.
 Aus der Softwarebibliothek Stable-Baselines3 soll der PPO-Algorithmus zum Optimieren je einer Policy in jedem Trainingsszenario eingesetzt werden. 
@@ -72,25 +72,25 @@ Das Speicherformat ist so zu wählen, dass gespeicherte Modelle zur Auswertung i
 Aufgrund des hohen dreidimensionalen Aktionsraums, welcher zu jedem Zeitschritt zu optimieren ist, soll vor dem beschriebenen Trainingsprozess ein Training durch IL eingesetzt werden.
 Im IL Prozess ist ein Modell dahingehend zu optimieren, eine vorgeschriebene regel-basierte Strategie zur Steuerung des Quadrokopters nachzuahmen. 
 Die Policies der später mittels RL zu optimierenden Quadrokopter werden demnach zunächst regelbasiert als Experte definiert. 
-Daraufhin ist es das Ziel die Gewichte eines IL-Modells wie z.B. Behavioral Cloning so anzupassen, dass diese bestmöglich die regelbasierte Strategie wiederspiegeln.
+Daraufhin ist es das Ziel, die Gewichte eines IL-Modells wie z. B. Behavioral Cloning so anzupassen, dass diese bestmöglich die regelbasierte Strategie widerspiegeln.
 Anschließend sind die in diesem Prozess erlernten Gewichte zu einem RL-Modell zu transferieren und mittels RL-Algorithmus zu verfeinern.
 Durch diesen Transfer soll eine hohe Qualität der RL-Modelle gewährleistet werden, sodass die Messung der Robustheit valide Ergebnisse erzielt.
 
 \subsection{Anforderungen des Laborexperiments}
 
 Anhand der Implementierung des Laborexperiments sollen die notwendigen Messdaten erhoben, die Forschungshypothesen evaluiert, und die Forschungsfrage beantwortet werden.
-Dazu ist es notwendig die beschriebenen Metriken, also die kumulierte Belohnung, dessen Varianz und die Anzahl an Misserfolgen, zu allen Policies im Testszenario zu erfassen.
+Dazu ist es notwendig, die beschriebenen Metriken, also die kumulierte Belohnung, dessen Varianz und die Anzahl an Misserfolgen, zu allen Policies im Testszenario zu erfassen.
 Das Testszenario wird durch eine Instanz der Simulationsumgebung repräsentiert, die eine zum Training veränderte Situation beinhaltet.
 
 Die Abweichung der Domäne zu den Trainingsszenarien wird durch die zusätzliche Randomisierung des Zielpunktes und durch die Verbesserung des regelbasierten Gegenspielers erzielt. 
-Die Verteilung des Zielpunktes soll dabei ähnlich zu den Startkoordinaten so gewählt sein, das sich die verteidigende Drohne näher an ihr befindet.
+Die Verteilung des Zielpunktes soll dabei ähnlich zu den Startkoordinaten so gewählt sein, dass sich die verteidigende Drohne näher an ihr befindet.
 Das Abfangen eines direkten Anflugs der anzugreifenden Drohne bleibt dadurch möglich.
 Im Testszenario soll die Verbesserung der anzugreifenden Drohne aus einer parabelförmigen anstatt geraden Fluglinie zum Zielpunkt bestehen.
-Damit die Validität der Messdaten gegeben ist, muss sichergestellt sein, dass alle Strategien den gleichen Testbedingungen und demnach den selben zufälligen Start- und Zielpunkten unterliegen.
-Hierfür ist ein Zufallswert zu übergeben worunter bei jedem Programmstart die gleichen zufälligen Testbedingungen hergestellt werden.
+Damit die Validität der Messdaten gegeben ist, muss sichergestellt sein, dass alle Strategien den gleichen Testbedingungen und demnach denselben zufälligen Start- und Zielpunkten unterliegen.
+Hierfür ist ein Zufallswert zu übergeben, worunter bei jedem Programmstart die gleichen zufälligen Testbedingungen hergestellt werden.
 Anschließend ist jede Policy in mehrfachen verschiedenen Episoden auszuführen, und deren Leistungsverhalten zu messen.
 
-Innerhalb eines Testszenarios sind zu jedem Zeitschritt die aktuelle Belohnung zu speichern und zu Messen, ob ein Misserfolg der Drohne vorliegt.
+Innerhalb eines Testszenarios sind zu jedem Zeitschritt die aktuelle Belohnung zu speichern und zu messen, ob ein Misserfolg der Drohne vorliegt.
 Beide Variablen folgen dem Format einer Zeitreihe über den Verlauf der Testsimulation.
 Das Programm zur Auswertung muss nach 100-facher Ausführung der Policy im Testszenario die Kennzahlen der durchschnittlichen Belohnung und dessen Varianz berechnen.
 Zur Dokumentation und für die weitere Auswertung mittels statistischer Tests sind die Messdaten zu speichern.
