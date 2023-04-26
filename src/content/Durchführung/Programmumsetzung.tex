@@ -164,16 +164,15 @@ Die Funktion der BaseAviary-Klasse setzt darin die Zeitschritte und die Drohneni
 Zur Unterscheidung des verteidigenden Quadrokopters von der angreifenden Drohne werden zwei nahezu identische URDF-Dateien verwendet, welche sich nur in der Farbgebung zwischen rot und blau unterscheiden.
 Am Ende der Funktion wird der erste Beobachtungsvektor der neuen Episode sowie ein Infoobjekt zurückgegeben.
 
-% Single Drone Wrapper
-Die zuvor beschriebene Klasse vererbt ihre Variablen und Funktionen auf die höhergelegene Abstraktionsschicht der \textbf{SingleDroneWrapper} Klasse.
+% Defender Drone Wrapper und Attacker Drone Wrapper
+Die zuvor beschriebene Klasse vererbt ihre Variablen und Funktionen auf die höhergelegenen Abstraktionsschichten der \textbf{DefenderDroneWrapper} und \textbf{AttackerDroneWrapper} Klasse.
 Auf dieser Ebene bietet die Simulation ihre Schnittstelle für die Verwendung durch den IL- und RL-Algorithmus.
 Dafür ist es notwendig den Beobachtungsraum sowie den Aktionsraum zu neu zu definieren.
-
 Zur \textbf{Initialisierung} werden zum einen alle Parameter zur Instanziierung des DualDroneAviary Objekt erwartet.
-Zum Anderen sind zusätzlich die Strategie und dessen Rauschverhalten der angreifenden Drohne anzugeben, sodass diese in Klassen variablen gespeichert werden.
-Auf der Ebene der SingleDroneWrapper-Klasse wird der \textbf{Beobachtungsraum} mit allen Informationen beider Quadrokopter zu einem 40-elementigen Vektor zusammengefasst.
+Zum Anderen sind zusätzlich die Strategie und dessen Rauschverhalten der nicht durch RL oder IL gesteuerten Drohne anzugeben, sodass diese in Klassen variablen gespeichert werden.
+Auf der Ebene der Wrapper-Klassen wird der \textbf{Beobachtungsraum} mit allen Informationen beider Quadrokopter zu einem 40-elementigen Vektor zusammengefasst.
 Der \textbf{Handlungsraum} hingegen umfasst auf dieser Ebene lediglich einen elementigen Vektor mit dem bekannten Wertebereich.
-Zur Ausführung eines Simulationsschrittes werden in der \textbf{Step-Funtkion} die Aktion der Angreiferstrategie und die übergebene Aktion in ein Datenobjekt überführt.
+Zur Ausführung eines Simulationsschrittes werden in der \textbf{Step-Funtkion} die Aktion der jeweils gegnerischen Drohne und die durch das Modell übergebene Aktion in ein gemeinsames Datenobjekt überführt.
 Anschließend kann mittels dieses Datenobjektes die Schrittfunktion der Elternklasse aufgerufen, und deren Rückgabewerte an den zu optimierenden Algorithmus weitergereicht werden.
 Als \textbf{Belohnungswert} wird dabei lediglich auf die im Trainingsszenario relevante Komponente des Belohnungsobjektes zugegriffen.
 
