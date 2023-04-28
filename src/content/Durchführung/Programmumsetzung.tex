@@ -193,13 +193,13 @@ Der gesamte Optimierungsprozess unterteilt sich in den Einsatz von imitierendem 
 Die Umsetzung des Optimierungsverfahrens wird innerhalb der Python Dateien \textit{imitation\_train.py} und \textit{train.py} beschrieben.
 
 Das imitierende Training beginnt mit dem Herstellen des Trainingsszenarios zum Akquirieren der Demonstrationen des Experten. 
-Innerhalb einer Trainingsiteration wird die Simulation unter den Trainingsgegebenheiten in \textbf{X} Episoden ausgeführt.
-Beim imitierenden Lernen wird in der Trainingsumgebung eine gewählte Aktion für \textbf{aggr\_physics\_timestep} ausgeführt, um die Trainingsdaten aus einer Episode zu minimieren.
+Innerhalb einer Trainingsiteration wird die Simulation unter den Trainingsgegebenheiten in 20000 Episoden ausgeführt.
+Beim imitierenden Lernen wird in der Trainingsumgebung eine gewählte Aktion für 50 Zeitschritte ausgeführt, um die Trainingsdaten aus einer Episode zu minimieren.
 Damit verteilen sich die daraus entstehenden Transition-Objekt der verwendeten Softwarebibliothek Imitation, auf eine höhere Anzahl von verschiedenen Start- und Zielkoordinaten.
 Dieses Datenobjekt beschreibt einen durch die Aktion entstehenden Übergang vom bekannten zu einem neuen beobachteten Zustand sowie den Erhalt der Belohnung.
 Hieraus ergeben sich eine Menge von aufeinanderfolgenden oder zeitversetzten Transition-Objekten.
 Die Übergänge in den Trainingsdaten liegen häufig nicht entsprechend ihrer Entstehung geordnet, um die Datenvielfalt zu erhöhen und korrelierende Effekte zu mindern. 
-Basierend auf diesen Transaktionsdaten wird in \textbf{X} Epochen die Parameter der zu optimierenden Strategie angepasst.
+Basierend auf diesen Transaktionsdaten wird in 4000 Epochen die Parameter der zu optimierenden Strategie angepasst.
 Die Anpassung der Gewichte einer Akteur-Kritiker-Strategie wird durch den Behavioral Cloning Algorithmus vorgenommen.
 Insgesamt wird dieser abwechselnde Vorgang der Erhebung von Daten und die zur Basis dessen stattfindende Optimierung so häufig wiederholt, bis alle Iterationen die Menge an Expertendemonstrationen chargenweise abgearbeitet haben.
 
