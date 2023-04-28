@@ -9,7 +9,16 @@ Das Ende dieses Kapitels bildet die Beantwortung der Forschungsfrage anhand der 
 
 \section{Vergleich der Robustheit der Strategien aus dem Training mit regelbasierten und RL Gegenspieler}
 
-\textbf{Hier die Vergleichs Tabelle mit den P-Werten und True/False Werten}
+\begin{table}[htb]
+    \begin{tabular}{llllll}
+    Metrik & Gleichheit P-Wert & Verschlechterung P-Wert & Ungleichheit & Verbesserung \\
+    sum reward & 0.48390799726891964 & 0.7588082897727775 & False & False \\
+    \begin{tabular}[c]{@{}l@{}}reward mean \\ difference\end{tabular} & 0.007654101554906155 & 0.9962006818665161 & True & False \\
+    count of fails & 0.005412977104604817 & 0.0027064885523024086 & True & True
+    \end{tabular}
+    \caption{Ergebnisse der statistischen Tests aus dem Leistungsvergleich der Modelle aus den Trainingsszenarien 1 und 3}
+    \label{tab:my-table}
+\end{table}
 
 \subsection{Betrachtung der kumulierten Belohnung}
 
