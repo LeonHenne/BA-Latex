@@ -2,7 +2,9 @@
 Anschließend an die Durchführung des Laborexperiments werden innerhalb dieses Kapitels die erzeugten Messdaten betrachtet und die zur Beantwortung der Forschungsfrage aufgestellten Hypothesen ausgewertet.
 Es gilt dabei einen möglichen Effekt des trainierten Gegenspielers auf die Robustheit des RL-Modells zu untersuchen.
 Dazu werden die Leistungen der Strategien aus den unterschiedlichen Trainingsszenarien im abweichenden Testszenario verglichen.
-Die auszuwertenden Leistungsmetriken aggregiert zu ihrer Testepisode sind im Anhang nachzulesen.
+Eine Leistungsmessung im abweichenden Testszenario zeigt, welche Lernumgebung eine stabilere und robustere Strategie hervorbringt, welche auch unter unbekannten Effekten performanter ist.
+
+Die auszuwertenden Leistungsmetriken aggregiert zu ihrer Testepisode können im Anhang gefunden werden.
 Im ersten Vergleich werden die Strategie aus dem Training mit regelbasiertem und mittels RL optimierten Gegenspieler untersucht.
 Weiterhin wird ein Vergleich der Testmetriken zwischen dem Training ohne und mit randomisierter Umgebung sowie regelbasiertem Gegenspieler durchgeführt.
 Das Ende dieses Kapitels bildet die Beantwortung der Forschungsfrage anhand der ausgewerteten Test- und Forschungshypothesen.
@@ -20,10 +22,36 @@ Das Ende dieses Kapitels bildet die Beantwortung der Forschungsfrage anhand der 
     \label{tab:my-table}
 \end{table}
 
+Anhand Tabelle 7 lassen sich die Ergebnisse der statistischen Signifikanztests ablesen.
+Die Ergebnisse basieren dabei auf dem Leistungsvergleich der Modelle aus den Trainingsszenarien 1 und 3.
+Den Tabellenspalten werden zum einen die P-Werte der Tests zur Gleichheit und Verschlechterung der Verteilung zugeordnet.
+Zum anderen wird darauf basierend die Erfüllung der H1-Hypothese anhand des gewählten Signifikanzniveaus von 10\% evaluiert.
+Einer Zeile der Tabelle können die Ergebnissdaten zu einer der drei untersuchten Metriken entnommen werden.
+
 \subsection{Betrachtung der kumulierten Belohnung}
 
 \textbf{Hypothese 1:}
 \textit{Die im Testszenario erzielte kumulierte Belohnung ist unter Verwendung der Policy aus dem Training mit RL basiertem Gegenspieler signifikant und zuverlässig höher als die Policy aus dem Training mit regelbasiertem Gegenspieler.}
+
+% Untersuchungsgegenstand
+Die erste zu Beginn aufgestellte Forschungshypothese 1 untersucht den Trainingseinfluss auf die in einer Testepisode erzielte kumulierte Belohnung.
+Mit der Hypothese 1 wird die Behauptung aufgestellt, dass durch die Wahl eines Trainingsszenarios mit RL-optimierten Gegenspieler zuverlässig eine bessere kumulierte Belohnung erzielt werden kann, als mittels eines Trainings mit regelbasierten Gegenspieler.
+Zur Erfüllung dieser Forschungshypothese sind die P-Werte zur Gleichheit und Verbesserung der Belohnungsverteilung über alle Testepisoden aus Tabelle 7 zu betrachten. 
+
+% Evaluation
+Der P-Wert des Signifikanztests zur Gleichheit der Verteilungen der kumulierten Belohnungen liegt in etwa bei $0.4839$.
+Daraus kann festgestellt werden, dass dieser größer als das gewählte Signifikanzniveau von 10\% bzw. $0.1$ ist.
+Die im Test untersuchte H0 Hypothese einer gleichen unterliegenden Verteilung ist damit anzunehmen.
+Eine Ungleichheit der unterliegenden Verteilung der Belohnungen, wie in Hypothese H1 behauptet, ist folglich abzulehnen.
+Da demnach keine Unterschiede in der Verteilung der im Testszenario erzielten Belohnungen vorliegen ist festzuhalten, dass die Forschungshypothese 1 abgelehnt wird.
+% Somit ist festzuhalten, dass die Forschungshypothese 1 aufgrund der nicht vorliegenden Unterschiede in der Verteilung der im Testszenario erzielten Belohnungen abzulehnen ist.
+Im Laborexperiment konnte somit kein Nachweis erbracht werden, dass ein Optimieren eines RL-Modells, unter Verwendung eines selbst mittels RL optimierten Gegenspielers, zuverlässig zu einer höheren kumulierten Belohnung führt.
+
+% Bezug zur Robustheit
+Schließt man von diesem Ergebnis auf dessen Bedeutung für die Robustheit der Strategien aus verstärkendem Lernen zeigt sich folgende Erkenntnis.
+Betrachtet man lediglich den Aspekt der kumulierten Belohnung einer Episode, kann eine Lernumgebung mit RL-basiertem Gegenspieler keinen positiveren Effekt auf die Leistungsfähigkeit unter unbekanntem Umgebungsverhalten ausüben.
+Ebenso ist auch festzuhalten, dass keine Verschlechterung der Leistungsfähigkeit im Testszenario vorliegt. 
+Ein Einfluss eines RL-basierten Gegenspielers auf die Robustheit der kumulierten Belohnung unter unbekannten Umgebungsverhalten kann demnach als nicht gegeben betrachtet werden.
 
 \subsection{Betrachtung der Belohnungsstabilität}
 
