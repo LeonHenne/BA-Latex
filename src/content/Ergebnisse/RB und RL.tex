@@ -40,7 +40,7 @@ Die Auswertung der Hypothese erfolgt mittels statistischer Signifikanztests zur 
 Zur Bestätigung dieser Forschungshypothese sind die P-Werte zur Gleichheit und Verbesserung der Belohnungsverteilung über alle Testepisoden aus Tabelle 7 zu betrachten. 
 
 % Evaluation
-Der P-Wert des Signifikanztests zur Gleichheit der Verteilungen der kumulierten Belohnungen liegt in etwa bei $0.4839$.
+Der P-Wert des Signifikanztests zur Gleichheit der Verteilungen der kumulierten Belohnungen liegt in etwa bei $0.6277$.
 Daraus kann festgestellt werden, dass dieser größer als das gewählte Signifikanzniveau von 10\% bzw. $0.1$ ist.
 Die im Test untersuchte H0 Hypothese einer gleichen unterliegenden Verteilung ist damit anzunehmen.
 Eine Ungleichheit der unterliegenden Verteilung der Belohnungen, wie in Hypothese H1 behauptet, ist folglich abzulehnen.
@@ -68,10 +68,10 @@ Zum anderen ist es notwendig, dass die Verteilung der Abweichungen zur Basis des
 
 % Evaluation
 Zur Evaluation der Forschungshypothese 2 unterstützen die Ergebnisse der Tabelle 7.
-Aus der Tabelle wird erkenntlich, dass der P-Wert des Signifikanztests zur Gleichheit bei in etwa $0.0077$ liegt.
+Aus der Tabelle wird erkenntlich, dass der P-Wert des Signifikanztests zur Gleichheit bei in etwa $1.2200e-22$ liegt.
 Da sich dieser Wert unter dem gewählten Signifikanzniveau befindet, kann daraus abgeleitet werden, dass nur sehr unwahrscheinlich eine Gleichheit der unterliegenden Verteilung vorherrscht.
 Die aufgestellte H0 Hypothese wird daher verworfen, und die gegensätzliche H1 Hypothese einer Ungleichheit der beiden Verteilungen wird angenommen.
-Wird hinzu der P-Wert des Signifikanztests zur Verschlechterung der Belohnungsstabilität von in etwa $0.9962$ betrachtet, kann die folgende Erkenntnis festgestellt werden.
+Wird hinzu der P-Wert des Signifikanztests zur Verschlechterung der Belohnungsstabilität von $1.0$ betrachtet, kann die folgende Erkenntnis festgestellt werden.
 Aufgrund des über dem Signifikanzniveau befindlichen P-Wertes, ist die H0 Hypothese zu bestätigen und von einer geringeren Varianz der erzielten Belohnungen auszugehen unter dem Training mit regelbasiertem Gegenspieler.
 Eine Verringerung der Belohnungsvarianz durch Optimierung unter RL basierten Gegenspieler, wie in der H1 Hypothese behauptet, ist demnach auszuschließen.
 %\textbf{Hier am Ende vlt auch die wirkliche Varianz berechnen}
@@ -93,15 +93,15 @@ Zur Untersuchung dessen wird die Verteilung der erfolgreichen und erfolglosen Te
 Weisen die Ergebnisse des Tests zur Gleichheit und Verschlechterung der Metrik je einen P-Wert aus, welcher unter dem Signifikanzniveau liegt, so kann die Forschungshypothese bestätigt und von einem positiven Effekt ausgegangen werden.
 
 % Evaluation
-Betrachtet man die P-Werte der Tabelle 7 zur Metrik der Anzahl an Misserfolgen liegt zum einen der P-Wert zur Gleichheit der Verteilungen beider untersuchten RL-Policies bei in etwa $0.0054$.
-Daraus, dass dieser Wert geringer als das Signifikanzniveau ist, wird die H0 Hypothese einer Gleichheit der Verteilungen abgelehnt.
-Entsprechend wird die H1 Hypothese einer ungleichen Verteilung der Misserfolge angenommen, sodass ein Unterschied in den Erfolgsverteilungen der RL-Policies festzustellen ist.
-Zum anderen zeigt Tabelle 7 einen P-wert von in etwa $0.0027$ zur Verschlechterung der Metrik, also einer höheren Verteilung des Misserfolgs bei Einsatz der Strategie aus dem Training mit RL basiertem Gegenspieler.
-Da auch hier ein P-Wert vorliegt, welcher geringer als das Signifikanzniveau ist, wird erneut die H0 Hypothese abgelehnt.
-Die Gegenhypothese H1, welche eine geringere Verteilung des Misserfolgs im Testszenario behauptet, ist daraus hervorgehend anzunehmen.
-Mit der Bestätigung einer unterschiedlichen und geringen Verteilung des Misserfolgs bei einem Training mit RL basiertem Gegenspieler ist die Forschungshypothese 3 anzunehmen.
+Betrachtet man die P-Werte der Tabelle 7 zur Metrik der Anzahl an Misserfolgen liegt zum einen der P-Wert zur Gleichheit der Verteilungen beider untersuchten RL-Policies bei in etwa $0.1815$.
+Daraus, dass dieser Wert geringer als das Signifikanzniveau ist, wird die H0 Hypothese einer Gleichheit der Verteilungen angenommen.
+Entsprechend wird die H1 Hypothese einer ungleichen Verteilung der Misserfolge abgelehnt, sodass kein Unterschied in den Erfolgsverteilungen der RL-Policies festzustellen ist.
+% Zum anderen zeigt Tabelle 7 einen P-wert von in etwa $0.0027$ zur Verschlechterung der Metrik, also einer höheren Verteilung des Misserfolgs bei Einsatz der Strategie aus dem Training mit RL basiertem Gegenspieler.
+% Da auch hier ein P-Wert vorliegt, welcher geringer als das Signifikanzniveau ist, wird erneut die H0 Hypothese abgelehnt.
+% Die Gegenhypothese H1, welche eine geringere Verteilung des Misserfolgs im Testszenario behauptet, ist daraus hervorgehend anzunehmen.
+Mit der Bestätigung keiner unterschiedlichen Verteilung des Misserfolgs bei einem Training mit RL basiertem Gegenspieler ist die Forschungshypothese 3 abzulehnen.
 
 % Bezug zur Robustheit
-Die Annahme der dritten Forschungshypothese bestätigt, dass ein Effekt durch die Wahl des Trainingsszenarios auf die Robustheit entstanden ist.
-Wird lediglich die Metrik des Misserfolgs betrachtet konnte festgestellt werden, dass unter unbekanntem Umgebungsverhalten weniger Misserfolge mittels der Strategie erzielt worden sind, welche den RL basierten Gegenspieler im Trainingszenario verwendete.
-Insgesamt konnte dadurch bestätigt werden, dass eine Verbesserung der Robustheit mit der im Rahmen dieser Arbeit angewendeten Methodik erzielt wurde.
+Das Ablehnen der dritten Forschungshypothese bestätigt, dass kein Effekt durch die Wahl des Trainingsszenarios auf die Robustheit entstanden ist.
+Wird lediglich die Metrik des Misserfolgs betrachtet konnte festgestellt werden, dass unter unbekanntem Umgebungsverhalten ähnlich gleich häufig Misserfolge mittels der Strategie erzielt worden sind, welche den RL basierten Gegenspieler im Trainingszenario verwendete.
+Insgesamt konnte dadurch bestätigt werden, dass keine Verbesserung der Robustheit mit der im Rahmen dieser Arbeit angewendeten Methodik erzielt wurde.
