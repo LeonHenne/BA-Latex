@@ -58,7 +58,28 @@ Ein Einfluss eines RL-basierten Gegenspielers auf die Robustheit der kumulierten
 \textbf{Hypothese 2:}
 \textit{Die Varianz der im Testszenario erzielten kumulierten Belohnung ist unter Verwendung der Policy aus dem Training mit RL basiertem Gegenspieler signifikant und zuverlässig geringer als die Policy aus dem Training mit regelbasiertem Gegenspieler.}
 
-\textbf{Hier am Ende vlt auch die wirkliche Varianz berechnen}
+% Untersuchungsgegenstand
+Mittels der Betrachtung der zweiten Forschungshypothese wird die Stabilität der im Testszenario erzielten kumulierten Belohnung untersucht.
+Dazu wird die Abweichung einer Belohnung aus einer Testepisode zum Mittelwert der Belohnungen über aller 100 Testepisoden berechnet.
+Forschungshypothese 2 stellt dabei die Behauptung auf, dass eine geringere Varianz der Belohnungen im Testszenario vorliegen unter Auswahl eines Trainingsszenarios mit RL basiertem Gegenspieler.
+Zur Bestätigung dieser Hypothese gilt es zum einen, eine Ungleichheit der unterliegenden Verteilung der Abweichungen festzustellen.
+Zum anderen ist es notwendig, dass die Verteilung der Abweichungen zur Basis des RL basiertem Gegenspielers signifikant geringer ist.
+
+% Evaluation
+Zur Evaluation der Forschungshypothese 2 unterstützen die Ergebnisse der Tabelle 7.
+Aus der Tabelle wird erkenntlich, dass der P-Wert des Signifikanztests zur Gleichheit bei in etwa $0.0077$ liegt.
+Da sich dieser Wert unter dem gewählten Signifikanzniveau befindet, kann daraus abgeleitet werden, dass nur sehr unwahrscheinlich eine Gleichheit der unterliegenden Verteilung vorherrscht.
+Die aufgestellte H0 Hypothese wird daher verworfen, und die gegensätzliche H1 Hypothese einer Ungleichheit der beiden Verteilungen wird angenommen.
+Wird hinzu der P-Wert des Signifikanztests zur Verschlechterung der Belohnungsstabilität von in etwa $0.9962$ betrachtet, kann die folgende Erkenntnis festgestellt werden.
+Aufgrund des über dem Signifikanzniveau befindlichen P-Wertes, ist die H0 Hypothese zu bestätigen und von einer geringeren Varianz der erzielten Belohnungen auszugehen unter dem Training mit regelbasiertem Gegenspieler.
+Eine Verringerung der Belohnungsvarianz durch Optimierung unter RL basierten Gegenspieler, wie in der H1 Hypothese behauptet, ist demnach auszuschließen.
+%\textbf{Hier am Ende vlt auch die wirkliche Varianz berechnen}
+
+% Bezug zur Robustheit
+Wird diese Erkenntnis im Kontext der Messung der Robustheit betrachtet werden zwei Effekte deutlich.
+Zum Einen zeigte sich mit der Durchführung des Laborexperiments, dass die Gestaltung des Gegenspielers in der Trainingsumgebung einen Effekt auf die Belohnungsstabilität ausübt.
+Zum Anderen wird deutlich, dass dieser Effekt lediglich zu einer Verschlechterung der Belohnungsstabilität führt.
+Eine RL-Policy welche unter einem Gegenspieler welcher durch verstärkendes Lernen optimiert wurde, optimiert wird erzielt demnach eine geringere Robustheit aus der höheren Varianz der Belohnung.
 
 \subsection{Betrachtung der Anzahl der Misserfolge}
 
