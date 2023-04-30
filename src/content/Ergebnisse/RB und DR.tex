@@ -11,20 +11,47 @@
     \label{tab:my-comparison-2}
 \end{table}
 
+Tabelle 8 weist die Ergebnisse der statistischen Signifikanztests zum Vergleich der Strategieleistungen aus dem Training mit regelbasiertem Gegenspieler und DR aus.
+Dabei werden in gleicher Struktur zur Tabelle 7 die P-Werte zur Gleichheit und Verschlechterung der Verteilung sowie die Annahme der H1 Hypothesen anhand jeder Metrik dargestellt.
 
 \subsection{Betrachtung der kumulierten Belohnung}
 
 \textbf{Hypothese 1:}
-\textit{Die im Testszenario erzielte kumulierte Belohnung ist unter Verwendung der Policy aus dem Training mit RL basiertem Gegenspieler signifikant und zuverlässig höher als die Policy aus dem Training mit regelbasiertem Gegenspieler.}
+\textit{Die im Testszenario erzielte kumulierte Belohnung ist unter Verwendung der Policy aus dem Training mit DR signifikant und zuverlässig höher als die Policy aus dem Training ohne Randomisierung der Umgebung.}
+
+% Untersuchungsgegenstand
+Für die Ermittlung des Effekts der DR wird die Forschungshypothese 1 für den Vergleich der Strategieleistungen aus dem Training mit und ohne DR adaptiert.
+Die Hypothese stellt damit die Behauptung auf, dass die kumulierte Belohnung signifikant höher ist, sofern ein Training mit DR vorliegt.
+Dessen Auswertung erfolgt über eine ähnliche Adaptierung der H0 und H1 Hypothesen der Tests zur Gleichheit und Verschlechterung der Ergebnissdaten.
+Um die adaptierte Hypothese zu bestätigen gilt es eine Ungleichheit im ersten Signifikanztest und eine Verbesserung im zweiten Test festzustellen.
+
+% Evaluation
+Werden zur Auswertung die P-Werte aus der Tabelle 8 betrachtet liegt unter anderem ein P-Wert aus dem Test der Gleichheit von in etwa $0.0940$ vor.
+Da dieser Wert knapp unterhalb des Signifikanzniveaus liegt, ist die entsprechende Null Hypothese abzulehnen.
+Daraus ist festzustellen, dass die H1 Hypothese angenommen, und demnach eine ungleiche Verteilung der Belohnungen in Abhängigkeit des Trainingsszenarios vorliegt.
+Wird der P-Wert des zweiten Signifikanztests herangezogen, so wird erkenntlich, dass eine Verschlechterung der Belohnungsverteilung erzielt worden ist mittels der Strategie, welche unter DR optimiert wurde.
+Dies geht daraus hervor, dass der P-Wert mit in etwa $0.9533$ größer als das Signifikanzniveau ist.
+Im Test zur Verschlechterung der Metrik wird dadurch die H0 Hypothese bestätigt und die H1 Hypothese dem entsprechend abgelehnt.
+
+% Bezug zur Robustheit
+Aus den Ergebnissen der Signifikanztests geht hervor, dass mittels der in dieser Arbeit angewendeten DR im Trainingsprozess ein negativer Effekt auf die Belohnungsverteilung ausgeübt wurde.
+Für das beschriebene Testszenario konnte der Einsatz von DR im Trainingsszenario demnach keine Erhöhung der Robustheit, im Sinne einer verbesserten Belohnungsverteilung, hervorgerufen werden.
 
 \subsection{Betrachtung der Belohnungsstabilität}
 
 \textbf{Hypothese 2:}
-\textit{Die Varianz der im Testszenario erzielten kumulierten Belohnung ist unter Verwendung der Policy aus dem Training mit RL basiertem Gegenspieler signifikant und zuverlässig geringer als die Policy aus dem Training mit regelbasiertem Gegenspieler.}
+\textit{Die Varianz der im Testszenario erzielten kumulierten Belohnung ist unter Verwendung der Policy aus dem Training mit DR signifikant und zuverlässig geringer als die Policy aus dem Training ohne Randomisierung der Umgebung.}
 
+% Untersuchungsgegenstand
+% Evaluation
+% Bezug zur Robustheit
 \textbf{Hier am Ende vlt auch die wirkliche Varianz berechnen}
 
 \subsection{Betrachtung der Anzahl der Misserfolge}
 
 \textbf{Hypothese 3:}
-\textit{Die im Testszenario erreichte Anzahl von Misserfolgen ist unter Verwendung der Policy aus dem Training mit RL basiertem Gegenspieler signifikant und zuverlässig geringer als die Policy aus dem Training mit regelbasiertem Gegenspieler.}
+\textit{Die im Testszenario erreichte Anzahl von Misserfolgen ist unter Verwendung der Policy aus dem Training mit DR signifikant und zuverlässig geringer als die Policy aus dem Training ohne Randomisierung der Umgebung.}
+
+% Untersuchungsgegenstand
+% Evaluation
+% Bezug zur Robustheit
