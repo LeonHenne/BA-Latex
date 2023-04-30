@@ -1,4 +1,3 @@
-
 Anschließend an die Durchführung des Laborexperiments werden innerhalb dieses Kapitels die erzeugten Messdaten betrachtet und die zur Beantwortung der Forschungsfrage aufgestellten Hypothesen ausgewertet.
 Es gilt dabei einen möglichen Effekt des trainierten Gegenspielers auf die Robustheit des RL-Modells zu untersuchen.
 Dazu werden die Leistungen der Strategien aus den unterschiedlichen Trainingsszenarien im abweichenden Testszenario verglichen.
@@ -16,7 +15,7 @@ Das Ende dieses Kapitels bildet die Beantwortung der Forschungsfrage anhand der 
     Metrik & Gleichheit P-Wert & Verschlechterung P-Wert & Ungleichheit & Verbesserung \\
     sum reward & 0.48390799726891964 & 0.7588082897727775 & False & False \\
     \begin{tabular}[c]{@{}l@{}}reward mean \\ difference\end{tabular} & 0.007654101554906155 & 0.9962006818665161 & True & False \\
-    count of fails & 0.005412977104604817 & 0.0027064885523024086 & True & True
+    \begin{tabular}[c]{@{}l@{}}count of \\ failures \end{tabular} & 0.005412977104604817 & 0.0027064885523024086 & True & True
     \end{tabular}
     \caption{Ergebnisse der statistischen Tests aus dem Leistungsvergleich der Modelle aus den Trainingsszenarien 1 und 3}
     \label{tab:my-table}
@@ -34,9 +33,10 @@ Einer Zeile der Tabelle können die Ergebnissdaten zu einer der drei untersuchte
 \textit{Die im Testszenario erzielte kumulierte Belohnung ist unter Verwendung der Policy aus dem Training mit RL basiertem Gegenspieler signifikant und zuverlässig höher als die Policy aus dem Training mit regelbasiertem Gegenspieler.}
 
 % Untersuchungsgegenstand
-Die erste zu Beginn aufgestellte Forschungshypothese 1 untersucht den Trainingseinfluss auf die in einer Testepisode erzielte kumulierte Belohnung.
+Die erste in der Einleitung aufgestellte Forschungshypothese untersucht den Trainingseinfluss auf die in einer Testepisode erzielte kumulierte Belohnung.
 Mit der Hypothese 1 wird die Behauptung aufgestellt, dass durch die Wahl eines Trainingsszenarios mit RL-optimierten Gegenspieler zuverlässig eine bessere kumulierte Belohnung erzielt werden kann, als mittels eines Trainings mit regelbasierten Gegenspieler.
-Zur Erfüllung dieser Forschungshypothese sind die P-Werte zur Gleichheit und Verbesserung der Belohnungsverteilung über alle Testepisoden aus Tabelle 7 zu betrachten. 
+Die Auswertung der Hypothese erfolgt mittels statistischer Signifikanztests zur Verteilung der kumulierten Belohnungen je Testepisode.
+Zur Bestätigung dieser Forschungshypothese sind die P-Werte zur Gleichheit und Verbesserung der Belohnungsverteilung über alle Testepisoden aus Tabelle 7 zu betrachten. 
 
 % Evaluation
 Der P-Wert des Signifikanztests zur Gleichheit der Verteilungen der kumulierten Belohnungen liegt in etwa bei $0.4839$.
@@ -79,9 +79,28 @@ Eine Verringerung der Belohnungsvarianz durch Optimierung unter RL basierten Geg
 Wird diese Erkenntnis im Kontext der Messung der Robustheit betrachtet werden zwei Effekte deutlich.
 Zum Einen zeigte sich mit der Durchführung des Laborexperiments, dass die Gestaltung des Gegenspielers in der Trainingsumgebung einen Effekt auf die Belohnungsstabilität ausübt.
 Zum Anderen wird deutlich, dass dieser Effekt lediglich zu einer Verschlechterung der Belohnungsstabilität führt.
-Eine RL-Policy welche unter einem Gegenspieler welcher durch verstärkendes Lernen optimiert wurde, optimiert wird erzielt demnach eine geringere Robustheit aus der höheren Varianz der Belohnung.
+Eine RL-Policy welche unter einem Gegenspieler welcher durch verstärkendes Lernen optimiert wurde, trainiert wird erzielt demnach eine geringere Robustheit aus der höheren Varianz der Belohnung.
 
 \subsection{Betrachtung der Anzahl der Misserfolge}
 
 \textbf{Hypothese 3:}
 \textit{Die im Testszenario erreichte Anzahl von Misserfolgen ist unter Verwendung der Policy aus dem Training mit RL basiertem Gegenspieler signifikant und zuverlässig geringer als die Policy aus dem Training mit regelbasiertem Gegenspieler.}
+
+% Untersuchungsgegenstand
+Als dritte Forschungshypothese zur Beantwortung der Forschungsfrage wurde die Behauptung aufgestellt, dass die erreichte Anzahl von Misserfolgen im Testszenario signifikant geringer ist durch den Einsatz des RL-basierten Gegenspielers.
+Zur Untersuchung dessen wird die Verteilung der erfolgreichen und erfolglosen Testepisoden mittels statistischer Signifikanztests ausgewertet. 
+Weisen die Ergebnisse des Tests zur Gleichheit und Verschlechterung der Metrik je einen P-Wert aus, welcher unter dem Signifikanzniveau liegt, so kann die Forschungshypothese bestätigt und von einem positiven Effekt ausgegangen werden.
+
+% Evaluation
+Betrachtet man die P-Werte der Tabelle 7 zur Metrik der Anzahl an Misserfolgen liegt zum einen der P-Wert zur Gleichheit der Verteilungen beider untersuchten RL-Policies bei in etwa $0.0054$.
+Daraus, dass dieser Wert geringer als das Signifikanzniveau ist, wird die H0 Hypothese einer Gleichheit der Verteilungen abgelehnt.
+Entsprechend wird die H1 Hypothese einer ungleichen Verteilung der Misserfolge angenommen, sodass ein Unterschied in den Erfolgsverteilungen der RL-Policies festzustellen ist.
+Zum anderen zeigt Tabelle 7 einen P-wert von in etwa $0.0027$ zur Verschlechterung der Metrik, also einer höheren Verteilung des Misserfolgs bei Einsatz der Strategie aus dem Training mit RL basiertem Gegenspieler.
+Da auch hier ein P-Wert vorliegt, welcher geringer als das Signifikanzniveau ist, wird erneut die H0 Hypothese abgelehnt.
+Die Gegenhypothese H1, welche eine geringere Verteilung des Misserfolgs im Testszenario behauptet, ist daraus hervorgehend anzunehmen.
+Mit der Bestätigung einer unterschiedlichen und geringen Verteilung des Misserfolgs bei einem Training mit RL basiertem Gegenspieler ist die Forschungshypothese 3 anzunehmen.
+
+% Bezug zur Robustheit
+Die Annahme der dritten Forschungshypothese bestätigt, dass ein Effekt durch die Wahl des Trainingsszenarios auf die Robustheit entstanden ist.
+Wird lediglich die Metrik des Misserfolgs betrachtet konnte festgestellt werden, dass unter unbekanntem Umgebungsverhalten weniger Misserfolge mittels der Strategie erzielt worden sind, welche den RL basierten Gegenspieler im Trainingszenario verwendete.
+Insgesamt konnte dadurch bestätigt werden, dass eine Verbesserung der Robustheit mit der im Rahmen dieser Arbeit angewendeten Methodik erzielt wurde.
