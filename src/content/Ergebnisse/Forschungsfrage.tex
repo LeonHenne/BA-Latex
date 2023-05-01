@@ -1,6 +1,26 @@
 \section{Beantwortung der Forschungsfrage}
 
-\begin{itemize}
-    \item Erläuterung der Bedeutung der einzelnen Metriken zur Robustheit
-    \item Entstandenen Effekte im Bezug zur Auswertung mit DR setzen
-\end{itemize}
+Aus der erkannten Problemstellung des Sim2Real Transfers und der Robustheit von RL-Algorithmen in besonders kritischen Bereichen wie der Robotik und dem Drohnenflug, stellten wir uns folgende Forschungsfrage.
+
+\textit{Inwiefern kann durch den Einsatz eines mittels RL trainierten Gegenspielers die Robustheit einer optimierten Policy verbessert werden?}
+
+Im Rahmen dieser Arbeit untersuchten wir mittels dreier Forschungshypothesen den Effekt eines durch verstärkenden Lernens optimierten Gegenspieler auf die Robustheit von RL Modellen.
+Dazu wurde eine Simulationsumgebung entwickelt, in welcher sich eine RL Strategie als Spieler und als Gegenspieler einsetzen lässt.
+Mehrere Strategien aus verschiedenen Trainingsszenarien wurden in einer abgewandelten unbekannten Variation der Simulationsumgebung getestet, um so dessen Robustheit zu untersuchen.
+Dabei wurde je Strategie der Erfolg der Testepisode, die erreichte kumulierte Belohnung und dessen Abweichung zum Mittelwert aller Episoden gemessen und ausgewertet. 
+Über diese drei Metriken wurde die Robustheit im Sinne der Effektivität, Effizienz, und Zuverlässigkeit des RL Modells im unbekannten Testszenario betrachtet.
+
+Die Auswertung der Messdaten des Laborexperiments brachte in diesem Kapitel mehrere Schlussfolgerungen und Erkenntnisse, anhand dessen die Forschungsfrage zu beantworten ist.
+Dazu ist besonders der erste Vergleich der Leistungsdaten zwischen den Strategien unter dem Training mit RL basiertem und regelbasiertem Gegenspieler aussagekräftig.
+Im Bezug auf die erste sowie dritte Metrik konnte weder eine Verbesserung noch eine Verschlechterung durch die Wahl des Trainingsszenarios nachgewiesen werden.
+Die zweite Metrik der Varianz konnte durch den Einsatz des RL basierten Gegenspielers lediglich verschlechtert werden.
+Wird das Untersuchungsergebnis zusammengefasst, kann daraus folgende Beantwortung der Forschungsfrage vorgenommen werden.
+
+\textit{Durch den Einsatz eines mittels RL trainierten Gegenspielers kann die Robustheit einer optimierten Policy nicht im Sinne eines gütevolleren, stabileren oder erfolgreicheren Verhaltens in unbekannter Umgebung verbessert werden.}
+
+Weiterhin wurde eine Form der in der Forschungsliteratur bekannten Methodik der Domänen Randomisierung angewendet. 
+Durch die Anwendung dieser Methodik konnte eine bekannte Art und Weise die Robustheit von RL Modellen zu erhöhen genutzt werden um ein Benchmarking nicht nur anhand keiner vorhandenen Methodik durchzuführen.
+Die Anwendung von DR im Trainingsszenario in Form von Wind konnte schlussendlich gegenüber der Strategie ohne Randomisierung nicht die gleiche Belohnungsstabilität gewährleisten.
+Im Gegenzug konnte jedoch die Häufigkeit von Misserfolg verbessert werden.
+
+Setzt man den Effekt der DR im Verhältnis zum Effekt des RL basierten Gegenspielers blieb dennoch im Kapitel 4.3 zu erkennen, dass die DR zumindest in Sinne Belohnungsstabilität und Erfolgsquote eine stärkeren Verbesserungseffekt hervorruft.
