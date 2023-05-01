@@ -58,7 +58,7 @@ Folgend kann abgeleitet werden, dass die H0 Hypothese einer stärkeren Verteilun
 Entsprechend wird die H1 Hypothese sowie die Hypothese 2 abgelehnt, da die angewendete Form der DR zu einen negativen Effekt auf die Varianz der Belohnungen führt.
 
 % Bezug zur Robustheit
-Für Messung der Robustheit ist somit festzuhalten, dass DR im Kontext dieser Arbeit als Teil des Trainingsszenarios, keine Verbesserung der Robustheit im Sinne einer stabileren Belohnung erzielte.
+Für die Messung der Robustheit ist somit festzuhalten, dass DR im Kontext dieser Arbeit als Teil des Trainingsszenarios, keine Verbesserung der Robustheit im Sinne einer stabileren Belohnung erzielte.
 
 \subsection{Betrachtung der Anzahl der Misserfolge}
 
@@ -67,8 +67,20 @@ Für Messung der Robustheit ist somit festzuhalten, dass DR im Kontext dieser Ar
 
 % Untersuchungsgegenstand
 Mit der dritten adaptierten Forschungshypothese soll zuletzt der Effekt der Domänen Randomisierung auf die Anzahl der Misserfolge untersucht werden.
-Durch den Test der Gleichheit wird die Existenz eines Effekts überprüft und sofern vorhanden die Auswirkung des Effekts mittels des zweiten Tests evaluiert.
+Durch den Test der Gleichheit wird die Existenz eines Effekts überprüft.
+Sofern dieser Test einen vorhanden Effekt bestätigt, wird dessen Auswirkung mittels des zweiten Tests zur Verschlechterung evaluiert.
+Damit die dritte Forschungshypothese angenommen wird, gilt es, eine verringernden Effekt auf die Häufigkeit von Misserfolgen festzustellen.
+Dazu sind die H0 Hypothesen beider Tests abzulehnen.
 
 % Evaluation
+Anhand Tabelle 8 lassen sich die Ergebnissdaten der Signifikanztests ablesen.
+Die Tabelle zeigt einen P-Wert von in etwa $0.0054$ zum Test der Gleichheit beider Verteilungen der Misserfolge auf.
+Aus der erfüllten Bedingung das dieser Wert geringer als das Signifikanzniveau ist, kann die H0 Hypothese abgelehnt werden.
+Folglich wird für den weiteren Testverlauf angenommen, dass die Verteilung der Misserfolge durch die Auswahl des Trainingsszenarios beeinflusst werden konnte.
+Wird anschließend der P-Wert zur Evaluation des entstandenen Effekts von in etwa $0.0027$ betrachtet, können folgende Schlussfolgerungen gezogen werden.
+Die H0 Hypothese einer höheren Häufigkeit von Misserfolgen kann abgelehnt werden, da der P-Wert im Ablehnungsbereich unterhalb des Signifikanzniveaus liegt.
+Im Gegensatz dazu kann die H1 Hypothese und eine Verbesserung der Häufigkeit von Misserfolg angenommen werden.
 
 % Bezug zur Robustheit
+Aus den Annahmen und Ablehnungen der Testhypothesen ergibt sich, dass durch die Anwendung der Domänen Randomisierung eine Verbesserung der Häufigkeit von Misserfolgen erzielen lies.
+Wird nur diese Metrik betrachtet kann entsprechend ausgesagt werden, dass die Strategie durch DR robuster auf unbekannte Umgebungen reagiert, da die Testepisoden häufiger erfolgreich abgeschlossen wurden.
