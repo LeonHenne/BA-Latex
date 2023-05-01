@@ -13,6 +13,7 @@
 
 Tabelle 8 weist die Ergebnisse der statistischen Signifikanztests zum Vergleich der Strategieleistungen aus dem Training mit regelbasiertem Gegenspieler und DR aus.
 Dabei werden in gleicher Struktur zur Tabelle 7 die P-Werte zur Gleichheit und Verschlechterung der Verteilung sowie die Annahme der H1 Hypothesen anhand jeder Metrik dargestellt.
+Forschungshypothesen und Testhypothesen sind entsprechend dem Vergleich der Polices aus dem Training mit DR und ohne DR anzupassen.
 
 \subsection{Betrachtung der kumulierten Belohnung}
 
@@ -26,17 +27,17 @@ Dessen Auswertung erfolgt über eine ähnliche Adaptierung der H0 und H1 Hypothe
 Um die adaptierte Hypothese zu bestätigen gilt es eine Ungleichheit im ersten Signifikanztest und eine Verbesserung im zweiten Test festzustellen.
 
 % Evaluation
-Werden zur Auswertung die P-Werte aus der Tabelle 8 betrachtet liegt unter anderem ein P-Wert aus dem Test der Gleichheit von in etwa $0.4839$ vor.
+Werden zur Auswertung die P-Werte aus der Tabelle 8 betrachtet liegt unter anderem aus dem Test der Gleichheit ein P-Wert von in etwa $0.4839$ vor.
 Da dieser Wert über dem Signifikanzniveau liegt, ist die entsprechende Null Hypothese anzunehmen.
-Daraus ist festzustellen, dass die H1 Hypothese verworfen wird und demnach von einer gleichen Verteilung der Belohnungen in Abhängigkeit des Trainingsszenarios auszugehen ist.
+Daraus ist festzustellen, dass die H1 Hypothese verworfen wird und folglich von einer gleichen Verteilung der Belohnungen in Abhängigkeit des Trainingsszenarios auszugehen ist.
 % Wird der P-Wert des zweiten Signifikanztests herangezogen, so wird erkenntlich, dass eine Verschlechterung der Belohnungsverteilung erzielt worden ist mittels der Strategie, welche unter DR optimiert wurde.
 % Dies geht daraus hervor, dass der P-Wert mit in etwa $0.9533$ größer als das Signifikanzniveau ist.
 % Im Test zur Verschlechterung der Metrik wird dadurch die H0 Hypothese bestätigt und die H1 Hypothese dem entsprechend abgelehnt.
 
 % Bezug zur Robustheit
-Die im Rahmen dieser Arbeit verwendete Form der Domänen Randomisierung zeigte somit keinen Effekt auf die Robustheit der Strategien gegenüber des unbekannten Testszenarios.
+Für das beschriebene Testszenario konnte der Einsatz von DR im Trainingsszenario demnach keine Verbesserung der Belohnungsverteilung, hervorgerufen werden.
+Die im Rahmen dieser Arbeit verwendete Form der Domänen Randomisierung zeigte somit auch keinen Effekt auf die Robustheit der Strategien gegenüber des unbekannten Testszenarios, wird lediglich die kumulierte Belohnung je Episode betrachtet.
 % Aus den Ergebnissen der Signifikanztests geht hervor, dass mittels der in dieser Arbeit angewendeten DR im Trainingsprozess ein negativer Effekt auf die Belohnungsverteilung ausgeübt wurde.
-Für das beschriebene Testszenario konnte der Einsatz von DR im Trainingsszenario demnach keine Erhöhung der Robustheit, im Sinne einer verbesserten Belohnungsverteilung, hervorgerufen werden.
 
 \subsection{Betrachtung der Belohnungsstabilität}
 
@@ -49,11 +50,11 @@ Dazu wird im ersten Test die Gleichheit der Verteilungen, aus der Verwendung der
 Im zweiten Test wird die Verringerung der Verteilung aus der Verwendung der Strategie mit DR angenommen.
 
 % Evaluation
-Tabelle 8 zum ersten Test der Gleichheit einen P-Wert von in etwa $2.2302e-05$.
-Daraus resultierend können nur zu einer geringen Wahrscheinlichkeit per Zufall die Daten aus einer selben unterliegenden Verteilung gezogen worden sein.
+Tabelle 8 zeigt zum ersten Test der Gleichheit einen P-Wert von in etwa $2.2302e-05$.
+Daraus resultierend können nur zu einer sehr geringen Wahrscheinlichkeit per Zufall die Daten aus einer selben unterliegenden Verteilung gezogen worden sein.
 Eine gleiche unterliegende Verteilung wird demnach ausgeschlossen und die H0 Hypothese abgelehnt sowie die H1 Hypothese angenommen.
 Bezogen auf den zweiten Test liegt ein P-Wert von in etwa $1.0$ vor.
-Folgend kann abgeleitet werden, dass die H0 Hypothese einer höheren Verteilung der Abweichungen anzunehmen ist.
+Folgend kann abgeleitet werden, dass die H0 Hypothese einer stärkeren Verteilung der Abweichungen anzunehmen ist.
 Entsprechend wird die H1 Hypothese sowie die Hypothese 2 abgelehnt, da die angewendete Form der DR zu einen negativen Effekt auf die Varianz der Belohnungen führt.
 
 % Bezug zur Robustheit
