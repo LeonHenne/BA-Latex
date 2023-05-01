@@ -5,7 +5,7 @@
     Metrik & Gleichheit P-Wert & Verschlechterung P-Wert & Ungleichheit & Verbesserung \\
     sum reward & 0.21860488490723795 & 0.10930244245361898 & False & False \\
     \begin{tabular}[c]{@{}l@{}}reward mean \\ difference\end{tabular} & 1.1343177758713004e-13 & 0.9999999999999443 & True & False \\
-    \begin{tabular}[c]{@{}l@{}}count of \\ failures \end{tabular} & 0.005412977104604817 & 0.09899034302740754 & 0.9513450789074275 & True & False
+    \begin{tabular}[c]{@{}l@{}}count of \\ failures \end{tabular} & 0.09899034302740754 & 0.9513450789074275 & True & False
     \end{tabular}
     \caption{Ergebnisse der statistischen Tests aus dem Leistungsvergleich der Modelle aus den Trainingsszenarien 3 und 4}
     \label{tab:my-comparison-3}
@@ -52,9 +52,8 @@ Wird dieser Einfluss mittels zweitem Test genauer untersucht, ist dabei der P-We
 Daraus geht hervor, dass die Wahl eines RL basierten Gegenspieler anstelle der DR im Trainingsszenario einen negativen Effekt auf die Belohnungsstabilität ausübt.
 
 % Bezug zur Robustheit
-Schlussfolgernd konnte damit festgestellt werden, dass ein RL basierter Gegenspieler im Training zu einer weniger robusten Strategie führt, als wenn DR eingesetzt würde.
-
-\textbf{Hier am Ende vlt auch die wirkliche Varianz berechnen}
+Entsprechend wird die Forschungshypothese 2 in diesem Kontext verworfen, da keine Verbesserungseffekt durch einen RL basierten Gegenspieler festzustellen war.
+Im Gegenteil konnte gezeigt werden, dass ein RL basierter Gegenspieler im Training zu einer weniger robusten Strategie führt, als wenn DR eingesetzt würde.
 
 \subsection{Betrachtung der Anzahl der Misserfolge}
 
@@ -62,9 +61,16 @@ Schlussfolgernd konnte damit festgestellt werden, dass ein RL basierter Gegenspi
 \textit{Die im Testszenario erreichte Anzahl von Misserfolgen ist unter Verwendung der Policy aus dem Training mit RL basiertem Gegenspieler signifikant und zuverlässig geringer als die Policy aus dem Training mit randomisierter Umgebung.}
 
 % Untersuchungsgegenstand
-
+Anhand einer dritten Forschungshypothese soll schlussendlich die dritte Metrik der Robustheit und dessen Einfluss durch das gewählte Trainingsszenario erforscht werden.
+Wie in der bisherigen Vorgehensweise wird zunächst die Ähnlichkeit der beiden Datenverteilungen zum Misserfolg der Testepisoden analysiert.
+Anschließend ist bei einer vorliegenden Ungleichheit der Effekt des RL basierten Gegenspielers gegenüber der DR herauszustellen.
+Zeigt sich aus dieser Gegenüberstellung, dass eine Verbesserung durch das Training mittels RL optimiertem Gegenspieler erzielt wurde, ist die dritte Forschungshypothese anzunehmen. 
 
 % Evaluation
-
+Werden die Testwerte aus Tabelle 9 betrachtet, gilt es zunächst den ersten P-Wert von in etwa $0.0990$ mit dem Signifikanzniveau zu vergleichen.
+Die Ablehnung der H0 Hypothese und Annahme einer unterschiedlichen grundlegenden Wahrscheinlichkeitsverteilung folgt aus dem geringer als $0.1$ bemessenen P-Wert.
+In der Auswertung des zweiten Test wird die H0 Hypothese angenommen, da dessen P-Wert mit in etwa $0.9513$ über dem Signifikanzniveau liegt.
+Daraus hervorgehend ist festzustellen, dass die Gültigkeit der H1 Hypothese und dementsprechend ein verringernder Effekt auf die Häufigkeit des Misserfolgs durch RL optimierten Gegenspielers auszuschließen ist.
 
 % Bezug zur Robustheit
+Mit der Ablehnung der dritten Forschungshypothese lässt sich ein positiverer Effekt des Einsatzes von DR auf die Robustheit festhalten, als mittels des Einsatzes eines RL basierten Gegenspielers.
