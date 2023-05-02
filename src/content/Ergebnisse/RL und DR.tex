@@ -20,13 +20,13 @@ Dazu sind die P-Werte der Tests und Wahrheitswerte der Testhypothesen je untersu
 \textit{Die im Testszenario erzielte kumulierte Belohnung ist unter Verwendung der Policy aus dem Training mit RL basiertem Gegenspieler signifikant und zuverlässig höher als die Policy aus dem Training mit randomisierter Umgebung.}
 
 % Untersuchungsgegenstand
-Zuerst wird die Hypothese 1 einer signifikant höheren kumulierten Belohnung, durch den Einsatz von RL zum optimieren eines Gegenspielers gegenüber der angewendeten Form von DR, untersucht.
-Die H0 Hypothese im ersten Test repräsentiert die Behauptung das eine die Daten der Belohnungen einer gemeinsamen Verteilung entstammen. 
-Das die Belohnungsdaten welche durch die Strategie mit RL basiertem Gegenspieler erzeugt worden sind einer höheren Verteilung entstammen wird im zweiten Test als H0 Hypothese überprüft.
+Zuerst wird die Hypothese 1 einer signifikant höheren kumulierten Belohnung, durch den Einsatz von RL zum Optimieren eines Gegenspielers gegenüber der angewendeten Form von DR, untersucht.
+Die H0 Hypothese im ersten Test repräsentiert die Behauptung, dass eine die Daten der Belohnungen einer gemeinsamen Verteilung entstammen. 
+Das die Belohnungsdaten, welche durch die Strategie mit RL basiertem Gegenspieler erzeugt worden sind, einer höheren Verteilung entstammen wird im zweiten Test als H0 Hypothese überprüft.
 Entsprechend gegensätzliche Annahmen werden in beiden Signifikanztests als H1 Hypothese verwendet.
 
 % Evaluation
-Der erste P-wert der Tabelle 9 in der Zeile zur kumulierten Belohnung liegt mit in etwa $0.2186$ über dem Signifikanzniveau von 10\%.
+Der erste P-Wert der Tabelle 9 in der Zeile zur kumulierten Belohnung liegt mit in etwa $0.2186$ über dem Signifikanzniveau von 10 \%.
 Aus diesem Grund wird die H0 Hypothese bestätigt, dass die Daten einer einheitlichen Wahrscheinlichkeitsverteilung entstammen.
 Entsprechend ist die H1 Hypothese abzulehnen und auch die obige adaptierte Forschungshypothese zu verwerfen.
 Daraus entfällt eine weitere Betrachtung des P-Wertes des zweiten Tests.
@@ -52,7 +52,7 @@ Wird dieser Einfluss mittels zweitem Test genauer untersucht, ist dabei der P-We
 Daraus geht hervor, dass die Wahl eines RL basierten Gegenspieler anstelle der DR im Trainingsszenario einen negativen Effekt auf die Belohnungsstabilität ausübt.
 
 % Bezug zur Robustheit
-Entsprechend wird die Forschungshypothese 2 in diesem Kontext verworfen, da keine Verbesserungseffekt durch einen RL basierten Gegenspieler festzustellen war.
+Entsprechend wird die Forschungshypothese 2 in diesem Kontext verworfen, da kein Verbesserungseffekt durch einen RL basierten Gegenspieler festzustellen war.
 Im Gegenteil konnte gezeigt werden, dass ein RL basierter Gegenspieler im Training zu einer weniger robusten Strategie führt, als wenn DR eingesetzt würde.
 
 \subsection{Betrachtung der Anzahl der Misserfolge}
@@ -69,8 +69,9 @@ Zeigt sich aus dieser Gegenüberstellung, dass eine Verbesserung durch das Train
 % Evaluation
 Werden die Testwerte aus Tabelle 9 betrachtet, gilt es zunächst den ersten P-Wert von in etwa $0.0990$ mit dem Signifikanzniveau zu vergleichen.
 Die Ablehnung der H0 Hypothese und Annahme einer unterschiedlichen grundlegenden Wahrscheinlichkeitsverteilung folgt aus dem geringer als $0.1$ bemessenen P-Wert.
-In der Auswertung des zweiten Test wird die H0 Hypothese angenommen, da dessen P-Wert mit in etwa $0.9513$ über dem Signifikanzniveau liegt.
+In der Auswertung des zweiten Tests wird die H0 Hypothese angenommen, da dessen P-Wert mit in etwa $0.9513$ über dem Signifikanzniveau liegt.
 Daraus hervorgehend ist festzustellen, dass die Gültigkeit der H1 Hypothese und dementsprechend ein verringernder Effekt auf die Häufigkeit des Misserfolgs durch RL optimierten Gegenspielers auszuschließen ist.
 
 % Bezug zur Robustheit
 Mit der Ablehnung der dritten Forschungshypothese lässt sich ein positiverer Effekt des Einsatzes von DR auf die Robustheit festhalten, als mittels des Einsatzes eines RL basierten Gegenspielers.
+Der positivere Effekt durch DR wirkt sich dabei im Sinne einer höheren Erfolgsrate auf die Robustheit aus.

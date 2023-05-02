@@ -6,7 +6,7 @@ Eine Leistungsmessung im abweichenden Testszenario zeigt, welche Lernumgebung ei
 Die auszuwertenden Leistungsmetriken aggregiert zu ihrer Testepisode können im Anhang gefunden werden.
 Im ersten Vergleich werden die Strategie aus dem Training mit regelbasiertem und mittels RL optimierten Gegenspieler untersucht.
 Weiterhin wird ein Vergleich der Testmetriken zwischen dem Training ohne und mit randomisierter Umgebung sowie regelbasiertem Gegenspieler durchgeführt.
-Dazu werden mehrfach die selben statistischen Signifikanztests durchgeführt, um zum einen den Effekt der DR zu ermitteln.
+Dazu werden mehrfach dieselben statistischen Signifikanztests durchgeführt, um zum einen den Effekt der DR zu ermitteln.
 Zum anderen werden die Einflüsse der im Rahmen dieser Arbeit entwickelten Methoden wie der DR und dem RL basierten Gegenspieler gegenübergestellt.
 Das Ende dieses Kapitels bildet die Beantwortung der Forschungsfrage anhand der ausgewerteten Test- und Forschungshypothesen.
 
@@ -26,8 +26,8 @@ Das Ende dieses Kapitels bildet die Beantwortung der Forschungsfrage anhand der 
 Anhand Tabelle 7 lassen sich die Ergebnisse der statistischen Signifikanztests ablesen.
 Die Ergebnisse basieren dabei auf dem Leistungsvergleich der Modelle aus den Trainingsszenarien 1 und 3.
 Den Tabellenspalten werden zum einen die P-Werte der Tests zur Gleichheit und Verschlechterung der Verteilung zugeordnet.
-Zum anderen wird darauf basierend die Erfüllung der H1-Hypothese anhand des gewählten Signifikanzniveaus von 10\% evaluiert.
-Einer Zeile der Tabelle können die Ergebnissdaten zu einer der drei untersuchten Metriken entnommen werden.
+Zum anderen wird darauf basierend die Erfüllung der H1-Hypothese anhand des gewählten Signifikanzniveaus von 10 \% evaluiert.
+Einer Zeile der Tabelle können die Ergebnisdaten zu einer der drei untersuchten Metriken entnommen werden.
 
 \subsection{Betrachtung der kumulierten Belohnung}
 
@@ -42,10 +42,10 @@ Zur Bestätigung dieser Forschungshypothese müssen die P-Werte zur Gleichheit u
 
 % Evaluation
 Der P-Wert des Signifikanztests zur Gleichheit der Verteilungen der kumulierten Belohnungen liegt in etwa bei $0.6277$.
-Daraus kann festgestellt werden, dass dieser größer als das gewählte Signifikanzniveau von 10\% bzw. $0.1$ ist.
+Daraus kann festgestellt werden, dass dieser größer als das gewählte Signifikanzniveau von 10 \% bzw. $0.1$ ist.
 Die im Test untersuchte H0 Hypothese einer gleichen unterliegenden Verteilung ist damit anzunehmen.
 Eine Ungleichheit der unterliegenden Verteilung der Belohnungen, wie in Hypothese H1 behauptet, ist folglich abzulehnen.
-Da demnach keine Unterschiede in der Verteilung der im Testszenario erzielten Belohnungen vorliegen ist festzuhalten, dass die Forschungshypothese 1 abgelehnt wird.
+Da demnach keine Unterschiede in der Verteilung der im Testszenario erzielten Belohnungen vorliegen, ist festzuhalten, dass die Forschungshypothese 1 abgelehnt wird.
 % Somit ist festzuhalten, dass die Forschungshypothese 1 aufgrund der nicht vorliegenden Unterschiede in der Verteilung der im Testszenario erzielten Belohnungen abzulehnen ist.
 Im Laborexperiment konnte somit kein Nachweis erbracht werden, dass ein Optimieren eines RL-Modells, unter Verwendung eines selbst mittels RL optimierten Gegenspielers, zuverlässig zu einer höheren kumulierten Belohnung führt.
 
@@ -78,8 +78,8 @@ Eine Verringerung der Belohnungsvarianz durch Optimierung unter RL basierten Geg
 %\textbf{Hier am Ende vlt auch die wirkliche Varianz berechnen}
 
 % Bezug zur Robustheit
-Wird diese Erkenntnis im Kontext der Messung der Robustheit betrachtet werden zwei Effekte deutlich.
-Zum Einen zeigte sich mit der Durchführung des Laborexperiments, dass die Gestaltung des Gegenspielers in der Trainingsumgebung einen Effekt auf die Belohnungsstabilität ausübt.
+Wird diese Erkenntnis im Kontext der Messung der Robustheit betrachtet, werden zwei Effekte deutlich.
+Zum einen zeigte sich mit der Durchführung des Laborexperiments, dass die Gestaltung des Gegenspielers in der Trainingsumgebung einen Effekt auf die Belohnungsstabilität ausübt.
 Zum Anderen wird deutlich, dass der Einsatz eines optimierten Gegenspielers zu einer Verschlechterung der Belohnungsstabilität führt.
 Eine RL-Policy, welche unter einem durch verstärkendes Lernen optimierten Gegenspieler trainiert wurde, erzielt demnach eine geringere Robustheit aus der höheren Varianz der Belohnung.
 
@@ -104,5 +104,5 @@ Mit der Bestätigung keiner unterschiedlichen Verteilung des Misserfolgs bei ein
 
 % Bezug zur Robustheit
 Das Ablehnen der dritten Forschungshypothese bestätigt, dass kein Effekt durch die Wahl des Trainingsszenarios auf die Robustheit entstanden ist.
-Wird lediglich die Metrik des Misserfolgs betrachtet konnte festgestellt werden, dass unter unbekanntem Umgebungsverhalten ähnlich gleich häufig Misserfolge mittels der Strategie erzielt worden sind, welche den RL basierten Gegenspieler im Trainingszenario verwendete.
+Wird lediglich die Metrik des Misserfolgs betrachtet, konnte festgestellt werden, dass unter unbekanntem Umgebungsverhalten ähnlich gleich häufig Misserfolge mittels der Strategie erzielt worden sind, welche den RL basierten Gegenspieler im Trainingsszenario verwendete.
 Insgesamt kann dadurch festgehalten werden, dass keine Verbesserung der Robustheit mit der im Rahmen dieser Arbeit angewendeten Methodik erzielt wurde.
