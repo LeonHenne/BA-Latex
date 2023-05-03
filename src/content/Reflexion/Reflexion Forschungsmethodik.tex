@@ -3,7 +3,7 @@ Künstliche Intelligenz und maschinelles Lernen zeigt heutzutage in immer mehr L
 Ein wichtiges Phänomen zur Automatisierung ist dabei der Einzug von künstlicher Intelligenz in die Robotik zur Steuerung von Maschinen und Drohnen.
 Dessen Anwendung bleibt jedoch häufig eine Herausforderung, aufgrund fehlender Datengrundlage und dem hohen manuellen Aufwand die Daten entsprechend zu kennzeichnen. 
 Durch den Einsatz einer Simulationsumgebung und verstärkendem Lernen konnte im Rahmen dieser Arbeit gezeigt werden, dass auch ohne manuelle Kennzeichnung Modelle des maschinellen Lernens optimiert werden können.
-Erkannt wurde auch, dass Simulationsumgebungen immer eine gewisse Diskrepanz zur realen Welt aufweisen, weshalb es unabdingbar ist die Robustheit von RL Modellen zu überprüfen.
+Erkannt wurde auch, dass Simulationsumgebungen immer eine gewisse Diskrepanz zur realen Welt aufweisen, weshalb es unabdingbar ist, die Robustheit von RL Modellen zu überprüfen.
 Daraus ergab sich für diese Arbeit die Zielstellung den Effekt eines RL basierten Gegenspielers, auf die Robustheit einer optimierten Strategie mittels eines Laborexperiments zu untersuchen.
 Anschließend galt es, den untersuchten Effekt mit einer aktuellen Methodik zur Erhöhung der Robustheit, wie der DR zu vergleichen.
 
@@ -16,35 +16,36 @@ Im weiteren Verlauf soll deshalb die im Rahmen dieser Arbeit angewendete Forschu
 Zur Untersuchung der in dieser Arbeit gestellten Forschungsfrage wurde die Methodik eines Laborexperiment durchgeführt. 
 Dabei galt es Messdaten zur Robustheit der verschiedenen RL Modelle aus unterschiedlichen Trainingsszenarien zu erheben.
 Da keine Trainingsumgebung und Drohnen in der echten Welt zur Verfügung standen, wurde eine Simulationsumgebung verwendet. 
-Für das Training ist zunächst regelbasiertes Verhalten entwickelt worden, welches mittels imitation Learning zur Modellstruktur des verstärkenden Lernens übertragen wurde.
+Für das Training ist zunächst regelbasiertes Verhalten entwickelt worden, welches mittels imitierenden Lernen zur Modellstruktur des verstärkenden Lernens übertragen wurde.
 Nach einem zweiten Optimierungsschritt mit RL wurden die Modelle in einer Abwandlung der Simulation auf ihre Leistung hin geprüft.
 
 % Herausforderung aus dem hohen Entwicklungsaufwand
-Mit der Durchführung dieser Methodik bestand die Herausforderung den hohen implizierten Entwicklungsaufwand umzusetzen, da viele Komponenten, welche für die Überprüfung notwendig sind nicht in der Forschungsliteratur vorhanden waren.
+Mit der Durchführung dieser Methodik bestand die Herausforderung den hohen implizierten Entwicklungsaufwand umzusetzen, da viele Komponenten, welche für die Überprüfung benötigt waren, zum Zeitpunkt kein Teil der Forschungsliteratur waren.
 Die Entwicklung begann mit der für den Anwendungsfall zugeschnittenen Simulationsumgebung.
-Zusätzlich waren in dieser Umgebung insgesamt vier Strategien anhand von imitierenden Lernen im ersten Schritt und verstärkendem Lernen im zweiten Schritt zu optimieren. 
+Zusätzlich waren in dieser Umgebung insgesamt vier Strategien anhand von imitierendem Lernen im ersten Schritt und verstärkendem Lernen im zweiten Schritt zu optimieren. 
 Weiterhin bedarf das Laborexperiment einem Testkonzept zur Messung und Auswertung der in der Forschung nicht eindeutig definierten Robustheit.
 
 % Einschränkungen der einzelnen Komponenten
 Aus der Anwendung eines Laborexperiments und der eigenen Entwicklung der meisten benötigten Komponenten ergeben sich vielerlei Einschränkungen und Möglichkeiten zur Methodenoptimierung. %ein hohes Fehler- und Optimierungspotenzial.
 Durch die Wahl des Laborexperiments konnte zwar erfolgreich die Robustheit bemessen werden, jedoch ist dadurch auch ein beschränkter Bezug zur Realität gegeben, im Vergleich zu z. B. einem Feldexperiment.
-Weiterhin wurde mit der Durchführung des Experiments in einer Simulation das Testszenario selbst, um eine nicht bemessene Diskrepanz zur Realität erweitert und damit die Messung der Robustheit beeinflusst.
-Im Trainingsprozess der Modelle konnte wiederum dank der niedriger frequentierten Simulation, bzw. der mehrfachen Ausführung einer gewählten Aktion, mit eher geringem Aufwand stark dekorrelierte Trainingsdaten erzeugt werden, was ohne Simulation zu einer großen Herausforderung führe.
+Weiterhin wurde mit der Durchführung des Experiments in einer Simulation, das Testszenario selbst, um eine nicht bemessene Diskrepanz zur Realität erweitert und damit die Messung der Robustheit beeinflusst.
+Im Trainingsprozess der Modelle konnte wiederum dank der niedriger frequentierten Simulation, bzw. der mehrfachen Ausführung einer gewählten Aktion, mit eher geringem Aufwand stark unkorrelierte Trainingsdaten erzeugt werden, was ohne Simulation zu einer großen Herausforderung führe.
 Dennoch kann es lohnenswert sein Optimierungspotenzial im Trainingsprozess zu suchen, da von dessen Qualität auch die im Testszenario gemessenen Leistungen der RL Modelle abhängen.
 Zusätzlich könnte der Prozess zur Optimierung der Modelle nur unter einer beschränkten Menge von Trainingsdaten ausgeübt werden, woraus auch ein Einfluss auf das Verhalten der Modelle bewirkt wurde.
 Um die gemessenen Effekte des RL basierten Gegenspielers in eine Relation, zu in der Forschungsliteratur vorhandenen Methoden zu setzen, wurde der populärste Ansatz DR angewendet.
-Die in dieser Arbeit entwickelte Form der DR erzeugte zwar selbst nicht in jeder Hinsicht eine Verbesserung der Robustheit, konnte aber dennoch für einem Vergleich zu bestehenden Ansätzen eingesetzt werden.
+Die in dieser Arbeit entwickelte Form der DR erzeugte zwar selbst nicht in jeder Hinsicht eine Verbesserung der Robustheit, konnte aber dennoch für einen Vergleich zu bestehenden Ansätzen eingesetzt werden.
 
 Insgesamt ließ sich die gewählte Methodik dieser Arbeit, trotz hohem Entwicklungsaufwand und demnach Einschränkungen in der allgemeinen Gültigkeit, zur Untersuchung der Robustheit von RL Algorithmen einsetzen.
-Betrachtet man die Quantität von in der Literatur standardisierten Konzepten und vorhandenen Entwicklungen, konnte mit dieser Arbeit viel beispielhafte Entwicklung geleistet werden, um die notwendige Forschung an der Robustheit von RL Algorithmen im Robotik Bereich und im Drohnenflug voranzubringen.
+Betrachtet man die Quantität von in der Literatur standardisierten Konzepten, konnte mit dieser Arbeit viel beispielhafte Entwicklung geleistet werden, um die notwendige Forschung an der Robustheit von RL Algorithmen im Robotik Bereich und im Drohnenflug voranzubringen.
 
 \section{Ausblick für weitere Forschung}
 
+Soll innerhalb der letzten Sektion final nun ein Ausblick für weitere Forschung gegeben werden ist ein bedeutsamer Punkt die Standardisierung von Definitionen und Messkonzepten zur Untersuchung der Robustheit von Modellen des maschinellen Lernens.
+Unter einem einheitlichen Verständnis der Robustheit und entwickelten Metriken könnte die Forschung zu dessen Verbesserung beschleunigt und deren Ergebnisse vergleichbarer gemacht werden.
+Darauf aufbauend würde es den aktuellen Stand der Forschung bereichern, ein Testszenario zur Eliminierung der Testdiskrepanz in der echten Welt zu implementieren. 
+Anhand dessen ließe sich die Aussagekraft von Messungen und Ergebnisses deutlich steigern.
+Da die Anwendung in der echten Welt nicht für jedes Untersuchungsszenario umsetzbar sein kann, bleibt dennoch die Entwicklung und Verbesserung von Simulation ein wichtiges Forschungsgebiet.
+Eine wichtige Simulationseigenschaft im Rahmen dieser Arbeit war die Simulations-, bzw. Handlungsfrequenz des Agenten, um trotz geringerer Datenpunkte einen diversen Datensatz zu erzielen.
+Betrachtet man diese Eigenschaft ergeben sich zwei neue Forschungsrichtungen, welche die Frage nach der leistungsmäßig optimalen, also der effektivsten sowie nach der Ressourcen optimalen, also der effizientesten Simulationsfrequenz stellen.
 
-
-\begin{itemize}
-    \item Standardisierung von Simulationen und Experimentkonzepten
-    \item Erstellung eines Konzepts zur Messung der Robustheit in der echten Welt ?
-    \item Training der Modelle könnte unter mehr Trainingsdaten erfolgen. (Hier besonders auf aggr phy steps eingehen)
-    \item Verringerung der Simulationsfrequenz über die aggr phy steps lässt weitere Forschungsfragen zu
-\end{itemize}
+Insgesamt bleibt es damit weiter notwendig, das Verhalten von RL Modellen in unbekannten Umgebungen zu untersuchen, um die Robustheit der Modelle zu evaluieren und eine fehlerfreie Übernahme von dynamischen Prozessen in der Robotik und dem Drohnenflug zu garantieren.
