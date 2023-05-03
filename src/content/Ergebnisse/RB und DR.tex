@@ -13,7 +13,7 @@
 
 Tabelle 8 weist die Ergebnisse der statistischen Signifikanztests zum Vergleich der Strategieleistungen aus dem Training mit regelbasiertem Gegenspieler und DR aus.
 Dabei werden in gleicher Struktur zur Tabelle 7 die P-Werte zur Gleichheit und Verschlechterung der Verteilung sowie die Annahme der H1 Hypothesen anhand jeder Metrik dargestellt.
-Forschungshypothesen und Testhypothesen sind entsprechend dem Vergleich der Polices aus dem Training mit DR und ohne DR anzupassen.
+Forschungshypothesen und Testhypothesen sind entsprechend dem Vergleich der Policies aus dem Training mit DR und ohne DR anzupassen.
 
 \subsection{Betrachtung der kumulierten Belohnung}
 
@@ -23,7 +23,7 @@ Forschungshypothesen und Testhypothesen sind entsprechend dem Vergleich der Poli
 % Untersuchungsgegenstand
 Für die Ermittlung des Effekts der DR wird die Forschungshypothese 1 für den Vergleich der Strategieleistungen aus dem Training mit und ohne DR adaptiert.
 Die Hypothese stellt damit die Behauptung auf, dass die kumulierte Belohnung signifikant höher ist, sofern ein Training mit DR vorliegt.
-Dessen Auswertung erfolgt über eine ähnliche Adaptierung der H0 und H1 Hypothesen der Tests zur Gleichheit und Verschlechterung der Ergebnisdaten.
+Die Auswertung erfolgt über eine ähnliche Adaptierung der H0 und H1 Hypothesen der Tests zur Gleichheit und Verschlechterung der Ergebnisdaten.
 Um die adaptierte Hypothese zu bestätigen, gilt es eine Ungleichheit im ersten Signifikanztest und eine Verbesserung im zweiten Test festzustellen.
 
 % Evaluation
@@ -35,8 +35,8 @@ Daraus ist festzustellen, dass die H1 Hypothese verworfen wird und folglich von 
 % Im Test zur Verschlechterung der Metrik wird dadurch die H0 Hypothese bestätigt und die H1 Hypothese dem entsprechend abgelehnt.
 
 % Bezug zur Robustheit
-Für das beschriebene Testszenario konnte der Einsatz von DR im Trainingsszenario demnach keine Verbesserung der Belohnungsverteilung, hervorgerufen werden.
-Die im Rahmen dieser Arbeit verwendete Form der Domänen Randomisierung zeigte somit auch keinen Effekt auf die Robustheit der Strategien gegenüber des unbekannten Testszenarios, wird lediglich die kumulierte Belohnung je Episode betrachtet.
+Für das beschriebene Testszenario konnte der Einsatz von DR im Trainingsszenario demnach keine Verbesserung der Belohnungsverteilung hervorrufen.
+Die im Rahmen dieser Arbeit verwendete Form der Domänenrandomisierung zeigte somit auch keinen Effekt auf die Robustheit der Strategien gegenüber des unbekannten Testszenarios, wird lediglich die kumulierte Belohnung je Episode betrachtet.
 % Aus den Ergebnissen der Signifikanztests geht hervor, dass mittels der in dieser Arbeit angewendeten DR im Trainingsprozess ein negativer Effekt auf die Belohnungsverteilung ausgeübt wurde.
 
 \subsection{Betrachtung der Belohnungsstabilität}
@@ -45,17 +45,17 @@ Die im Rahmen dieser Arbeit verwendete Form der Domänen Randomisierung zeigte s
 \textit{Die Varianz der im Testszenario erzielten kumulierten Belohnung ist unter Verwendung der Policy aus dem Training mit DR signifikant und zuverlässig geringer als die Policy aus dem Training ohne Randomisierung der Umgebung.}
 
 % Untersuchungsgegenstand
-Mittels der adaptierten zweiten Forschungshypothese wird die Verteilung der Abweichungen vom Mittelwert der Belohnungen über alle 100 Testszenarien untersucht.
+Mittels der adaptierten zweiten Forschungshypothese wird die Verteilung der Abweichungen vom Mittelwert der Belohnungen über alle 100 Testszenarien untersucht. % die Verteilung der durchschnittlichen Abweichungen?
 Dazu wird im ersten Test die Gleichheit der Verteilungen, aus der Verwendung der beiden Strategien, mit und ohne DR, als H0 Hypothese vorausgesetzt.
-Im zweiten Test wird die Verringerung der Verteilung aus der Verwendung der Strategie mit DR angenommen.
+Im zweiten Test wird die Verringerung der Verteilung aus der Verwendung der Strategie mit DR angenommen. % Verringerung der Verteilung = Verringerung der durchschnittlichen Abweichung?
 
 % Evaluation
 Tabelle 8 zeigt zum ersten Test der Gleichheit einen P-Wert von in etwa $2.2302e-05$.
-Daraus resultierend können nur zu einer sehr geringen Wahrscheinlichkeit per Zufall die Daten aus einer selben unterliegenden Verteilung gezogen worden sein.
+Daraus resultierend können nur zu einer sehr geringen Wahrscheinlichkeit per Zufall die Daten aus einer selben unterliegenden Verteilung gezogen worden sein. % Dies bedeutet, dass nur zu einer ... gezogen worden sein können.
 Eine gleiche unterliegende Verteilung wird demnach ausgeschlossen und die H0 Hypothese abgelehnt sowie die H1 Hypothese angenommen.
 Bezogen auf den zweiten Test liegt ein P-Wert von in etwa $1.0$ vor.
-Folgend kann abgeleitet werden, dass die H0 Hypothese einer stärkeren Verteilung der Abweichungen anzunehmen ist.
-Entsprechend wird die H1 Hypothese sowie die Hypothese 2 abgelehnt, da die angewendete Form der DR zu einem negativen Effekt auf die Varianz der Belohnungen führt.
+Folgend kann abgeleitet werden, dass die H0 Hypothese einer stärkeren Verteilung der Abweichungen anzunehmen ist. % stärkere Verteilung der Abweichungen = höhere durchschnittliche Abweichungen / stärkere Streuung der kumulierten Belohnung ?
+Entsprechend wird die H1 Hypothese sowie die Hypothese 2 abgelehnt, da die angewendete Form der DR zu einem negativen Effekt auf die Varianz der Belohnungen führt. % Die Varianz ist eigentlich die mittlere quadratische Abweichung, du misst aber die mittlere absolute Abweichung oder?
 
 % Bezug zur Robustheit
 Für die Messung der Robustheit ist somit festzuhalten, dass DR im Kontext dieser Arbeit als Teil des Trainingsszenarios, keine Verbesserung der Robustheit erzielte.
@@ -67,9 +67,9 @@ Dies resultiert daraus, dass keine Verbesserung im Sinne einer stabileren Belohn
 \textit{Die im Testszenario erreichte Anzahl von Misserfolgen ist unter Verwendung der Policy aus dem Training mit DR signifikant und zuverlässig geringer als die Policy aus dem Training ohne Randomisierung der Umgebung.}
 
 % Untersuchungsgegenstand
-Mit der dritten adaptierten Forschungshypothese soll zuletzt der Effekt der Domänen Randomisierung auf die Anzahl der Misserfolge untersucht werden.
+Mit der dritten adaptierten Forschungshypothese soll zuletzt der Effekt der Domänenrandomisierung auf die Anzahl der Misserfolge untersucht werden.
 Durch den Test der Gleichheit wird die Existenz eines Effekts überprüft.
-Sofern dieser Test einen vorhandenen Effekt bestätigt, wird dessen Auswirkung mittels des zweiten Tests zur Verschlechterung evaluiert.
+Sofern dieser Test einen vorhandenen Effekt bestätigt, wird dessen Auswirkung mittels des zweiten Tests hinsichtlich einer Verschlechterung evaluiert.
 Damit die dritte Forschungshypothese angenommen wird, gilt es, einen verringernden Effekt auf die Häufigkeit von Misserfolgen festzustellen.
 Dazu sind die H0 Hypothesen beider Tests abzulehnen.
 
