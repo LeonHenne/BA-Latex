@@ -7,7 +7,7 @@ Erkannt wurde auch, dass Simulationsumgebungen immer eine gewisse Diskrepanz zur
 Daraus ergab sich für diese Arbeit die Zielstellung den Effekt eines RL basierten Gegenspielers, auf die Robustheit einer optimierten Strategie mittels eines Laborexperiments zu untersuchen.
 Anschließend galt es, den untersuchten Effekt mit einer aktuellen Methodik zur Erhöhung der Robustheit, wie der DR zu vergleichen.
 
-Die Ergebnisse zeigten, dass die Anwendung des RL basierten Gegenspielers sowie der DR, zwar nicht in jeder Hinsicht die Robustheit von RL Modellen verbessern, jedoch teilweise positive Effekte auf einzelne Teilaspekte wie Stabilität und Erfolgsrate ausüben konnten.
+Die Ergebnisse zeigten, dass die Anwendung des RL basierten Gegenspielers sowie der DR, zwar nicht in jeder Hinsicht die Robustheit von RL Modellen verbessern, jedoch die DR teilweise positive Effekte auf einzelne Teilaspekte wie Stabilität und Erfolgsrate ausüben konnten.
 Im weiteren Verlauf soll deshalb die im Rahmen dieser Arbeit angewendete Forschungsmethodik kritisch reflektiert, sowie ein Ausblick auf weitere Forschungsfragen gegeben werden.
 
 \section{Reflexion der Forschungsmethodik}
@@ -15,12 +15,12 @@ Im weiteren Verlauf soll deshalb die im Rahmen dieser Arbeit angewendete Forschu
 % kurze Erläuterung der Methodik
 Zur Untersuchung der in dieser Arbeit gestellten Forschungsfrage wurde die Methodik eines Laborexperiment durchgeführt. 
 Dabei galt es Messdaten zur Robustheit der verschiedenen RL Modelle aus unterschiedlichen Trainingsszenarien zu erheben.
-Da keine Trainingsumgebung und Material in der echten Welt zur Verfügung stand, wurde eine Simulationsumgebung verwendet. 
+Da keine Trainingsumgebung und Drohnen in der echten Welt zur Verfügung standen, wurde eine Simulationsumgebung verwendet. 
 Für das Training ist zunächst regelbasiertes Verhalten entwickelt worden, welches mittels imitation Learning zur Modellstruktur des verstärkenden Lernens übertragen wurde.
-Nach einem zweiten Optimierungsschritt mit RL wurden die Modelle in einer Abwandlung der Simulation auf ihre Leistung hin geprüft wurden.
+Nach einem zweiten Optimierungsschritt mit RL wurden die Modelle in einer Abwandlung der Simulation auf ihre Leistung hin geprüft.
 
 % Herausforderung aus dem hohen Entwicklungsaufwand
-Mit der Durchführung dieser Methodik bestand die Herausforderung den hohen implizierten Entwicklungsaufwand umzusetzen, da viele Komponenten welche für die Überprüfung notwendig sind nicht in der Forschungsliteratur vorhanden waren.
+Mit der Durchführung dieser Methodik bestand die Herausforderung den hohen implizierten Entwicklungsaufwand umzusetzen, da viele Komponenten, welche für die Überprüfung notwendig sind nicht in der Forschungsliteratur vorhanden waren.
 Die Entwicklung begann mit der für den Anwendungsfall zugeschnittenen Simulationsumgebung.
 Zusätzlich waren in dieser Umgebung insgesamt vier Strategien anhand von imitierenden Lernen im ersten Schritt und verstärkendem Lernen im zweiten Schritt zu optimieren. 
 Weiterhin bedarf das Laborexperiment einem Testkonzept zur Messung und Auswertung der in der Forschung nicht eindeutig definierten Robustheit.
@@ -28,17 +28,18 @@ Weiterhin bedarf das Laborexperiment einem Testkonzept zur Messung und Auswertun
 % Einschränkungen der einzelnen Komponenten
 Aus der Anwendung eines Laborexperiments und der eigenen Entwicklung der meisten benötigten Komponenten ergeben sich vielerlei Einschränkungen und Möglichkeiten zur Methodenoptimierung. %ein hohes Fehler- und Optimierungspotenzial.
 Durch die Wahl des Laborexperiments konnte zwar erfolgreich die Robustheit bemessen werden, jedoch ist dadurch auch ein beschränkter Bezug zur Realität gegeben, im Vergleich zu z. B. einem Feldexperiment.
-Weiterhin wurde mit der Durchführung des Experiments in einer Simulation das Testszenario selbst um eine nicht bemessene Diskrepanz zur Realität erweitert und damit die Messung der Robustheit beeinflusst.
+Weiterhin wurde mit der Durchführung des Experiments in einer Simulation das Testszenario selbst, um eine nicht bemessene Diskrepanz zur Realität erweitert und damit die Messung der Robustheit beeinflusst.
 Im Trainingsprozess der Modelle konnte wiederum dank der niedriger frequentierten Simulation, bzw. der mehrfachen Ausführung einer gewählten Aktion, mit eher geringem Aufwand stark dekorrelierte Trainingsdaten erzeugt werden, was ohne Simulation zu einer großen Herausforderung führe.
-Dennoch besteht Optimierungspotenzial im Trainingsprozess, da von dessen Qualität auch die im Testszenario gemessenen Leistungen der IL und RL Modelle abhängen.
-Zusätzlich könnte der Prozess zur Optimierung der Modelle durch z. B. mehr Trainingsdaten, oder einem präziseren Verhalten der Umgebung oder der Experten verbessert werden.
-Um die gemessenen Effekte des RL basierten Gegenspielers in eine Relation, zu in der Forschungsliteratur vorhandenen Methoden, zu setzen wurde der populärste Ansatz DR angewendet.
+Dennoch kann es lohnenswert sein Optimierungspotenzial im Trainingsprozess zu suchen, da von dessen Qualität auch die im Testszenario gemessenen Leistungen der RL Modelle abhängen.
+Zusätzlich könnte der Prozess zur Optimierung der Modelle nur unter einer beschränkten Menge von Trainingsdaten ausgeübt werden, woraus auch ein Einfluss auf das Verhalten der Modelle bewirkt wurde.
+Um die gemessenen Effekte des RL basierten Gegenspielers in eine Relation, zu in der Forschungsliteratur vorhandenen Methoden zu setzen, wurde der populärste Ansatz DR angewendet.
 Die in dieser Arbeit entwickelte Form der DR erzeugte zwar selbst nicht in jeder Hinsicht eine Verbesserung der Robustheit, konnte aber dennoch für einem Vergleich zu bestehenden Ansätzen eingesetzt werden.
 
-Insgesamt ließ sich die gewählte Methodik dieser Arbeit, trotz hohem Entwicklungsaufwand und demnach Einschränkungen in der allgemeinen Gültigkeit, gut zur Untersuchung der Robustheit von RL Algorithmen einsetzen.
-Betrachtet man die Quantität von in der Literatur standardisierten Konzepten und vorhandenen Entwicklungen, konnte mit dieser Arbeit viel beispielhafte Entwicklungsarbeit geleistet werden, um die notwendige Forschung an der Robustheit von RL Algorithmen im Robotik Bereich voranzubringen.
+Insgesamt ließ sich die gewählte Methodik dieser Arbeit, trotz hohem Entwicklungsaufwand und demnach Einschränkungen in der allgemeinen Gültigkeit, zur Untersuchung der Robustheit von RL Algorithmen einsetzen.
+Betrachtet man die Quantität von in der Literatur standardisierten Konzepten und vorhandenen Entwicklungen, konnte mit dieser Arbeit viel beispielhafte Entwicklung geleistet werden, um die notwendige Forschung an der Robustheit von RL Algorithmen im Robotik Bereich und im Drohnenflug voranzubringen.
 
 \section{Ausblick für weitere Forschung}
+
 
 
 \begin{itemize}
