@@ -52,22 +52,22 @@ Jede der Strategien wird dabei in einem der nachfolgenden Simulationsszenarien o
 
 \subsection{Erläuterung des Testszenarios}
 
-Nach den Trainingsphasen werden einzelne Policies in mehreren Episoden, eines vom Training abweichenden Testszenarios, ausgeführt und deren Leistungsverhalten gemessen. % Hast du den Begriff "Policy" zuvor eingeführt? Ansonsten evtl. lieber bei Strategie bleiben
+Nach den Trainingsphasen werden einzelne Policies in mehreren Episoden, eines vom Training abweichenden Testszenarios, ausgeführt und deren Leistungsverhalten gemessen.
 Eine Episode entspricht dabei einer Simulation des Testszenarios bis zu ihrem erfolgreichen oder nicht erfolgreichem Ende durch Drohnen-, Ziel- oder Bodenkontakt.
 Zusätzlich zu den Trainingsszenarien ist neben den initialen Startpositionen der Drohnen auch der von der Angreiferdrohne zu erreichende Zielpunkt zufällig zu verändern.
-Neben der zusätzlichen Randomisierung des Zielpunktes wird außerdem ein zum Trainingsszenario verbesserter regelbasierter Gegenspieler verwendet. % ein im Vergleich zu den Trainingszenarien 1 und 4 verbesserter regeönaserter Gegenspieler
+Neben der zusätzlichen Randomisierung des Zielpunktes wird außerdem ein im Vergleich zu den Trainingszenarien 1 und 4 verbesserter regelbasierter Gegenspieler eingesetzt.
 
 \subsection{Messung der Robustheit von RL Policies}
 
-Die in den Testszenarien betrachteten abhängigen Variablen sind die erzielte kumulierte Belohnung, dessen Varianz sowie die Anzahl an unbeabsichtigten Misserfolgen. % gibt es beabsichtigte Misserfolge? ;) 
+Die in den Testszenarien betrachteten abhängigen Variablen sind die erzielte kumulierte Belohnung, dessen Varianz sowie die Anzahl an Misserfolgen.
 Die kumulierte Belohnung und dessen Varianz stellen wie bereits beschrieben in der Forschung wichtige Kenngrößen dar, um die Robustheit von RL Policies zu bestimmen.
-Als Robustheit wird im Rahmen dieser Arbeit die Signifikanz und Stabilität einer Leistungsdiskrepanz von Modellen zwischen Trainings- und Testszenarien definiert. % die nicht signifikante Leistungsdiskrepanz und damit Stabilität? eine Signifikanz der Leistungsdisrektanz deutet ja eher auf eine instabile oder zumindest nicht sehr robuste Strategie hin
+Als Robustheit wird im Rahmen dieser Arbeit die Signifikanz einer Leistungsdiskrepanz von Modellen zwischen Trainings- und Testszenarien und die demnach fehlende Stabilität definiert.
 Die Metrik der Anzahl von unbeabsichtigten Misserfolgen spiegelt im behandelten Anwendungsfall das Fehlschlagen der trainierten Strategie wider, die gegnerische Drohne nicht abfangen zu können.
-Mit der Auswahl der Metriken werden die Strategieeigenschaften der maximalen Strategieleistung, der Leistungsabweichung und der Strategiesicherheit deutlich. % hier könntest du noch deutlicher erläutern, inwiefern die einzelnen Metriken die einzelnen Strategieeigenschaften widerspiegeln. Die Eigenschaft "Leistungsabweichung" erschließt sich mir auch nicht ganz, Abweichung zwischen Training und Test oder Abweichung der Testleistung zwei unterschiedlicher Strategien?
+Mit der Auswahl der Metriken werden die Strategieeigenschaften der maximalen Strategieleistung, der Strategiestabilität über mehrere Episoden und der Strategieerfolgszuverlässigkeit deutlich.
 Aus der Abweichung zwischen dem Leistungsverhalten während des Trainings und während des Tests soll so die Robustheit von RL Policies erkennbar und messbar gestaltet werden.
 Der Fokus liegt dabei auf der Messung der Robustheit von den optimierten Strategien aus Szenario eins, drei und vier.
-Aus dem Vergleich des Leistungsverhaltens zwischen Strategie eins und drei kann eine mögliche Verbesserung der Robustheit gegenüber unbekannten Szenarien abgeleitet werden. % Verbesserung der Robustheit durch das Training mit einem Gegenspieler, der entsprechend einer ebenfalls mit RL trainierten Strategie agiert, abgeleitet werden.
-Anschließend kann der erzielte Effekt mit der Abweichung zwischen eins und vier verglichen, und so aktuell verwendete Methoden zur Erhöhung der Robustheit einbezogen werden. % und so im Vergleich zu aktuell verwendeten Methoden zur Erhöhung der Robustheit bewertet werden.
+Aus dem Vergleich des Leistungsverhaltens zwischen Strategie eins und drei kann eine mögliche Verbesserung der Robustheit durch das Training mit einem Gegenspieler, der entsprechend einer ebenfalls mit RL trainierten Strategie agiert, abgeleitet werden. 
+Anschließend kann der erzielte Effekt mit der Abweichung zwischen eins und vier verglichen, und so im Vergleich zu aktuell verwendeten Methoden zur Erhöhung der Robustheit bewertet werden. 
 
 \subsection{Auswertung mittels statistischer Tests}
 

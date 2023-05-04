@@ -27,7 +27,7 @@ Anhand Tabelle 7 lassen sich die Ergebnisse der statistischen Signifikanztests a
 Die Ergebnisse basieren dabei auf dem Leistungsvergleich der Modelle aus den Trainingsszenarien 1 und 3.
 Den Tabellenspalten werden zum einen die P-Werte der Tests zur Gleichheit und Verschlechterung der Verteilung zugeordnet.
 Zum anderen wird darauf basierend die Erfüllung der H1-Hypothese anhand des gewählten Signifikanzniveaus von 10 \% evaluiert.
-Einer Zeile der Tabelle können die Ergebnisdaten zu einer der drei untersuchten Metriken entnommen werden. % Den Zeilen der Tabelle ... zu je einer der drei 
+Den Zeilen der Tabelle können die Ergebnisdaten zu je einer der drei untersuchten Metriken entnommen werden.
 
 \subsection{Betrachtung der kumulierten Belohnung}
 
@@ -63,7 +63,7 @@ Ein Einfluss eines RL-basierten Gegenspielers auf die Robustheit der kumulierten
 % Untersuchungsgegenstand
 Mittels der Betrachtung der zweiten Forschungshypothese wird die Stabilität der im Testszenario erzielten kumulierten Belohnung untersucht.
 Dazu wird die Abweichung einer Belohnung aus einer Testepisode zum Mittelwert der Belohnungen über aller 100 Testepisoden berechnet.
-Forschungshypothese 2 stellt dabei die Behauptung auf, dass eine geringere Varianz der Belohnungen im Testszenario vorliegen unter Auswahl eines Trainingsszenarios mit RL basiertem Gegenspieler. % unter Auswahl der Strategie aus einem Trainingsszenario mit RL basiertem Gegenspieler
+Forschungshypothese 2 stellt dabei die Behauptung auf, dass eine geringere Varianz der Belohnungen im Testszenario vorliegen unter Auswahl der Strategie aus einem Trainingsszenario mit RL basiertem Gegenspieler.
 Zur Bestätigung dieser Hypothese gilt es zum einen, eine Ungleichheit der unterliegenden Verteilung der Abweichungen festzustellen.
 Zum anderen ist es notwendig, dass die Verteilung der Abweichungen zur Basis des RL basiertem Gegenspielers signifikant geringer ist.
 
@@ -81,7 +81,7 @@ Eine Verringerung der Belohnungsvarianz durch Optimierung unter RL basierten Geg
 Wird diese Erkenntnis im Kontext der Messung der Robustheit betrachtet, werden zwei Effekte deutlich.
 Zum einen zeigte sich mit der Durchführung des Laborexperiments, dass die Gestaltung des Gegenspielers in der Trainingsumgebung einen Effekt auf die Belohnungsstabilität ausübt.
 Zum Anderen wird deutlich, dass der Einsatz eines optimierten Gegenspielers zu einer Verschlechterung der Belohnungsstabilität führt.
-Eine RL-Policy, welche unter einem durch verstärkendes Lernen optimierten Gegenspieler trainiert wurde, erzielt demnach eine geringere Robustheit aus der höheren Varianz der Belohnung. % geringere Robustheit gemessen an der höheren Varianz der Belohnung
+Eine RL-Policy, welche unter einem durch verstärkendes Lernen optimierten Gegenspieler trainiert wurde, erzielt demnach geringere Robustheit gemessen an der höheren Varianz der Belohnung.
 
 \subsection{Betrachtung der Anzahl der Misserfolge}
 
@@ -94,8 +94,8 @@ Zur Untersuchung dessen wird die Verteilung der erfolgreichen und erfolglosen Te
 Weisen die Ergebnisse des Tests zur Gleichheit und Verschlechterung der Metrik je einen P-Wert aus, welcher unter dem Signifikanzniveau liegt, so kann die Forschungshypothese bestätigt und von einem positiven Effekt ausgegangen werden.
 
 % Evaluation
-Betrachtet man zunächst den P-Wert zur Gleichheit der Verteilungen von erfolgreichen und erfolglosen Episoden, liegt dieser anhand Tabelle 7 bei in etwa $0.1815$. % laut Tabelle 7 / entsprechend Tabelle 7 / nach Tabelle 7
-Daraus, dass dieser Wert geringer als das Signifikanzniveau ist, wird die H0 Hypothese einer Gleichheit der Verteilungen angenommen. % Daher, dass
+Betrachtet man zunächst den P-Wert zur Gleichheit der Verteilungen von erfolgreichen und erfolglosen Episoden, liegt dieser entsprechend Tabelle 7 bei in etwa $0.1815$.
+Daher, dass dieser Wert geringer als das Signifikanzniveau ist, wird die H0 Hypothese einer Gleichheit der Verteilungen angenommen.
 Entsprechend wird die H1 Hypothese einer ungleichen Verteilung der Misserfolge abgelehnt, sodass kein Unterschied in den Erfolgsverteilungen der RL-Policies festzustellen war.
 % Zum anderen zeigt Tabelle 7 einen P-wert von in etwa $0.0027$ zur Verschlechterung der Metrik, also einer höheren Verteilung des Misserfolgs bei Einsatz der Strategie aus dem Training mit RL basiertem Gegenspieler.
 % Da auch hier ein P-Wert vorliegt, welcher geringer als das Signifikanzniveau ist, wird erneut die H0 Hypothese abgelehnt.

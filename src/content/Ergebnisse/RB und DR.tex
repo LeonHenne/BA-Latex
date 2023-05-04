@@ -45,17 +45,17 @@ Die im Rahmen dieser Arbeit verwendete Form der Domänenrandomisierung zeigte so
 \textit{Die Varianz der im Testszenario erzielten kumulierten Belohnung ist unter Verwendung der Policy aus dem Training mit DR signifikant und zuverlässig geringer als die Policy aus dem Training ohne Randomisierung der Umgebung.}
 
 % Untersuchungsgegenstand
-Mittels der adaptierten zweiten Forschungshypothese wird die Verteilung der Abweichungen vom Mittelwert der Belohnungen über alle 100 Testszenarien untersucht. % die Verteilung der durchschnittlichen Abweichungen?
+Mittels der adaptierten zweiten Forschungshypothese wird die Verteilung der quadrierten absoluten Abweichungen vom Mittelwert der Belohnungen über alle 100 Testszenarien untersucht.
 Dazu wird im ersten Test die Gleichheit der Verteilungen, aus der Verwendung der beiden Strategien, mit und ohne DR, als H0 Hypothese vorausgesetzt.
-Im zweiten Test wird die Verringerung der Verteilung aus der Verwendung der Strategie mit DR angenommen. % Verringerung der Verteilung = Verringerung der durchschnittlichen Abweichung?
+Im zweiten Test wird die Verringerung der Mittelwerts der Abweichungsverteilung aus der Verwendung der Strategie mit DR angenommen.
 
 % Evaluation
 Tabelle 8 zeigt zum ersten Test der Gleichheit einen P-Wert von in etwa $2.2302e-05$.
-Daraus resultierend können nur zu einer sehr geringen Wahrscheinlichkeit per Zufall die Daten aus einer selben unterliegenden Verteilung gezogen worden sein. % Dies bedeutet, dass nur zu einer ... gezogen worden sein können.
+Dies bedeutet, dass nur zu einer sehr geringen Wahrscheinlichkeit per Zufall die Daten aus einer selben unterliegenden Verteilung gezogen worden sein können.
 Eine gleiche unterliegende Verteilung wird demnach ausgeschlossen und die H0 Hypothese abgelehnt sowie die H1 Hypothese angenommen.
 Bezogen auf den zweiten Test liegt ein P-Wert von in etwa $1.0$ vor.
-Folgend kann abgeleitet werden, dass die H0 Hypothese einer stärkeren Verteilung der Abweichungen anzunehmen ist. % stärkere Verteilung der Abweichungen = höhere durchschnittliche Abweichungen / stärkere Streuung der kumulierten Belohnung ?
-Entsprechend wird die H1 Hypothese sowie die Hypothese 2 abgelehnt, da die angewendete Form der DR zu einem negativen Effekt auf die Varianz der Belohnungen führt. % Die Varianz ist eigentlich die mittlere quadratische Abweichung, du misst aber die mittlere absolute Abweichung oder?
+Folgend kann abgeleitet werden, dass die H0 Hypothese eines höheren Mittelwerts der Verteilung der Abweichungen anzunehmen ist.
+Entsprechend wird die H1 Hypothese sowie die Hypothese 2 abgelehnt, da die angewendete Form der DR zu einem negativen Effekt auf die Varianz der Belohnungen führt.
 
 % Bezug zur Robustheit
 Für die Messung der Robustheit ist somit festzuhalten, dass DR im Kontext dieser Arbeit als Teil des Trainingsszenarios, keine Verbesserung der Robustheit erzielte.
