@@ -2,20 +2,21 @@
 
 Reinforcement Learning (RL) findet heutzutage bereits Anwendung in vielerlei Forschungsprojekten wie Deepmind AlphaStar oder OpenAI Five, aber auch in Produkten und Dienstleistungen wie AWSDeepRacer oder Meta's Horizon open-source RL-Plattform. \footcite[Vgl.][S. 4]{Li.2019}
 RL ist im Bereich des maschinellen Lernens eine Herangehensweise zur Lösung von Entscheidungsproblemen. \footcite[Vgl.][S. 3]{Schuderer.2021}
-Ein Software-Agent leitet dabei durchzuführende Aktionen aus seiner Umgebung ab, mit dem Ziel die kumulierte erhaltene Belohnung zu maximieren, währenddessen sich seine Umgebung durch alle Aktionen verändert. \footcite[Vgl.][S. 3]{Schuderer.2021}
+Ein Software-Agent leitet dabei durchzuführende Aktionen aus seiner Umgebung ab, mit dem Ziel die kumulierte erhaltene Belohnung zu maximieren, währenddessen sich seine Umgebung durch diverse Aktionen verändert. \footcite[Vgl.][S. 3]{Schuderer.2021}
 Die Umgebungen beinhalten in ihrer einfachsten Form eine simulierte Welt, welche zu jedem Zeitschritt eine Aktion entgegennimmt, und den eigenen nächsten Zustand sowie einen Belohnungswert zurückgibt. \footcite[Vgl.][S. 1]{Reda.2020}
-Da das Sammeln von Daten in der echten Welt für den Einsatz von RL Algorithmen eine Limitierung darstellen kann, werden häufig fürs Training Simulationsumgebungen eingesetzt \footcite[Vgl.][S. 737]{Zhao.2020}
-Eine Limitierung können bspw. Sicherheitsaspekte sein, welche beim Training von Roboterarmen, oder sich autonom bewegenden Systemen auftreten, da die einzelnen physischen Bewegungen nicht vorhersehbar abschätzbar sind. \footcite[Vgl.][S. 738]{Zhao.2020}
+Da das Sammeln von Daten in der echten Welt für den Einsatz von RL Algorithmen eine Limitierung darstellen kann, werden häufig fürs Training Simulationsumgebungen eingesetzt. \footcite[Vgl.][S. 737]{Zhao.2020}
+Eine Limitierung können bspw. Sicherheitsaspekte sein, welche beim Training von Roboterarmen, oder sich autonom bewegenden Systemen auftreten, da die einzelnen physischen Bewegungen nicht vorhersehbar abzuschätzen sind. \footcite[Vgl.][S. 738]{Zhao.2020}
 Simulationen nehmen damit zum einen als Testumgebung eine wichtige Rolle in der Entwicklung von Kontrollalgorithmen ein. \footcite[Vgl.][S. 2]{Cutler.2014}
 Zum anderen bedarf die erfolgreiche Anwendung von RL neben effizienten Algorithmen auch geeignete Simulationsumgebungen. \footcite[Vgl.][S. 8]{Reda.2020}
 Besonders schwierig, und daher sehr wichtig zu erforschen, ist die Anpassung der Trainingsumgebung an die reale Welt, sodass bspw. Agenten für Roboter und autonome Fahrzeuge nach dem Training mit robusten Strategien in der Realität eingesetzt werden können. \footcite[Vgl.][S. 1]{DBLP:journals/corr/abs-1910-10537}
-In der Forschungsliteratur wird diese beschriebene Problematik als „Sim to real“-Transfer beschrieben. \footcite[Vgl.][S. 738]{Zhao.2020}
+In der Forschungsliteratur wird diese Problematik als „Sim to real“-Transfer beschrieben. \footcite[Vgl.][S. 738]{Zhao.2020}
 %Eine Methodik diesen Transfer zu begünstigen ist die Veränderung von visuellen oder dynamischen Parametern der Umgebung, was in der Forschungsliteratur als „Domain Randomization“ referenziert wird. \footcite[Vgl.][S. 2]{DBLP:journals/corr/abs-1910-10537}
 
 Ein Forschungsgebiet, bei dem die Lösung des Sim to Real Transfers betrachtet wird, ist die autonome Steuerung von unbemannten Luftfahrzeugen bzw. Drohnen. \footcite[Vgl.][S. 1]{Deshpande.2021}
 Das Transferproblem entsteht bspw. dabei, dass zur automatisierten Kollisionsvermeidung die Kollisionsbeispiele einer Simulationsumgebung entnommen werden, um physischen Schaden oder Drohnen Verlust zu vermeiden. \footcite[Vgl.][S. 4]{Sadeghi.2016}
-Drohnen tragen dabei bereits in der heutigen Zeit zur Lösung vieler komplexer Aufgaben bei, wie der Katastrophenüberwachung oder der Waldbrandbekämpfung. \footcite[Vgl.][S. 1495]{Hentati.2018}
-Zusätzlich steigen immer weiter die komplexen Einsatzanforderungen unter dem Anstieg an Anwendungsgebieten für unbemannte Luftfahrzeuge. \footcite[Vgl.][S. 1]{Deshpande.2020}
+Drohnen tragen dabei bereits in der heutigen Zeit zur Lösung vieler komplexer Aufgaben, wie der Katastrophenüberwachung oder der Waldbrandbekämpfung bei. \footcite[Vgl.][S. 1495]{Hentati.2018}
+Ein weiterer wichtiger Bereich stellt die Anwendung von Drohnensimulationen in militärischen und sicherheitsbezogenen Kontexten dar.\footcite[Vgl.][S. 1]{9004907}
+Zusätzlich steigen die komplexen Einsatzanforderungen immer weiter, unter dem Anstieg an Anwendungsgebieten für unbemannte Luftfahrzeuge. \footcite[Vgl.][S. 1]{Deshpande.2020}
 
 Die Simulation einer möglichst realistischen Umgebung in diesem Kontext wird in der Forschung häufig mit dem Ansatz von Domain Randomization (DR) begleitet. \footcite[Vgl.][S. 1]{Sadeghi.2016}
 Unter dem Themenfeld der DR wird die Idee erforscht, anstelle der akkuraten Modellierung realistischer Dynamiken, diese so stark zu randomisieren, dass reale Dynamikeffekte abgedeckt sind. \footcite[Vgl.][S. 4f.]{Zhao.2020}

@@ -5,7 +5,7 @@ Im nachfolgenden Kapitel wird daher genauer dargestellt, was unter der Robusthei
 
 \subsection{Definitionen von Robustheit und Stabilität}
 
-In der aktuellen Forschungsliteratur findet sich nur wenig Gemeinsamkeit innerhalb der unterschiedlichen Definitionen von Stabilität und Robustheit. \footcite[Vgl.][S. 5]{Pullum.2022}
+In der aktuellen Forschungsliteratur finden sich nur wenige Gemeinsamkeiten innerhalb der unterschiedlichen Definitionen von Stabilität und Robustheit. \footcite[Vgl.][S. 5]{Pullum.2022}
 Die Definition der Robustheit im Kontext von verstärkendem Lernen wird verschieden interpretiert, wie z. B. als Robustheit gegen Störeinflüsse, Beeinflussung der Belohnung, oder Umgebungsunterschiede. \footcite[Vgl.][S. 2]{Liu.2023}
 \cite[]{Pullum.2022} definiert Stabilität und Robustheit im Kontext der Literaturanalyse wie folgt:
 
@@ -20,7 +20,7 @@ Die Definition der Robustheit im Kontext von verstärkendem Lernen wird verschie
 Werden Algorithmen und der Erfolg von Veränderungen dieser Experimente betrachtet, kommt es oftmals zu einem Vergleich zwischen Leistung und Stabilität, womit die Belohnung die einzige Kenngröße bildet. \footcite[Vgl.][S. 6]{YanDuan.2016}
 Wird diese Metrik im Kontext unterschiedlicher Umgebungen überprüft, kann allerdings so auch die Robustheit von RL Algorithmen betrachtet werden. \footcite[Vgl.][S. 6]{Pinto.2017}
 Neben der Betrachtung der Belohnung lassen sich auch weitere quantitative sowie qualitative Kenngrößen untersuchen, welche die Robustheit und Stabilität eines Algorithmus innerhalb der Umgebung widerspiegeln. \footcite[Vgl.][S. 15]{Pullum.2022}
-In der Literaturanalyse nach \cite[]{Pullum.2022} werden quantitative Metriken zusätzlich nach internen Kenngrößen, welche den Trainingsprozess beschreiben, und externen Kenngrößen, welche die Modellqualität repräsentieren, klassifiziert sowie folgende Tabellen drei und vier zu dessen Metriken angeführt. \footcite[Vgl.][S. 16]{Pullum.2022}
+In der Literaturanalyse nach \cite[]{Pullum.2022} werden quantitative Metriken zusätzlich nach internen Kenngrößen, welche den Trainingsprozess beschreiben und externen Kenngrößen, welche die Modellqualität repräsentieren, klassifiziert sowie folgende Tabellen drei und vier zu dessen Metriken angeführt. \footcite[Vgl.][S. 16]{Pullum.2022}
 
 \begin{table}[htb]
     \centering
@@ -40,7 +40,7 @@ In der Literaturanalyse nach \cite[]{Pullum.2022} werden quantitative Metriken z
     \end{tabular}
     \caption{Interne quantitative Metriken, dessen gemessenes Verhalten und ihre Häufigkeit\footcite[][S.17]{Pullum.2022}}
     \label{tab:quantitive metric}
-\end{table} % Weißt du wie es dein Betreuer an der Hochschule mit englischen Begriffen hält? Müssen die übersetzt werden?
+\end{table}
 \footnotetext{Ähnlich enthalten in: \cite[][S.17]{Pullum.2022}}
 
 \begin{table}[htb]
@@ -66,5 +66,5 @@ In der Literaturanalyse nach \cite[]{Pullum.2022} werden quantitative Metriken z
 
 Die Tabellen drei und vier zeigen auf, dass trotz der Existenz weiterer Metriken, die Belohnung, deren Durchschnitt, Varianz und Entwicklung am häufigsten eingesetzt werden, um die Robustheit von RL Algorithmen zu messen.
 Dabei werden Experimente unter festgelegten oder optimierten Hyperparametern, in mehreren Simulationsumgebungen durchgeführt, um aus dem Vergleich derselben Strategie in unterschiedlichen Umfeldern Rückschlüsse auf die Robustheit zu ziehen. \footcite[Vgl.][S. 5]{Pinto.2017}
-Unterschiede in den Umgebungen können bspw. durch fixe Dynamiken wie z. B. Reibwerte während des Trainingsprozesses und unterschiedlicher Reibwerte während der Testphase realisiert werden. \footcite[Vgl.][S. 6]{Pinto.2017} % wie z.B. durch voneinanderabweichenden Reibwerten während des Trainingsprozesses und der Testphase realisiert werden.
+Unterschiede in den Umgebungen können z.B. durch voneinander abweichende Reibwerte während des Trainingsprozesses und der Testphase realisiert werden. \footcite[Vgl.][S. 6]{Pinto.2017}
 Ein weiterer Ansatz kann die Sim-to-Sim Verifikation sein, bei der die optimierten Strategien in einer nicht während des Trainings verwendeten Simulationen untersucht werden. \footcite[Vgl.][S. 5]{Molchanov.2019}

@@ -1,13 +1,13 @@
 \section{Simulation der Steuerungsaufgabe von Quadrokoptern}
 Die Popularität von unbemannten Flugzeugen im letzten Jahrzehnt nahm besonders im Bereich der Quadrokopter zu, sodass durch die sinkenden Kosten von Sensorik und Minicomputern, zahlreiche zukunftsträchtige Ergebnisse und Anwendungen erforscht worden sind. \footcite[Vgl.][S. 1]{Koch.2018}
-Daher gilt dieses Kapitel der theoretischen Betrachtung, dessen Eigenschaften und deren Simulation.
+Daher befasst sich dieses Kapitel der theoretischen Betrachtung, dessen Eigenschaften und deren Simulation.
 Anwendungsgebiete beinhalten z. B. die Landwirtschaft, den Pakettransport oder die Überwachung von großflächiger Infrastruktur wie Stromnetze. \footcite[Vgl.][S. 1]{Deshpande.2020}
 Eine Simulation von unbemannten Flugzeugen stellt eine Flugumgebung und vielseitige Sensorik bereit und kann je nach Anwendung Effekte wie Wind, Wolken und Niederschlag einbeziehen. \footcite[Vgl.][S. 1496]{Hentati.2018}
 
 \subsection{Flugdynamiken eines Quadrokopters}
 Die Simulation des Quadrokopters stellt eine Simulation eines Flugkörpers mit drei Rotations- und drei Translationsbewegungen und demnach insgesamt sechs verschiedenen Freiheitsgraden dar. \footcite[Vgl.][S. 2]{Koch.2018}
 Ein Quadrokopter ist ein fester Körper mit vier befestigten Rotoren, welche sich ausschließlich in eine Richtung drehen und positiven Schub in die Z-Achse des Körpers ausüben können. \footcite[Vgl.][S. 3]{Molchanov.2019}
-Die vier Rotoren werden als + oder X Konfiguration entweder direkt in Richtung der X- und Y-Achse (+), oder um 45° gedreht (X) an der Drohne befestigt. \footcite[Vgl.][S. 2]{Koch.2018}
+Die vier Rotoren werden als + oder X Konfiguration entweder direkt in Richtung der X- und Y-Achse (+) oder um 45° gedreht (X) an der Drohne befestigt. \footcite[Vgl.][S. 2]{Koch.2018}
 Jede Bewegung der sechs verschiedenen Arten wird durch die unterschiedliche Ansteuerung, der im Fall des Quadrokopters, vier Rotoren getätigt.
 Aus den verschieden starken auftrieben resultieren die drei Rotationsbewegungen Rollen, Nicken und Gieren. \footcite[Vgl.][S. 2]{Koch.2018}
 \begin{figure}[htb]
@@ -19,7 +19,7 @@ Aus den verschieden starken auftrieben resultieren die drei Rotationsbewegungen 
 \footnotetext{Enthalten in: \cite[][S. 2]{Koch.2018}}
 
 Rollen wird, wie aus Abbildung 4 hervorgeht, durch unterschiedlichen Auftrieb der zwei linken und rechten Rotatoren, das Nicken durch Unterschiede der vorderen und hinteren Rotatoren hervorgerufen.
-Das Gieren bzw. die Rotation um die Z-achse wird durch die stärkere Rotation der sich im Uhrzeiger drehenden oder der sich gegen den Uhrzeiger drehenden Rotoren bewerkstelligt. 
+Das Gieren bzw. die Rotation um die Z-Achse wird durch die stärkere Rotation der sich im oder gegen den Uhrzeiger drehenden Rotoren bewerkstelligt. 
 
 Diese Rotationsbewegungen werden mathematisch als Matrix der Eulerschen Winkel repräsentiert, welche die Folge der einzelnen Drehungen entlang der X-, Y-, und Z-Achse enthält. \footcite[Vgl.][S. 3]{Deshpande.2020}
 Das Zusammenspiel dieser Rotationsbewegungen, dargestellt anhand Formel vier, mit der durch die Rotatoren entlang der Z-Achse der Drone erzeugte Schubkraft und den Rollraten, beschrieben in Formel fünf, sorgt für die Bewegung der Drohne in Richtung der zukünftigen Koordinaten nach Formel sechs. \footcite[Vgl.][S. 2]{Deshpande.2021}
@@ -27,7 +27,7 @@ Das Zusammenspiel dieser Rotationsbewegungen, dargestellt anhand Formel vier, mi
 \begin{description}
     \item \begin{center} $R = \begin{pmatrix} C_{\psi}C_{p} & S_{\xi}S_{p}C_{\psi} - S_{\psi}C_{\xi} & S_{\xi}S_{\psi}+S_{p}C_{\xi}C_{\psi} \\ S_{\psi}C_{p} & S_{\xi}S_{\psi}S_{p} + C_{\xi}C_{\psi} &  -S_{\xi}C_{\psi} + S_{\psi}S_{p}C_{\xi}\\ -S_{p} & S_{\xi}C_{p} & C_{\xi}C_{p} \end{pmatrix}$ (4)\end{center}
 \end{description}
-In Formel vier wird der Rotationszustand der Drohne zu den Weltachsen durch die Sinus- und Cosinuswinkel $S_{a}$ und $C_{a}$ repräsentiert, wobei für $a$ die Art der Rotation also Rollen $(\xi)$, Nicken $(p)$ und Gieren $(\psi)$ eingesetzt wird. \footcite[Vgl.][S. 2]{Deshpande.2021}
+In Formel vier wird der Rotationszustand der Drohne durch die Sinus- und Cosinuswinkel $S_{a}$ und $C_{a}$ repräsentiert, wobei für $a$ die Art der Rotation also Rollen $(\xi)$, Nicken $(p)$ und Gieren $(\psi)$ eingesetzt wird. \footcite[Vgl.][S. 2]{Deshpande.2021}
 \begin{description}
     \item \begin{center} $I\begin{pmatrix} \dot p \\ \dot q \\ \dot r\end{pmatrix} = \begin{pmatrix} l(F_{1} + F_{2} - F_{3} - F_{4}) \\ l(-F_{1} + F_{2} + F_{3} - F_{4}) \\ -M_{1} + M_{2} - M_{3} + M_{4}\end{pmatrix} - \begin{pmatrix} p \\ q \\ r \end{pmatrix} \times I\begin{pmatrix} p \\ q \\ r \end{pmatrix}$ (5)\end{center}
 \end{description}
@@ -49,7 +49,7 @@ Dabei wurde die Simulation modular entworfen, sodass Komponenten wie Steuerung o
 Die Komponenten der Drohne stellen dabei Plug-ins der verwendeten Gazebo Physik-Engine dar, wodurch ein Mikroflugzeug aus den Teilen des Körpers, der Anzahl der Rotoren und Sensorik an fixen Position zusammengesetzt wird. \footcite[Vgl.][S. 597]{Furrer.2016}
 Mittels der standardmäßigen Sensorik können Informationen über die direkte und visuell gemessene Trägheit sowie über die Wegbestimmung erzielt werden. \footcite[Vgl.][S. 597]{Furrer.2016}
 Anstelle des Wegbestimmungssensors kann auch eine Komponente zur Zustandsschätzung für hochfrequente Abfragen implementiert werden. \footcite[Vgl.][S. 598]{Furrer.2016}
-Die Steuerungskomponente wird durch eine einfache Schnittstelle einer geometrischen Steuerung bedient, welche Aktionen in Form von Rotationswinkeln, Höhen oder Positionen entgegennimmt. \footcite[Vgl.][S. 598]{Furrer.2016}
+Die Steuerungskomponente wird durch eine einfache Schnittstelle einer geometrischen Steuerung bedient, welche Aktionen in Form von Rotationswinkeln, Höhen und Positionen entgegennimmt. \footcite[Vgl.][S. 598]{Furrer.2016}
 
 \textit{CrazyS}
 
@@ -69,7 +69,7 @@ Die Umgebung wird für das Fahrzeug wahrnehmbar durch die Modellierung von Senso
 
 \textit{gym-pybullet-drones}
 
-Eine weitere nach der Gym Schnittstelle definierte Simulationsumgebung ist gym-pybullet-drones. \footcite[Vgl.][S. 1]{Panerati.332021}
+Eine weitere, nach der Gym Schnittstelle definierte Simulationsumgebung, ist gym-pybullet-drones. \footcite[Vgl.][S. 1]{Panerati.332021}
 Basierend auf der Bullet Physik-Engine ermöglicht die Simulation unter anderem das visuell basierte Training von mehreren Agenten mittels RL unter realistischer Modellierung von Kollisionen und aerodynamischen Effekten. \footcite[Vgl.][S. 1]{Panerati.332021}
-Die Wahl der Physik-Engine wurde aufgrund des CPU und GPU basierenden Renderings, des Kollisionsmanagements und der Kompatibilität mit dem Unified Robot Description Format (URDF) getroffen \footcite[Vgl.][S. 3]{Panerati.332021}
+Die Wahl der Physik-Engine wurde aufgrund des CPU und GPU basierenden Renderings, des Kollisionsmanagements und der Kompatibilität mit dem Unified Robot Description Format (URDF) getroffen. \footcite[Vgl.][S. 3]{Panerati.332021}
 Durch die Kompabilität mit dem URDF Format kann die standardmäßige Simulation des Drohnenmodells Bitcraze Crazyflie 2.x um weitere Nanoquadrokopter erweitert werden. \footcite[Vgl.][S. 3]{Panerati.332021}

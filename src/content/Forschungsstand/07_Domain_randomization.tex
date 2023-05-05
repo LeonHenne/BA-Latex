@@ -8,10 +8,10 @@ Weitere Methoden die Realitätslücke zu verkleinern sind progressive Netzwerke,
 
 \subsection{Das Prinzip hinter der Randomisierung von Simulationsumgebungen}
 
-DR verfolgt den Ansatz eine hohe Anzahl an Simulationsumgebungen mit randomisierten Eigenschaften zu erzeugen, in welchen die Strategie dahingehend optimiert wird, in allen Umgebungen ihr Ziel bestmöglich zu erfüllen. \footcite[Vgl.][S. 1]{Hsu.2023}
+DR verfolgt den Ansatz eine hohe Anzahl an Simulationsumgebungen mit randomisierten Eigenschaften zu erzeugen, sodass die Strategie dahingehend optimiert werden, in allen Umgebungen ihr Ziel bestmöglich zu erfüllen ohne sich einer Umgebung überanzupassen. \footcite[Vgl.][S. 1]{Hsu.2023}
 Durch das Aussetzen des Agenten gegenüber einer Vielzahl von Umgebungen, wird unter der Erwartung einer guten Leistung das Ziel verfolgt, den Agenten direkt in die physische Welt übertragen zu können. \footcite[Vgl.][S. 2]{Chen.2021}
 Diese Erwartung resultiert aus der Hypothese, dass unter genug Variabilität die echte Welt lediglich eine bereits trainierte Variation darstellt. \footcite[Vgl.][S. 1]{Tobin.2017}
-Dieses Prinzip kann auch der Abbildung 6 entnommen werden, in welcher das physische System im Bereich der Randomisierung der Simulation liegt. 
+Dieses Prinzip kann auch der Abbildung 6 entnommen werden, worin das physische System als Teil der Randomisierung der Simulation gezeigt wird. 
 
 \begin{figure}[htb]
     \centering
@@ -23,9 +23,9 @@ Dieses Prinzip kann auch der Abbildung 6 entnommen werden, in welcher das physis
 
 \subsection{Anwendung von Randomisierung der Simulationsumgebung}
 
-Die Anwendung von DR beginnt nach der Erstellung einer möglichst realen Simulation zum Sicherstellen, dass spätere Variation die wirkliche Welt abbilden können. \footcite[Vgl.][S. 4]{Chen.2021}
+Die Anwendung von DR beginnt nach der Erstellung einer möglichst realen Simulation, um sicherzustellen, dass spätere Variation die wirkliche Welt abbilden können. \footcite[Vgl.][S. 4]{Chen.2021}
 Anschließend kann die Randomisierung verschiedener Aspekte den Agenten darin unterstützen, die Strategie, welche z. B. als rekurrentes neuronales Netz dargestellt werden kann, so zu optimieren, dass diese für die Wirklichkeit gut genug generalisiert. \footcite[Vgl.][S. 4]{Chen.2021}
-Aspekte, welche im Rahmen von dynamischer DR randomisiert werden können, sind z. B. die Masse von Objekten, die Dauer eines Zeitschrittes oder Schubkoeffizienten von Rotatoren. \footcite[Vgl.][S. 4]{Molchanov.2019}
+Aspekte, welche im Rahmen von dynamischer DR randomisiert werden können, sind z. B. die Masse von Objekten, die Dauer eines Zeitschrittes oder die Schubkoeffizienten von Rotatoren. \footcite[Vgl.][S. 4]{Molchanov.2019}
 Verwendet man visuelle Randomisierung, so sind bspw. Position, Textur, Ausrichtung und Lichteinwirkung jedes Objektes sowie Kamerawinkel und Zufallsrauschen Eigenschaften, die während des Trainingsprozesses verändert werden können. \footcite[Vgl.][S. 3]{Tobin.2017}
 \cite[]{Alghonaim.5302021652021} untersuchten dazu detailliert den Einfluss der Randomisierung von Hintergrundfarben und -texturen sowie Ablenkungsobjekte auf die Modellleistung und erhielten folgende Ergebnisse.
 
@@ -37,11 +37,11 @@ Verwendet man visuelle Randomisierung, so sind bspw. Position, Textur, Ausrichtu
 \end{figure}
 \footnotetext{Enthalten in: \cite[][S. 6]{Alghonaim.5302021652021}}
 
-Aus der Untersuchung in Abbildung 7 wird deutlich, dass die Fehleranfälligkeit der Erkennung der X-Y Position, der Z-Position und der Orientierung, durch das Hinzufügen von Texturen und Ablenkungsobjekten mitunter am besten verringert werden kann. 
+Aus der Untersuchung in Abbildung 7 wird deutlich, dass die Fehleranfälligkeit der Erkennung der X-, Y-Position, der Z-Position und der Orientierung, durch das Hinzufügen von Texturen und Ablenkungsobjekten mitunter am besten verringert werden kann. 
 
 \subsection{Errungenschaften unter Einsatz von Domain Randomization}
 
-Mit dem Einsatz von DR ist es bereits nach aktuellem Stand der Forschung und Praxis ermöglicht worden, z. B. Strategien ohne reale Bilder in ausschließlichen Simulationen mittelmäßiger Qualität zu trainieren und für reale Drohnenflüge im Innenbereich einzusetzen. \footcite[Vgl.][S. 1]{Sadeghi.2016} 
+Mit dem Einsatz von DR ist es bereits nach aktuellem Stand der Forschung und Praxis ermöglicht worden, z. B. Strategien ohne reale Bilder in Simulationen ausschließlich mittelmäßiger Qualität zu trainieren und für reale Drohnenflüge im Innenbereich einzusetzen. \footcite[Vgl.][S. 1]{Sadeghi.2016} 
 Weiterhin konnte erreicht werden, ausschließlich aus dem Training in Simulationen eine Objekterkennung und Lokalisation zu einer Genauigkeit von 1,5 cm zu realisieren. \footcite[Vgl.][S. 1]{Tobin.2017}
-Neben der Anwendung von DR wird in der aktuellen Literatur sehr stark thematisiert, welche Randomisierung positive Effekte erzielen kann, jedoch wenig zu deren Erklärungen und Funktionsweise detailliert betrachtet. \footcite[Vgl.][S. 6]{Zhao.2020}
+Neben der Anwendung von DR wird in der aktuellen Literatur sehr stark thematisiert, welche Randomisierung positive Effekte erzielen kann, jedoch wird wenig zu deren Erklärungen und Funktionsweise detailliert betrachtet. \footcite[Vgl.][S. 6]{Zhao.2020}
 Dies erschwert die Entwicklung effizienter Simulationen und die Bestimmung der Zufallsverteilungen zur Randomisierung. \footcite[Vgl.][S. 6]{Zhao.2020}
