@@ -1,7 +1,7 @@
 \section{Gegnerisches verstärkendes Lernen}
 Methoden des gegnerischen verstärkenden Lernens verfolgen das Ziel, Strategien zu lernen, die robuster gegenüber Risiken wie beeinflusste Wahrnehmung, unbekannte Situationen oder ansteigende Umgebungskomplexität agieren. \footcite[Vgl.][S. 2]{Schott.2022}
 Die Robustheit gegenüber fehlerhafter Umgebungsbetrachtung kann durch Störung des Wahrnehmungszustands des trainierenden Agenten erzielt werden. \footcite[Vgl.][S. 2]{Schott.2022}
-Das Ziel ist es dabei durch gegnerische Aktionen eine veränderte Umgebungswahrnehmnung herzustellen, auf deren Basis sich der lernende Agent verbessert. \footcite[Vgl.][S. 3]{Schott.2022}
+Das Ziel ist es, durch gegnerische Aktionen eine veränderte Umgebungswahrnehmnung herzustellen, auf deren Basis sich der lernende Agent verbessert. \footcite[Vgl.][S. 3]{Schott.2022}
 
 Um die lernende Strategie besser auf unbekannte Situationen und steigende Komplexität vorbereiten zu können, werden destabilisierende Kräfte in der Dynamik eingeführt. \footcite[Vgl.][S. 1]{Pinto.2017}
 Anders als beim ersten Ansatz werden dafür nicht nur die Wahrnehmung des lernenden Agenten beeinflusst, sondern direkte Einflüsse auf die Umgebung ausgeübt. \footcite[Vgl.][S. 2]{Schott.2022}
@@ -9,8 +9,8 @@ Hierbei wird der gegnerische Agent dafür belohnt, mittels Kräfteeinfluss die U
 Dazu kann ein zusätzlicher Agent mit z. B. gleichem Aktionsraum den gemeinsamen Umgebungszustand beeinträchtigen. \footcite[Vgl.][S. 2]{Pinto.2017}
 \cite[]{Pan.2021} zeigt eine solche Anwendung im Rahmen der Kontrolle eines Stromnetzes, bei welcher ein gegnerischer Agent für das Trennen von Verbindungen im Netz belohnt wird. \footcite[Vgl.][S. 2]{Pan.2021}
 Zum Generieren von Störeinflüssen auf die Umgebungsdynamik kann das \textit{Robust Adversarial Reinforcement Learning} (RARL) Framework verwendet werden. \footcite[Vgl.][S. 2]{Schott.2022}
-Dabei wird der gegnerische Agent selbst durch RL daran angelernt, die möglichst effektivsten Destabilisierungsmaßnahmen zu finden. \footcite[Vgl.][S. 1]{Pinto.2017}
-Formal dargestellt folgt dieses gegnerische Spiel der in Formel sieben angeführten Minimax Optimierung. \footcite[Vgl.][S. 3]{Pinto.2017}
+Dabei wird der gegnerische Agent selbst durch RL dahingehend optimiert, die möglichst effektivsten Destabilisierungsmaßnahmen zu finden. \footcite[Vgl.][S. 1]{Pinto.2017}
+Formal dargestellt folgt dieses gegnerische Spiel der in Formel sieben angeführten Minmax Optimierung. \footcite[Vgl.][S. 3]{Pinto.2017}
 \begin{description}
     \item \begin{center} $R^{1*} = \underset{\nu}{\min}\underset{\mu}{\max} E_{s_{0}\sim p,a^{1}\sim\mu(s),a^{2}\sim\nu(s)} [\sum_{t=0}^{T-1} r^{1} (s,a^{1},a^{2})]$ (7)\end{center} 
 \end{description}
@@ -19,7 +19,7 @@ Das Training erfolgt aus der abwechselnden Optimierung einer der beiden Strategi
 
 Im Kontext der Steuerung von Quadrokoptern greifen \cite[]{Zhai.2022} das \textit{Robust Adaptive Ensemble Adversarial Reinforcement Learning Framework (RAEARL)} auf.
 Unter dessen Einsatz wird der Trainingsprozess des normalen und gegnerischen Agenten zu Gunsten der Kontinuität und Stabilität getrennt, und das System mit einem PID-Regler erweitert, um die Stärke des Gegners über den Trainingsverlauf anzupassen. \footcite[Vgl.][S. 2]{Zhai.2022}
-Das getrennte Training des normalen und gegnerischen Agenten verwendet kopierte Agenten des jeweiligen Gegenparts, welche zwar dieselben neuronalen Netzstrukturen und initialen Parameter besitzen, jedoch schwächer sind, da deren Lernfortschritt ein Zeitschritt verschoben ist. \footcite[Vgl.][S. 2f.]{Zhai.2022}
+Das getrennte Training des normalen und gegnerischen Agenten verwendet kopierte Agenten des jeweiligen Gegenparts, welche zwar dieselben neuronalen Netzstrukturen und initialen Parameter besitzen, jedoch schwächer sind, da deren Lernfortschritt um einen Zeitschritt verschoben ist. \footcite[Vgl.][S. 2f.]{Zhai.2022}
 
 \begin{figure}[htb]
     \centering
@@ -29,5 +29,5 @@ Das getrennte Training des normalen und gegnerischen Agenten verwendet kopierte 
 \end{figure}
 \footnotetext{Enthalten in: \cite[][S. 3]{Zhai.2022}}
 
-Abbildung 5 zeigt den beschrieben getrennten Aufbau des RAEARL Frameworks, in dem die Strategien der originalen Agenten mit $\pi_{\theta}$ bzw. $\pi_{\phi^{i}}$ und jene kopierte Strategien mit $\widetilde{\pi}_{\theta}$ bzw. $\widetilde{\pi}_{\phi^{i}}$ notiert sind. \footcite[Vgl.][S. 3]{Zhai.2022}
+Abbildung 5 zeigt den getrennten Aufbau des RAEARL Frameworks, in dem die Strategien der originalen Agenten mit $\pi_{\theta}$ bzw. $\pi_{\phi^{i}}$ und jene kopierte Strategien mit $\widetilde{\pi}_{\theta}$ bzw. $\widetilde{\pi}_{\phi^{i}}$ notiert sind. \footcite[Vgl.][S. 3]{Zhai.2022}
 Zur Evaluation jeder Epoche und der Bestimmung der kumulierten Belohnung $G$ werden die deterministischen Strategien $\bar{\pi}_{\theta}$ bzw. $\bar{\pi}_{\phi^{i}}$ einbezogen. \footcite[Vgl.][S.3]{Zhai.2022}

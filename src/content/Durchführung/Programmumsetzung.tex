@@ -1,18 +1,18 @@
 \section{Implementierung der Simulation und des Experiments}
 
-Fortfolgend an die in der letzten Sektion beschriebenen Anforderungen, wird in dieser Sektion die finale Implementierung der einzelnen Programmabschnitte erläutert.
+Fortfolgend an die in der letzten Sektion beschriebenen Anforderungen, werden in dieser Sektion die finalen Implementierungen der einzelnen Programmabschnitte erläutert.
 In Anlehnung an den Aufbau der letzten Sektion, wird die Umsetzung der Anforderungen zu den Programmabschnitten Simulationsumgebung, Trainingsverfahrens und Laborexperiment dargelegt.
 
 Allgemeiner Natur ist die Wahl der Entwicklungssprache Python.
 Die Entwicklungssprache ermöglicht eine hohe Kompatibilität mit bekannten Simulationsframeworks, RL-Softwarebibliotheken und Bibliotheken zur statischen Auswertung von Messdaten.
-Im Rahmen dieser Arbeit wird konkret die Python Version 3.10 eingesetzt, um von den Möglichkeiten neuer Funktionen zu profitieren und zugleich eine möglichst hohe Kompatibilität zu existieren frei verfügbaren Bibliotheken aufzuweisen.
-Alle in dieser Arbeit verwendeten Bibliotheken sowie deren Abhängigkeiten sind in einer virtuellen Umgebung installiert, sodass bestmöglich Störeinflüsse durch bereits installierte Pakete vermieden werden.
-Ebenso sind alle eingesetzten Softwarepakete in einer Textdatei inklusive ihrer Version dokumentiert.
+Im Rahmen dieser Arbeit wird die Python Version 3.10 eingesetzt, um von den Möglichkeiten neuer Funktionen zu profitieren und zugleich eine möglichst hohe Kompatibilität zu existieren frei verfügbaren Bibliotheken aufzuweisen.
+Alle in dieser Arbeit verwendeten Bibliotheken sowie deren Abhängigkeiten sind in einer virtuellen Umgebung installiert, sodass Störeinflüsse bestmöglich durch bereits installierte Pakete vermieden werden.
+Ebenso sind alle eingesetzten Softwarepakete in einer Textdatei inklusive deren Version dokumentiert.
 
 \subsection{Programmumsetzung der Simulationsumgebung}
 
 Im Kern der Implementierung der Simulationsumgebung liegt das Gymnasium-Programmiergerüst.
-Die entwickelte Simulation baut dabei auf bestehende Programmbibliotheken auf.
+Die entwickelte Simulation baut dabei auf bestehenden Programmbibliotheken auf.
 Dies fördert vor allem die im Zuge dieser Arbeit umsetzbare Qualität und ermöglicht einen hohen Grad an Realismus, welcher wie in den Anforderungen beschrieben unmittelbar das Sim2Real Problem und damit die Robustheit beeinflusst.
 Weiterhin würde eine Neuentwicklung einer Simulationsumgebung keinen Entwicklungsaufwand darstellen, welcher einen Einfluss auf die auszuwertende Forschungsfrage ausüben würde.
 Wird die im zweiten Kapitel angeführte Auswahl an in der Literatur beschriebenen Simulationsumgebungen betrachtet, kann aus diesen eine Basis zur Entwicklung der eigenen Simulationen gewählt werden.
@@ -20,12 +20,12 @@ Wird die im zweiten Kapitel angeführte Auswahl an in der Literatur beschriebene
 % Beschreibung der Auswahlkriterien
 Zur Auswahl einer Basissimulation, in welcher die eigenen Trainings- und Testszenarien abgebildet werden können, sind unterschiedliche Kriterien zu beachten.
 Ein Kriterium ist die Kompatibilität der Basissimulation mit der gewählten Entwicklungssprache. 
-Hierbei sollte entweder die Simulation selbst in Python, oder eine entsprechende Schnittstelle entwickelt sein.
+Hierbei sollte entweder die Simulation selbst in Python, oder eine entsprechende Schnittstelle vorhanden sein.
 Die gewählte Simulation sollte eine Physik-Engine einsetzen, welche zum einen einen möglichst hohen Grad an Realismus erlaubt, um die Forschungsfrage möglichst valide zu beantworten.
 Zum Anderen sollte die Simulation einen beherrschbaren Rechenleistungsaufwand verursachen, da die Zielsetzung dieser Arbeit die Optimierung mehrerer Policies voraussetzt.
 Zur Erfüllung der zuvor beschriebenen Anforderungen muss die Basissimulation weiterhin mit dem Framework Gym oder dessen Nachfolger Gymnasium kompatibel sein.
 Um die Entwicklung des Optimierungsverfahrens zu unterstützen, wird eine RL Integration oder zumindest eine umfangreiche Dokumentation zu dessen Einsatz vorausgesetzt.
-Die nachfolgende Tabelle stellt die in Betracht gezogenen Drohnensimulationen den für die Auswahl getroffenen Kriterien gegenüber.
+Die nachfolgende Tabelle stellt die in Betracht gezogenen Drohnensimulationen, den für die Auswahl getroffenen Kriterien gegenüber.
 
 \begin{table}[H]
     \centering
@@ -53,8 +53,8 @@ Eine umfangreiche Dokumentation und bereits vorhandene Integration von RL wird d
 Die Simulationen RotorS und CrazyS bieten eine Integration mit RL nur auf Basis der wenig dokumentierten zusätzlichen Softwarebibliotheken GymFC und gym\_multirotor.
 Wird das letzte Kriterium der Simulation mehrerer Drohnen betrachtet, tritt dies nur in Beispielen der gym-pybullet-drones Simulation auf.
 %Fazit
-Fasst man die Erfüllung der Auswahlkriterien zusammen wird erkenntlich, dass gym-pybullet-drones als einzige Drohnensimulationen die zusätzlichen Anforderungen der RL Integration und der Dokumentation erfüllt.
-Demnach wird für die nachfolgende Entwicklung der für diese Arbeit verwendeten Simulation auf der gym-pybullet-drones Bibliothek aufgebaut.
+Wird die Erfüllung der Auswahlkriterien zusammengefasst, so wird erkenntlich, dass gym-pybullet-drones als einzige Drohnensimulationen die zusätzlichen Anforderungen der RL Integration und der Dokumentation erfüllt.
+Demzufolge wird für die nachfolgende Entwicklung der für diese Arbeit verwendeten Simulation auf der gym-pybullet-drones Bibliothek aufgebaut.
 
 Die gym-pybullet-drones Simulation ist in einzelne Simulationszenarien gegliedert, welche je eine Python Datei umfassen.
 Als Aviaries gekennzeichnet, bilden sie je eine Trainingsumgebung nach der Schnittstellendefinition des Gymnasium-Frameworks ab.
@@ -89,7 +89,7 @@ Zusätzlich sind teilweise Funktionen aus ähnlichen, bereits nativ vorhandenen 
 Die beschriebene Simulation ist innerhalb einer Klasse nach dem Gymnasium Framework aufgebaut.
 Zusätzlich wird die Simulation durch eine erbende Klasse umhüllt, um für den Algorithmus eine verarbeitbare Abstraktionsschicht zu erzeugen.
 In dieser Schicht wird die Steuerung der angreifenden Drohne abstrahiert, sodass die Trainingsumgebung lediglich die Bestimmung einer Aktion für die verteidigende Drohne erwartet.
-Nachfolgend wird die Umsetzung dieser beiden Klassen nach den einzelnen Funktionen des Gymnasium-Frameworks erläutert.
+Nachfolgend wird die Umsetzung dieser beiden Klassen, nach den einzelnen Funktionen des Gymnasium-Frameworks erläutert.
 
 % Init DualDrone Aviary
 Die Simulation beider Quadrokopter ist in der Klasse \textbf{DualDroneAviary} definiert.
@@ -99,7 +99,7 @@ Außerdem wird die Gewichtung der Belohnungsfunktion als Parameter entgegengenom
 Kernaufgabe der Funktion ist die Umsetzung der Eigenschaften eines Trainings- und Testszenarios.
 Dies beinhaltet u. A. die Erzeugung und Übermittlung der zufälligen Start- und Zielpunkte und des zufälligen Windeffektes mittels unterstützender Funktionen aus der eigenen Hilfsklasse.
 Die verteidigende Drohne wird zufällig innerhalb von 1,5 Meter in X- und Y-Richtung und 0.1 bis 3 Meter in Z-Richtung zum Ursprung initialisiert.
-Hingegen die angreifende Drohne wird im Rahmen von zwei bis sechs Metern uniform um den Ursprung herum auf einer möglichen Höhe von 0.1 bis fünf Meter platziert.
+Hingegen wird die angreifende Drohne im Rahmen von zwei bis sechs Metern uniform um den Ursprung herum auf einer möglichen Höhe von 0.1 bis fünf Meter platziert.
 Sind die Eigenschaften bestimmt, können diese zur Erzeugung der darunter liegenden Abstraktionsschicht der BaseAviary Instanz genutzt werden.
 
 % Observation Space
@@ -122,9 +122,9 @@ Das vierte Element spiegelt den Anteil der maximalen Geschwindigkeit von null bi
 Ist eine Aktion regelbasiert oder durch ein RL-Modell bestimmt, wird diese als Parameter an die \textbf{Step-Funktion} weitergegeben.
 Auf der Ebene der DualDroneAviary Klasse kann die übergebene Aktion in Abhängigkeit vom anfangs initialisierten Wind abgewandelt werden.
 Der Windvektor wird in Abhängigkeit des Winkels zwischen Bewegungsrichtung der Drohne und des Windes zur Aktion hinzugefügt.
-Der Drohnenbewegungsrichtung wird die Windrichtung addiert und die Geschwindigkeit in Abhängigkeit des Eintreffwinkels vollständig positiv, negativ oder gar nicht beeinflusst.
+Der Drohnenbewegungsrichtung wird die Windrichtung addiert sowie die Geschwindigkeit in Abhängigkeit des Eintreffwinkels vollständig positiv, negativ oder gar nicht beeinflusst.
 Anschließend wird unter veränderter oder unveränderter Aktion die Schrittfunktion der Elternklasse aufgerufen.
-Die Schrittfunktion der Elternklasse übersetzt die Aktion aus dem Aktionsraum in konkrete Rotordrehzahlen und übt diese unter der simulierten Physik aus.
+Die Schrittfunktion der Elternklasse übersetzt die Aktion aus dem Aktionsraum in konkrete Rotordrehzahlen und übt diese unter Einfluss der simulierten Physik aus.
 Zur Erhöhung des Realismusgrades wird zusätzlich zu den Effekten der pybullet Physik-Engine ein Boden- und Trägheitseffekt eingesetzt.
 Anschließend wird die neue Zustandsbeobachtung, die entstandene Belohnung, das Rücksetzkriterium und ein Datenobjekt für Zusatzinformationen zurückgegeben.
 
@@ -132,7 +132,7 @@ Anschließend wird die neue Zustandsbeobachtung, die entstandene Belohnung, das 
 Die Bestimmung der Belohnung ist unter der \textbf{reward-Funktion} der DualDroneAviary Klasse implementiert.
 Innerhalb dieser Funktion werden aus dem aktuellen Zustand der Simulation Kennzahlen zu dessen Evaluation berechnet und gewichtet.
 Durch die Gewichtung und die Optimierung dieser kann das Strategieziel formuliert und der Einfluss der einzelnen Kennzahlen angepasst werden.
-Die Aufsummierung der Produkte aus den folgenden Kennzahlen und deren Gewichtung spiegelt die Belohnung zu jedem Zeitschritt wider.
+Die Aufsummierung der Produkte aus den folgenden Kennzahlen und deren Gewichtung spiegelt die Belohnung zu jedem Zeitschritt wider:
 \begin{itemize}
     \item Distanz zwischen der angreifenden und verteidigenden Drohne
     \item Belohnung bei erfolgreichem Abfangen der angreifenden Drohne
@@ -140,8 +140,8 @@ Die Aufsummierung der Produkte aus den folgenden Kennzahlen und deren Gewichtung
     \item Belohnung für eine möglichst direkte Flugrichtung zur gegnerischen Drohne
     \item Lineare Belohnung der Geschwindigkeit
 \end{itemize}
-Eine Optimierung der Gewichte wurde durch Ausprobieren unterschiedlicher Gewichtskombinationen und Messen der entsprechenden Erfolgsrate erzielt.
-Zu jedem Zeitschritt eintretende Kennzahlen wurden aufgrund ihrer Häufigkeit in Fünfer-Schritten, außerordentliche Belohnungen in 10000er-Schritten untersucht.
+Eine Optimierung der Gewichte wurde durch ausgiebige Evaluation unterschiedlicher Gewichtskombinationen und Messen der entsprechenden Erfolgsrate erzielt.
+Zu jedem Zeitschritt eintretende Belohnungen wurden aufgrund ihrer Häufigkeit in Fünfer-Schritten, außerordentliche Belohnungen in 10000er-Schritten untersucht.
 Insgesamt sind daraus unter anderem folgende in Abbildung 9 dargestellte Log-Dateien entstanden, welche den Optimierungsprozess widerspiegeln.
 
 \begin{figure}[htb]
@@ -152,13 +152,13 @@ Insgesamt sind daraus unter anderem folgende in Abbildung 9 dargestellte Log-Dat
 \end{figure}
 \footnotetext{Diagramme durch die Tensorboard Bibliothek erstellt}
 
-Die Optimierung der Belohnungsfunktion brachte $[-10, 50000, 50000, 25, 20]$ als optimalen Gewichtsvektor hervor, da hierunter mehrere Algorithmen wie PPO und A2C, eine positive Erfolgsrate verzeichneten.
+Die Optimierung der Belohnungsfunktion erzielte $[-10, 50000, 50000, 25, 20]$ als optimalen Gewichtsvektor, da hierunter mehrere Algorithmen wie PPO und A2C, eine positive Erfolgsrate verzeichneten.
 
 % reset
 Ist das Rücksetzkriterium erfüllt, wird die Simulationsumgebung mittels \textbf{reset-Funktion} neu gestartet.
-Dabei sind neue Zufallspositionen der Drohnen und des Ziels sowie im vierten Trainingsszenario neue Windeigenschaften zu generieren.
+Dabei werden neue Zufallspositionen der Drohnen und des Ziels sowie im vierten Trainingsszenario neue Windeigenschaften generiert.
 Sind diese Variablen verändert, kann die Rücksetzfunktion der darunterliegenden Abstraktionsschicht aufgerufen werden.
-Die Funktion der BaseAviary-Klasse setzt darin die Zeitschritte und die Drohneninformationen zurück und baut das grafische Modell neu auf.
+Die Funktion der BaseAviary-Klasse setzt die Zeitschritte und die Drohneninformationen zurück und baut das grafische Modell neu auf.
 Über den Zugriff auf den Klienten der pybullet Physik-Engine werden die Drohnenobjekte sowie das Untergrundobjekt aus den URDF-Dateien geladen und an entsprechenden Stellen platziert.
 Zur Unterscheidung des verteidigenden Quadrokopters von der angreifenden Drohne werden zwei nahezu identische URDF-Dateien verwendet, welche sich nur in der Farbgebung zwischen rot und blau unterscheiden.
 Am Ende der Funktion wird der erste Beobachtungsvektor der neuen Episode sowie ein Infoobjekt zurückgegeben.
@@ -168,14 +168,14 @@ Die zuvor beschriebene Klasse vererbt ihre Variablen und Funktionen auf die höh
 Auf dieser Ebene bietet die Simulation ihre Schnittstelle für die Verwendung durch den IL- und RL-Algorithmus.
 Dafür ist es notwendig, den Beobachtungsraum sowie den Aktionsraum neuzudefinieren.
 Zur \textbf{Initialisierung} werden zum einen alle Parameter zur Instanziierung des DualDroneAviary Objekt erwartet.
-Zum Anderen sind zusätzlich die Strategie und dessen Rauschverhalten der nicht durch RL oder IL gesteuerten Drohne anzugeben, sodass diese in Klassenvariablen gespeichert werden.
-Auf der Ebene der Wrapper-Klassen wird der \textbf{Beobachtungsraum} mit allen Informationen beider Quadrokopter zu einem zwölf elementigen Vektor zusammengefasst.
-Der \textbf{Handlungsraum} hingegen umfasst auf dieser Ebene lediglich einen elementigen Vektor mit dem bekannten Wertebereich.
+Zum anderen sind zusätzlich die Strategie und dessen Rauschverhalten der nicht durch RL oder IL gesteuerten Drohne anzugeben, sodass diese in Klassenvariablen gespeichert werden.
+Auf Ebene der Wrapper-Klassen wird der \textbf{Beobachtungsraum} mit allen Informationen beider Quadrokopter zu einem zwölf elementigen Vektor zusammengefasst.
+Der \textbf{Handlungsraum} hingegen umfasst auf dieser Ebene lediglich einen vier-elementigen Vektor mit dem bekannten Wertebereich.
 Zur Ausführung eines Simulationsschrittes werden in der \textbf{Step-Funtkion} die Aktion der jeweils gegnerischen Drohne und die durch das Modell übergebene Aktion in ein gemeinsames Datenobjekt überführt.
 Anschließend kann mittels dieses Datenobjektes die Schrittfunktion der Elternklasse aufgerufen, und deren Rückgabewerte an den zu optimierenden Algorithmus weitergereicht werden.
-Als \textbf{Belohnungswert} wird dabei lediglich auf die im Trainingsszenario relevante Komponente des Belohnungsobjektes zugegriffen.
+Als \textbf{Belohnungswert} wird auf die im Trainingsszenario relevante Komponente des Belohnungsobjektes zugegriffen.
 
-Fasst man die beschriebene Umsetzung der Simulationsumgebung zusammen, so kann folgendes Klassendiagramm und deren Funktionsabhängigkeiten in Abbildung 10 betrachtet werden.
+Werden die beschriebene Umsetzung der Simulationsumgebung zusammengefasst, kann folgendes Klassendiagramm und deren Funktionsabhängigkeiten in Abbildung 10 betrachtet werden.
 
 \begin{figure}[htb]
     \centering
@@ -217,7 +217,7 @@ Anschließend werden die Gewichte und Vorurteile in ein Objekt des PPO-Algorithm
 Mittels der learn-Funktion kann die erzeugte Strategie im gegebenen Trainingsszenario über eine Anzahl von Zeitschritten weiter optimiert werden.
 Die während des RL Prozesses verwendeten Trainingszeitschritte lagen bei 2,592,000, welche sich aus der Trainingszeit von 180 Minuten und der Simulationsfrequenz von 240 Schritten pro Sekunde zusammensetzen.
 Durch die Tensorboard Bibliothek werden während des Trainingsprozesses gemittelte Metriken über alle Episoden berechnet sowie alle 10000 Zeitschritte eine Evaluation durchgeführt.
-In der Evaluationsperiode wird die aktuelle Strategie bemessen und dessen Episodenlänge, erzielte Belohnung und Erfolg aufgezeichnet.
+In der Evaluationsperiode wird die aktuelle Strategie bemessen und deren Episodenlänge, erzielte Belohnung und Erfolg aufgezeichnet.
 Als erfolgreich wird die Simulation gekennzeichnet, sobald die Strategie der Verteidigerdrohne die angreifende Drohne durch Kollision abfangen konnte.
 Nach dem Abschluss der Optimierung werden die neuen Modelle in Pickle Dateien gespeichert. 
 
@@ -227,8 +227,8 @@ Als letzter Teil der Umsetzung wird die Durchführung des Experiments betrachtet
 Kernaufgabe dieses Teils ist die Erhebung und Auswertung der Messdaten entsprechend des in der Einleitung des Kapitels verfassten Experimentaufbaus.
 Die Erhebung der Testdaten erfolgt durch das \textit{test.py}, die Auswertung durch das \textit{experiment\_evaluation.py} Skript.
 
-Mit der Ausführung des ersten Skripts wird ein Testklasse instanziiert und darin enthalten die Simulation nach den Eigenschaften des Testszenarios erzeugt.
-Das Testszenario implementiert dabei die Anforderung der Randomisierung des Zielpunktes.
+Mit der Ausführung des ersten Skripts wird eine Testklasse instanziiert und die Simulation nach den Eigenschaften des Testszenarios erzeugt.
+Das Testszenario implementiert die Anforderung der Randomisierung des Zielpunktes.
 Zur zufälligen Bestimmung des Zielpunkts wird, ebenso wie zur Initialisierung der Verteidigerdrohne, eine uniforme Verteilung bis zu 1,5 Meter um den Ursprung verwendet.
 Eine uniforme Verteilung fördert dabei die Varianz der Testszenarien und erhöht so die Validität des Experiments.
 Anders als bei der Initialisierung der Drohnen wird die Höhe des Zielpunktes stets auf 0,5 Meter festgelegt, um so Bodenkontakt und Simulationserfolg abzugrenzen.

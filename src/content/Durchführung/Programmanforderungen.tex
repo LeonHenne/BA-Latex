@@ -1,10 +1,10 @@
 \section{Programmanforderungen}
 
 Für die Durchführung des Laborexperiments wird ein Softwareprogramm implementiert, welches in der Lage ist, die zuvor beschriebene Methodik umzusetzen.
-In diesem Kapitel werden die dafür bestehende technische und funktionale Anforderungen genauer thematisiert. 
+In diesem Kapitel werden die dafür bestehenden technischen und funktionalen Anforderungen genauer thematisiert. 
 
 % allgemeine Programmanforderung
-Eine allgemeine Anforderung besteht in der Wahl einer Entwicklungssprache, welche die Entwicklung der Simulation anhand von Softwareframeworks, und zugleich die Integration mit Algorithmen des verstärkenden Lernens erlaubt.
+Eine allgemeine Anforderung liegt in der Wahl einer Entwicklungssprache, welche die Entwicklung der Simulation anhand von Softwareframeworks und zugleich die Integration mit Algorithmen des verstärkenden Lernens erlaubt.
 Die Entwicklungssprache und verwendete Softwarebibliotheken sollten einer möglichst aktuellen Version entsprechen, und deren Einsatz mit ihrer Version dokumentiert sein.
 Durch die Dokumentierung kann ein gleiches Abbild der Softwareumgebung auf anderen Instanzen eines Betriebssystems eingerichtet werden. 
 
@@ -28,11 +28,11 @@ Als Spielgebiet wird eine flache feste Ebene auf der Höhe Null eingesetzt, übe
 Eine weitere Funktion beinhaltet die Definition des \textbf{Beobachtungsraums}, also welche Informationen für den Agenten wahrnehmbar sind. 
 In der beschriebenen Simulation soll der Agent die aktuelle Position und Richtungsgeschwindigkeit der Drohne wahrnehmen.
 Jede dieser Eigenschaften wird von der verteidigenden Drohne und zusätzlich von der angreifenden Drohne wahrgenommen. 
-Insgesamt stelle der Beobachtungsraum somit ein Datenobjekt dar, welches alle Informationen wie Koordinaten, Geschwindigkeiten und Drehzahlen beinhalte.
+Insgesamt stellt der Beobachtungsraum somit ein Datenobjekt dar, welches alle Informationen wie Koordinaten, Geschwindigkeiten und Drehzahlen beinhalte.
 
 Neben dem Beobachtungsraum muss auch ein \textbf{Handlungsraum} festgelegt werden, welcher die Steuerung der verteidigenden Drohne umfassen soll.
 Hierbei soll durch den Agenten die Geschwindigkeit und ihre Richtung in Form einer vier elementigen Liste vorgegeben werden.
-Auch die regelbasiert gesteuerten Drohnen müssen damit eine dieser Form entsprechende Aktion zu erzeugen.
+Auch die regelbasiert gesteuerten Drohnen müssen damit eine dieser Form entsprechende Aktion erzeugen.
 Anschließend besteht die Anforderung, diese Aktionen in einen konkreten Einfluss auf den Zustand des Quadrokopters zu übersetzen.
 
 Führt der Agent eine Aktion seines Handlungsraums aus, wird die Implementierung eines \textbf{Zeitschritts} der Simulation benötigt.
@@ -44,7 +44,7 @@ Das Gymnasium Framework definiert die \textbf{Rücksetzfunktion}, welche den ini
 Durch die Schrittfunktion ist abschließend die neue Wahrnehmung der Simulation, die Erfüllung des Rücksetzkriteriums und der Belohnungswert zurückzugeben.
 
 Zur Berechnung einer entsprechenden Belohnung, für die Ausführung der gewählten Aktion, ist eine \textbf{Belohnungsfunktion} einzusetzen.
-Diese muss anhand des neuen Simulationszustandes Kennzahlen ermitteln und gewichten, und dadurch eine numerische Bewertung der neuen Situation vornehmen.
+Diese muss anhand des neuen Simulationszustandes Kennzahlen ermitteln und gewichten und dadurch eine numerische Bewertung der neuen Situation vornehmen.
 Hinsichtlich der Maximierung des kumulierten Belohnungswertes optimiert der Agent mittels des RL Algorithmus seine Aktion in Abhängigkeit der Simulation.
 Die Anforderungen dieser Optimierung der Aktionen werden in der nachfolgenden Sektion detailliert betrachtet.
 
@@ -60,10 +60,10 @@ Weiterhin ist eine umfangreiche Dokumentation zur Anwendung von RL-Algorithmen i
 Aus der Softwarebibliothek Stable-Baselines3 soll der PPO-Algorithmus zum Optimieren je einer Policy in jedem Trainingsszenario eingesetzt werden. 
 
 Der Trainingsprozess beinhaltet im ersten Schritt die Bestimmung der unabhängigen Variablen. 
-In Kontext dieser Arbeit sind die die Eigenschaften der Simulation nach der Wahl des Trainingsszenarios, in der Simulation einzustellen.
+Im Kontext dieser Arbeit sind die die Eigenschaften der Simulation nach der Wahl des Trainingsszenarios, in der Simulation einzustellen.
 Alle Eigenschaften der Szenarios sollen über die Veränderung weniger Parameter als zentrale Schnittstelle im Programm auswählbar sein.
 Anschließend sind diejenigen Metriken anzugeben, welche im Trainingsprozess erfasst werden sollen.
-Diese beinhalten die durchschnittliche Episodenlänge und kumulierte Belohnung sowie die Erfolgsrate des Zusammenstoßes beider Drohnen, über alle im Trainingsprozess evaluierten Strategien.
+Diese beinhalten die durchschnittliche Episodenlänge, die kumulierte Belohnung sowie die Erfolgsrate des Zusammenstoßes beider Drohnen, über alle im Trainingsprozess evaluierten Strategien.
 Zur Erfassung dieser Trainingsmetriken gilt es, die Integration mit der Tensorboard Bibliothek zu nutzen.
 Daraufhin ist das Training über die dafür vorgesehene Funktion des RL-Modells zu starten und nach dessen Ablauf das optimierte Modell zu speichern.
 Das Speicherformat ist so zu wählen, dass gespeicherte Modelle zur Auswertung in das Testszenario geladen werden können.
@@ -79,7 +79,7 @@ Durch diesen Transfer soll das Training der RL-Modelle beschleunigt werden, da d
 \subsection{Anforderungen des Laborexperiments}
 
 Mithilfe der programatischen Implementierung des Laborexperiments sollen die notwendigen Messdaten erhoben, die Forschungshypothesen evaluiert, und die Forschungsfrage beantwortet werden.
-Dazu ist es notwendig, die beschriebenen Metriken, also die kumulierte Belohnung, dessen Varianz und die Anzahl an Misserfolgen für alle Policies im Testszenario zu erfassen.
+Dazu ist es notwendig, die beschriebenen Metriken, wie die kumulierte Belohnung deren Varianz und die Anzahl an Misserfolgen, für alle Policies im Testszenario zu erfassen.
 Das Testszenario wird durch eine Instanz der Simulationsumgebung repräsentiert, die zum Training veränderte Parameter beinhaltet.
 
 Die Abweichung der Domäne zu den Trainingsszenarien wird durch die zusätzliche Randomisierung des Zielpunktes und durch die Verbesserung des regelbasierten Gegenspielers erzielt. 
@@ -99,8 +99,8 @@ Durch das Laden der Messdaten aus Dateien in entsprechende Datenobjekte liegen a
 Anschließend sind die Daten durch das Auswertungsprogramm, mittels der in der Forschungsmethodik beschriebenen Signifikanztests auf ihre Verteilung hin zu untersuchen.
 In Abhängigkeit der vorliegenden oder nicht vorliegenden Normalverteilung ist entsprechend der in der Forschungsmethodik beschriebene Test umzusetzen.
 
-Die genaue Implementierung dieser Tests soll ebenfalls durch zusätzliche Softwarebibliotheken bestimmt sein.
+Die genaue Implementierung dieser Tests soll durch zusätzliche Softwarebibliotheken bestimmt sein.
 Anhand der Testergebnisse sind durch das Programm die H0 und H1 Hypothesen zu evaluieren und darauf aufbauend die Forschungshypothesen zu bestätigen oder zu verwerfen.
-Zusätzlich zu den Messdaten der Testszenarien sind auch die Ergebnisse der Signifikanztests zu speichern.
-Schlussendlich sind in einer Tabelle zu jeder Forschungshypothese die Ergebnisse der statistischen Tests anzuführen.
-Durch die gesamte einheitliche Betrachtung der Robustheitsmerkmale kann final die Forschungsfrage beantwortet werden.
+Zusätzlich zu den Messdaten der Testszenarien sind die Ergebnisse der Signifikanztests zu speichern.
+Schlussendlich sollen in einer Tabelle zu jeder Forschungshypothese die Ergebnisse der statistischen Tests angeführt werden.
+Durch die gesamtheitliche Betrachtung der Robustheitsmerkmale kann final die Forschungsfrage beantwortet werden.

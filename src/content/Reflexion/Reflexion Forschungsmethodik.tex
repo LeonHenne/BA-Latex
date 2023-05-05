@@ -1,19 +1,19 @@
 \section{Fazit}
-Künstliche Intelligenz und maschinelles Lernen zeigt heutzutage in immer mehr Lebens- und Wirtschaftsbereichen hohe Potenziale zur Übernahme und Automatisierung von Abläufen.
+Künstliche Intelligenz und maschinelles Lernen zeigen heutzutage in immer mehr Lebens- und Wirtschaftsbereichen hohe Potenziale zur Übernahme und Automatisierung von Abläufen.
 Ein wichtiges Phänomen zur Automatisierung ist dabei der Einzug von künstlicher Intelligenz in die Robotik zur Steuerung von Maschinen und Drohnen.
-Deren Anwendung bleibt jedoch häufig eine Herausforderung aufgrund fehlender Datengrundlage und dem hohen manuellen Aufwand die Daten entsprechend zu kennzeichnen. 
+Deren Anwendung bleibt häufig eine Herausforderung aufgrund fehlender Datengrundlage und dem hohen manuellen Aufwand die Daten entsprechend zu kennzeichnen. 
 Durch den Einsatz einer Simulationsumgebung und verstärkendem Lernen konnte im Rahmen dieser Arbeit gezeigt werden, dass auch ohne manuelle Kennzeichnung Modelle des maschinellen Lernens optimiert werden können.
 Erkannt wurde auch, dass Simulationsumgebungen immer eine gewisse Diskrepanz zur realen Welt aufweisen, weshalb es unabdingbar ist, die Robustheit von RL Modellen zu überprüfen.
 Daraus ergab sich für diese Arbeit die Zielstellung den Effekt eines RL basierten Gegenspielers, auf die Robustheit einer optimierten Strategie mittels eines Laborexperiments zu untersuchen.
 Anschließend galt es, den untersuchten Effekt mit einer aktuellen Methodik zur Erhöhung der Robustheit, wie der DR zu vergleichen.
 
-Die Ergebnisse zeigten, dass die Anwendung des RL basierten Gegenspielers sowie der DR, zwar nicht in jeder Hinsicht die Robustheit von RL Modellen verbessern, jedoch die DR teilweise positive Effekte auf einzelne Teilaspekte wie Stabilität und Erfolgsrate ausüben konnten.
+Die Ergebnisse zeigen, dass die Anwendung des RL basierten Gegenspielers sowie der DR, zwar nicht in jeder Hinsicht die Robustheit von RL Modellen verbessern, jedoch die DR teilweise positive Effekte auf einzelne Teilaspekte wie Stabilität und Erfolgsrate ausüben können.
 Im weiteren Verlauf soll deshalb die im Rahmen dieser Arbeit angewendete Forschungsmethodik kritisch reflektiert, sowie ein Ausblick auf weitere Forschungsfragen gegeben werden.
 
 \section{Reflexion der Forschungsmethodik}
 
 % kurze Erläuterung der Methodik
-Zur Untersuchung der in dieser Arbeit gestellten Forschungsfrage wurde die Methodik eines Laborexperiment durchgeführt. 
+Zur Untersuchung der in dieser Arbeit gestellten Forschungsfrage wurde die Methode eines Laborexperiment durchgeführt. 
 Dabei galt es Messdaten zur Robustheit der verschiedenen RL Modelle aus unterschiedlichen Trainingsszenarien zu erheben.
 Da keine Trainingsumgebung und Drohnen in der echten Welt zur Verfügung standen, wurde eine Simulationsumgebung verwendet. 
 Für das Training ist zunächst regelbasiertes Verhalten entwickelt worden, welches mittels imitierenden Lernen zur Modellstruktur des verstärkenden Lernens übertragen wurde.
@@ -27,9 +27,9 @@ Weiterhin bedarf das Laborexperiment einem Testkonzept zur Messung und Auswertun
 
 % Einschränkungen der einzelnen Komponenten
 Aus der Anwendung eines Laborexperiments und der eigenen Entwicklung der meisten benötigten Komponenten ergeben sich vielerlei Einschränkungen und Möglichkeiten zur Methodenoptimierung. %ein hohes Fehler- und Optimierungspotenzial.
-Durch die Wahl des Laborexperiments konnte zwar erfolgreich die Robustheit bemessen werden, jedoch ist dadurch auch ein beschränkter Bezug zur Realität gegeben, im Vergleich zu z. B. einem Feldexperiment.
+Durch die Wahl des Laborexperiments konnte zwar erfolgreich die Robustheit bemessen werden, jedoch ist dadurch auch ein beschränkter Bezug zur Realität im Vergleich zu z. B. einem Feldexperiment gegeben.
 Weiterhin wurde mit der Durchführung des Experiments in einer Simulation, dem Testszenario selbst, um eine nicht bemessene Diskrepanz zur Realität erweitert und damit die Messung der Robustheit beeinflusst.
-Im Trainingsprozess der Modelle konnte wiederum dank der niedriger frequentierten Simulation, bzw. der mehrfachen Ausführung einer gewählten Aktion, mit eher geringem Aufwand stark unkorrelierte Trainingsdaten erzeugt werden, was ohne Simulation zu einer großen Herausforderung führe.
+Im Trainingsprozess der Modelle konnte wiederum dank der niedriger frequentierten Simulation, bzw. der mehrfachen Ausführung einer gewählten Aktion, mit geringem Aufwand stark unkorrelierte Trainingsdaten erzeugt werden, was ohne Simulation zu einer großen Herausforderung führe.
 Dennoch kann es lohnenswert sein Optimierungspotenzial im Trainingsprozess zu suchen, da von dessen Qualität auch die im Testszenario gemessenen Leistungen der RL Modelle abhängen.
 Zusätzlich könnte der Prozess zur Optimierung der Modelle nur unter einer beschränkten Menge von Trainingsdaten ausgeübt werden, woraus auch ein Einfluss auf das Verhalten der Modelle bewirkt wurde.
 Um die gemessenen Effekte des RL basierten Gegenspielers in eine Relation, zu in der Forschungsliteratur vorhandenen Methoden zu setzen, wurde der populärste Ansatz DR angewendet.
@@ -46,6 +46,6 @@ Darauf aufbauend würde es den aktuellen Stand der Forschung bereichern, ein Tes
 Anhand dessen ließe sich die Aussagekraft von Messungen und Ergebnisses deutlich steigern.
 Da die Anwendung in der echten Welt nicht für jedes Untersuchungsszenario umsetzbar sein kann, bleibt dennoch die Entwicklung und Verbesserung von Simulation ein wichtiges Forschungsgebiet.
 Eine wichtige Simulationseigenschaft im Rahmen dieser Arbeit war die Simulations-, bzw. Handlungsfrequenz des Agenten, um trotz geringerer Datenpunkte einen diversen Datensatz zu erzielen.
-Betrachtet man diese Eigenschaft ergeben sich zwei neue Forschungsrichtungen, welche die Frage nach der leistungsoptimalen, also der effektivsten sowie nach der ressourcenoptimalen, also der effizientesten Simulationsfrequenz stellen.
+Wird diese Eigenschaft betrachtet, ergeben sich zwei neue Forschungsrichtungen, welche die Frage nach der leistungsoptimalen, also der effektivsten sowie nach der ressourcenoptimalen, also der effizientesten Simulationsfrequenz stellen.
 
 Insgesamt bleibt es damit weiter notwendig, das Verhalten von RL Modellen in unbekannten Umgebungen zu untersuchen, um die Robustheit der Modelle zu evaluieren und eine fehlerfreie Übernahme von dynamischen Prozessen in der Robotik und dem Drohnenflug zu garantieren.
