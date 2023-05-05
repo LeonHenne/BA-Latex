@@ -2,7 +2,7 @@
 
 \begin{table}[htb]
     \begin{tabular}{llllll}
-    Metrik & Gleichheit P-Wert & Verschlechterung P-Wert & Ungleichheit & Verbesserung \\
+    Metrik & Gleichheit P-Wert & Verschlechterung P-Wert & Ungleichheit & \begin{tabular}[c]{@{}l@{}}Verbes- \\ serung\end{tabular} \\
     \begin{tabular}[c]{@{}l@{}}Erzielte kumu- \\lierte Belohnung\end{tabular} & 0.21860488490723795 & 0.10930244245361898 & False & False \\
     \begin{tabular}[c]{@{}l@{}}Abweichung vom \\ Belohnungs- \\Mittelwert\end{tabular} & 1.1343177758713004e-13 & 0.9999999999999443 & True & False \\
     \begin{tabular}[c]{@{}l@{}}Häufigkeit von \\ Misserfolg \end{tabular} & 0.09899034302740754 & 0.9513450789074275 & True & False
@@ -17,12 +17,12 @@ Dazu sind die P-Werte der Tests und Wahrheitswerte der Testhypothesen je untersu
 \subsection{Betrachtung der kumulierten Belohnung}
 
 \textbf{Hypothese 1:}
-\textit{Die im Testszenario erzielte kumulierte Belohnung ist unter Verwendung der Policy aus dem Training mit RL basiertem Gegenspieler signifikant und zuverlässig höher als die Policy aus dem Training mit randomisierter Umgebung.}
+\textit{Die im Testszenario erzielte kumulierte Belohnung ist unter Verwendung der Policy aus dem Training mit RL basiertem Gegenspieler signifikant und zuverlässig höher, als die Policy aus dem Training mit randomisierter Umgebung.}
 
 % Untersuchungsgegenstand
 Zuerst wird die Hypothese 1 einer signifikant höheren kumulierten Belohnung, durch den Einsatz von RL zum Optimieren eines Gegenspielers gegenüber der angewendeten Form von DR, untersucht.
-Die H0 Hypothese im ersten Test repräsentiert die Behauptung, dass eine die Daten der Belohnungen einer gemeinsamen Verteilung entstammen. 
-Das die Belohnungsdaten, welche durch die Strategie mit RL basiertem Gegenspieler erzeugt worden sind, einer höheren Verteilung entstammen wird im zweiten Test als H0 Hypothese überprüft.
+Die H0 Hypothese im ersten Test repräsentiert die Behauptung, dass die Daten der Belohnungen einer gemeinsamen Verteilung entstammen. 
+Dass die Belohnungsdaten, welche durch die Strategie mit RL basiertem Gegenspieler erzeugt worden sind, einer höheren Verteilung entstammen, wird im zweiten Test als H0 Hypothese überprüft.
 Entsprechend gegensätzliche Annahmen werden in beiden Signifikanztests als H1 Hypothese verwendet.
 
 % Evaluation
@@ -38,12 +38,12 @@ Daraus kann ableitet werden, dass die Strategie aus dem Training mit RL basierte
 \subsection{Betrachtung der Belohnungsstabilität}
 
 \textbf{Hypothese 2:}
-\textit{Die Varianz der im Testszenario erzielten kumulierten Belohnung ist unter Verwendung der Policy aus dem Training mit RL basiertem Gegenspieler signifikant und zuverlässig geringer als die Policy aus dem Training mit randomisierter Umgebung.}
+\textit{Die Varianz der im Testszenario erzielten kumulierten Belohnung ist unter Verwendung der Policy aus dem Training mit RL basiertem Gegenspieler signifikant und zuverlässig geringer, als die Policy aus dem Training mit randomisierter Umgebung.}
 
 % Untersuchungsgegenstand
 Mittels der nächsten Forschungshypothese soll die Leistungsstabilität, der aus dem Training mit RL basiertem Gegenspieler und mit DR entstandenen Strategien, verglichen werden.
 Zur Untersuchung dieser Metrik werden die Daten der Abweichungen der Strategieergebnisse betrachtet.
-Als erste H0 Hypothese wird die Annahme einer einheitlichen, als zweite H0 Hypothese die Annahme einer größeren Verteilung eingesetzt.
+Als erste H0 Hypothese wird die Annahme eines einheitlichen Mittelwerts, als zweite H0 Hypothese die Annahme eines größeren Mittelwerts der Verteilung eingesetzt.
 
 % Evaluation
 Aus Tabelle 9 geht ein P-Wert von in etwa $1.1343e-13$ hervor.
@@ -58,7 +58,7 @@ Im Gegenteil konnte gezeigt werden, dass ein RL basierter Gegenspieler im Traini
 \subsection{Betrachtung der Anzahl der Misserfolge}
 
 \textbf{Hypothese 3:}
-\textit{Die im Testszenario erreichte Anzahl von Misserfolgen ist unter Verwendung der Policy aus dem Training mit RL basiertem Gegenspieler signifikant und zuverlässig geringer als die Policy aus dem Training mit randomisierter Umgebung.}
+\textit{Die im Testszenario erreichte Anzahl von Misserfolgen ist unter Verwendung der Policy aus dem Training mit RL basiertem Gegenspieler signifikant und zuverlässig geringer, als die Policy aus dem Training mit randomisierter Umgebung.}
 
 % Untersuchungsgegenstand
 Anhand einer dritten Forschungshypothese soll schlussendlich die dritte Metrik der Robustheit und dessen Einfluss durch das gewählte Trainingsszenario erforscht werden.
@@ -74,4 +74,4 @@ Daraus hervorgehend ist festzustellen, dass die Gültigkeit der H1 Hypothese und
 
 % Bezug zur Robustheit
 Mit der Ablehnung der dritten Forschungshypothese lässt sich ein positiverer Effekt des Einsatzes von DR auf die Robustheit festhalten, als mittels des Einsatzes eines RL basierten Gegenspielers.
-Der positivere Effekt durch DR wirkt sich dabei im Sinne einer höheren Erfolgsrate auf die Robustheit aus.
+Der positivere Effekt durch DR wirkt sich im Sinne einer höheren Erfolgsrate auf die Robustheit aus.

@@ -1,4 +1,4 @@
-Anschließend an die Diskussion des aktuellen Stands der Forschung und der Praxis wird im Rahmen dieses Kapitels die Forschungsmethodik angewandt, um die folgende Forschungsfrage zu beantworten:
+Anschließend an die Diskussion des aktuellen Stands der Forschung und der Praxis wird im Rahmen dieses Kapitels die Forschungsmethodik erläutert, um die folgende Forschungsfrage zu beantworten:
 
 \textit{Inwiefern kann durch den Einsatz eines mittels RL trainierten Gegenspielers die Robustheit der gelernten Strategie verbessert werden?}
 
@@ -8,8 +8,8 @@ Anschließend an die Diskussion des aktuellen Stands der Forschung und der Praxi
 
 In der ersten Sektion dieses Kapitels wird auf den Aufbau des Laborexperiments eingegangen.
 Dabei werden grundlegende Trainingsdaten sowie zu untersuchende Hypothesen, ausgeübte Einflüsse und erfasste Metriken beschrieben.
-Anschließend werden daraus in der nächsten Sektion resultierende Anforderungen für die Entwicklung der Simulation und der Testumgebung abgeleitet. 
-Die dritte Sektion beinhaltet daraufhin die Umsetzung der beschriebenen Anforderungen und erläutert die endgültige Implementierung der Simulation, der Testdatenerhebung und deren Auswertung.
+Anschließend werden in der nächsten Sektion daraus resultierende Anforderungen für die Entwicklung der Simulation und der Testumgebung abgeleitet. 
+Die dritte Sektion beinhaltet die Umsetzung der beschriebenen Anforderungen und erläutert die endgültige Implementierung der Simulation, der Testdatenerhebung und deren Auswertung.
 
 \section{Erläuterung der Forschungsmethodik}
 
@@ -19,35 +19,35 @@ Anschließend werden die trainierten Policies in einer veränderten Simulation a
 Ziel ist es, die Leistungsdiskrepanzen zwischen den Strategien des Trainings mit deterministischen und mit optimiertem Gegenspieler zu betrachten.
 Kein Teil der umzusetzenden Forschungsmethodik ist die Anwendung der simulationsbasierten Strategien zur Steuerung von Quadrokoptern in der echten Welt. 
 Weiterhin wird nicht die Ergebnisabhängigkeit zu Faktoren wie der Wahl des Simulationsframeworks, der Physik-Engine oder des Abstraktionsniveaus untersucht.
-Die Auswahl jener Aspekte wird unter den Gesichtspunkten der Softwarearchitektur getroffen, dessen Anforderungen und Implementierung in nachfolgenden Sektionen behandelt wird.
+Die Auswahl jener Aspekte wird unter den Gesichtspunkten der Softwarearchitektur getroffen, deren Anforderungen und Implementierung in nachfolgenden Sektionen behandelt wird.
 
 \subsection{Beschreibung der Simulationsumgebung}
 
-Beginnend mit dem Training der Policies durch verstärkendes Lernen, wird hierfür anders als bei überwachtem und unüberwachtem Lernen kein unmittelbar vorliegender Datensatz benötigt.
+Beginnend mit dem Training der Policies durch verstärkendes Lernen, wird hierfür anders als bei dem überwachtem und unüberwachtem Lernen kein unmittelbar vorliegender Datensatz benötigt.
 Anstelle dessen basiert das Training auf der vollständigen oder teilweisen Wahrnehmung einer Lernumgebung, welche den lernenden Agenten für ausgeführte Aktionen positiv oder negativ belohnt.
 Wie auch in der Einleitung erwähnt, wird im Kontext dieser Arbeit die Simulation von Quadrokoptern dafür verwendet, die Lernumgebung und damit die Trainingsdaten für die Algorithmen des RL zur Verfügung zu stellen.
 Die Simulation von Quadrokoptern stellt ein hochdynamisches Anwendungsgebiet dar, bei dem von einer hohen Diskrepanz zwischen der echten und simulierten Welt ausgegangen werden kann. 
 Die Simulationsumgebung stellt grundsätzlich ein Szenario dar, in welchem zwei verschiedene Drohnen kompetitiv gegeneinander agieren.
-Das Ziel einer Drohne ist es, zu einem festgelegten Punkt hinter der zweiten Drohne zu gelangen, währenddessen die zweite Drohne versucht die angreifende Drohne auf seinem Weg abzufangen. 
-Die verteidigende Drohne verwendet dafür das Mittel einer bewussten Kollision.
+Das Ziel einer Drohne ist es, zu einem festgelegten Punkt hinter der zweiten Drohne zu gelangen, währenddessen die zweite Drohne versucht die angreifende Drohne auf deren Weg abzufangen. 
+Um dies zu erreichen geht die verteidigende Drohne eine bewusste Kollision mit der anzugreifenden Drohne ein.
 Beide Drohnen werden unter der Einschränkung ihrer Nähe zum Zielpunkt zufällig in einem drei dimensionalem Raum initialisiert, welcher nur horizontal einseitig beschränkt wird.
 Durch die einseitige Beschränkung des Flugraums wird der natürliche Untergrund dargestellt.
 Zu Beginn soll die verteidigende Drohne näher am Zielpunkt als die angreifende Drohne starten, sodass stets ein Abfangen möglich ist.
-Während der Simulation wird die angreifende Drohne sich entweder regelbasiert auf einer geraden Linie, oder sich durch optimierte Aktionen, zum Zielpunkt bewegen.
+Während der Simulation wird die angreifende Drohne sich entweder regelbasiert auf einer geraden Linie oder sich durch optimierte Aktionen zum Zielpunkt bewegen.
 Die Bewegungsaktionen der verteidigenden Drohne werden durch ein sich optimierendes neuronales Netz bestimmt.
-Ist das Ziel einer der beiden Drohnen erreicht, oder besteht Kontakt mit dem Untergrund, so wird die Simulation beendet.
+Ist das Ziel einer der beiden Drohnen erreicht oder besteht Kontakt mit dem Untergrund, so wird die Simulation beendet.
 
 \subsection{Erläuterung der Trainingsszenarien}
 
-Durch die erläuterte Simulation werden für das Laborexperiment Strategien in vier unterschiedlichen Szenarien mit einem Algorithmus des verstärkenden Lernens optimiert.
+Durch die erläuterte Simulation, werden für das Laborexperiment Strategien in vier unterschiedlichen Szenarien mit einem Algorithmus des verstärkenden Lernens optimiert.
 %Zur Prüfung der Zuverlässigkeit werden je Trainingsszenario zwei optimale Policies durch zwei verschiedene RL-Algorithmen erlernt.
-Jede der Strategien wird dabei in einer der nachfolgenden Simulationsszenarien optimiert, dessen Auswahl die unabhängige Variable des Laborexperiments darstellt.
+Jede der Strategien wird dabei in einem der nachfolgenden Simulationsszenarien optimiert, dessen Auswahl die unabhängige Variable des Laborexperiments darstellt.
 \begin{enumerate}
-    \item Das erste Szenario beinhaltet das Training der zu verteidigenden Drohne gegen eine angreifende Drohne, welche eine deterministische regelbasierte Strategie ausführt.
+    \item Das erste Szenario beinhaltet das Training der zu verteidigenden Drohne gegen eine angreifende Drohne, die eine deterministische regelbasierte Strategie ausführt.
     \item Im zweiten Szenario wird eine deterministische Strategie für die anzugreifende Drohne mittels RL optimiert, während die verteidigende Drohne anhand einer regelbasierten Strategie agiert.
-    \item Anschließend enthält das dritte Szenario das Training einer Verteidigungsstrategie im kompetitiven Spiel mit der anzugreifenden Drohne unter zuvor optimierter Policy.
+    \item Anschließend enthält das dritte Szenario das Training einer Verteidigungsstrategie im kompetitiven Spiel mit einer anzugreifenden Drohne, die entsprechend der zuvor optimierten Strategie agiert.
     \item Zum Abschluss wird das erste Szenario mit regelbasiertem Gegenspieler unter DR, also unter der Randomisierung dynamischer Parameter, als viertes Szenario wiederholt. 
-    zur Randomisierung der Trainingsdomäne wird ein konstanter Windeffekt simuliert, dessen Richtung und Stärke zu jeder Trainingsepisode variiert. 
+    Zur Randomisierung der Trainingsdomäne wird ein konstanter Windeffekt simuliert, dessen Richtung und Stärke zu jeder Trainingsepisode variiert. 
 \end{enumerate}
 
 \subsection{Erläuterung des Testszenarios}
@@ -55,24 +55,24 @@ Jede der Strategien wird dabei in einer der nachfolgenden Simulationsszenarien o
 Nach den Trainingsphasen werden einzelne Policies in mehreren Episoden, eines vom Training abweichenden Testszenarios, ausgeführt und deren Leistungsverhalten gemessen.
 Eine Episode entspricht dabei einer Simulation des Testszenarios bis zu ihrem erfolgreichen oder nicht erfolgreichem Ende durch Drohnen-, Ziel- oder Bodenkontakt.
 Zusätzlich zu den Trainingsszenarien ist neben den initialen Startpositionen der Drohnen auch der von der Angreiferdrohne zu erreichende Zielpunkt zufällig zu verändern.
-Neben der zusätzlichen Randomisierung des Zielpunktes wird außerdem ein zum Trainingsszenario verbesserter regelbasierter Gegenspieler verwendet.
+Neben der zusätzlichen Randomisierung des Zielpunktes wird ein im Vergleich zu den Trainingszenarien 1 und 4 verbesserter regelbasierter Gegenspieler eingesetzt.
 
 \subsection{Messung der Robustheit von RL Policies}
 
-Die in den Testszenarien betrachteten abhängigen Variablen sind die erzielte kumulierte Belohnung, dessen Varianz sowie die Anzahl an unbeabsichtigten Misserfolgen.
+Die in den Testszenarien betrachteten abhängigen Variablen sind die erzielte kumulierte Belohnung, deren Varianz sowie die Anzahl an Misserfolgen.
 Die kumulierte Belohnung und dessen Varianz stellen wie bereits beschrieben in der Forschung wichtige Kenngrößen dar, um die Robustheit von RL Policies zu bestimmen.
-Als Robustheit wird im Rahmen dieser Arbeit die Signifikanz und Stabilität einer Leistungsdiskrepanz von Modellen zwischen Trainings- und Testszenarien definiert.
+Als Robustheit wird im Rahmen dieser Arbeit die Signifikanz einer Leistungsdiskrepanz von Modellen zwischen Trainings- und Testszenarien und die demnach fehlende Stabilität definiert.
 Die Metrik der Anzahl von unbeabsichtigten Misserfolgen spiegelt im behandelten Anwendungsfall das Fehlschlagen der trainierten Strategie wider die gegnerische Drohne nicht abfangen zu können.
-Mit der Auswahl der Metriken werden die Strategieeigenschaften der maximalen Strategieleistung, der Leistungsabweichung und der Strategiesicherheit deutlich.
+Mit der Auswahl der Metriken werden die Strategieeigenschaften der maximalen Strategieleistung, der Strategiestabilität über mehrere Episoden und der Strategieerfolgszuverlässigkeit deutlich.
 Aus der Abweichung zwischen dem Leistungsverhalten während des Trainings und während des Tests soll so die Robustheit von RL Policies erkennbar und messbar gestaltet werden.
 Der Fokus liegt dabei auf der Messung der Robustheit von den optimierten Strategien aus Szenario eins, drei und vier.
-Aus dem Vergleich des Leistungsverhaltens zwischen Strategie eins und drei kann eine mögliche Verbesserung der Robustheit gegenüber unbekannten Szenarien abgeleitet werden.
-Anschließend kann der erzielte Effekt mit der Abweichung zwischen eins und vier verglichen, und so aktuell verwendete Methoden zur Erhöhung der Robustheit einbezogen werden.
+Aus dem Vergleich des Leistungsverhaltens zwischen Strategie eins und drei kann eine mögliche Verbesserung der Robustheit durch das Training mit einem Gegenspieler, der entsprechend einer ebenfalls mit RL trainierten Strategie agiert, abgeleitet werden. 
+Anschließend kann der erzielte Effekt mit der Abweichung zwischen eins und vier verglichen, und so im Vergleich zu aktuell verwendeten Methoden zur Erhöhung der Robustheit bewertet werden. 
 
 \subsection{Auswertung mittels statistischer Tests}
 
-Durch den Vergleich einzelner Strategien mittels dieser Vorgehensweise werden im Laborexperiment die zu Beginn der Arbeit aufgestellten Hypothesen auf ihre Gültigkeit untersucht.
-Die nachfolgenden bereits zu Beginn angeführten Hypothesen beinhalten, wie im vorherigen Kapitel diskutiert, verschiedene Aspekte der Robustheit von RL Strategien, welche in späteren Abschnitten einzeln ausgewertet werden.
+Durch den Vergleich einzelner Strategien anhand dieser Vorgehensweise werden im Laborexperiment die zu Beginn der Arbeit aufgestellten Hypothesen auf ihre Gültigkeit untersucht.
+Die nachfolgenden, bereits zu Beginn angeführten Hypothesen beinhalten, wie im vorherigen Kapitel diskutiert, verschiedene Aspekte der Robustheit von RL Strategien, welche in späteren Abschnitten einzeln ausgewertet werden.
 \begin{enumerate}
     % verschiedene Aspekte: max. Reward, Stabilität des Rewards, Fehlschlag von Strategien
     \item \textit{Die im Testszenario erzielte kumulierte Belohnung ist unter Verwendung der Policy aus dem Training mit RL basiertem Gegenspieler signifikant und zuverlässig höher als die Policy aus dem Training mit regelbasiertem Gegenspieler.}
@@ -126,6 +126,6 @@ Die Auswahl des Signifikanztests wird anhand der Wahrscheinlichkeit einer vorlie
 Kann nach einem Kolmogorov- oder Shapiro- Test zu einem Signifikanzniveau von 10 \% eine Normalverteilung angenommen werden, lässt sich zur Überprüfung der Hypothesen ein T-Test einsetzten.
 Ist keine Normalverteilung gegeben, wird ein Mann-Whitney U Test verwendet.
 Liegt schlussendlich der P-Wert des T- oder Mann-Whitney U Signifikanztests zur Prüfung eines Unterschieds unter 10 \%, so wird die H0 Hypothese abgelehnt und die Abweichung in den Robustheitsdaten als signifikant betrachtet.
-Zeigt der anschließende statistische Signifikanztest einen P-Wert unter dem Signifikanzniveau, wird H0 abgelehnt und die Verbesserung mittels RL Gegenspieler als signifikant wahrgenommen.
+Weist der anschließende statistische Signifikanztest einen P-Wert unter dem Signifikanzniveau, wird H0 abgelehnt und die Verbesserung mittels RL Gegenspieler als signifikant wahrgenommen.
 Die Beantwortung der Forschungsfrage erfolgt abschließend mit der Betrachtung der angenommenen oder abgelehnten Forschungshypothesen.
 So werden die verschiedenen Merkmale der RL Policies untersucht und es kann festgestellt werden, welche Effekte auf Robustheit erzielt worden sind.
